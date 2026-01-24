@@ -7,7 +7,7 @@ A personal portfolio website built with **React** and **Tailwind CSS**, showcasi
 
 ---
 
-## [Live Demo](https://gemachistesfaye.github.io/Portfolio/)
+## [Live Demo](https://gemachistesfaye.github.io/Portfilo/)
 
 ---
 

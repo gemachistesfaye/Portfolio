@@ -39,12 +39,12 @@ const Home = () => {
   const [textIndex, setTextIndex] = useState(0);
   const [textAnimating, setTextAnimating] = useState(false);
   const [typingLine, setTypingLine] = useState(0);
-  const [typingCol, setTypingCol] = useState(0);
+
   const [displayedLines, setDisplayedLines] = useState([]);
   const [replayKey, setReplayKey] = useState(0);
   const [hovering, setHovering] = useState(false);
   const typingRef = useRef(null);
-  const particlesRef = useRef([]);
+
 
   // Rotating text with 3D transition
   useEffect(() => {

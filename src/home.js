@@ -80,7 +80,6 @@ const Home = () => {
       const currentLine = codeLines[lineIdx];
       colIdx++;
       setTypingLine(lineIdx);
-      setTypingCol(colIdx);
       setDisplayedLines(
         lines.slice(0, lineIdx).concat([
           { ...currentLine, visibleText: currentLine.text.slice(0, colIdx) },

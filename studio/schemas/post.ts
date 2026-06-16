@@ -49,6 +49,27 @@ export default {
       type: "datetime",
       initialValue: () => new Date().toISOString(),
     },
+    {
+      name: "views",
+      title: "Views",
+      type: "number",
+      initialValue: 0,
+      readOnly: true,
+    },
+    {
+      name: "likes",
+      title: "Likes",
+      type: "number",
+      initialValue: 0,
+      readOnly: true,
+    },
+    {
+      name: "shares",
+      title: "Shares",
+      type: "number",
+      initialValue: 0,
+      readOnly: true,
+    },
   ],
   preview: {
     select: {

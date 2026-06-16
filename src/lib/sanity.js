@@ -19,7 +19,10 @@ export async function getAllPosts() {
       excerpt,
       coverImage,
       tags,
-      publishedAt
+      publishedAt,
+      views,
+      likes,
+      shares
     }
   `);
   return posts;
@@ -36,12 +39,39 @@ export async function getPostBySlug(slug) {
       content,
       coverImage,
       tags,
-      publishedAt
+      publishedAt,
+      views,
+      likes,
+      shares
     }
   `,
     { slug }
   );
   return post;
+}
+
+export async function incrementViews(postId) {
+  return client
+    .patch(postId)
+    .setIfMissing({ views: 0 })
+    .inc({ views: 1 })
+    .commit();
+}
+
+export async function incrementLikes(postId) {
+  return client
+    .patch(postId)
+    .setIfMissing({ likes: 0 })
+    .inc({ likes: 1 })
+    .commit();
+}
+
+export async function incrementShares(postId) {
+  return client
+    .patch(postId)
+    .setIfMissing({ shares: 0 })
+    .inc({ shares: 1 })
+    .commit();
 }
 
 export function urlFor(source) {

@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Linkedin, Send, Twitter, ArrowRight, Clock } from "lucide-react";
+import config from "./config";
 
 const socials = [
-  { icon: <Linkedin size={17} />, href: "https://www.linkedin.com/in/gemachis-tesfaye-137196318", label: "LinkedIn" },
-  { icon: <Twitter size={17} />, href: "https://x.com/GemachisTe79854", label: "Twitter" },
-  { icon: <Send size={17} />, href: "https://t.me/GemachisTesfaye", label: "Telegram" },
+  { icon: <Linkedin size={17} />, href: config.socials.linkedin, label: "LinkedIn" },
+  { icon: <Twitter size={17} />, href: config.socials.twitter, label: "Twitter" },
+  { icon: <Send size={17} />, href: config.socials.telegram, label: "Telegram" },
 ];
 
 const Contact = () => {
@@ -18,7 +19,7 @@ const Contact = () => {
     setStatus("sending");
     const data = Object.fromEntries(new FormData(e.target));
     try {
-      const res = await fetch("https://formspree.io/f/xqalrkrn", {
+      const res = await fetch(config.formspreeEndpoint, {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -38,7 +39,7 @@ const Contact = () => {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Let's Build Something <span className="text-gradient">Together</span>
           </h2>
-          <p className="text-base text-slate-400 mt-3 max-w-md mx-auto">
+          <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-md mx-auto">
             Have a project in mind? Tell me about it and I'll get back to you within 24 hours.
           </p>
         </div>
@@ -46,13 +47,13 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className={`lg:col-span-2 space-y-4 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
             {[
-              { icon: <Mail size={18} />, label: "Email", value: "gemachistesfaye36@gmail.com", href: "mailto:gemachistesfaye36@gmail.com", color: "from-blue-500 to-indigo-500" },
-              { icon: <Phone size={18} />, label: "Phone", value: "+251 976 601 074", href: "tel:+251976601074", color: "from-emerald-500 to-teal-500" },
+              { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-blue-500 to-indigo-500" },
+              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: config.phoneHref, color: "from-emerald-500 to-teal-500" },
               { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null, color: "from-violet-500 to-purple-500" },
             ].map((c, i) => (
               <div
                 key={i}
-                className="group flex items-center gap-4 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500"
+                className="group flex items-center gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500"
               >
                 <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   {c.icon}
@@ -70,7 +71,7 @@ const Contact = () => {
               </div>
             ))}
 
-            <div className="flex items-center gap-3 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220]">
+            <div className="flex items-center gap-3 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220]">
               <Clock size={16} className="text-accent flex-shrink-0" />
               <div>
                 <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">Response Time</p>
@@ -79,7 +80,7 @@ const Contact = () => {
             </div>
 
             <div className="pt-2">
-              <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-3 pl-1">Find me on</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] font-semibold mb-3 pl-1">Find me on</p>
               <div className="flex gap-2">
                 {socials.map((s, i) => (
                   <a
@@ -89,7 +90,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     title={s.label}
                     aria-label={s.label}
-                    className="group/social w-11 h-11 rounded-xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/40 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300"
+                    className="group/social w-11 h-11 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent/40 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300"
                   >
                     {s.icon}
                   </a>
@@ -101,7 +102,7 @@ const Contact = () => {
           <div className={`lg:col-span-3 opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
             <form
               onSubmit={handleSubmit}
-              className="p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] relative overflow-hidden"
+              className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm relative overflow-hidden"
             >
               <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -119,7 +120,7 @@ const Contact = () => {
                     className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
                       focused === "name"
                         ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                        : "border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02]"
+                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
                     }`}
                   />
                 </div>
@@ -136,7 +137,7 @@ const Contact = () => {
                     className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
                       focused === "email"
                         ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                        : "border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02]"
+                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
                     }`}
                   />
                 </div>
@@ -152,11 +153,11 @@ const Contact = () => {
                   required
                   onFocus={() => setFocused("subject")}
                   onBlur={() => setFocused(null)}
-                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
+                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
                     focused === "subject"
                       ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                      : "border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02]"
-                  }`}
+                      : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                    }`}
                 />
               </div>
 
@@ -170,11 +171,11 @@ const Contact = () => {
                   required
                   onFocus={() => setFocused("message")}
                   onBlur={() => setFocused(null)}
-                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 resize-none ${
+                className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 resize-none ${
                     focused === "message"
                       ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                      : "border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02]"
-                  }`}
+                      : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                    }`}
                 />
               </div>
 
@@ -207,9 +208,9 @@ const Contact = () => {
               </button>
             </form>
 
-            <div className={`mt-4 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
-              <p className="text-xs text-slate-400 text-center">
-                <span className="font-semibold text-slate-500 dark:text-slate-300">What happens next?</span>{' '}
+            <div className={`mt-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+              <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
+                <span className="font-semibold text-slate-600 dark:text-slate-300">What happens next?</span>{' '}
                 I review your message → We schedule a free 15-min call → I send a custom proposal.
               </p>
             </div>

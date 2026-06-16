@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Globe, Brain, Database, Code, BarChart3, Layers, ArrowRight, Server, Sparkles } from "lucide-react";
 import { services, skills } from "./data";
@@ -21,7 +21,7 @@ const skillIcons = {
 
 const Services = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
-  const [openCat, setOpenCat] = useState(null);
+  const [openCat, setOpenCat] = useState(skills.categories[0].label);
 
   return (
     <>
@@ -32,7 +32,7 @@ const Services = () => {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               What I Can Build <span className="text-gradient">For You</span>
             </h2>
-            <p className="text-base text-slate-400 mt-3 max-w-lg mx-auto">
+            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
               Full-stack development, AI integration, and data-driven solutions — from concept to deployment.
             </p>
           </div>
@@ -41,7 +41,7 @@ const Services = () => {
             {services.map((s, i) => (
               <div
                 key={s.title}
-                className={`group p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-500 hover:shadow-xl hover:shadow-accent/5 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+                className={`group p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-lg hover:border-accent/30 transition-all duration-500 hover:shadow-accent/5 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white shadow-lg mb-5 group-hover:scale-110 transition-transform duration-300`}>
@@ -50,7 +50,7 @@ const Services = () => {
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
                   {s.title}
                 </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                   {s.desc}
                 </p>
                 <a
@@ -85,7 +85,7 @@ const Services = () => {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Technical Expertise
             </h2>
-            <p className="text-base text-slate-400 mt-3 max-w-lg mx-auto">
+            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
               Full-stack development, databases, AI, and analytics.
             </p>
           </div>
@@ -101,7 +101,7 @@ const Services = () => {
                     className={`group w-full flex items-center gap-4 p-4 rounded-2xl border transition-all duration-500 text-left ${
                       isActive
                         ? 'border-accent/40 bg-white dark:bg-[#0c1220] shadow-xl shadow-accent/10 scale-[1.02]'
-                        : 'border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/20 hover:shadow-lg hover:shadow-accent/5 hover:scale-[1.01]'
+                        : 'border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/20 hover:shadow-lg hover:shadow-accent/5 hover:scale-[1.01]'
                     }`}
                   >
                     <div className={`relative w-12 h-12 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white shadow-lg flex-shrink-0 transition-all duration-500 ${isActive ? 'scale-110 rotate-3' : 'group-hover:scale-105'}`}>
@@ -126,7 +126,7 @@ const Services = () => {
 
             <div className="lg:col-span-2">
               {openCat ? (
-                <div className="h-full p-6 sm:p-8 rounded-2xl border border-accent/20 bg-white dark:bg-[#0c1220] shadow-2xl shadow-accent/5 relative overflow-hidden">
+                <div className="h-full p-6 sm:p-8 rounded-2xl border border-accent/20 bg-white dark:bg-[#0c1220] shadow-xl dark:shadow-accent/5 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-accent/10 via-emerald-500/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                   <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-violet-500/5 via-transparent to-transparent rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
                   
@@ -164,7 +164,7 @@ const Services = () => {
                           </p>
                           <div className="flex -space-x-1">
                             {[...Array(Math.min(cat.items.length, 5))].map((_, i) => (
-                              <div key={i} className={`w-5 h-5 rounded-full bg-gradient-to-br ${cat.color} border-2 border-white dark:border-[#0c1220] opacity-${60 + i * 10}`} />
+                              <div key={i} className={`w-5 h-5 rounded-full bg-gradient-to-br ${cat.color} border-2 border-white dark:border-[#0c1220]`} style={{ opacity: 0.6 + i * 0.1 }} />
                             ))}
                           </div>
                         </div>
@@ -173,14 +173,14 @@ const Services = () => {
                   ))}
                 </div>
               ) : (
-                <div className="h-full p-8 rounded-2xl border border-dashed border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] flex flex-col items-center justify-center text-center min-h-[350px] relative overflow-hidden">
+                <div className="h-full p-8 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] flex flex-col items-center justify-center text-center min-h-[350px] relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] via-transparent to-emerald-500/[0.02] pointer-events-none" />
                   <div className="relative z-10">
                     <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent/10 to-emerald-500/10 flex items-center justify-center mb-5 mx-auto ring-4 ring-accent/5">
                       <Sparkles size={28} className="text-accent" />
                     </div>
                     <p className="text-base font-bold text-slate-900 dark:text-white mb-2">Select a category</p>
-                    <p className="text-sm text-slate-400 max-w-xs mx-auto">Click any skill category on the left to explore technologies</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs mx-auto">Click any skill category on the left to explore technologies</p>
                   </div>
                 </div>
               )}

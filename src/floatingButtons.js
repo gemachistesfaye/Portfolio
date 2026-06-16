@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MessageCircle, X, Mail, ChevronDown } from "lucide-react";
+import config from "./config";
 
 const budgetOptions = {
   "Frontend": [
@@ -38,7 +39,7 @@ const FloatingButtons = () => {
     e.preventDefault();
     const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
     const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nBudget: ${formData.budget}\n\nProject Details:\n${formData.project}`);
-    window.location.href = `mailto:gemachistesfaye36@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${config.email}?subject=${subject}&body=${body}`;
     setShowCard(false);
     setFormData({ name: "", email: "", projectType: "", budget: "", project: "" });
   };
@@ -48,7 +49,7 @@ const FloatingButtons = () => {
       {showCard && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowCard(false)}>
           <div
-            className="w-full max-w-md p-6 rounded-2xl border border-slate-200 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
+            className="w-full max-w-md p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-5">
@@ -77,7 +78,7 @@ const FloatingButtons = () => {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
               />
               <input
                 type="email"
@@ -85,7 +86,7 @@ const FloatingButtons = () => {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="relative">
@@ -93,7 +94,7 @@ const FloatingButtons = () => {
                     required
                     value={formData.projectType}
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value, budget: "" })}
-                    className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none"
+                    className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none"
                   >
                     <option value="" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Project Type</option>
                     <option value="Frontend" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Frontend</option>
@@ -111,7 +112,7 @@ const FloatingButtons = () => {
                     value={formData.budget}
                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                     disabled={!formData.projectType}
-                    className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <option value="" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">{formData.projectType ? "Select Budget" : "Select Type First"}</option>
                     {(budgetOptions[formData.projectType] || []).map((b) => (
@@ -127,7 +128,7 @@ const FloatingButtons = () => {
                 required
                 value={formData.project}
                 onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 resize-none"
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 resize-none"
               />
               <button
                 type="submit"
@@ -138,11 +139,11 @@ const FloatingButtons = () => {
               </button>
             </form>
 
-            <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800/60">
-              <a href="tel:+251976601074" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">
+            <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700/60">
+              <a href={config.phoneHref} aria-label="Call me now" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">
                 Call Now
               </a>
-              <a href="https://t.me/GemachisTesfaye" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">
+              <a href={config.socials.telegram} target="_blank" rel="noopener noreferrer" aria-label="Chat on Telegram" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">
                 Telegram
               </a>
             </div>
@@ -156,7 +157,7 @@ const FloatingButtons = () => {
         aria-label="Contact me"
       >
         <MessageCircle size={16} className="group-hover:rotate-12 transition-transform" />
-        <span className="text-sm hidden sm:inline">Hire Me</span>
+        <span className="text-sm">Hire Me</span>
       </button>
     </>
   );

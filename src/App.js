@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./navbar";
 import Home from "./home";
 import About from "./about";
@@ -8,7 +9,10 @@ import Testimonials from "./testimonials";
 import Experience from "./experience";
 import Contact from "./contact";
 import Footer from "./footer";
-import FloatingButtons from "./scrollTotopbutton";
+import FloatingButtons from "./floatingButtons";
+import BlogLayout from "./pages/BlogLayout";
+import BlogList from "./pages/BlogList";
+import BlogPost from "./pages/BlogPost";
 
 class ErrorBoundary extends React.Component {
   state = { hasError: false };
@@ -20,10 +24,10 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#020617] p-6">
+        <div className="min-h-screen flex items-center justify-center bg-[#020617] p-6">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Something went wrong</h2>
-            <p className="text-slate-500 dark:text-slate-400 mb-4">Please refresh the page or try again later.</p>
+            <h2 className="text-2xl font-bold text-white mb-2">Something went wrong</h2>
+            <p className="text-slate-400 mb-4">Please refresh the page or try again later.</p>
             <button
               onClick={() => window.location.reload()}
               className="px-6 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300"
@@ -38,42 +42,38 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+function Portfolio() {
+  return (
+    <main className="bg-[#020617] min-h-screen font-sans">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      <Navbar />
+      <div id="main-content">
+        <Home />
+        <About />
+        <Services />
+        <Project />
+        <Testimonials />
+        <Experience />
+        <Contact />
+        <Footer />
+      </div>
+      <FloatingButtons />
+    </main>
+  );
+}
+
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem("darkMode");
-    return saved !== null ? JSON.parse(saved) : true;
-  });
-
-  const toggleDarkMode = () => setIsDarkMode((prev) => !prev);
-
-  useEffect(() => {
-    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
-
   return (
     <ErrorBoundary>
-      <main className="bg-white dark:bg-[#020617] min-h-screen transition-colors duration-300 font-sans">
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-        <div id="main-content">
-          <Home />
-          <About />
-          <Services />
-          <Project />
-          <Testimonials />
-          <Experience />
-          <Contact />
-          <Footer />
-        </div>
-        <FloatingButtons />
-      </main>
+      <Routes>
+        <Route path="/blog" element={<BlogLayout />}>
+          <Route index element={<BlogList />} />
+          <Route path=":slug" element={<BlogPost />} />
+        </Route>
+        <Route path="*" element={<Portfolio />} />
+      </Routes>
     </ErrorBoundary>
   );
 }

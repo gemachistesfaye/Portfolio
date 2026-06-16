@@ -1,6 +1,6 @@
-import React from "react";
 import { useInView } from "react-intersection-observer";
 import { Download, Code2, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight } from "lucide-react";
+import config from "./config";
 
 const highlights = [
   { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Delivered" },
@@ -27,7 +27,7 @@ const About = () => {
             <div className={`lg:col-span-2 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
               <div className="relative group">
                 <div className="absolute -inset-3 bg-gradient-to-br from-accent/20 via-teal-400/10 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="relative rounded-2xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50">
+                <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/50">
                   <img
                     src={process.env.PUBLIC_URL + "/Profile.jpg"}
                     alt="Gemachis Tesfaye - Full-Stack Developer"
@@ -36,7 +36,7 @@ const About = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <div className="absolute -bottom-4 -right-4 px-4 py-2.5 bg-white dark:bg-[#0c1220] rounded-xl border border-slate-200/80 dark:border-slate-800/60 shadow-xl shadow-black/5 flex items-center gap-2.5">
+                <div className="absolute -bottom-4 -right-4 px-4 py-2.5 bg-white dark:bg-[#0c1220] rounded-xl border border-slate-200 dark:border-slate-700/60 shadow-xl shadow-black/5 flex items-center gap-2.5">
                   <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                   <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300">Accepting new clients</span>
                 </div>
@@ -50,7 +50,7 @@ const About = () => {
                 <span className="text-gradient">solves real problems</span>
               </h2>
 
-              <div className="space-y-3 text-base text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
+              <div className="space-y-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
                 <p>
                   I'm a Full-Stack Software Engineer and Information Science student at
                   Haramaya University (CGPA: 3.8/4.0). I work across the entire stack —
@@ -67,7 +67,7 @@ const About = () => {
                 {highlights.map((h, i) => (
                   <div
                     key={h.label}
-                    className="group p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/60 bg-slate-50/50 dark:bg-white/[0.02] hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
+                    className="group p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <div className="text-accent mb-2 group-hover:scale-110 transition-transform duration-300">
@@ -93,7 +93,7 @@ const About = () => {
                   <TrendingUp size={15} className="group-hover:-translate-y-0.5 transition-transform" />
                 </a>
                 <a
-                  href="https://drive.google.com/file/d/1lzpGC9a6dJs0dpBdCpnrxz-MbdPwNuK3/view"
+                  href={config.cvView}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-base"
@@ -114,7 +114,7 @@ const About = () => {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               From Idea to <span className="text-gradient">Launch</span>
             </h2>
-            <p className="text-base text-slate-400 mt-3 max-w-lg mx-auto">
+            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
               A transparent, collaborative process designed to deliver results on time and within budget.
             </p>
           </div>
@@ -123,7 +123,7 @@ const About = () => {
             {steps.map((step, i) => (
               <div key={step.title} className="relative">
                 {i < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 left-full w-full h-px bg-gradient-to-r from-slate-200 dark:from-slate-800 to-transparent z-0" />
+                  <div className="hidden lg:block absolute top-10 left-full w-full h-px bg-gradient-to-r from-slate-300 dark:from-slate-700 to-transparent z-0" />
                 )}
                 <div className="group relative z-10 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-500 hover:shadow-xl hover:shadow-accent/5 h-full">
                   <div className="flex items-center gap-3 mb-4">
@@ -135,7 +135,7 @@ const About = () => {
                   <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -144,11 +144,11 @@ const About = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-sm text-slate-400 mb-4">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
               Ready to start? It all begins with a free 15-minute discovery call.
             </p>
             <a
-              href="tel:+251976601074"
+              href={config.phoneHref}
               className="inline-flex items-center gap-2 px-8 py-4 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-base"
             >
               Book a Free Call

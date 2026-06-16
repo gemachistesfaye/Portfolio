@@ -9,7 +9,7 @@ const icons = {
 };
 
 const FAQItem = ({ faq, isOpen, onClick }) => (
-  <div className="border border-slate-200/80 dark:border-slate-800/60 rounded-xl overflow-hidden">
+  <div className="border border-slate-200 dark:border-slate-700/60 rounded-xl overflow-hidden">
     <button
       onClick={onClick}
       className="w-full flex items-center justify-between p-5 text-left bg-white dark:bg-[#0c1220] hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors"
@@ -24,7 +24,7 @@ const FAQItem = ({ faq, isOpen, onClick }) => (
     <div
       className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
     >
-      <p className="px-5 pb-5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+      <p className="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
         {faq.a}
       </p>
     </div>
@@ -54,7 +54,7 @@ const Experience = () => {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Education & <span className="text-gradient">Credentials</span>
             </h2>
-            <p className="text-base text-slate-400 mt-3 max-w-md mx-auto">
+            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-md mx-auto">
               My academic background, training, and certifications.
             </p>
           </div>
@@ -76,7 +76,7 @@ const Experience = () => {
                         </div>
                       </div>
 
-                      <div className="group p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-500 hover:shadow-xl hover:shadow-accent/5">
+                      <div className="group p-5 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-500 hover:shadow-xl hover:shadow-accent/5">
                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                           <div>
                             <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors">
@@ -92,7 +92,7 @@ const Experience = () => {
 
                         <ul className="space-y-2 mb-3">
                           {exp.points.map((p, j) => (
-                            <li key={j} className="text-sm text-slate-500 dark:text-slate-400 flex items-start gap-2 leading-relaxed">
+                            <li key={j} className="text-sm text-slate-600 dark:text-slate-400 flex items-start gap-2 leading-relaxed">
                               <span className="mt-1.5 w-1 h-1 rounded-full bg-accent/60 flex-shrink-0" />
                               {p}
                             </li>
@@ -103,7 +103,7 @@ const Experience = () => {
                           {exp.tags.map((t) => (
                             <span
                               key={t}
-                              className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-md bg-gradient-to-r ${exp.color} bg-clip-text text-transparent border border-slate-200/80 dark:border-slate-700/40`}
+                              className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md text-white bg-gradient-to-r ${exp.color}`}
                             >
                               {t}
                             </span>
@@ -123,7 +123,7 @@ const Experience = () => {
                   <button
                     key={cert.name}
                     onClick={() => setCertImage(cert)}
-                    className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 text-left"
+                    className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 text-left"
                   >
                     <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-accent/10 to-emerald-600/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       <Award size={18} className="text-accent" />
@@ -152,7 +152,7 @@ const Experience = () => {
             <X size={20} />
           </button>
           <img
-            src={process.env.PUBLIC_URL + `/Certificate/${certImage.file}`}
+            src={process.env.PUBLIC_URL + `/Award/${certImage.file}`}
             alt={certImage.name}
             className="max-w-full max-h-[85vh] rounded-2xl shadow-2xl object-contain"
             onClick={(e) => e.stopPropagation()}
@@ -160,14 +160,14 @@ const Experience = () => {
         </div>
       )}
 
-      <section id="faq" className="py-28 px-6">
+      <section id="faq" className="py-28 px-6 bg-slate-50/50 dark:bg-[#060a13]">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">FAQ</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
-            <p className="text-base text-slate-400 mt-3 max-w-lg mx-auto">
+            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
               Common questions about working with me.
             </p>
           </div>

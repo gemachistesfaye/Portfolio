@@ -3,12 +3,7 @@
   "name": "Gemachis Tesfaye | Full-Stack Developer Portfolio",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "icons8-portfolio-16 (1).png",
+      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135767.png",
       "type": "image/png",
       "sizes": "192x192"
     }

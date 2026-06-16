@@ -1,18 +1,126 @@
-import React from "react";
-import { useInView } from "react-intersection-observer";
-import { ArrowDown, Sparkles, Download } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { useInView } from "./hooks/useInView";
+import { Sparkles, RotateCcw } from "lucide-react";
+
+const rotatingTexts = [
+  "React.js • Node.js • Python",
+  "10+ Projects Delivered",
+  "5+ Happy Clients",
+  "AI & Machine Learning",
+  "Full-Stack Development",
+];
+
+const codeLines = [
+  { text: "import { brew } from 'coffee';", color: "text-emerald-400" },
+  { text: "const morning = () => {", color: "text-cyan-400" },
+  { text: "  const energy = brew({", color: "text-cyan-400" },
+  { text: "    strength: 'extra strong',", color: "text-amber-400" },
+  { text: "    beans: 'ethiopian'", color: "text-amber-400" },
+  { text: "  });", color: "text-cyan-400" },
+  { text: "  return <div>;", color: "text-violet-400" },
+  { text: "    Hello Coffee", color: "text-amber-400" },
+  { text: "  </div>;", color: "text-violet-400" },
+  { text: "};", color: "text-cyan-400" },
+];
+
+const codeSnippets = [
+  { text: "useState()", top: "8%", left: "-6%", delay: 0 },
+  { text: "useEffect()", top: "5%", right: "-6%", delay: 0.8 },
+  { text: "async/await", top: "25%", left: "-10%", delay: 1.6 },
+  { text: "npm run dev", top: "18%", right: "-8%", delay: 2.4 },
+  { text: "git push", top: "42%", left: "-8%", delay: 3.2 },
+  { text: "deploy?", top: "35%", right: "-6%", delay: 4.0 },
+  { text: "ref.current", top: "55%", left: "-10%", delay: 4.8 },
+  { text: "props.data", top: "50%", right: "-8%", delay: 5.6 },
+];
 
 const Home = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [textIndex, setTextIndex] = useState(0);
+  const [textAnimating, setTextAnimating] = useState(false);
+  const [typingLine, setTypingLine] = useState(0);
+  const [typingCol, setTypingCol] = useState(0);
+  const [displayedLines, setDisplayedLines] = useState([]);
+  const [replayKey, setReplayKey] = useState(0);
+  const [hovering, setHovering] = useState(false);
+  const typingRef = useRef(null);
+  const particlesRef = useRef([]);
+
+  // Rotating text with 3D transition
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTextAnimating(true);
+      setTimeout(() => {
+        setTextIndex((prev) => (prev + 1) % rotatingTexts.length);
+        setTextAnimating(false);
+      }, 400);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Typing simulator
+  useEffect(() => {
+    if (!inView) return;
+    let lineIdx = 0;
+    let colIdx = 0;
+    let lines = [];
+
+    const type = () => {
+      if (lineIdx >= codeLines.length) {
+        setTimeout(() => {
+          lines = [];
+          lineIdx = 0;
+          colIdx = 0;
+          setDisplayedLines([]);
+          typingRef.current = setTimeout(type, 800);
+        }, 3000);
+        return;
+      }
+
+      const currentLine = codeLines[lineIdx];
+      colIdx++;
+      setTypingLine(lineIdx);
+      setTypingCol(colIdx);
+      setDisplayedLines(
+        lines.slice(0, lineIdx).concat([
+          { ...currentLine, visibleText: currentLine.text.slice(0, colIdx) },
+        ])
+      );
+
+      if (colIdx >= currentLine.text.length) {
+        lines = [
+          ...lines.slice(0, lineIdx),
+          { ...currentLine, visibleText: currentLine.text },
+        ];
+        lineIdx++;
+        colIdx = 0;
+        typingRef.current = setTimeout(type, 200);
+      } else {
+        const char = currentLine.text[colIdx - 1];
+        const delay = char === ' ' ? 30 : char === ';' ? 120 : char === '{' || char === '}' ? 80 : 45;
+        typingRef.current = setTimeout(type, delay);
+      }
+    };
+
+    typingRef.current = setTimeout(type, 1200);
+    return () => clearTimeout(typingRef.current);
+  }, [inView, replayKey]);
+
+  const replay = useCallback(() => {
+    setReplayKey((k) => k + 1);
+    setTextIndex(0);
+    setDisplayedLines([]);
+  }, []);
 
   return (
-    <section id="home" className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center px-6 relative overflow-hidden">
+      {/* Animated background blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-accent/[0.04] rounded-full blur-[120px]" />
-        <div className="absolute top-20 right-20 w-48 h-48 bg-violet-500/[0.03] rounded-full blur-[80px]" />
-        <div className="absolute bottom-20 left-20 w-48 h-48 bg-cyan-500/[0.03] rounded-full blur-[80px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-accent/[0.07] dark:bg-accent/[0.04] rounded-full blur-[120px] animate-[pulse_6s_ease-in-out_infinite]" />
+        <div className="absolute top-20 right-20 w-48 h-48 bg-violet-500/[0.06] dark:bg-violet-500/[0.03] rounded-full blur-[80px] animate-[pulse_8s_ease-in-out_infinite_1s]" />
+        <div className="absolute bottom-20 left-20 w-48 h-48 bg-cyan-500/[0.06] dark:bg-cyan-500/[0.03] rounded-full blur-[80px] animate-[pulse_7s_ease-in-out_infinite_2s]" />
         <div
-          className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
           style={{
             backgroundImage: `linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px)`,
             backgroundSize: '60px 60px',
@@ -20,83 +128,215 @@ const Home = () => {
         />
       </div>
 
-      <div ref={ref} className="max-w-4xl text-left relative z-10">
-        <div
-          className={`inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full glass text-accent text-xs font-semibold tracking-wider uppercase opacity-0 ${inView ? 'animate-fade-in' : ''}`}
+      {/* Replay button — top right */}
+      <div className="absolute top-6 right-6 z-20">
+        <button
+          onClick={replay}
+          className="p-2 rounded-lg glass hover:scale-110 transition-transform duration-200"
+          aria-label="Replay animations"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-          </span>
-          Available for freelance projects
-        </div>
-
-        <h1
-          className={`text-4xl sm:text-7xl font-black text-slate-900 dark:text-white mb-2 tracking-tight opacity-0 ${inView ? 'animate-slide-up' : ''}`}
-          style={{ animationDelay: '0.1s' }}
-        >
-          Gemachis
-          <br />
-          <span className="text-gradient">Tesfaye</span>
-        </h1>
-
-        <div
-          className={`w-12 h-[3px] bg-gradient-to-r from-accent to-teal-400 my-7 rounded-full opacity-0 ${inView ? 'animate-scale-in' : ''}`}
-          style={{ animationDelay: '0.2s' }}
-        />
-
-        <div
-          className={`flex items-center gap-2 mb-3 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
-          style={{ animationDelay: '0.3s' }}
-        >
-          <Sparkles size={14} className="text-accent" />
-          <p className="text-xl sm:text-2xl font-semibold text-slate-700 dark:text-slate-300">
-            Full-Stack Engineer & AI Builder
-          </p>
-        </div>
-
-        <p
-          className={`text-base text-slate-400 dark:text-slate-500 max-w-lg mb-10 leading-relaxed opacity-0 ${inView ? 'animate-slide-up' : ''}`}
-          style={{ animationDelay: '0.4s' }}
-        >
-          I help businesses build AI-powered web applications that scale.
-          From concept to deployment, I turn ideas into intelligent systems.
-        </p>
-
-        <div
-          className={`flex items-center gap-3 mb-14 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
-          style={{ animationDelay: '0.5s' }}
-        >
-          <a
-            href="#projects"
-            onClick={(e) => { e.preventDefault(); document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" }); }}
-            className="group px-7 py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-base shadow-lg shadow-accent/20 hover:shadow-accent/40 flex items-center gap-2"
-          >
-            View Projects
-            <ArrowDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
-          </a>
-          <a
-            href="https://drive.google.com/file/d/1fDKsgGi0OVM1bRVau7tt7PkH9af_ArrK/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group px-7 py-3.5 border border-slate-200/80 dark:border-slate-700/40 hover:border-accent/40 hover:bg-accent/10 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-base flex items-center gap-2"
-          >
-            <Download size={15} />
-            Download CV
-          </a>
-        </div>
+          <RotateCcw size={16} className="text-accent" />
+        </button>
       </div>
 
-      <button
-        onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hover:text-accent transition-colors group"
-        aria-label="Scroll to about section"
-      >
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity">
-          Scroll
-        </span>
-        <ArrowDown size={16} className="animate-bounce" />
-      </button>
+      <div ref={ref} className="max-w-5xl w-full mx-auto flex items-center gap-6 relative z-10">
+        {/* Left — Text */}
+        <div className="flex-1 max-w-xl">
+          {/* Available badge */}
+          <div
+            className={`inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full glass text-accent text-xs font-semibold tracking-wider uppercase opacity-0 ${inView ? 'animate-fade-in' : ''}`}
+            key={`badge-${replayKey}`}
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+            </span>
+            Available for freelance
+          </div>
+
+          {/* Name */}
+          <h1
+            className={`text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            style={{ animationDelay: '0.1s', letterSpacing: '0.02em' }}
+            key={`name-${replayKey}`}
+          >
+            Gemachis
+            <br />
+            <span className="text-gradient" style={{ letterSpacing: '0.04em' }}>Tesfaye</span>
+          </h1>
+
+          {/* Accent bar */}
+          <div
+            className={`w-12 h-[3px] bg-gradient-to-r from-accent to-teal-400 my-5 rounded-full opacity-0 ${inView ? 'animate-scale-in' : ''}`}
+            style={{ animationDelay: '0.2s' }}
+            key={`bar-${replayKey}`}
+          />
+
+          {/* Title */}
+          <div
+            className={`flex items-center gap-2 mb-2 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            style={{ animationDelay: '0.3s' }}
+            key={`title-${replayKey}`}
+          >
+            <Sparkles size={14} className="text-accent" />
+            <p className="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-300" style={{ letterSpacing: '0.04em' }}>
+              Full-Stack Engineer & AI Builder
+            </p>
+          </div>
+
+          {/* Description */}
+          <p
+            className={`text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-lg mb-6 leading-relaxed opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            style={{ animationDelay: '0.4s', letterSpacing: '0.01em' }}
+            key={`desc-${replayKey}`}
+          >
+            I build AI-powered web applications that scale.
+            From concept to deployment, turning ideas into intelligent systems.
+          </p>
+
+          {/* SlideUpRotate rotating text */}
+          <div
+            className={`h-8 overflow-hidden opacity-0 ${inView ? 'animate-fade-in' : ''}`}
+            style={{ animationDelay: '0.6s' }}
+            key={`rotate-${replayKey}`}
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-accent animate-[blink_2s_ease-in-out_infinite]" />
+              <div className="relative h-7 overflow-hidden" style={{ perspective: '200px' }}>
+                <span
+                  key={textIndex}
+                  className={`absolute inset-0 text-sm font-mono font-medium text-accent dark:text-accent flex items-center ${textAnimating ? 'animate-slideUpRotateOut' : 'animate-slideUpRotateIn'}`}
+                >
+                  {rotatingTexts[textIndex]}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right — Animated Developer Scene */}
+        <div
+          className={`hidden lg:block flex-shrink-0 opacity-0 ${inView ? 'animate-scale-in' : ''}`}
+          style={{ animationDelay: '0.3s' }}
+          key={`scene-${replayKey}`}
+        >
+          <div
+            className="relative w-80 h-72 transition-transform duration-300"
+            style={{ transform: hovering ? 'scale(1.02) translateY(-4px)' : 'scale(1) translateY(0)' }}
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+          >
+            {/* Desk */}
+            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 rounded-sm shadow-lg" />
+            <div className="absolute bottom-2 left-6 w-2 h-8 bg-slate-300 dark:bg-slate-600 rounded-b" />
+            <div className="absolute bottom-2 right-6 w-2 h-8 bg-slate-300 dark:bg-slate-600 rounded-b" />
+
+            {/* Laptop */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
+              <div className="w-52 h-32 rounded-t-lg border-2 border-b-0 border-slate-200 dark:border-slate-600 bg-slate-900 dark:bg-[#0a0f1a] overflow-hidden shadow-xl relative">
+                <div className="flex items-center gap-1 px-2 py-1 bg-slate-800 border-b border-slate-700/50">
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                  <span className="ml-2 text-[6px] text-slate-500 font-mono">coffee.js</span>
+                </div>
+                {/* Typing simulator */}
+                <div className="p-2 font-mono text-[7px] leading-relaxed min-h-[96px]">
+                  {displayedLines.map((line, i) => (
+                    <div key={i} className={line.color}>
+                      {line.visibleText}
+                      {i === typingLine && <span className="inline-block w-[5px] h-[9px] bg-white/80 ml-[1px] animate-[blink_1s_step-end_infinite] align-middle" />}
+                    </div>
+                  ))}
+                  {displayedLines.length === 0 && typingLine === 0 && (
+                    <div className="text-emerald-400">
+                      <span className="inline-block w-[5px] h-[9px] bg-white/80 animate-[blink_1s_step-end_infinite] align-middle" />
+                    </div>
+                  )}
+                </div>
+                {/* Screen glow */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-accent/[0.03] to-transparent" />
+              </div>
+              <div className="w-56 h-2 bg-slate-200 dark:bg-slate-600 rounded-b-lg mx-auto -ml-2" />
+            </div>
+
+            {/* Floating code particles — positioned around edges */}
+            {codeSnippets.map((snippet, i) => (
+              <div
+                key={i}
+                className="absolute px-2 py-1 rounded-md text-[8px] font-mono animate-[codeDrift_6s_ease-in-out_infinite] pointer-events-none"
+                style={{
+                  top: snippet.top,
+                  left: snippet.left,
+                  right: snippet.right,
+                  animationDelay: `${snippet.delay}s`,
+                  animationDuration: `${5 + (i % 3) * 0.5}s`,
+                  background: i % 3 === 0 ? 'rgba(16,185,129,0.1)' : i % 3 === 1 ? 'rgba(139,92,246,0.1)' : 'rgba(6,182,212,0.1)',
+                  border: `1px solid ${i % 3 === 0 ? 'rgba(16,185,129,0.2)' : i % 3 === 1 ? 'rgba(139,92,246,0.2)' : 'rgba(6,182,212,0.2)'}`,
+                  color: i % 3 === 0 ? '#10b981' : i % 3 === 1 ? '#8b5cf6' : '#06b6d4',
+                }}
+              >
+                {snippet.text}
+              </div>
+            ))}
+
+            {/* Coffee cup — enhanced */}
+            <div className="absolute bottom-2 right-3">
+              {/* Desk shadow */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-1.5 bg-black/10 dark:bg-black/20 rounded-full blur-[2px]" />
+              {/* Cup body */}
+              <div className="relative">
+                {/* Steam — realistic wavy wisps */}
+                <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-8 h-12 pointer-events-none">
+                  <svg className="absolute left-[4px] bottom-0 animate-[steamRise_3s_ease-in-out_infinite]" width="6" height="22" viewBox="0 0 6 22" fill="none">
+                    <path d="M3 22 C3 18, 1 15, 3 11 C5 7, 1 4, 3 0" stroke="rgba(148,163,184,0.6)" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <svg className="absolute left-[10px] bottom-0 animate-[steamRise_3.5s_ease-in-out_infinite_0.4s]" width="6" height="26" viewBox="0 0 6 26" fill="none">
+                    <path d="M3 26 C3 21, 5 18, 3 13 C1 8, 5 4, 3 0" stroke="rgba(148,163,184,0.55)" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <svg className="absolute left-[16px] bottom-0 animate-[steamRise_2.8s_ease-in-out_infinite_0.8s]" width="6" height="20" viewBox="0 0 6 20" fill="none">
+                    <path d="M3 20 C3 16, 1 13, 3 9 C5 5, 1 2, 3 0" stroke="rgba(148,163,184,0.5)" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <svg className="absolute left-[22px] bottom-0 animate-[steamRise_3.2s_ease-in-out_infinite_1.2s]" width="6" height="24" viewBox="0 0 6 24" fill="none">
+                    <path d="M3 24 C3 19, 5 16, 3 11 C1 6, 5 3, 3 0" stroke="rgba(148,163,184,0.45)" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <svg className="absolute left-[1px] bottom-0 animate-[steamRise_3.8s_ease-in-out_infinite_1.6s]" width="6" height="18" viewBox="0 0 6 18" fill="none">
+                    <path d="M3 18 C3 14, 1 11, 3 7 C5 3, 1 1, 3 0" stroke="rgba(148,163,184,0.4)" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <svg className="absolute left-[13px] bottom-0 animate-[steamRise_2.5s_ease-in-out_infinite_2s]" width="6" height="20" viewBox="0 0 6 20" fill="none">
+                    <path d="M3 20 C3 16, 5 13, 3 9 C1 5, 5 2, 3 0" stroke="rgba(148,163,184,0.5)" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <div className="w-8 h-7 bg-gradient-to-b from-white to-slate-100 dark:from-slate-100 dark:to-slate-200 rounded-b-[6px] border border-slate-200 dark:border-slate-300 shadow-lg relative">
+                  <div className="absolute top-1 left-1 right-1 h-2.5 bg-gradient-to-b from-amber-700 to-amber-800 rounded-sm" />
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent dark:via-slate-100/80 rounded-t" />
+                </div>
+                {/* Handle — solid arc */}
+                <svg className="absolute top-0.5 -right-2.5" width="10" height="16" viewBox="0 0 10 16" fill="none">
+                  <path d="M8 2C10 2 10 14 8 14" stroke="currentColor" strokeWidth="2" className="text-slate-200 dark:text-slate-300" strokeLinecap="round" />
+                </svg>
+              </div>
+              {/* Saucer */}
+              <div className="w-11 h-2 bg-gradient-to-b from-white via-slate-100 to-slate-200 dark:from-slate-200 dark:via-slate-300 dark:to-slate-400 rounded-full mx-auto -ml-1.5 mt-0.5 border border-slate-200 dark:border-slate-300 shadow-sm" />
+            </div>
+
+            {/* Status indicator — top right, away from particles */}
+            <div className="absolute top-2 right-2 flex items-center gap-1.5 px-2 py-1 rounded-full bg-green-500/10 border border-green-500/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-[blink_2s_ease-in-out_infinite]" />
+              <span className="text-[7px] font-semibold text-green-600 dark:text-green-400">Online</span>
+            </div>
+
+            {/* Hover glow effect */}
+            <div
+              className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-500"
+              style={{
+                background: 'radial-gradient(circle at 50% 80%, rgba(16,185,129,0.06) 0%, transparent 60%)',
+                opacity: hovering ? 1 : 0,
+              }}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

@@ -8,6 +8,7 @@ export const projects = [
     tags: ["Node.js", "MySQL", "Socket.io", "GPT-4", "React"],
     github: "https://github.com/gemachistesfaye/Sheger-Health-Connect",
     demo: "https://sheger-health-connect.vercel.app",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
     featured: true,
   },
   {
@@ -19,6 +20,7 @@ export const projects = [
     tags: ["Node.js", "MySQL", "Gemini AI", "React"],
     github: "https://github.com/gemachistesfaye/Ethio-Brew",
     demo: "https://ethio-brew.vercel.app",
+    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=500&fit=crop",
   },
   {
     name: "AeroDemand-AI",
@@ -29,6 +31,7 @@ export const projects = [
     tags: ["Python", "Flask", "ML", "REST API", "Plotly"],
     github: "https://github.com/gemachistesfaye/AeroDemand-AI",
     demo: "https://aerodemand-ai.onrender.com",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
   },
   {
     name: "TracePoint",
@@ -39,6 +42,7 @@ export const projects = [
     tags: ["React", "Firebase", "AI", "PWA", "Leaflet"],
     github: "https://github.com/gemachistesfaye/tracepoint-system",
     demo: "https://tracepoint-system.web.app",
+    image: "https://images.unsplash.com/photo-1649524013520-2a24862e4581?w=800&h=500&fit=crop",
   },
   {
     name: "SmartQuiz AI",
@@ -49,6 +53,7 @@ export const projects = [
     tags: ["React", "Firebase", "Gemini AI", "Vite", "Charts"],
     github: "https://github.com/gemachistesfaye/SmartQuiz-AI-Platform",
     demo: "https://smart-quiz-ai-platform.vercel.app",
+    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&h=500&fit=crop",
   },
 ];
 
@@ -139,16 +144,6 @@ export const skills = {
       items: ["GPT Integration", "Gemini APIs", "Prompt Engineering", "Power BI", "Data Visualization", "Git", "GitHub", "Vercel", "Render"],
     },
   ],
-  strongest: [
-    { name: "JavaScript", pct: 95 },
-    { name: "React.js", pct: 92 },
-    { name: "Node.js", pct: 88 },
-    { name: "SQL / MySQL", pct: 85 },
-    { name: "Python", pct: 82 },
-    { name: "Database Design", pct: 80 },
-    { name: "Power BI", pct: 78 },
-    { name: "AI Integration", pct: 75 },
-  ],
 };
 
 export const experience = [
@@ -184,31 +179,39 @@ export const experience = [
     color: "from-emerald-500 to-teal-500",
     points: [
       "CGPA: 3.8 / 4.0",
-      "Coursework: Database Systems, Data Structures, Web Development, Software Engineering.",
+      "Coursework: Database Systems, Data Structures, Web Development, Artificial Intelligence, Networking.",
     ],
-    tags: ["DB Systems", "Data Structures", "Web Dev"],
+    tags: ["DB Systems", "AI", "Networking"],
   },
 ];
 
 export const faqs = [
   {
+    q: "What services do you offer?",
+    a: "I build modern, responsive websites and full-stack web applications using React, Next.js, Node.js, and Python. I also integrate AI features (GPT, Gemini APIs), design databases (MySQL, PostgreSQL, Firebase), and provide UI/UX design, API development, and cloud deployment on Vercel or Render.",
+  },
+  {
     q: "What are your rates?",
-    a: "Pricing depends on project complexity. Frontend starts from 1,000 ETB for small fixes up to 20,000+ ETB for business websites. Backend, database, and AI projects are custom-priced. Contact me with your details for a free quote.",
+    a: "Pricing depends on project complexity. Frontend starts from 1,000 ETB for small fixes up to 20,000+ ETB for business websites. Full-stack applications, AI integrations, and database projects are custom-quoted. I provide a detailed breakdown before starting so there are no surprises. International clients can pay in USD.",
   },
   {
     q: "What payment methods do you accept?",
-    a: "I accept Telebirr, CBE Birr, bank transfers (local), and PayPal / Wise for international clients. For larger projects, I split payments into milestones: 30% upfront, 40% at mid-point, and 30% on delivery.",
+    a: "I accept Telebirr, CBE Birr, bank transfers (local), and PayPal / Wise for international clients. For larger projects, I split payments into milestones: 30% upfront, 40% at mid-point, and 30% on delivery. This keeps everything transparent and fair for both sides.",
   },
   {
     q: "What is your typical project timeline?",
-    a: "Simple websites: 1-2 weeks. Full-stack web applications: 3-6 weeks. AI-integrated platforms: 4-8 weeks. I provide a detailed timeline during the proposal phase.",
+    a: "Simple landing pages: 3-7 days. Business websites with multiple pages: 1-2 weeks. Full-stack web applications: 3-6 weeks. AI-integrated platforms or complex SaaS: 4-8 weeks. I always provide a milestone schedule during the proposal so you know exactly when to expect each deliverable.",
+  },
+  {
+    q: "What technologies do you work with?",
+    a: "Frontend: React.js, Next.js, TypeScript, Tailwind CSS. Backend: Node.js, Express.js, Python, Flask. Databases: MySQL, PostgreSQL, Firebase, Supabase. AI: GPT integration, Gemini APIs, prompt engineering. Tools: Git, GitHub, Vercel, Render, Power BI. I pick the right stack for your project, not just what is trendy.",
   },
   {
     q: "Do you provide ongoing support after launch?",
-    a: "Yes! Every project includes 30 days of free post-launch support. After that, I offer monthly maintenance packages or hourly support as needed.",
+    a: "Yes! Every project includes 30 days of free post-launch support for bug fixes and minor tweaks. After that, I offer monthly maintenance packages starting from 3,000 ETB/month that cover updates, security patches, feature additions, and performance monitoring. I also offer hourly support for one-off tasks.",
   },
   {
     q: "Can you build MVPs for startups?",
-    a: "Yes! I specialize in building MVPs that are lean, functional, and scalable. I help founders validate ideas quickly with core features, then iterate based on user feedback.",
+    a: "Yes! I specialize in building MVPs that are lean, functional, and scalable. I help founders validate ideas quickly with core features, then iterate based on user feedback. I can also advise on tech stack choices, hosting, and scaling strategies to keep costs low while you prove your concept.",
   },
 ];

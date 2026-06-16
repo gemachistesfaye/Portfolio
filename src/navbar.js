@@ -1,221 +1,128 @@
 import React, { useState, useEffect } from "react";
-import { 
-  Sun, Moon, Menu, X, ArrowRight, Award, User, Briefcase, Code, Send, Layers, History, FileText 
-} from "lucide-react";
+import { Sun, Moon, Menu, X } from "lucide-react";
 
-const Navbar = ({ 
-  isDarkMode: externalIsDarkMode, 
-  toggleDarkMode: externalToggleDarkMode,
-  setShowCVOptions
-}) => {
-  const [internalDarkMode, setInternalDarkMode] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeSection, setActiveSection] = useState("home");
-  
-  const isDarkMode = externalIsDarkMode !== undefined ? externalIsDarkMode : internalDarkMode;
+const links = ["About", "Services", "Skills", "Projects", "Experience", "Contact"];
 
-const navLinks = [
-  { name: "About", href: "#about", id: "about", icon: <User size={18} /> },
-  { name: "Skills", href: "#skills", id: "skills", icon: <Code size={18} /> },
-  { name: "Services", href: "#services", id: "services", icon: <Layers size={18} /> },
-  { name: "Experience", href: "#experience", id: "experience", icon: <Award size={18} /> }, // changed from History
-  { name: "Projects", href: "#projects", id: "projects", icon: <Briefcase size={18} /> },
-];
-
-
-  const handleToggle = () => {
-    if (externalToggleDarkMode) {
-      externalToggleDarkMode();
-    } else {
-      const newMode = !internalDarkMode;
-      setInternalDarkMode(newMode);
-      if (newMode) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
-  };
-
-  const toggleMenu = () => setIsOpen(!isOpen);
+const Navbar = ({ isDarkMode, toggleDarkMode }) => {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(totalHeight > 0 ? (currentScrollY / totalHeight) * 100 : 0);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
 
-      const sectionIds = ["home", "about", "skills", "services", "experience", "projects", "contact"];
-      const currentActive = sectionIds.find(id => {
-        const element = document.getElementById(id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top >= -100 && rect.top <= 400;
+      const sections = ["home", "about", "process", "services", "skills", "projects", "testimonials", "experience", "faq", "contact"];
+      for (const id of [...sections].reverse()) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 100) {
+          setActive(id);
+          break;
         }
-        return false;
-      });
-      if (currentActive) setActiveSection(currentActive);
+      }
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleNavClick = (e, href) => {
+  const go = (e, id) => {
     e.preventDefault();
-    const targetId = href.replace("#", "");
-    const elem = document.getElementById(targetId);
-    setIsOpen(false);
-    
-    if (elem) {
-      const offset = 80;
-      window.scrollTo({
-        top: elem.offsetTop - offset,
-        behavior: "smooth"
-      });
-    }
-  };
-
-  // Helper function to safely call setShowCVOptions
-  const handleCVClick = () => {
-    if (typeof setShowCVOptions === 'function') {
-      setShowCVOptions(true);
-    } else {
-      console.warn("setShowCVOptions prop was not provided to Navbar");
-    }
+    setOpen(false);
+    document.querySelector(`#${id.toLowerCase()}`)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <nav className="fixed w-full top-0 left-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm transition-all duration-300">
-      {/* Scroll Progress Bar */}
-      <div 
-        className="absolute top-0 left-0 h-[3px] bg-indigo-600 transition-all duration-150 z-[60]" 
-        style={{ width: `${scrollProgress}%` }}
-      />
+    <nav
+      role="navigation"
+      aria-label="Main navigation"
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/90 dark:bg-[#020617]/90 backdrop-blur-2xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-xl shadow-black/[0.05] dark:shadow-black/[0.15]'
+          : 'bg-white/50 dark:bg-[#020617]/50 backdrop-blur-lg'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a
+          href="#home"
+          onClick={(e) => go(e, "home")}
+          className="group flex items-center gap-2.5"
+          aria-label="Go to top"
+        >
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent to-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-accent/20 group-hover:shadow-accent/40 group-hover:scale-105 transition-all duration-300">
+            GT
+          </div>
+          <span className="hidden sm:block text-sm font-bold text-slate-900 dark:text-white tracking-tight">
+            Gemachis T.
+          </span>
+        </a>
 
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          
-          {/* Logo */}
-          <div className="flex-shrink-0">
+        <div className="hidden md:flex items-center gap-1">
+          {links.map((l) => (
             <a
-              href="#home"
-              onClick={(e) => handleNavClick(e, "#home")}
-              className="group flex items-center space-x-3 text-xl font-bold text-gray-900 dark:text-white"
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              onClick={(e) => go(e, l)}
+              className={`relative px-3.5 py-2 text-[13px] font-medium rounded-lg transition-all duration-300 ${
+                active === l.toLowerCase()
+                  ? 'text-accent bg-accent/10'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-accent hover:bg-accent/5'
+              }`}
+              aria-current={active === l.toLowerCase() ? 'page' : undefined}
             >
-              <div className="flex items-center justify-center bg-indigo-600 text-white w-10 h-10 rounded-xl group-hover:rotate-6 transition-transform shadow-lg shadow-indigo-200 dark:shadow-none font-sans">
-                G
-              </div>
-              <span className="hidden sm:inline-block tracking-tight font-display">Gemachis T.</span>
+              {l}
             </a>
-          </div>
+          ))}
 
-          {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center space-x-4">
-            <div className="flex items-center space-x-1 border-r border-gray-200 dark:border-gray-800 pr-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 group flex items-center space-x-2 ${
-                    activeSection === link.id 
-                    ? "text-indigo-600 dark:text-indigo-400" 
-                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                  }`}
-                >
-                  <span className={`transition-all duration-300 ${activeSection === link.id ? "scale-110 opacity-100" : "opacity-0 group-hover:opacity-100 scale-100"}`}>
-                    {link.icon}
-                  </span>
-                  <span>{link.name}</span>
-                  <span className={`absolute inset-x-4 bottom-0 h-0.5 bg-indigo-600 transition-transform duration-300 ${
-                    activeSection === link.id ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                  }`} />
-                </a>
-              ))}
-            </div>
+          <div className="w-px h-5 bg-slate-200 dark:bg-slate-800 mx-2" />
 
-            {/* Actions Area (Desktop) */}
-            <div className="flex items-center space-x-3">
-              <button 
-                onClick={handleToggle} 
-                className="p-2.5 rounded-xl bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all active:scale-90"
-                title="Toggle Theme"
-              >
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
+          <button
+            onClick={toggleDarkMode}
+            className="p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 text-slate-400 hover:text-accent transition-all duration-300"
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+        </div>
 
-              <button
-                onClick={handleCVClick}
-                className="group flex items-center space-x-2 px-5 py-2.5 text-sm font-bold rounded-xl transition-all active:scale-95 bg-gray-900 text-white hover:bg-indigo-600 dark:bg-white dark:text-gray-900 dark:hover:bg-indigo-500 dark:hover:text-white shadow-lg"
-              >
-                <FileText size={18} />
-                <span>CV</span>
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile and Tablet Menu Actions */}
-          <div className="flex xl:hidden items-center space-x-3">
-            <button 
-              onClick={handleToggle} 
-              className="p-2.5 rounded-xl bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 transition-all"
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <button
-              onClick={toggleMenu}
-              aria-label="Toggle menu"
-              className="p-2.5 rounded-xl bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 transition-all"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+        <div className="flex md:hidden items-center gap-1">
+          <button
+            onClick={toggleDarkMode}
+            className="p-2.5 rounded-lg text-slate-400 hover:text-accent transition-colors"
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2.5 rounded-lg text-slate-400 hover:text-accent transition-colors"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      <div 
-        className={`xl:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 transition-all duration-500 ease-in-out shadow-2xl overflow-hidden ${
-          isOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-6 py-8 space-y-2">
-          {navLinks.map((link) => (
+        <div className="px-6 pb-5 pt-3 bg-white/90 dark:bg-[#020617]/90 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50">
+          {links.map((l) => (
             <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className={`flex items-center space-x-4 px-5 py-4 text-lg font-bold rounded-2xl transition-all ${
-                activeSection === link.id 
-                ? "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400" 
-                : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              onClick={(e) => go(e, l)}
+              className={`block py-3 text-sm font-medium transition-colors border-b border-slate-100 dark:border-slate-800/50 last:border-0 ${
+                active === l.toLowerCase()
+                  ? 'text-accent'
+                  : 'text-slate-500 hover:text-accent'
               }`}
             >
-              <span className={activeSection === link.id ? "text-indigo-600 dark:text-indigo-400" : "text-gray-400"}>
-                {link.icon}
-              </span>
-              <span>{link.name}</span>
+              {l}
             </a>
           ))}
-          
-          <div className="pt-4">
-            <button
-              onClick={() => {
-                handleCVClick();
-                setIsOpen(false);
-              }}
-              className="w-full flex items-center justify-between px-6 py-5 text-lg font-bold rounded-2xl transition-all active:scale-95 bg-gray-900 text-white hover:bg-indigo-600 dark:bg-white dark:text-gray-900 dark:hover:bg-indigo-500 dark:hover:text-white shadow-lg"
-            >
-              <div className="flex items-center space-x-3">
-                <FileText size={22} />
-                <span>Get CV</span>
-              </div>
-              <ArrowRight size={22} />
-            </button>
-          </div>
         </div>
       </div>
     </nav>

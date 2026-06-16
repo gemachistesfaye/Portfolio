@@ -1,133 +1,165 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { ArrowUp } from 'lucide-react';
+import React, { useState } from "react";
+import { MessageCircle, X, Mail, ChevronDown } from "lucide-react";
 
-const ScrollToTopButton = () => {
-  const [showScroll, setShowScroll] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+const budgetOptions = {
+  "Frontend": [
+    "Under 1,000 ETB — Small Fixes & Minor Updates",
+    "2,000 - 5,000 ETB — Landing Page (1 Page)",
+    "5,000 - 10,000 ETB — Portfolio Website",
+    "10,000 - 20,000 ETB — Business Website",
+    "Custom Budget — Contact Me",
+  ],
+  "Backend / API": [
+    "Custom Pricing — Contact Me to Discuss Your Backend Needs",
+  ],
+  "Database": [
+    "Custom Pricing — Contact Me to Discuss Your Database Requirements",
+  ],
+  "Web App": [
+    "Custom Pricing — Contact Me for Full-Stack Development Projects",
+  ],
+  "AI Integration": [
+    "Custom Pricing — Contact Me for AI Solutions & Integrations",
+  ],
+  "Other": [
+    "Bug Fixes — Contact Me",
+    "Feature Additions — Contact Me",
+    "UI Improvements — Contact Me",
+    "Performance Optimization — Contact Me",
+    "Consultation — Contact Me",
+  ],
+};
 
+const FloatingButtons = () => {
+  const [showCard, setShowCard] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", projectType: "", budget: "", project: "" });
 
-  const playClickSound = () => {
-    const context = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = context.createOscillator();
-    const gain = context.createGain();
-    
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(440, context.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(0.01, context.currentTime + 0.1);
-    
-    gain.gain.setValueAtTime(0.1, context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.1);
-    
-    oscillator.connect(gain);
-    gain.connect(context.destination);
-    
-    oscillator.start();
-    oscillator.stop(context.currentTime + 0.1);
+  const handleSend = (e) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nBudget: ${formData.budget}\n\nProject Details:\n${formData.project}`);
+    window.location.href = `mailto:gemachistesfaye36@gmail.com?subject=${subject}&body=${body}`;
+    setShowCard(false);
+    setFormData({ name: "", email: "", projectType: "", budget: "", project: "" });
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScroll(window.scrollY > 400);
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress((window.scrollY / totalHeight) * 100);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    
-    if (navigator.vibrate) navigator.vibrate(50);
-    
-    
-    playClickSound();
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const radius = 28;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (scrollProgress / 100) * circumference;
 
   return (
-    <div className={`fixed bottom-10 right-10 z-[1000] transition-all duration-1000 
-      ${showScroll ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-50'}`}
-    >
-      <button
-        onClick={scrollToTop}
-        className="group relative flex items-center justify-center h-24 w-24 active:scale-90 transition-transform duration-200"
-      >
-        {}
-        <div className="absolute inset-0 animate-[spin_12s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-          <svg viewBox="0 0 100 100" className="w-full h-full scale-110">
-            <defs>
-              <path id="textCircle" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
-            </defs>
-            <text className="text-[5.5px] font-black uppercase tracking-[0.6em] fill-indigo-500/60 dark:fill-indigo-400/60">
-              <textPath xlinkHref="#textCircle">
-                • Scroll to top • Scroll to top • Scroll to top
-              </textPath>
-            </text>
-          </svg>
-        </div>
+    <>
+      {showCard && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowCard(false)}>
+          <div
+            className="w-full max-w-md p-6 rounded-2xl border border-slate-200 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-accent/20">
+                  GT
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">Let's Work Together</p>
+                  <p className="text-[11px] text-slate-400">I'll get back to you within 24 hours</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowCard(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-accent hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                aria-label="Close"
+              >
+                <X size={16} />
+              </button>
+            </div>
 
-        {}
-        <svg className="absolute inset-0 h-full w-full -rotate-90 transform pointer-events-none">
-          <circle
-            cx="48" cy="48" r={radius}
-            fill="transparent"
-            stroke="currentColor"
-            strokeWidth="1"
-            className="text-slate-200 dark:text-slate-800"
-          />
-          <circle
-            cx="48" cy="48" r={radius}
-            fill="transparent"
-            stroke="url(#nexusGradient)"
-            strokeWidth="3"
-            strokeDasharray={circumference}
-            style={{ strokeDashoffset: offset, transition: 'stroke-dashoffset 0.3s ease-out' }}
-            strokeLinecap="round"
-          />
-          <defs>
-            <linearGradient id="nexusGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#818cf8" />
-              <stop offset="100%" stopColor="#c084fc" />
-            </linearGradient>
-          </defs>
-        </svg>
+            <form onSubmit={handleSend} className="space-y-3">
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                required
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
+              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="relative">
+                  <select
+                    required
+                    value={formData.projectType}
+                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value, budget: "" })}
+                    className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none"
+                  >
+                    <option value="" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Project Type</option>
+                    <option value="Frontend" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Frontend</option>
+                    <option value="Backend / API" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Backend / API</option>
+                    <option value="Database" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Database</option>
+                    <option value="Web App" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Web App</option>
+                    <option value="AI Integration" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">AI Integration</option>
+                    <option value="Other" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Other</option>
+                  </select>
+                  <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                </div>
+                <div className="relative">
+                  <select
+                    required
+                    value={formData.budget}
+                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                    disabled={!formData.projectType}
+                    className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <option value="" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">{formData.projectType ? "Select Budget" : "Select Type First"}</option>
+                    {(budgetOptions[formData.projectType] || []).map((b) => (
+                      <option key={b} value={b} className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">{b}</option>
+                    ))}
+                  </select>
+                  <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                </div>
+              </div>
+              <textarea
+                rows="4"
+                placeholder="Tell me about your project..."
+                required
+                value={formData.project}
+                onChange={(e) => setFormData({ ...formData, project: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-700/40 bg-slate-50/50 dark:bg-white/[0.02] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 resize-none"
+              />
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent hover:bg-accent-hover text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40"
+              >
+                <Mail size={15} />
+                Send via Email
+              </button>
+            </form>
 
-        {}
-        <div className="relative flex h-14 w-14 items-center justify-center rounded-full 
-          bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl
-          border border-slate-200 dark:border-white/10
-          shadow-[0_0_40px_rgba(99,102,241,0.1)] group-hover:shadow-[0_0_40px_rgba(99,102,241,0.3)]
-          transition-all duration-500"
-        >
-          {}
-          <div className="relative h-6 w-6 overflow-hidden">
-            <div className="flex flex-col items-center transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
-              <ArrowUp className="h-6 w-6 text-slate-400" />
-              <ArrowUp className="h-6 w-6 text-indigo-500 mt-6" />
+            <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800/60">
+              <a href="tel:+251976601074" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">
+                Call Now
+              </a>
+              <a href="https://t.me/GemachisTesfaye" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">
+                Telegram
+              </a>
             </div>
           </div>
-          
-          {}
-          <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-1000" />
         </div>
-      </button>
+      )}
 
-      {}
-      <div className="absolute -top-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-top-6 transition-all duration-500 pointer-events-none">
-        <div className="px-3 py-1 rounded-md bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 shadow-2xl">
-          <span className="text-[9px] font-black text-indigo-600 dark:text-indigo-300 tracking-[0.2em] uppercase whitespace-nowrap">
-            Launch Top
-          </span>
-        </div>
-      </div>
-    </div>
+      <button
+        onClick={() => setShowCard(!showCard)}
+        className="fixed bottom-4 right-6 z-50 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full shadow-xl shadow-accent/30 hover:shadow-accent/50 transition-all duration-300 group sm:bottom-20"
+        aria-label="Contact me"
+      >
+        <MessageCircle size={16} className="group-hover:rotate-12 transition-transform" />
+        <span className="text-sm hidden sm:inline">Hire Me</span>
+      </button>
+    </>
   );
 };
 
-export default ScrollToTopButton;
+export default FloatingButtons;

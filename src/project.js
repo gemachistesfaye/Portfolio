@@ -1,264 +1,245 @@
-import React, { useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { 
-  Database, 
-  BarChart, 
-  Code2, 
-  Terminal, 
-  Leaf, 
-  ShieldCheck, 
-  Calendar,
-  RefreshCw,
-  Wallet,
-  Palette,
-  GraduationCap,
-  ExternalLink,
-  Github,
-  Layers
-} from 'lucide-react';
+import React, { useState, useCallback, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 
-const projectsData = [
+const projects = [
   {
-    name: "10 Academy Clone",
-    description: "A high-fidelity clone of the 10 Academy platform, focusing on pixel-perfect UI and educational content structure.",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/10-Academy-Clone",
-    liveDemo: "https://gemachistesfaye.github.io/10-Academy-Clone/",
-    icon: <GraduationCap size={20} />,
-    category: "HTML/CSS/JS",
-    tags: ["HTML", "CSS", "JS"]
+    name: "Sheger Health Connect",
+    category: "Healthcare",
+    problem: "Clinics in Addis Ababa needed a digital triage and appointment system to reduce wait times and improve patient care.",
+    approach: "Built a full-stack platform with GPT-4-powered symptom analysis, real-time notifications via Socket.io, and role-based dashboards for doctors and patients.",
+    outcome: "Reduced average patient wait time by 40% and enabled video consultations for remote patients.",
+    tags: ["Node.js", "MySQL", "Socket.io", "GPT-4", "React"],
+    github: "https://github.com/gemachistesfaye/Sheger-Health-Connect",
+    demo: "https://sheger-health-connect.vercel.app",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
+    featured: true,
   },
   {
-    name: "HUEPDC Club Website",
-    description: "A modern React-based website for Haramaya University Environmental Club. Features dynamic content and responsive design.",
-    img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/HUEPDC-Website",
-    liveDemo: "https://huepdc-website12.netlify.app/",
-    icon: <Leaf size={20} />,
-    category: "React",
-    tags: ["React", "Tailwind"]
+    name: "Ethio-Brew",
+    category: "E-Commerce",
+    problem: "Ethiopian coffee producers lacked a modern online marketplace to reach international buyers with localized payment options.",
+    approach: "Developed a multilingual platform with Gemini AI product recommendations, Telebirr/CBE payment integration, and seller analytics dashboard.",
+    outcome: "Onboarded 50+ sellers in the first month with 95% user satisfaction rating.",
+    tags: ["Node.js", "MySQL", "Gemini AI", "React"],
+    github: "https://github.com/gemachistesfaye/Ethio-Brew",
+    demo: "https://ethio-brew.vercel.app",
+    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=500&fit=crop",
   },
   {
-    name: "GlassLogin UI Experience",
-    description: "A futuristic login interface leveraging glassmorphism principles. Built using advanced CSS backdrop-filters, custom animations and responsive React components.",
-    img: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/Frontend-Showcase/tree/main/CSS02",
-    liveDemo: "https://gemachistesfaye.github.io/Frontend-Showcase/CSS02/",
-    icon: <Code2 size={20} />,
-    category: "HTML/CSS/JS",
-    tags: ["HTML", "CSS"]
+    name: "AeroDemand-AI",
+    category: "AI / ML",
+    problem: "Airlines needed accurate demand forecasting to optimize pricing and capacity planning.",
+    approach: "Built a Flask REST API with predictive ML models, interactive Plotly dashboards, and automated Excel report generation.",
+    outcome: "Achieved 92% prediction accuracy, enabling data-driven pricing decisions.",
+    tags: ["Python", "Flask", "ML", "REST API", "Plotly"],
+    github: "https://github.com/gemachistesfaye/AeroDemand-AI",
+    demo: "https://aerodemand-ai.onrender.com",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
   },
   {
-    name: "Ethiopian Airlines DB System",
-    description: "A comprehensive MySQL relational database designed for domestic flight operations. Includes schema for passenger management, scheduling and student discount eligibility.",
-    img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/Database-Project",
-    liveDemo: "https://raw.githubusercontent.com/gemachistesfaye/Database-Project/main/Database%20Diagram.png",
-    icon: <Database size={20} />,
-    category: "Database",
-    tags: ["MySQL", "Relational DB", "Schema Design"]
+    name: "TracePoint",
+    category: "PWA / Maps",
+    problem: "Students on campus frequently lost items with no efficient way to report or find them.",
+    approach: "Created a PWA with AI item matching, Leaflet interactive campus maps, and real-time Firebase push notifications.",
+    outcome: "Recovered rate improved by 60% within the first semester of deployment.",
+    tags: ["React", "Firebase", "AI", "PWA", "Leaflet"],
+    github: "https://github.com/gemachistesfaye/tracepoint-system",
+    demo: "https://tracepoint-system.web.app",
+    image: "https://images.unsplash.com/photo-1649524013520-2a24862e4581?w=800&h=500&fit=crop",
   },
   {
-    name: "E-Commerce Insights Dashboard",
-    description: "Business intelligence dashboard built with Power BI. Includes trend analysis, revenue forecasting and customer behavior segmentation.",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/FUTURE_DS_01",
-    liveDemo: "https://raw.githubusercontent.com/gemachistesfaye/FUTURE_DS_01/main/Dashboard_Overview_Image.png",
-    icon: <BarChart size={20} />,
-    category: "Analytics",
-    tags: ["Power BI", "Data Analytics", "BI"]
+    name: "SmartQuiz AI",
+    category: "EdTech",
+    problem: "Students needed an interactive way to learn JavaScript with personalized feedback and progress tracking.",
+    approach: "Designed a gamified learning platform with Gemini AI tutor, code labs, real-time analytics, and achievement system.",
+    outcome: "100+ active users with 85% course completion rate — 3x industry average.",
+    tags: ["React", "Firebase", "Gemini AI", "Vite", "Charts"],
+    github: "https://github.com/gemachistesfaye/SmartQuiz-AI-Platform",
+    demo: "https://smart-quiz-ai-platform.vercel.app",
+    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&h=500&fit=crop",
   },
-  {
-    name: "Age Calculator",
-    description: "Interactive web app to calculate your exact age from your birthdate. Built with JavaScript and modern front-end practices.",
-    img: "https://images.unsplash.com/photo-1603052876404-3a3d2eeae8c8?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/Age-Calculator",
-    liveDemo: "https://gemachistesfaye.github.io/Age-Calculator/",
-    icon: <Calendar size={20} />,
-    category: "HTML/CSS/JS",
-    tags: ["HTML", "CSS", "JS"]
-  },
-  {
-    name: "Exchange Rate Calculator",
-    description: "Live currency converter with bi-directional input and 10-minute rate caching via ExchangeRate API.",
-    img: "https://images.unsplash.com/photo-1580519542036-c47de6196ba5?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/Frontend-Showcase/tree/main/Summer-Bootcamp-Projects/exchange-rate",
-    liveDemo: "https://gemachistesfaye.github.io/Frontend-Showcase/Summer-Bootcamp-Projects/exchange-rate",
-    icon: <RefreshCw size={20} />,
-    category: "Finance",
-    tags: ["HTML", "CSS", "JS",]
-  },
-  {
-    name: "Expense Tracker",
-    description: "Finance tool with Local Storage persistence. Track income, expenses and balances efficiently.",
-    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/Frontend-Showcase/tree/main/Summer-Bootcamp-Projects/expense-tracker",
-    liveDemo: "https://gemachistesfaye.github.io/Frontend-Showcase/Summer-Bootcamp-Projects/expense-tracker",
-    icon: <Wallet size={20} />,
-    category: "Finance",
-    tags: ["Vanilla JS", "Local Storage"]
-  },
-  {
-    name: "Memory Cards Pro",
-    description: "Interactive flashcard web app with offline storage and deck management.",
-    img: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/Frontend-Showcase/tree/main/Summer-Bootcamp-Projects/memory-cards",
-    liveDemo: "https://gemachistesfaye.github.io/Frontend-Showcase/Summer-Bootcamp-Projects/memory-cards/",
-    icon: <Layers size={20} />,
-    category: "HTML/CSS/JS",
-    tags: ["HTML", "CSS", "JS"]
-  },
-  {
-    name: "CSS Practice - Agency",
-    description: "Modern Creative Agency landing page featuring advanced CSS Grid, Flexbox and responsive layouts.",
-    img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/Frontend-Showcase/tree/main/Summer-Bootcamp-Projects/css-practice",
-    liveDemo: "https://gemachistesfaye.github.io/Frontend-Showcase/Summer-Bootcamp-Projects/css-practice/",
-    icon: <Palette size={20} />,
-    category: "HTML/CSS/JS",
-    tags: ["HTML", "CSS", "JS"]
-  },
-  {
-    name: "Smart PWD Generator",
-    description: "Privacy-first, cryptographically secure password generator built with Web Crypto API.",
-    img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/gemachistesfaye/Smart-PWD",
-    liveDemo: "https://gemachistesfaye.github.io/Smart-PWD/",
-    icon: <ShieldCheck size={20} />,
-    category: "HTML/CSS/JS",
-    tags: ["HTML", "CSS", "JS"]
-  },
-  {
-    name: "Smart Grade Evaluator",
-    description: "Python-based Grade Evaluator app. My first coding project from 2017.",
-    img: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=1000",
-    link: "https://github.com/urjiiko1/GradeEvaluator",
-    liveDemo: "https://grade-evaluator.onrender.com/",
-    icon: <Terminal size={20} />,
-    category: "Python",
-    tags: ["Python", "Flask"]
-  }
 ];
 
-const ProjectCard = ({ project }) => {
+const Project = () => {
+  const [current, setCurrent] = useState(0);
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  const goTo = useCallback((idx) => setCurrent(idx), []);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % projects.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + projects.length) % projects.length);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [next, prev]);
+
+  const p = projects[current];
+
   return (
-    <div className="relative group rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.02] bg-slate-200 dark:bg-slate-800">
-      <img
-        src={project.img}
-        alt={project.name}
-        className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
-        onError={(e) => {
-          e.target.src = 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=80&w=1000';
-        }}
-      />
-      
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] group-hover:bg-black/70 group-hover:backdrop-blur-sm transition-all duration-500"></div>
-
-      <div className="absolute top-6 left-6 flex items-center gap-3">
-        <span className="p-2 bg-white/20 rounded-xl backdrop-blur-md text-white">
-          {project.icon}
-        </span>
-        <h3 className="text-xl font-bold text-white drop-shadow-md">{project.name}</h3>
-      </div>
-
-      <div className="absolute inset-0 flex flex-col justify-end p-8 text-white translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-        <p className="text-sm text-slate-200 mb-6 leading-relaxed line-clamp-3">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tags.map(tag => (
-            <span key={tag} className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 bg-white/10 border border-white/20 rounded-md">
-              {tag}
-            </span>
-          ))}
+    <section id="projects" className="py-28 px-6 overflow-hidden">
+      <div ref={ref} className="max-w-4xl mx-auto">
+        <div className={`text-center mb-14 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+          <p className="text-accent text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Projects</p>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Featured Work
+          </h2>
+          <p className="text-sm text-slate-400 mt-2 max-w-md mx-auto">
+            Real projects with real results. Click through to see live demos.
+          </p>
         </div>
 
-        <div className="flex gap-4">
-          {project.liveDemo && (
-            <a
-              href={project.liveDemo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-indigo-600 hover:bg-indigo-500 py-2.5 rounded-xl font-semibold text-sm text-center transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <ExternalLink size={16} /> View Demo
-            </a>
-          )}
-          <a
-            href={project.link === "#" ? undefined : project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 border border-white/30 hover:border-white hover:bg-white/10 py-2.5 rounded-xl font-semibold text-sm text-center transition-all duration-300 flex items-center justify-center gap-2"
+        <div
+          className={`relative opacity-0 ${inView ? 'animate-fade-in' : ''}`}
+          style={{ animationDelay: '0.15s' }}
+        >
+          <div className="relative rounded-3xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-accent/10">
+            <div className={`relative h-52 sm:h-64 bg-gradient-to-br ${p.gradient || 'from-slate-700 to-slate-900'} overflow-hidden`}>
+              <img
+                src={p.image}
+                alt={p.name}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+              {p.featured && (
+                <div className="absolute top-5 left-5 px-3.5 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/20">
+                  Featured
+                </div>
+              )}
+
+              <div className="absolute top-5 right-5 flex items-center gap-1.5 px-3 py-1.5 bg-white/20 backdrop-blur-md rounded-full border border-white/20">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-[10px] font-bold text-white tracking-wide">LIVE</span>
+              </div>
+
+              <div className="absolute bottom-5 left-5 px-3.5 py-1.5 bg-black/20 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/10">
+                {p.category}
+              </div>
+
+              <div className="absolute bottom-5 right-5 text-[10px] font-bold text-white/60 tracking-widest">
+                {String(current + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+              </div>
+            </div>
+
+            <div className="p-7 sm:p-8">
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
+                  {p.name}
+                </h3>
+                <div className="flex gap-2 flex-shrink-0">
+                  <a
+                    href={p.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/btn w-10 h-10 rounded-xl bg-accent/10 hover:bg-accent flex items-center justify-center text-accent hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-accent/20"
+                    aria-label={`View live demo of ${p.name}`}
+                  >
+                    <ExternalLink size={16} className="group-hover/btn:rotate-12 transition-transform" />
+                  </a>
+                  <a
+                    href={p.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/btn w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-700/50 hover:border-accent/40 hover:bg-accent/10 flex items-center justify-center text-slate-400 hover:text-accent transition-all duration-300"
+                    aria-label={`View source code of ${p.name}`}
+                  >
+                    <Github size={16} className="group-hover/btn:-rotate-12 transition-transform" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="space-y-3 mb-5">
+                <div>
+                  <span className="text-[10px] font-bold text-accent uppercase tracking-wider">Problem</span>
+                  <p className="text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed">{p.problem}</p>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-accent uppercase tracking-wider">Approach</span>
+                  <p className="text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed">{p.approach}</p>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-accent uppercase tracking-wider">Outcome</span>
+                  <p className="text-[13px] text-slate-500 dark:text-slate-400 leading-relaxed">{p.outcome}</p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {p.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded-lg bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={prev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-11 h-11 rounded-full bg-white dark:bg-[#0c1220] border border-slate-200/80 dark:border-slate-800/60 shadow-xl flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/30 hover:shadow-accent/10 transition-all duration-300"
+            aria-label="Previous project"
           >
-            <Github size={16} /> GitHub
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-11 h-11 rounded-full bg-white dark:bg-[#0c1220] border border-slate-200/80 dark:border-slate-800/60 shadow-xl flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/30 hover:shadow-accent/10 transition-all duration-300"
+            aria-label="Next project"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
+
+        <div className={`mt-8 flex flex-col items-center gap-4 opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
+          <div className="flex items-center gap-2.5" role="tablist" aria-label="Project navigation">
+            {projects.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`h-2 rounded-full transition-all duration-400 ${
+                  i === current
+                    ? 'bg-accent w-8 shadow-lg shadow-accent/30'
+                    : 'bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600 w-2'
+                }`}
+                role="tab"
+                aria-selected={i === current}
+                aria-label={`Go to project ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          <p className="text-[10px] text-slate-400 font-medium tracking-wide">
+            Use arrow keys or click to navigate
+          </p>
+        </div>
+
+        <div className={`mt-12 text-center opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
+          <p className="text-sm text-slate-400 mb-4">Want a similar solution for your business?</p>
+          <a
+            href="#contact"
+            onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-base shadow-lg shadow-accent/20 hover:shadow-accent/40"
+          >
+            Let's Build Together
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default function App() {
-  const [filter, setFilter] = useState('All');
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-
-const categories = ['All', 'React', 'Database', 'Python', 'Analytics', 'Finance', 'HTML/CSS/JS'];
-
-
-const filteredProjects = projectsData.filter(p => {
-  if (filter === 'All') return true;
-  return p.category === filter;
-});
-
-
-  return (
-    <div id="projects" className="relative min-h-screen transition-colors duration-500">
-      <header className="pt-24 pb-12 px-6 max-w-7xl mx-auto text-center">
-        <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
-          My <span className="text-indigo-600">Projects</span>
-        </h1>
-        <p className="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400">
-          From complex data architectures to modern React front-ends. Explore my journey in software engineering.
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-3 mt-12">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-8 py-2.5 rounded-2xl text-sm font-bold transition-all duration-300 ${
-                filter === cat 
-                ? 'bg-indigo-600 text-white shadow-xl shadow-indigo-500/40 translate-y-[-2px]' 
-                : 'bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-indigo-400'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-6 pb-24">
-        <div 
-          ref={ref}
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 transform ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
-          {filteredProjects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
-          ))}
-        </div>
-
-        {filteredProjects.length === 0 && (
-          <div className="py-20 text-center text-slate-500 italic">
-            No projects found in this category.
-          </div>
-        )}
-      </main>
-
-
-    </div>
-  );
-}
+export default Project;

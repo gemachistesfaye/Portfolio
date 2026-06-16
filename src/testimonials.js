@@ -1,5 +1,5 @@
 import { useInView } from "react-intersection-observer";
-import { Star, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 import { testimonials } from "./data";
 
 const Testimonials = () => {
@@ -7,7 +7,7 @@ const Testimonials = () => {
 
   return (
     <>
-      <section id="testimonials" className="py-28 px-6 bg-slate-50/50 dark:bg-[#060a13]">
+      <section id="testimonials" className="py-28 px-6 bg-[#060a13]">
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Testimonials</p>
@@ -28,12 +28,6 @@ const Testimonials = () => {
               >
                 <div className="absolute -top-3 -left-3 w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
                   <Quote size={14} className="text-accent" />
-                </div>
-
-                <div className="flex gap-0.5 mb-4" aria-label={`${t.rating} out of 5 stars`}>
-                  {[...Array(t.rating)].map((_, j) => (
-                    <Star key={j} size={14} className="text-amber-400 fill-amber-400" />
-                  ))}
                 </div>
 
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 italic">

@@ -25,7 +25,7 @@ const Services = () => {
 
   return (
     <>
-      <section id="services" className="py-28 px-6 bg-slate-50/50 dark:bg-[#060a13]">
+      <section id="services" className="py-28 px-6 bg-[#060a13]">
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Services</p>
@@ -78,7 +78,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section id="skills" className="py-28 px-6 bg-slate-50/50 dark:bg-[#060a13]">
+      <section id="skills" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Skills</p>

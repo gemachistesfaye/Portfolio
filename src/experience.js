@@ -47,7 +47,7 @@ const Experience = () => {
 
   return (
     <>
-      <section id="experience" className="py-28 px-6 bg-slate-50/50 dark:bg-[#060a13]">
+      <section id="experience" className="py-28 px-6 bg-[#060a13] relative z-10 overflow-hidden">
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Experience</p>
@@ -118,12 +118,12 @@ const Experience = () => {
 
             <div className={`opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
               <h3 className="text-xs font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-[0.15em]">Awards</h3>
-              <div className="grid grid-cols-1 gap-2.5 h-full">
+              <div className="grid grid-cols-1 gap-2.5 bg-transparent">
                 {certificates.map((cert) => (
                   <button
                     key={cert.name}
                     onClick={() => setCertImage(cert)}
-                    className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 text-left"
+                    className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-slate-800 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 text-left"
                   >
                     <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-accent/10 to-emerald-600/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       <Award size={18} className="text-accent" />
@@ -160,7 +160,7 @@ const Experience = () => {
         </div>
       )}
 
-      <section id="faq" className="py-28 px-6 bg-slate-50/50 dark:bg-[#060a13]">
+      <section id="faq" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">FAQ</p>

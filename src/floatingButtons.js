@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { MessageCircle, X, Mail, ChevronDown } from "lucide-react";
 import config from "./config";
 
@@ -33,7 +33,12 @@ const budgetOptions = {
 
 const FloatingButtons = () => {
   const [showCard, setShowCard] = useState(false);
+  const [nearFooter, setNearFooter] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", projectType: "", budget: "", project: "" });
+  const [holdProgress, setHoldProgress] = useState(0);
+  const [isHolding, setIsHolding] = useState(false);
+  const holdIntervalRef = useRef(null);
+  const holdCompletedRef = useRef(false);
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -43,6 +48,86 @@ const FloatingButtons = () => {
     setShowCard(false);
     setFormData({ name: "", email: "", projectType: "", budget: "", project: "" });
   };
+
+  const handleScroll = useCallback(() => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    const winHeight = window.innerHeight;
+    const fromBottom = docHeight - winHeight - scrollTop;
+
+    // Hide "Hire Me" when near footer (within 200px)
+    setNearFooter(fromBottom < 200);
+  }, []);
+
+  useEffect(() => {
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [handleScroll]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const HOLD_DURATION = 3500;
+
+  const startHold = () => {
+    if (showCard) return;
+    holdCompletedRef.current = false;
+    setIsHolding(true);
+    setHoldProgress(0);
+    const startTime = Date.now();
+    holdIntervalRef.current = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / HOLD_DURATION, 1);
+      setHoldProgress(progress);
+      if (progress >= 1) {
+        clearInterval(holdIntervalRef.current);
+        holdCompletedRef.current = true;
+        scrollToTop();
+        setIsHolding(false);
+        setHoldProgress(0);
+      }
+    }, 16);
+  };
+
+  const cancelHold = () => {
+    clearInterval(holdIntervalRef.current);
+    if (!holdCompletedRef.current) {
+      setIsHolding(false);
+      setHoldProgress(0);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      clearInterval(holdIntervalRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showCard) {
+      document.body.classList.add("overflow-hidden");
+      document.documentElement.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+      document.documentElement.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+      document.documentElement.classList.remove("overflow-hidden");
+    };
+  }, [showCard]);
 
   return (
     <>
@@ -152,13 +237,46 @@ const FloatingButtons = () => {
       )}
 
       <button
-        onClick={() => setShowCard(!showCard)}
-        className="fixed bottom-4 right-6 z-50 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full shadow-xl shadow-accent/30 hover:shadow-accent/50 transition-all duration-300 group sm:bottom-20"
-        aria-label="Contact me"
+        onClick={() => {
+          if (holdCompletedRef.current) {
+            holdCompletedRef.current = false;
+            return;
+          }
+          setShowCard(!showCard);
+        }}
+        onMouseDown={startHold}
+        onMouseUp={cancelHold}
+        onMouseLeave={cancelHold}
+        onTouchStart={startHold}
+        onTouchEnd={cancelHold}
+        onTouchCancel={cancelHold}
+        className={`fixed bottom-4 right-6 z-50 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full shadow-xl shadow-accent/30 hover:shadow-accent/50 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        aria-label={showCard ? "Close" : "Hold to scroll to top, click to contact"}
       >
-        <MessageCircle size={16} className="group-hover:rotate-12 transition-transform" />
-        <span className="text-sm">Hire Me</span>
+        {showCard ? (
+          <>
+            <X size={16} className="group-hover:rotate-90 transition-transform" />
+            <span className="text-sm">Cancel</span>
+          </>
+        ) : (
+          <>
+            {isHolding ? (
+              <svg className="w-4 h-4 -rotate-90" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
+                <circle
+                  cx="18" cy="18" r="15" fill="none" stroke="white" strokeWidth="3"
+                  strokeDasharray={`${holdProgress * 94.25} 94.25`}
+                  strokeLinecap="round"
+                />
+              </svg>
+            ) : (
+              <MessageCircle size={16} className="group-hover:rotate-12 transition-transform" />
+            )}
+            <span className="text-sm">{isHolding ? 'Hold...' : 'Hire Me'}</span>
+          </>
+        )}
       </button>
+
     </>
   );
 };

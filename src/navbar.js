@@ -52,7 +52,7 @@ const Navbar = () => {
           <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent to-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-accent/20 group-hover:shadow-accent/40 group-hover:scale-105 transition-all duration-300">
             GT
           </div>
-          <span className="hidden sm:block text-sm font-bold text-white tracking-tight">
+          <span className="text-sm font-bold text-white tracking-tight">
             Gemachis T.
           </span>
         </a>

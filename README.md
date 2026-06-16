@@ -40,7 +40,7 @@ A personal portfolio website built with **React** and **Tailwind CSS**, showcasi
 
 ## 📬 Contact & Connect
 
-- ✉️ Email: [gemachistesfaye36@gmail.com](mailto:gemachistesfaye36@gmail.com)  
+- ✉️ Email: [gemachis.tesfaye.dev@gmail.com](mailto:gemachis.tesfaye.dev@gmail.com)  
 - 📞 Phone: [+251976601074](tel:+251976601074)  
 - 📍 Location: Adaama, Ethiopia  
 

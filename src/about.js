@@ -83,11 +83,11 @@ const About = () => {
                 ))}
               </div>
 
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-nowrap gap-2.5">
                 <a
                   href="#contact"
                   onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
-                   className="group inline-flex items-center gap-2 px-6 py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-base shadow-lg shadow-accent/20 hover:shadow-accent/40"
+                   className="group inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 sm:py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-xs sm:text-base shadow-lg shadow-accent/20 hover:shadow-accent/40 whitespace-nowrap"
                 >
                   Let's Work Together
                   <TrendingUp size={15} className="group-hover:-translate-y-0.5 transition-transform" />
@@ -96,7 +96,7 @@ const About = () => {
                   href={config.cvView}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-base"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 sm:py-3.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-xs sm:text-base whitespace-nowrap"
                 >
                   <Download size={15} />
                   Download CV
@@ -107,7 +107,7 @@ const About = () => {
         </div>
       </section>
 
-      <section id="process" className="py-28 px-6 bg-slate-50/50 dark:bg-[#060a13]">
+      <section id="process" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">How I Work</p>

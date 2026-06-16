@@ -35,7 +35,7 @@ const codeSnippets = [
 ];
 
 const Home = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
   const [textIndex, setTextIndex] = useState(0);
   const [textAnimating, setTextAnimating] = useState(false);
   const [typingLine, setTypingLine] = useState(0);
@@ -115,9 +115,9 @@ const Home = () => {
     <section id="home" className="min-h-screen flex items-center px-6 relative overflow-hidden">
       {/* Animated background blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-accent/[0.07] dark:bg-accent/[0.04] rounded-full blur-[120px] animate-[pulse_6s_ease-in-out_infinite]" />
-        <div className="absolute top-20 right-20 w-48 h-48 bg-violet-500/[0.06] dark:bg-violet-500/[0.03] rounded-full blur-[80px] animate-[pulse_8s_ease-in-out_infinite_1s]" />
-        <div className="absolute bottom-20 left-20 w-48 h-48 bg-cyan-500/[0.06] dark:bg-cyan-500/[0.03] rounded-full blur-[80px] animate-[pulse_7s_ease-in-out_infinite_2s]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[350px] sm:w-[500px] lg:w-[700px] h-[350px] sm:h-[500px] lg:h-[700px] bg-accent/[0.07] dark:bg-accent/[0.04] rounded-full blur-[80px] sm:blur-[100px] lg:blur-[120px] animate-[pulse_6s_ease-in-out_infinite]" />
+        <div className="absolute top-20 right-4 sm:right-20 w-24 sm:w-36 lg:w-48 h-24 sm:h-36 lg:h-48 bg-violet-500/[0.06] dark:bg-violet-500/[0.03] rounded-full blur-[50px] sm:blur-[60px] lg:blur-[80px] animate-[pulse_8s_ease-in-out_infinite_1s]" />
+        <div className="absolute bottom-20 left-4 sm:left-20 w-24 sm:w-36 lg:w-48 h-24 sm:h-36 lg:h-48 bg-cyan-500/[0.06] dark:bg-cyan-500/[0.03] rounded-full blur-[50px] sm:blur-[60px] lg:blur-[80px] animate-[pulse_7s_ease-in-out_infinite_2s]" />
         <div
           className="absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
           style={{
@@ -127,8 +127,8 @@ const Home = () => {
         />
       </div>
 
-      {/* Replay button — top right */}
-      <div className="absolute top-6 right-6 z-20">
+      {/* Replay button — top right, hidden on mobile */}
+      <div className="hidden sm:block absolute top-6 right-6 z-20">
         <button
           onClick={replay}
           className="p-2 rounded-lg glass hover:scale-110 transition-transform duration-200"
@@ -138,12 +138,12 @@ const Home = () => {
         </button>
       </div>
 
-      <div ref={ref} className="max-w-5xl w-full mx-auto flex items-center gap-6 relative z-10">
+      <div ref={ref} className="max-w-5xl w-full mx-auto flex flex-col lg:flex-row items-center gap-6 lg:gap-10 relative z-10">
         {/* Left — Text */}
         <div className="flex-1 max-w-xl">
           {/* Available badge */}
           <div
-            className={`inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full glass text-accent text-xs font-semibold tracking-wider uppercase opacity-0 ${inView ? 'animate-fade-in' : ''}`}
+            className={`inline-flex items-center gap-2 px-4 py-1.5 mb-4 sm:mb-6 rounded-full glass text-accent text-xs font-semibold tracking-wider uppercase opacity-0 ${inView ? 'animate-fade-in' : ''}`}
             key={`badge-${replayKey}`}
           >
             <span className="relative flex h-2 w-2">
@@ -155,7 +155,7 @@ const Home = () => {
 
           {/* Name */}
           <h1
-            className={`text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            className={`text-3xl sm:text-5xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] opacity-0 ${inView ? 'animate-slide-up' : ''}`}
             style={{ animationDelay: '0.1s', letterSpacing: '0.02em' }}
             key={`name-${replayKey}`}
           >
@@ -166,7 +166,7 @@ const Home = () => {
 
           {/* Accent bar */}
           <div
-            className={`w-12 h-[3px] bg-gradient-to-r from-accent to-teal-400 my-5 rounded-full opacity-0 ${inView ? 'animate-scale-in' : ''}`}
+            className={`w-12 h-[3px] bg-gradient-to-r from-accent to-teal-400 my-4 sm:my-5 rounded-full opacity-0 ${inView ? 'animate-scale-in' : ''}`}
             style={{ animationDelay: '0.2s' }}
             key={`bar-${replayKey}`}
           />
@@ -185,7 +185,7 @@ const Home = () => {
 
           {/* Description */}
           <p
-            className={`text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-lg mb-6 leading-relaxed opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            className={`text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-lg mb-5 sm:mb-6 leading-relaxed opacity-0 ${inView ? 'animate-slide-up' : ''}`}
             style={{ animationDelay: '0.4s', letterSpacing: '0.01em' }}
             key={`desc-${replayKey}`}
           >
@@ -215,24 +215,24 @@ const Home = () => {
 
         {/* Right — Animated Developer Scene */}
         <div
-          className={`hidden lg:block flex-shrink-0 opacity-0 ${inView ? 'animate-scale-in' : ''}`}
+          className={`flex-shrink-0 opacity-0 ${inView ? 'animate-scale-in' : ''}`}
           style={{ animationDelay: '0.3s' }}
           key={`scene-${replayKey}`}
         >
           <div
-            className="relative w-80 h-72 transition-transform duration-300"
+            className="relative w-64 h-56 sm:w-64 sm:h-56 lg:w-80 lg:h-72 transition-transform duration-300 mx-auto lg:mx-0"
             style={{ transform: hovering ? 'scale(1.02) translateY(-4px)' : 'scale(1) translateY(0)' }}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >
             {/* Desk */}
-            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 rounded-sm shadow-lg" />
-            <div className="absolute bottom-2 left-6 w-2 h-8 bg-slate-300 dark:bg-slate-600 rounded-b" />
-            <div className="absolute bottom-2 right-6 w-2 h-8 bg-slate-300 dark:bg-slate-600 rounded-b" />
+            <div className="absolute bottom-0 left-0 right-0 h-1.5 sm:h-1.5 lg:h-2 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 rounded-sm shadow-lg" />
+            <div className="absolute bottom-1.5 sm:bottom-1.5 lg:bottom-2 left-5 lg:left-6 w-1.5 sm:w-1.5 lg:w-2 h-6 sm:h-6 lg:h-8 bg-slate-300 dark:bg-slate-600 rounded-b" />
+            <div className="absolute bottom-1.5 sm:bottom-1.5 lg:bottom-2 right-5 lg:right-6 w-1.5 sm:w-1.5 lg:w-2 h-6 sm:h-6 lg:h-8 bg-slate-300 dark:bg-slate-600 rounded-b" />
 
             {/* Laptop */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
-              <div className="w-52 h-32 rounded-t-lg border-2 border-b-0 border-slate-200 dark:border-slate-600 bg-slate-900 dark:bg-[#0a0f1a] overflow-hidden shadow-xl relative">
+            <div className="absolute bottom-1.5 sm:bottom-1.5 lg:bottom-2 left-1/2 -translate-x-1/2">
+              <div className="w-48 lg:w-52 rounded-t-lg border-2 border-b-0 border-slate-200 dark:border-slate-600 bg-slate-900 dark:bg-[#0a0f1a] overflow-hidden shadow-xl relative">
                 <div className="flex items-center gap-1 px-2 py-1 bg-slate-800 border-b border-slate-700/50">
                   <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
@@ -240,7 +240,7 @@ const Home = () => {
                   <span className="ml-2 text-[6px] text-slate-500 font-mono">coffee.js</span>
                 </div>
                 {/* Typing simulator */}
-                <div className="p-2 font-mono text-[7px] leading-relaxed min-h-[96px]">
+                <div className="p-1.5 lg:p-2 font-mono text-[6px] lg:text-[7px] leading-relaxed min-h-[80px] lg:min-h-[96px]">
                   {displayedLines.map((line, i) => (
                     <div key={i} className={line.color}>
                       {line.visibleText}
@@ -256,14 +256,14 @@ const Home = () => {
                 {/* Screen glow */}
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-accent/[0.03] to-transparent" />
               </div>
-              <div className="w-56 h-2 bg-slate-200 dark:bg-slate-600 rounded-b-lg mx-auto -ml-2" />
+              <div className="w-52 lg:w-56 h-1.5 sm:h-1.5 lg:h-2 bg-slate-200 dark:bg-slate-600 rounded-b-lg mx-auto -ml-2" />
             </div>
 
             {/* Floating code particles — positioned around edges */}
             {codeSnippets.map((snippet, i) => (
               <div
                 key={i}
-                className="absolute px-2 py-1 rounded-md text-[8px] font-mono animate-[codeDrift_6s_ease-in-out_infinite] pointer-events-none"
+                className="absolute px-2 py-1 rounded-md text-[7px] sm:text-[8px] font-mono animate-[codeDrift_6s_ease-in-out_infinite] pointer-events-none"
                 style={{
                   top: snippet.top,
                   left: snippet.left,
@@ -280,13 +280,13 @@ const Home = () => {
             ))}
 
             {/* Coffee cup — enhanced */}
-            <div className="absolute bottom-2 right-3">
+            <div className="absolute bottom-1.5 sm:bottom-1.5 lg:bottom-2 right-2.5 lg:right-3">
               {/* Desk shadow */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-1.5 bg-black/10 dark:bg-black/20 rounded-full blur-[2px]" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 lg:w-10 h-1 lg:h-1.5 bg-black/10 dark:bg-black/20 rounded-full blur-[2px]" />
               {/* Cup body */}
               <div className="relative">
                 {/* Steam — realistic wavy wisps */}
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-8 h-12 pointer-events-none">
+                <div className="absolute -top-10 lg:-top-12 left-1/2 -translate-x-1/2 w-6 lg:w-8 h-10 lg:h-12 pointer-events-none">
                   <svg className="absolute left-[4px] bottom-0 animate-[steamRise_3s_ease-in-out_infinite]" width="6" height="22" viewBox="0 0 6 22" fill="none">
                     <path d="M3 22 C3 18, 1 15, 3 11 C5 7, 1 4, 3 0" stroke="rgba(148,163,184,0.6)" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
@@ -306,8 +306,8 @@ const Home = () => {
                     <path d="M3 20 C3 16, 5 13, 3 9 C1 5, 5 2, 3 0" stroke="rgba(148,163,184,0.5)" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </div>
-                <div className="w-8 h-7 bg-gradient-to-b from-white to-slate-100 dark:from-slate-100 dark:to-slate-200 rounded-b-[6px] border border-slate-200 dark:border-slate-300 shadow-lg relative">
-                  <div className="absolute top-1 left-1 right-1 h-2.5 bg-gradient-to-b from-amber-700 to-amber-800 rounded-sm" />
+                <div className="w-7 h-6 lg:w-8 lg:h-7 bg-gradient-to-b from-white to-slate-100 dark:from-slate-100 dark:to-slate-200 rounded-b-[5px] lg:rounded-b-[6px] border border-slate-200 dark:border-slate-300 shadow-lg relative">
+                  <div className="absolute top-1 left-1 right-1 h-2 lg:h-2.5 bg-gradient-to-b from-amber-700 to-amber-800 rounded-sm" />
                   <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/80 to-transparent dark:via-slate-100/80 rounded-t" />
                 </div>
                 {/* Handle — solid arc */}
@@ -316,10 +316,10 @@ const Home = () => {
                 </svg>
               </div>
               {/* Saucer */}
-              <div className="w-11 h-2 bg-gradient-to-b from-white via-slate-100 to-slate-200 dark:from-slate-200 dark:via-slate-300 dark:to-slate-400 rounded-full mx-auto -ml-1.5 mt-0.5 border border-slate-200 dark:border-slate-300 shadow-sm" />
+              <div className="w-9 lg:w-11 h-1.5 lg:h-2 bg-gradient-to-b from-white via-slate-100 to-slate-200 dark:from-slate-200 dark:via-slate-300 dark:to-slate-400 rounded-full mx-auto -ml-1.5 mt-0.5 border border-slate-200 dark:border-slate-300 shadow-sm" />
             </div>
 
-            {/* Status indicator — top right, away from particles */}
+            {/* Status indicator — top right */}
             <div className="absolute top-2 right-2 flex items-center gap-1.5 px-2 py-1 rounded-full bg-green-500/10 border border-green-500/20">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-[blink_2s_ease-in-out_infinite]" />
               <span className="text-[7px] font-semibold text-green-600 dark:text-green-400">Online</span>

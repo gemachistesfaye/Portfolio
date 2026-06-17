@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@sanity/client": "^7.22.1",
+    "@sanity/image-url": "^2.1.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
@@ -27,7 +28,9 @@
     "eject": "react-scripts eject",
     "init:tailwind": "tailwindcss init -p",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build:rss": "node scripts/generate-rss.js",
+    "build:all": "npm run build && npm run build:rss"
   },
   "eslintConfig": {
     "extends": [
@@ -48,8 +51,12 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^25.9.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "typescript": "^6.0.3"
   }
 }

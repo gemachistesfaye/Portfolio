@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./navbar";
 import Home from "./home";
@@ -10,9 +10,17 @@ import Experience from "./experience";
 import Contact from "./contact";
 import Footer from "./footer";
 import FloatingButtons from "./floatingButtons";
-import BlogLayout from "./pages/BlogLayout";
-import BlogList from "./pages/BlogList";
-import BlogPost from "./pages/BlogPost";
+
+const BlogLayout = lazy(() => import("./pages/BlogLayout"));
+const BlogList = lazy(() => import("./pages/BlogList"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+
+const BlogFallback = () => (
+  <div className="min-h-screen flex flex-col items-center justify-center bg-[#f7f3ee] gap-4">
+    <div className="w-10 h-10 border-[3px] border-[#5a9a7a] border-t-transparent rounded-full animate-spin" />
+    <p className="text-sm text-[#a09890]">Loading blog...</p>
+  </div>
+);
 
 class ErrorBoundary extends React.Component {
   state = { hasError: false };
@@ -68,9 +76,9 @@ function App() {
   return (
     <ErrorBoundary>
       <Routes>
-        <Route path="/blog" element={<BlogLayout />}>
-          <Route index element={<BlogList />} />
-          <Route path=":slug" element={<BlogPost />} />
+        <Route path="/blog" element={<Suspense fallback={<BlogFallback />}><BlogLayout /></Suspense>}>
+          <Route index element={<Suspense fallback={<BlogFallback />}><BlogList /></Suspense>} />
+          <Route path=":slug" element={<Suspense fallback={<BlogFallback />}><BlogPost /></Suspense>} />
         </Route>
         <Route path="*" element={<Portfolio />} />
       </Routes>

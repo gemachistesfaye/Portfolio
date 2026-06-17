@@ -1,6 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import { Quote } from "lucide-react";
 import { testimonials } from "./data";
+import SectionHeading from "./components/SectionHeading";
 
 const Testimonials = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -9,14 +10,13 @@ const Testimonials = () => {
     <>
       <section id="testimonials" className="py-28 px-6 bg-[#060a13]">
         <div ref={ref} className="max-w-6xl mx-auto">
-          <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
-            <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Testimonials</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              What People <span className="text-gradient">Say</span>
-            </h2>
-            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
-              Feedback from professors, collaborators, and clients I've worked with.
-            </p>
+          <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+            <SectionHeading
+              label="Testimonials"
+              title="What People"
+              highlight="Say"
+              description="Feedback from professors, collaborators, and clients I've worked with."
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

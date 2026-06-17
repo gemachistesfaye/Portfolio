@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Linkedin, Send, Twitter, ArrowRight, Clock } from "lucide-react";
 import config from "./config";
+import SectionHeading from "./components/SectionHeading";
 
 const FacebookIcon = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
@@ -41,14 +42,13 @@ const Contact = () => {
   return (
     <section id="contact" className="py-28 px-6">
       <div ref={ref} className="max-w-6xl mx-auto">
-        <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
-          <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Contact</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Let's Build Something <span className="text-gradient">Together</span>
-          </h2>
-          <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-md mx-auto">
-            Have a project in mind? Tell me about it and I'll get back to you within 24 hours.
-          </p>
+        <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+          <SectionHeading
+            label="Contact"
+            title="Let's Build Something"
+            highlight="Together"
+            description="Have a project in mind? Tell me about it and I'll get back to you within 24 hours."
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">

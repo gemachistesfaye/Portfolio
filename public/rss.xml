@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gemachis Tesfaye | Blog</title>
+    <link>https://gemachistesfaye.github.io/Portfolio</link>
+    <description>Thoughts on web development, AI, and building scalable applications.</description>
+    <language>en</language>
+    <lastBuildDate>Wed, 17 Jun 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://gemachistesfaye.github.io/Portfolio/rss.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

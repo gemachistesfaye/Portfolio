@@ -1,4 +1,23 @@
-const config = {
+import { Config } from "./types";
+
+const requiredEnvVars: string[] = [
+  "REACT_APP_FORMSPREE_ENDPOINT",
+  "REACT_APP_PHONE_NUMBER",
+  "REACT_APP_PHONEHref",
+  "REACT_APP_EMAIL",
+];
+
+if (process.env.NODE_ENV === "development") {
+  const missing = requiredEnvVars.filter((key) => !process.env[key]);
+  if (missing.length > 0) {
+    console.warn(
+      `[Portfolio] Missing required environment variables: ${missing.join(", ")}. ` +
+      `Copy .env.example to .env and fill in the values.`
+    );
+  }
+}
+
+const config: Config = {
   formspreeEndpoint: process.env.REACT_APP_FORMSPREE_ENDPOINT || "",
   phone: process.env.REACT_APP_PHONE_NUMBER || "",
   phoneHref: process.env.REACT_APP_PHONEHref || "",

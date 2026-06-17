@@ -2,6 +2,8 @@ import { useState, useCallback, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "./data";
+import SectionHeading from "./components/SectionHeading";
+import { scrollToSection } from "./utils/scrollTo";
 
 const Project = () => {
   const [current, setCurrent] = useState(0);
@@ -19,6 +21,11 @@ const Project = () => {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Only handle arrow keys when no input/textarea/select is focused
+      const active = document.activeElement;
+      const isInput = active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.tagName === "SELECT" || active.isContentEditable);
+      if (isInput) return;
+
       if (e.key === "ArrowLeft") prev();
       if (e.key === "ArrowRight") next();
     };
@@ -31,14 +38,13 @@ const Project = () => {
   return (
     <section id="projects" className="py-28 px-6 overflow-hidden">
       <div ref={ref} className="max-w-4xl mx-auto">
-        <div className={`text-center mb-14 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
-          <p className="text-accent text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Projects</p>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Featured Work
-          </h2>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-md mx-auto">
-            Real projects with real results. Click through to see live demos.
-          </p>
+        <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+          <SectionHeading
+            label="Projects"
+            title="Featured"
+            highlight="Work"
+            description="Real projects with real results. Click through to see live demos."
+          />
         </div>
 
         <div
@@ -167,13 +173,16 @@ const Project = () => {
           <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium tracking-wide">
             Use arrow keys or click to navigate
           </p>
+          <div className="sr-only" aria-live="polite" aria-atomic="true">
+            Project {current + 1} of {projects.length}: {p.name}
+          </div>
         </div>
 
         <div className={`mt-12 text-center opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Want a similar solution for your business?</p>
           <a
             href="#contact"
-            onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+            onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
             className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-base shadow-lg shadow-accent/20 hover:shadow-accent/40"
           >
             Let's Build Together

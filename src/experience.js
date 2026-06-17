@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { GraduationCap, Code, Calendar, ChevronDown, Award, X } from "lucide-react";
 import { experience, certificates, faqs } from "./data";
+import SectionHeading from "./components/SectionHeading";
 
 const icons = {
   Training: <Code size={14} />,
   Degree: <GraduationCap size={14} />,
 };
 
-const FAQItem = ({ faq, isOpen, onClick }) => (
+const FAQItem = ({ faq, isOpen, onClick, index }) => (
   <div className="border border-slate-200 dark:border-slate-700/60 rounded-xl overflow-hidden">
     <button
       onClick={onClick}
       className="w-full flex items-center justify-between p-5 text-left bg-white dark:bg-[#0c1220] hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors"
       aria-expanded={isOpen}
+      aria-controls={`faq-answer-${index}`}
+      id={`faq-question-${index}`}
     >
       <span className="text-sm font-semibold text-slate-900 dark:text-white pr-4">{faq.q}</span>
       <ChevronDown
@@ -22,7 +25,10 @@ const FAQItem = ({ faq, isOpen, onClick }) => (
       />
     </button>
     <div
-      className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
+      id={`faq-answer-${index}`}
+      role="region"
+      aria-labelledby={`faq-question-${index}`}
+      className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
     >
       <p className="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
         {faq.a}
@@ -43,6 +49,16 @@ const Experience = () => {
       document.body.classList.remove("cert-lightbox-open");
     }
     return () => document.body.classList.remove("cert-lightbox-open");
+  }, [certImage]);
+
+  // Escape key to close lightbox
+  React.useEffect(() => {
+    if (!certImage) return;
+    const handleEscape = (e) => {
+      if (e.key === "Escape") setCertImage(null);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [certImage]);
 
   return (
@@ -143,7 +159,13 @@ const Experience = () => {
       </section>
 
       {certImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm" onClick={() => setCertImage(null)}>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
+          onClick={() => setCertImage(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Certificate image"
+        >
           <button
             onClick={() => setCertImage(null)}
             className="absolute top-4 right-4 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
@@ -156,21 +178,28 @@ const Experience = () => {
             alt={certImage.name}
             className="max-w-full max-h-[85vh] rounded-2xl shadow-2xl object-contain"
             onClick={(e) => e.stopPropagation()}
+            onError={(e) => {
+              e.target.style.display = "none";
+              e.target.nextSibling.style.display = "flex";
+            }}
           />
+          <div
+            className="hidden max-w-full max-h-[85vh] rounded-2xl shadow-2xl bg-[#f0ebe4] items-center justify-center p-12"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-[#8a837d] text-center">Image failed to load</p>
+          </div>
         </div>
       )}
 
       <section id="faq" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">FAQ</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Frequently Asked <span className="text-gradient">Questions</span>
-            </h2>
-            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
-              Common questions about working with me.
-            </p>
-          </div>
+          <SectionHeading
+            label="FAQ"
+            title="Frequently Asked"
+            highlight="Questions"
+            description="Common questions about working with me."
+          />
 
           <div className="space-y-3">
             {faqs.map((faq, i) => (
@@ -179,6 +208,7 @@ const Experience = () => {
                 faq={faq}
                 isOpen={openIndex === i}
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                index={i}
               />
             ))}
           </div>

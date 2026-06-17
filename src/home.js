@@ -48,19 +48,24 @@ const Home = () => {
 
   // Rotating text with 3D transition
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
     const interval = setInterval(() => {
       setTextAnimating(true);
       setTimeout(() => {
         setTextIndex((prev) => (prev + 1) % rotatingTexts.length);
         setTextAnimating(false);
       }, 400);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   // Typing simulator
   useEffect(() => {
     if (!inView) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
     let lineIdx = 0;
     let colIdx = 0;
     let lines = [];
@@ -147,7 +152,7 @@ const Home = () => {
             key={`badge-${replayKey}`}
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" aria-hidden="true" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
             </span>
             Available for freelance
@@ -198,6 +203,8 @@ const Home = () => {
             className={`h-8 overflow-hidden opacity-0 ${inView ? 'animate-fade-in' : ''}`}
             style={{ animationDelay: '0.6s' }}
             key={`rotate-${replayKey}`}
+            aria-live="polite"
+            aria-atomic="true"
           >
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-accent animate-[blink_2s_ease-in-out_infinite]" />
@@ -244,12 +251,12 @@ const Home = () => {
                   {displayedLines.map((line, i) => (
                     <div key={i} className={line.color}>
                       {line.visibleText}
-                      {i === typingLine && <span className="inline-block w-[5px] h-[9px] bg-white/80 ml-[1px] animate-[blink_1s_step-end_infinite] align-middle" />}
+                      {i === typingLine && <span className="inline-block w-[5px] h-[9px] bg-white/80 ml-[1px] animate-[blink_1s_step-end_infinite] align-middle" aria-hidden="true" />}
                     </div>
                   ))}
                   {displayedLines.length === 0 && typingLine === 0 && (
                     <div className="text-emerald-400">
-                      <span className="inline-block w-[5px] h-[9px] bg-white/80 animate-[blink_1s_step-end_infinite] align-middle" />
+                      <span className="inline-block w-[5px] h-[9px] bg-white/80 animate-[blink_1s_step-end_infinite] align-middle" aria-hidden="true" />
                     </div>
                   )}
                 </div>

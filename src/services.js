@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Globe, Brain, Database, Code, BarChart3, Layers, ArrowRight, Server, Sparkles } from "lucide-react";
 import { services, skills } from "./data";
+import SectionHeading from "./components/SectionHeading";
+import { scrollToSection } from "./utils/scrollTo";
 
 const serviceIcons = {
   "Full-Stack Web Apps": <Globe size={22} />,
@@ -27,14 +29,13 @@ const Services = () => {
     <>
       <section id="services" className="py-28 px-6 bg-[#060a13]">
         <div ref={ref} className="max-w-6xl mx-auto">
-          <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
-            <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Services</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              What I Can Build <span className="text-gradient">For You</span>
-            </h2>
-            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
-              Full-stack development, AI integration, and data-driven solutions — from concept to deployment.
-            </p>
+          <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+            <SectionHeading
+              label="Services"
+              title="What I Can Build"
+              highlight="For You"
+              description="Full-stack development, AI integration, and data-driven solutions — from concept to deployment."
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -55,7 +56,7 @@ const Services = () => {
                 </p>
                 <a
                   href="#contact"
-                  onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+                  onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
                 >
                   Get a quote
@@ -68,7 +69,7 @@ const Services = () => {
           <div className={`mt-12 text-center opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
             <a
               href="#contact"
-              onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+              onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
               className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-base shadow-lg shadow-accent/20 hover:shadow-accent/40"
             >
               Start a Project
@@ -80,15 +81,12 @@ const Services = () => {
 
       <section id="skills" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Skills</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Technical Expertise
-            </h2>
-            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
-              Full-stack development, databases, AI, and analytics.
-            </p>
-          </div>
+          <SectionHeading
+            label="Skills"
+            title="Technical"
+            highlight="Expertise"
+            description="Full-stack development, databases, AI, and analytics."
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="space-y-2">
@@ -98,6 +96,9 @@ const Services = () => {
                   <button
                     key={cat.label}
                     onClick={() => setOpenCat(isActive ? null : cat.label)}
+                    aria-expanded={isActive}
+                    aria-controls={`skills-panel-${cat.label}`}
+                    id={`skills-button-${cat.label}`}
                     className={`group w-full flex items-center gap-4 p-4 rounded-2xl border transition-all duration-500 text-left ${
                       isActive
                         ? 'border-accent/40 bg-white dark:bg-[#0c1220] shadow-xl shadow-accent/10 scale-[1.02]'
@@ -126,7 +127,12 @@ const Services = () => {
 
             <div className="lg:col-span-2">
               {openCat ? (
-                <div className="h-full p-6 sm:p-8 rounded-2xl border border-accent/20 bg-white dark:bg-[#0c1220] shadow-xl dark:shadow-accent/5 relative overflow-hidden">
+                <div
+                  id={`skills-panel-${openCat}`}
+                  role="region"
+                  aria-labelledby={`skills-button-${openCat}`}
+                  className="h-full p-6 sm:p-8 rounded-2xl border border-accent/20 bg-white dark:bg-[#0c1220] shadow-xl dark:shadow-accent/5 relative overflow-hidden"
+                >
                   <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-accent/10 via-emerald-500/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                   <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-violet-500/5 via-transparent to-transparent rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
                   

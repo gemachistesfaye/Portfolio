@@ -79,7 +79,7 @@ const FloatingButtons = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const HOLD_DURATION = 3500;
+  const HOLD_DURATION = 1500;
 
   const startHold = () => {
     if (showCard) return;
@@ -129,10 +129,26 @@ const FloatingButtons = () => {
     };
   }, [showCard]);
 
+  // Escape key to close modal
+  useEffect(() => {
+    if (!showCard) return;
+    const handleEscape = (e) => {
+      if (e.key === "Escape") setShowCard(false);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [showCard]);
+
   return (
     <>
       {showCard && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm" onClick={() => setShowCard(false)}>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm"
+          onClick={() => setShowCard(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Project inquiry form"
+        >
           <div
             className="w-full max-w-md p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
             onClick={(e) => e.stopPropagation()}
@@ -261,7 +277,7 @@ const FloatingButtons = () => {
         ) : (
           <>
             {isHolding ? (
-              <svg className="w-4 h-4 -rotate-90" viewBox="0 0 36 36">
+              <svg className="w-4 h-4 -rotate-90" viewBox="0 0 36 36" aria-hidden="true">
                 <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
                 <circle
                   cx="18" cy="18" r="15" fill="none" stroke="white" strokeWidth="3"

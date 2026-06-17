@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import {
   getPostBySlug,
   urlFor,
+  urlForPreview,
   incrementViews,
   incrementLikes,
   incrementShares,
@@ -201,8 +202,9 @@ const BlogPost = () => {
         {post.coverImage && (
           <div className="rounded-2xl overflow-hidden mb-12 border border-[#e8e2da] shadow-sm">
             <img
-              src={urlFor(post.coverImage)}
+              src={urlForPreview(post.coverImage, 1200)}
               alt={post.title}
+              loading="lazy"
               className="w-full h-auto"
             />
           </div>

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const BlogLayout = () => {
   useEffect(() => {
@@ -13,6 +14,9 @@ const BlogLayout = () => {
 
   return (
     <div className="min-h-screen bg-[#f7f3ee] text-[#3d3833] font-sans">
+      <Helmet>
+        <link rel="alternate" type="application/rss+xml" title="Gemachis Tesfaye Blog" href="/rss.xml" />
+      </Helmet>
       <header className="sticky top-0 z-50 bg-[#f7f3ee]/80 backdrop-blur-xl border-b border-[#e8e2da]">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link

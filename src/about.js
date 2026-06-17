@@ -1,6 +1,8 @@
 import { useInView } from "react-intersection-observer";
 import { Download, Code2, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight } from "lucide-react";
 import config from "./config";
+import SectionHeading from "./components/SectionHeading";
+import { scrollToSection } from "./utils/scrollTo";
 
 const highlights = [
   { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Delivered" },
@@ -86,7 +88,7 @@ const About = () => {
               <div className="flex flex-nowrap gap-2.5">
                 <a
                   href="#contact"
-                  onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+                  onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
                    className="group inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 sm:py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-xs sm:text-base shadow-lg shadow-accent/20 hover:shadow-accent/40 whitespace-nowrap"
                 >
                   Let's Work Together
@@ -109,15 +111,12 @@ const About = () => {
 
       <section id="process" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">How I Work</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              From Idea to <span className="text-gradient">Launch</span>
-            </h2>
-            <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
-              A transparent, collaborative process designed to deliver results on time and within budget.
-            </p>
-          </div>
+          <SectionHeading
+            label="How I Work"
+            title="From Idea to"
+            highlight="Launch"
+            description="A transparent, collaborative process designed to deliver results on time and within budget."
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
@@ -151,7 +150,7 @@ const About = () => {
               href={config.phoneHref}
               className="inline-flex items-center gap-2 px-8 py-4 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-base"
             >
-              Book a Free Call
+              Call Me
               <ArrowRight size={16} />
             </a>
           </div>

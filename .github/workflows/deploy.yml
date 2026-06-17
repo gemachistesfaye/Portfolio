@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build
+        run: npm run build
+        env:
+          REACT_APP_FORMSPREE_ENDPOINT: ${{ secrets.REACT_APP_FORMSPREE_ENDPOINT }}
+          REACT_APP_PHONE_NUMBER: ${{ secrets.REACT_APP_PHONE_NUMBER }}
+          REACT_APP_PHONEHref: ${{ secrets.REACT_APP_PHONEHref }}
+          REACT_APP_EMAIL: ${{ secrets.REACT_APP_EMAIL }}
+          REACT_APP_SANITY_PROJECT_ID: ${{ secrets.REACT_APP_SANITY_PROJECT_ID }}
+          REACT_APP_SANITY_DATASET: ${{ secrets.REACT_APP_SANITY_DATASET }}
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

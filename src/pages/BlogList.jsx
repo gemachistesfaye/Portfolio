@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAllPosts, urlFor } from "../lib/sanity";
+import { getAllPosts, urlForPreview, urlForBlur } from "../lib/sanity";
 
 const BlogList = () => {
   const [posts, setPosts] = useState([]);
@@ -80,11 +80,18 @@ const BlogList = () => {
             className="group block bg-[#fffcf8] rounded-2xl overflow-hidden border border-[#e8e2da] hover:border-[#5a9a7a]/40 shadow-sm hover:shadow-xl hover:shadow-[#5a9a7a]/5 transition-all duration-400 no-underline translate-y-0 hover:-translate-y-1"
           >
             {post.coverImage && (
-              <div className="aspect-video overflow-hidden bg-[#f0ebe4]">
+              <div className="aspect-video overflow-hidden bg-[#f0ebe4] relative">
                 <img
-                  src={urlFor(post.coverImage)}
+                  src={urlForBlur(post.coverImage)}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover blur-lg scale-110"
+                  aria-hidden="true"
+                />
+                <img
+                  src={urlForPreview(post.coverImage, 800)}
                   alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  loading="lazy"
+                  className="relative w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>
             )}

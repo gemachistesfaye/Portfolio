@@ -1,4 +1,6 @@
-export const projects = [
+import { Project, Service, Testimonial, Certificate, SkillCategory, Experience, FAQ } from "../types";
+
+export const projects: Project[] = [
   {
     name: "Sheger Health Connect",
     category: "Healthcare",
@@ -57,7 +59,7 @@ export const projects = [
   },
 ];
 
-export const services = [
+export const services: Service[] = [
   {
     title: "Full-Stack Web Apps",
     desc: "End-to-end web applications with React, Node.js, and modern databases. From MVP to production-ready.",
@@ -90,7 +92,7 @@ export const services = [
   },
 ];
 
-export const testimonials = [
+export const testimonials: Testimonial[] = [
   {
     name: "Mr. Irandufa",
     role: "Department Head, Haramaya University",
@@ -111,7 +113,7 @@ export const testimonials = [
   },
 ];
 
-export const certificates = [
+export const certificates: Certificate[] = [
   { name: "Frontend Development", issuer: "IS Hub AAU", file: "Frontend-Dev-certificate.jpeg" },
   { name: "AI Bootcamp", issuer: "ISHub", file: "AI-bootcamp-certificate.jpeg" },
   { name: "ALX Foundations", issuer: "ALX", file: "alx-certificate.jpeg" },
@@ -121,7 +123,7 @@ export const certificates = [
   { name: "HUCISA", issuer: "HUCISA", file: "HUCISA-AMEN-CREATIVE-CERTIFICATE.jpg" },
 ];
 
-export const skills = {
+export const skills: { categories: SkillCategory[] } = {
   categories: [
     {
       label: "Frontend",
@@ -146,7 +148,7 @@ export const skills = {
   ],
 };
 
-export const experience = [
+export const experience: Experience[] = [
   {
     role: "Software Engineering Intern",
     org: "ASTU (Adama Science and Technology University)",
@@ -185,7 +187,7 @@ export const experience = [
   },
 ];
 
-export const faqs = [
+export const faqs: FAQ[] = [
   {
     q: "What services do you offer?",
     a: "I build modern, responsive websites and full-stack web applications using React, Next.js, Node.js, and Python. I also integrate AI features (GPT, Gemini APIs), design databases (MySQL, PostgreSQL, Firebase), and provide UI/UX design, API development, and cloud deployment on Vercel or Render.",

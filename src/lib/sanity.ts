@@ -1,7 +1,15 @@
 import { createClient } from "@sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
+import { SanityImage } from "../types";
 
-const projectId = process.env.REACT_APP_SANITY_PROJECT_ID || "dx08sfs5";
+const projectId = process.env.REACT_APP_SANITY_PROJECT_ID;
 const dataset = process.env.REACT_APP_SANITY_DATASET || "production";
+
+if (!projectId && process.env.NODE_ENV === "development") {
+  console.warn(
+    "[Portfolio] REACT_APP_SANITY_PROJECT_ID is not set. Blog features will not work."
+  );
+}
 
 const client = createClient({
   projectId,
@@ -9,6 +17,8 @@ const client = createClient({
   apiVersion: "2026-06-16",
   useCdn: true,
 });
+
+const builder = imageUrlBuilder(client);
 
 export async function getAllPosts() {
   const posts = await client.fetch(`
@@ -28,7 +38,7 @@ export async function getAllPosts() {
   return posts;
 }
 
-export async function getPostBySlug(slug) {
+export async function getPostBySlug(slug: string) {
   const post = await client.fetch(
     `
     *[_type == "post" && slug.current == $slug][0] {
@@ -50,7 +60,7 @@ export async function getPostBySlug(slug) {
   return post;
 }
 
-export async function incrementViews(postId) {
+export async function incrementViews(postId: string) {
   return client
     .patch(postId)
     .setIfMissing({ views: 0 })
@@ -58,7 +68,7 @@ export async function incrementViews(postId) {
     .commit();
 }
 
-export async function incrementLikes(postId) {
+export async function incrementLikes(postId: string) {
   return client
     .patch(postId)
     .setIfMissing({ likes: 0 })
@@ -66,7 +76,7 @@ export async function incrementLikes(postId) {
     .commit();
 }
 
-export async function incrementShares(postId) {
+export async function incrementShares(postId: string) {
   return client
     .patch(postId)
     .setIfMissing({ shares: 0 })
@@ -74,10 +84,19 @@ export async function incrementShares(postId) {
     .commit();
 }
 
-export function urlFor(source) {
-  if (!source?.asset?._ref) return "";
-  const [, id, dimension, format] = source.asset._ref.split("-");
-  return `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${dimension}.${format}`;
+export function urlFor(source: SanityImage) {
+  if (!source?.asset?._ref || !projectId) return "";
+  return builder.image(source).auto("format").url();
+}
+
+export function urlForPreview(source: SanityImage, width: number = 800) {
+  if (!source?.asset?._ref || !projectId) return "";
+  return builder.image(source).width(width).auto("format").url();
+}
+
+export function urlForBlur(source: SanityImage) {
+  if (!source?.asset?._ref || !projectId) return "";
+  return builder.image(source).width(20).quality(20).blur(10).url();
 }
 
 export default client;

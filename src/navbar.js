@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
+import { scrollToSection } from "./utils/scrollTo";
 
 const links = ["About", "Services", "Skills", "Projects", "Experience", "Contact"];
 
@@ -7,6 +8,29 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    if (!open) return;
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        hamburgerRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [open]);
+
+  // Focus trap for mobile menu
+  useEffect(() => {
+    if (!open || !menuRef.current) return;
+    const menuLinks = menuRef.current.querySelectorAll("a, button");
+    if (menuLinks.length === 0) return;
+    menuLinks[0].focus();
+  }, [open]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -28,7 +52,7 @@ const Navbar = () => {
   const go = (e, id) => {
     e.preventDefault();
     setOpen(false);
-    document.querySelector(`#${id.toLowerCase()}`)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(id.toLowerCase());
   };
 
   return (
@@ -86,19 +110,24 @@ const Navbar = () => {
         </div>
 
         <button
+          ref={hamburgerRef}
           onClick={() => setOpen(!open)}
           className="md:hidden p-2.5 rounded-lg text-slate-400 hover:text-accent transition-colors"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls={open ? "mobile-menu" : undefined}
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       <div
+        ref={menuRef}
+        id="mobile-menu"
         className={`md:hidden overflow-hidden transition-all duration-300 ${
           open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
+        aria-hidden={!open}
       >
         <div className="px-6 pb-5 pt-3 bg-[#020617]/60 backdrop-blur-2xl border-b border-white/5">
           {links.map((l) => (

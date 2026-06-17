@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Linkedin, Send, Twitter, ArrowRight, Clock } from "lucide-react";
 import config from "./config";
@@ -21,16 +21,30 @@ const Contact = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [status, setStatus] = useState("idle");
   const [focused, setFocused] = useState(null);
+  const formLoadTime = useRef(Date.now());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("sending");
     const data = Object.fromEntries(new FormData(e.target));
     try {
-      const res = await fetch(config.formspreeEndpoint, {
+      const payload = {
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+        _fb_hp: "",
+        _fb_js: formLoadTime.current.toString(),
+        _subject: "New Contact Inquiry from Portfolio"
+      };
+
+      const res = await fetch(config.formbladeContact, {
         method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
       });
       setStatus(res.ok ? "sent" : "error");
       if (res.ok) e.target.reset();
@@ -123,7 +137,7 @@ const Contact = () => {
                     id="name"
                     type="text"
                     name="name"
-                    placeholder="Your name"
+                    placeholder="e.g., Abebe Kebede"
                     required
                     onFocus={() => setFocused("name")}
                     onBlur={() => setFocused(null)}
@@ -140,7 +154,7 @@ const Contact = () => {
                     id="email"
                     type="email"
                     name="email"
-                    placeholder="Your email"
+                    placeholder="e.g., abebe@example.com"
                     required
                     onFocus={() => setFocused("email")}
                     onBlur={() => setFocused(null)}
@@ -217,13 +231,6 @@ const Contact = () => {
                 )}
               </button>
             </form>
-
-            <div className={`mt-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.3s' }}>
-              <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
-                <span className="font-semibold text-slate-600 dark:text-slate-300">What happens next?</span>{' '}
-                I review your message → We schedule a free 15-min call → I send a custom proposal.
-              </p>
-            </div>
           </div>
         </div>
       </div>

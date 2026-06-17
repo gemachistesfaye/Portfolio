@@ -3,6 +3,8 @@ import { Download, Code2, TrendingUp, Users, FolderOpen, MessageSquare, Palette,
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
 import { scrollToSection } from "./utils/scrollTo";
+import TermsModal from "./components/TermsModal";
+import { useState } from "react";
 
 const highlights = [
   { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Delivered" },
@@ -20,6 +22,7 @@ const steps = [
 
 const About = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   return (
     <>
@@ -146,16 +149,18 @@ const About = () => {
             <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
               Ready to start? It all begins with a free 15-minute discovery call.
             </p>
-            <a
-              href={config.phoneHref}
-              className="inline-flex items-center gap-2 px-8 py-4 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-base"
+            <button
+              onClick={() => setIsTermsOpen(true)}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-base shadow-lg shadow-accent/20 hover:shadow-accent/40"
             >
-              Call Me
+              View Process & Payment Terms
               <ArrowRight size={16} />
-            </a>
+            </button>
           </div>
         </div>
       </section>
+
+      <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
     </>
   );
 };

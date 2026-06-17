@@ -1,7 +1,8 @@
 import { Config } from "./types";
 
 const requiredEnvVars: string[] = [
-  "REACT_APP_FORMSPREE_ENDPOINT",
+  "REACT_APP_FORMBLADE_CONTACT",
+  "REACT_APP_FORMBLADE_HIREME",
   "REACT_APP_PHONE_NUMBER",
   "REACT_APP_PHONEHref",
   "REACT_APP_EMAIL",
@@ -18,7 +19,8 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const config: Config = {
-  formspreeEndpoint: process.env.REACT_APP_FORMSPREE_ENDPOINT || "",
+  formbladeContact: process.env.REACT_APP_FORMBLADE_CONTACT || "",
+  formbladeHireMe: process.env.REACT_APP_FORMBLADE_HIREME || "",
   phone: process.env.REACT_APP_PHONE_NUMBER || "",
   phoneHref: process.env.REACT_APP_PHONEHref || "",
   email: process.env.REACT_APP_EMAIL || "",

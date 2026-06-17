@@ -83,7 +83,8 @@ export interface SocialLinks {
 }
 
 export interface Config {
-  formspreeEndpoint: string;
+  formbladeContact: string;
+  formbladeHireMe: string;
   phone: string;
   phoneHref: string;
   email: string;

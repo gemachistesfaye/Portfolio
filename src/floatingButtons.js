@@ -2,51 +2,63 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { MessageCircle, X, Mail, ChevronDown } from "lucide-react";
 import config from "./config";
 
-const budgetOptions = {
-  "Frontend": [
-    "Under 1,000 ETB — Small Fixes & Minor Updates",
-    "2,000 - 5,000 ETB — Landing Page (1 Page)",
-    "5,000 - 10,000 ETB — Portfolio Website",
-    "10,000 - 20,000 ETB — Business Website",
-    "Custom Budget — Contact Me",
-  ],
-  "Backend / API": [
-    "Custom Pricing — Contact Me to Discuss Your Backend Needs",
-  ],
-  "Database": [
-    "Custom Pricing — Contact Me to Discuss Your Database Requirements",
-  ],
-  "Web App": [
-    "Custom Pricing — Contact Me for Full-Stack Development Projects",
-  ],
-  "AI Integration": [
-    "Custom Pricing — Contact Me for AI Solutions & Integrations",
-  ],
-  "Other": [
-    "Bug Fixes — Contact Me",
-    "Feature Additions — Contact Me",
-    "UI Improvements — Contact Me",
-    "Performance Optimization — Contact Me",
-    "Consultation — Contact Me",
-  ],
-};
+
 
 const FloatingButtons = () => {
   const [showCard, setShowCard] = useState(false);
   const [nearFooter, setNearFooter] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", projectType: "", budget: "", project: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", projectType: "", budget: "", project: "" });
   const [holdProgress, setHoldProgress] = useState(0);
   const [isHolding, setIsHolding] = useState(false);
   const holdIntervalRef = useRef(null);
   const holdCompletedRef = useRef(false);
+  const formLoadTime = useRef(Date.now());
 
-  const handleSend = (e) => {
+  const [status, setStatus] = useState("idle");
+
+  const handleSend = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nBudget: ${formData.budget}\n\nProject Details:\n${formData.project}`);
-    window.location.href = `mailto:${config.email}?subject=${subject}&body=${body}`;
-    setShowCard(false);
-    setFormData({ name: "", email: "", projectType: "", budget: "", project: "" });
+    setStatus("sending");
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        projectType: formData.projectType,
+        budget: formData.budget,
+        " project": formData.project,
+        _fb_hp: "",
+        _fb_js: formLoadTime.current.toString(),
+        _subject: "New Hire Me Inquiry from Portfolio"
+      };
+
+      const res = await fetch(config.formbladeHireMe, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setFormData({ name: "", email: "", phone: "", projectType: "", budget: "", project: "" });
+      } else {
+        const responseText = await res.text().catch(() => "");
+        let errorData;
+        try {
+          errorData = JSON.parse(responseText);
+        } catch {
+          errorData = responseText || "Unknown error";
+        }
+        console.error("Formblade validation error:", res.status, errorData);
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      setStatus("error");
+    }
   };
 
   const handleScroll = useCallback(() => {
@@ -150,7 +162,7 @@ const FloatingButtons = () => {
           aria-label="Project inquiry form"
         >
           <div
-            className="w-full max-w-md p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
+            className="w-full max-w-lg p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-5">
@@ -175,20 +187,30 @@ const FloatingButtons = () => {
             <form onSubmit={handleSend} className="space-y-3">
               <input
                 type="text"
-                placeholder="Your Name"
+                placeholder="e.g., Abebe Kebede"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
               />
-              <input
-                type="email"
-                placeholder="Your Email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
-              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input
+                  type="email"
+                  placeholder="e.g., abebe@example.com"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
+                />
+                <input
+                  type="tel"
+                  placeholder="e.g., +251 911 234 567"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
+                />
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="relative">
                   <select
@@ -216,9 +238,12 @@ const FloatingButtons = () => {
                     className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <option value="" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">{formData.projectType ? "Select Budget" : "Select Type First"}</option>
-                    {(budgetOptions[formData.projectType] || []).map((b) => (
-                      <option key={b} value={b} className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">{b}</option>
-                    ))}
+                    <option value="1,000 - 3,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">1,000 - 3,000 ETB</option>
+                    <option value="3,000 - 5,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">3,000 - 5,000 ETB</option>
+                    <option value="5,000 - 10,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">5,000 - 10,000 ETB</option>
+                    <option value="10,000 - 20,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">10,000 - 20,000 ETB</option>
+                    <option value="20,000 - 50,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">20,000 - 50,000 ETB</option>
+                    <option value="50,000+ ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">50,000+ ETB</option>
                   </select>
                   <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                 </div>
@@ -233,12 +258,26 @@ const FloatingButtons = () => {
               />
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent hover:bg-accent-hover text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40"
+                disabled={status === "sending"}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent hover:bg-accent-hover text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40 disabled:opacity-50"
               >
                 <Mail size={15} />
-                Send via Email
+                {status === "sending" ? "Sending..." : status === "sent" ? "Sent!" : "Send via Email"}
               </button>
+              {status === "sent" && (
+                <p className="text-xs text-accent text-center">Message sent! I'll get back to you within 24 hours.</p>
+              )}
+              {status === "error" && (
+                <p className="text-xs text-red-500 text-center">Something went wrong. Try again or email me directly.</p>
+              )}
             </form>
+
+            <div className="mt-4 p-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/50 dark:bg-white/[0.02]">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 text-center leading-relaxed">
+                <span className="font-semibold text-slate-600 dark:text-slate-300">What happens next?</span>{' '}
+                I review your message → We schedule a free 15-min call → I send a custom proposal.
+              </p>
+            </div>
 
             <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700/60">
               <a href={config.phoneHref} aria-label="Call me now" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">

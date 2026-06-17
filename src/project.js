@@ -178,8 +178,9 @@ const Project = () => {
           </div>
         </div>
 
+
         <div className={`mt-12 text-center opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.4s' }}>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Want a similar solution for your business?</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Ready to bring your ideas to life?</p>
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}

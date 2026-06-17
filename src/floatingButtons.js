@@ -271,22 +271,6 @@ const FloatingButtons = () => {
                 <p className="text-xs text-red-500 text-center">Something went wrong. Try again or email me directly.</p>
               )}
             </form>
-
-            <div className="mt-4 p-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/50 dark:bg-white/[0.02]">
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 text-center leading-relaxed">
-                <span className="font-semibold text-slate-600 dark:text-slate-300">What happens next?</span>{' '}
-                I review your message → We schedule a free 15-min call → I send a custom proposal.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700/60">
-              <a href={config.phoneHref} aria-label="Call me now" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">
-                Call Now
-              </a>
-              <a href={config.socials.telegram} target="_blank" rel="noopener noreferrer" aria-label="Chat on Telegram" className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent text-xs font-semibold rounded-xl transition-all duration-300">
-                Telegram
-              </a>
-            </div>
           </div>
         </div>
       )}

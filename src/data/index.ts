@@ -44,7 +44,7 @@ export const projects: Project[] = [
     tags: ["React", "Firebase", "AI", "PWA", "Leaflet"],
     github: "https://github.com/gemachistesfaye/tracepoint-system",
     demo: "https://tracepoint-system.web.app",
-    image: "https://images.unsplash.com/photo-1649524013520-2a24862e4581?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=500&fit=crop",
   },
   {
     name: "SmartQuiz AI",

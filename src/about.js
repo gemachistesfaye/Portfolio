@@ -2,7 +2,6 @@ import { useInView } from "react-intersection-observer";
 import { Download, Code2, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight } from "lucide-react";
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
-import { scrollToSection } from "./utils/scrollTo";
 import TermsModal from "./components/TermsModal";
 import { useState } from "react";
 
@@ -14,10 +13,10 @@ const highlights = [
 ];
 
 const steps = [
-  { icon: <MessageSquare size={20} />, title: "Discovery & Planning", desc: "We discuss your goals, requirements, and timeline. I analyze the technical needs and create a clear project roadmap.", color: "from-blue-500 to-indigo-600" },
-  { icon: <Palette size={20} />, title: "Design & Architecture", desc: "I design the system architecture, database schema, and user flows. You review and approve before development begins.", color: "from-violet-500 to-purple-600" },
+  { icon: <MessageSquare size={20} />, title: "Discovery & Planning", desc: "We discuss your goals, requirements, and timeline. We analyze the technical needs and create a clear project roadmap.", color: "from-blue-500 to-indigo-600" },
+  { icon: <Palette size={20} />, title: "Design & Architecture", desc: "We design the system architecture, database schema, and user flows. You review and approve before development begins.", color: "from-violet-500 to-purple-600" },
   { icon: <Rocket size={20} />, title: "Development & Testing", desc: "Agile development with regular demos. You see progress every week and can provide feedback in real-time.", color: "from-emerald-500 to-teal-600" },
-  { icon: <Headphones size={20} />, title: "Launch & Support", desc: "Deployment, documentation, and 30 days of free post-launch support. I'm always a message away.", color: "from-amber-500 to-orange-600" },
+  { icon: <Headphones size={20} />, title: "Launch & Support", desc: "Deployment, documentation, and 30 days of free post-launch support. We are always a message away.", color: "from-amber-500 to-orange-600" },
 ];
 
 const About = () => {
@@ -90,14 +89,6 @@ const About = () => {
 
               <div className="flex flex-nowrap gap-2.5">
                 <a
-                  href="#contact"
-                  onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
-                   className="group inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 sm:py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-xs sm:text-base shadow-lg shadow-accent/20 hover:shadow-accent/40 whitespace-nowrap"
-                >
-                  Let's Work Together
-                  <TrendingUp size={15} className="group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-                <a
                   href={config.cvView}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -151,7 +142,7 @@ const About = () => {
             </p>
             <button
               onClick={() => setIsTermsOpen(true)}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-base shadow-lg shadow-accent/20 hover:shadow-accent/40"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-base"
             >
               View Process & Payment Terms
               <ArrowRight size={16} />

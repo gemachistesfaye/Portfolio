@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Globe, Brain, Database, Code, BarChart3, Layers, ArrowRight, Server, Sparkles } from "lucide-react";
+import { Globe, Brain, Database, Code, BarChart3, Layers, Server, Sparkles } from "lucide-react";
 import { services, skills } from "./data";
 import SectionHeading from "./components/SectionHeading";
-import { scrollToSection } from "./utils/scrollTo";
 
 const serviceIcons = {
   "Full-Stack Web Apps": <Globe size={22} />,
@@ -54,28 +53,12 @@ const Services = () => {
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                   {s.desc}
                 </p>
-                <a
-                  href="#contact"
-                  onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
-                >
-                  Get a quote
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+
               </div>
             ))}
           </div>
 
-          <div className={`mt-12 text-center opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.5s' }}>
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-base shadow-lg shadow-accent/20 hover:shadow-accent/40"
-            >
-              Start a Project
-              <ArrowRight size={16} />
-            </a>
-          </div>
+
         </div>
       </section>
 
@@ -155,7 +138,7 @@ const Services = () => {
                         {cat.items.map((s, i) => (
                           <span
                             key={s}
-                            className="group/skill relative px-4 py-2.5 text-sm font-semibold rounded-xl bg-slate-50 dark:bg-slate-800/30 text-slate-600 dark:text-slate-400 border border-slate-200/80 dark:border-slate-700/40 hover:border-accent/50 hover:text-white hover:bg-accent hover:shadow-xl hover:shadow-accent/30 transition-all duration-300 cursor-default"
+                            className="group/skill relative px-4 py-2.5 text-sm font-bold rounded-xl bg-white dark:bg-[#060a13] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60 hover:border-accent hover:text-white hover:bg-gradient-to-r hover:from-accent hover:to-emerald-500 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 overflow-hidden cursor-default shadow-sm hover:scale-105 hover:-translate-y-0.5"
                             style={{ animationDelay: `${i * 0.04}s` }}
                           >
                             <span className="relative z-10">{s}</span>
@@ -179,14 +162,15 @@ const Services = () => {
                   ))}
                 </div>
               ) : (
-                <div className="h-full p-8 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] flex flex-col items-center justify-center text-center min-h-[350px] relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] via-transparent to-emerald-500/[0.02] pointer-events-none" />
+                <div className="h-full p-8 rounded-2xl border-2 border-dashed border-accent/20 dark:border-accent/10 bg-gradient-to-br from-white to-slate-50 dark:from-[#0c1220] dark:to-[#080d17] flex flex-col items-center justify-center text-center min-h-[350px] relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.05] via-transparent to-emerald-500/[0.05] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent/5 dark:bg-accent/10 rounded-full blur-3xl" />
                   <div className="relative z-10">
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent/10 to-emerald-500/10 flex items-center justify-center mb-5 mx-auto ring-4 ring-accent/5">
-                      <Sparkles size={28} className="text-accent" />
+                    <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-accent/10 to-emerald-500/10 flex items-center justify-center mb-6 mx-auto ring-8 ring-accent/5 group-hover:scale-105 transition-transform duration-500">
+                      <Sparkles size={32} className="text-accent animate-pulse" />
                     </div>
-                    <p className="text-base font-bold text-slate-900 dark:text-white mb-2">Select a category</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 max-w-xs mx-auto">Click any skill category on the left to explore technologies</p>
+                    <p className="text-xl font-extrabold text-slate-900 dark:text-white mb-2">Explore Expertise</p>
+                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 max-w-xs mx-auto leading-relaxed">Select a category on the left to reveal the technology stack powering my projects.</p>
                   </div>
                 </div>
               )}

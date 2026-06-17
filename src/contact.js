@@ -92,12 +92,17 @@ const Contact = () => {
               </div>
             ))}
 
-            <div className="flex items-center gap-3 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220]">
-              <Clock size={16} className="text-accent flex-shrink-0" />
-              <div>
-                <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">Response Time</p>
-                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Within 24 hours</p>
+            <div className="flex flex-col gap-3 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220]">
+              <div className="flex items-center gap-3">
+                <Clock size={16} className="text-accent flex-shrink-0" />
+                <div>
+                  <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">Response Time</p>
+                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Within 24 hours</p>
+                </div>
               </div>
+              <a href={config.socials.telegramCommunity} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 px-4 py-2.5 bg-accent/10 hover:bg-accent/20 border border-accent/20 text-accent text-xs font-semibold rounded-xl transition-all duration-300">
+                Join our Telegram community
+              </a>
             </div>
 
             <div className="pt-2">
@@ -117,9 +122,6 @@ const Contact = () => {
                   </a>
                 ))}
               </div>
-              <a href={config.socials.telegramCommunity} target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-1.5 px-4 py-2.5 bg-accent/10 hover:bg-accent/20 border border-accent/20 text-accent text-xs font-semibold rounded-xl transition-all duration-300">
-                Join my Telegram community
-              </a>
             </div>
           </div>
 

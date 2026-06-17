@@ -176,7 +176,7 @@ const Experience = () => {
           <img
             src={process.env.PUBLIC_URL + `/Award/${certImage.file}`}
             alt={certImage.name}
-            className="max-w-full max-h-[85vh] rounded-2xl shadow-2xl object-contain"
+            className="w-full h-full max-w-5xl max-h-[85vh] rounded-2xl shadow-2xl object-cover"
             onClick={(e) => e.stopPropagation()}
             onError={(e) => {
               e.target.style.display = "none";

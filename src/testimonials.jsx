@@ -15,7 +15,7 @@ const Testimonials = () => {
               label="Testimonials"
               title="What People"
               highlight="Say"
-              description="Feedback from professors, collaborators, and clients I've worked with."
+              description="Academic & collaboration feedback from professors, bootcamps, and fellow developers."
             />
           </div>
 

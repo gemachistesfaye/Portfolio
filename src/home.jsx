@@ -3,11 +3,11 @@ import { useInView } from "./hooks/useInView";
 import { Sparkles, RotateCcw } from "lucide-react";
 
 const rotatingTexts = [
-  "React.js • Node.js • Python",
-  "10+ Projects Delivered",
-  "5+ Happy Clients",
-  "AI & Machine Learning",
-  "Full-Stack Development",
+  "I help businesses automate with AI",
+  "Building systems that scale",
+  "Turning ideas into real products",
+  "Full-Stack • AI • Systems",
+  "Clean code, real results",
 ];
 
 const codeLines = [
@@ -184,18 +184,18 @@ const Home = () => {
           >
             <Sparkles size={14} className="text-accent" />
             <p className="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-300" style={{ letterSpacing: '0.04em' }}>
-              Full-Stack Engineer & AI Builder
+              Full-Stack Software Engineer & AI Systems Builder
             </p>
           </div>
 
           {/* Description */}
           <p
-            className={`text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-lg mb-5 sm:mb-6 leading-relaxed opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            className={`text-sm sm:text-base text-slate-500 dark:text-slate-400 max-w-lg mb-4 sm:mb-5 leading-relaxed opacity-0 ${inView ? 'animate-slide-up' : ''}`}
             style={{ animationDelay: '0.4s', letterSpacing: '0.01em' }}
             key={`desc-${replayKey}`}
           >
-            I build AI-powered web applications that scale.
-            From concept to deployment, turning ideas into intelligent systems.
+            I build business websites, web apps, and AI-powered systems that help companies automate, scale, and grow.
+            From idea to deployment — I turn concepts into real working products.
           </p>
 
           {/* SlideUpRotate rotating text */}
@@ -208,10 +208,10 @@ const Home = () => {
           >
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-accent animate-[blink_2s_ease-in-out_infinite]" />
-              <div className="relative h-7 overflow-hidden" style={{ perspective: '200px' }}>
+              <div className="relative h-7 overflow-hidden">
                 <span
                   key={textIndex}
-                  className={`absolute inset-0 text-sm font-mono font-medium text-accent dark:text-accent flex items-center ${textAnimating ? 'animate-slideUpRotateOut' : 'animate-slideUpRotateIn'}`}
+                  className={`absolute inset-0 text-sm font-mono font-medium text-accent flex items-center transition-all duration-400 ${textAnimating ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'}`}
                 >
                   {rotatingTexts[textIndex]}
                 </span>

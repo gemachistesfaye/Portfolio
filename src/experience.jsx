@@ -174,7 +174,7 @@ const Experience = () => {
             <X size={20} />
           </button>
           <img
-            src={process.env.PUBLIC_URL + `/Award/${certImage.file}`}
+            src={`/Award/${certImage.file}`}
             alt={certImage.name}
             className="w-full h-full max-w-5xl max-h-[85vh] rounded-2xl shadow-2xl object-cover"
             onClick={(e) => e.stopPropagation()}

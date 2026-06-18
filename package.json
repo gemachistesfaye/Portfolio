@@ -5,11 +5,6 @@
   "dependencies": {
     "@sanity/client": "^7.22.1",
     "@sanity/image-url": "^2.1.1",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.8.0",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "gh-pages": "^6.3.0",
     "lucide-react": "^0.541.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -17,18 +12,15 @@
     "react-intersection-observer": "^9.16.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.18.0",
-    "react-scripts": "^5.0.1",
-    "remark-gfm": "^4.0.1",
-    "web-vitals": "^2.1.4"
+    "remark-gfm": "^4.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "init:tailwind": "tailwindcss init -p",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "build:rss": "node scripts/generate-rss.js",
     "build:all": "npm run build && npm run build:rss"
   },
@@ -51,12 +43,20 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^13.5.0",
     "@types/node": "^20.17.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.3.0",
     "autoprefixer": "^10.4.21",
+    "jsdom": "^25.0.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
-    "typescript": "~5.1.6"
+    "typescript": "~5.1.6",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
   }
 }

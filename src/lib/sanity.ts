@@ -2,12 +2,12 @@ import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImage } from "../types";
 
-const projectId = process.env.REACT_APP_SANITY_PROJECT_ID;
-const dataset = process.env.REACT_APP_SANITY_DATASET || "production";
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
+const dataset = import.meta.env.VITE_SANITY_DATASET || "production";
 
-if (!projectId && process.env.NODE_ENV === "development") {
+if (!projectId && import.meta.env.MODE === "development") {
   console.warn(
-    "[Portfolio] REACT_APP_SANITY_PROJECT_ID is not set. Blog features will not work."
+    "[Portfolio] VITE_SANITY_PROJECT_ID is not set. Blog features will not work."
   );
 }
 

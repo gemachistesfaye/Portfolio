@@ -31,14 +31,15 @@ jobs:
         run: npx eslint src/ --ext .js,.jsx --max-warnings 0 || true
 
       - name: Test
-        run: npm test -- --coverage --watchAll=false --passWithNoTests
+        run: npm run test
 
       - name: Build
         run: npm run build
         env:
-          REACT_APP_FORMSPREE_ENDPOINT: ${{ secrets.REACT_APP_FORMSPREE_ENDPOINT }}
-          REACT_APP_PHONE_NUMBER: ${{ secrets.REACT_APP_PHONE_NUMBER }}
-          REACT_APP_PHONEHref: ${{ secrets.REACT_APP_PHONEHref }}
-          REACT_APP_EMAIL: ${{ secrets.REACT_APP_EMAIL }}
-          REACT_APP_SANITY_PROJECT_ID: ${{ secrets.REACT_APP_SANITY_PROJECT_ID }}
-          REACT_APP_SANITY_DATASET: ${{ secrets.REACT_APP_SANITY_DATASET }}
+          VITE_FORMBLADE_CONTACT: ${{ secrets.REACT_APP_FORMBLADE_CONTACT }}
+          VITE_FORMBLADE_HIREME: ${{ secrets.REACT_APP_FORMBLADE_HIREME }}
+          VITE_PHONE_NUMBER: ${{ secrets.REACT_APP_PHONE_NUMBER }}
+          VITE_PHONEHref: ${{ secrets.REACT_APP_PHONEHref }}
+          VITE_EMAIL: ${{ secrets.REACT_APP_EMAIL }}
+          VITE_SANITY_PROJECT_ID: ${{ secrets.REACT_APP_SANITY_PROJECT_ID }}
+          VITE_SANITY_DATASET: ${{ secrets.REACT_APP_SANITY_DATASET }}

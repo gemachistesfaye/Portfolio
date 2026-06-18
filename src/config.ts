@@ -1,15 +1,15 @@
 import { Config } from "./types";
 
 const requiredEnvVars: string[] = [
-  "REACT_APP_FORMBLADE_CONTACT",
-  "REACT_APP_FORMBLADE_HIREME",
-  "REACT_APP_PHONE_NUMBER",
-  "REACT_APP_PHONEHref",
-  "REACT_APP_EMAIL",
+  "VITE_FORMBLADE_CONTACT",
+  "VITE_FORMBLADE_HIREME",
+  "VITE_PHONE_NUMBER",
+  "VITE_PHONEHref",
+  "VITE_EMAIL",
 ];
 
-if (process.env.NODE_ENV === "development") {
-  const missing = requiredEnvVars.filter((key) => !process.env[key]);
+if (import.meta.env.MODE === "development") {
+  const missing = requiredEnvVars.filter((key) => !import.meta.env[key]);
   if (missing.length > 0) {
     console.warn(
       `[Portfolio] Missing required environment variables: ${missing.join(", ")}. ` +
@@ -19,14 +19,15 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const config: Config = {
-  formbladeContact: process.env.REACT_APP_FORMBLADE_CONTACT || "",
-  formbladeHireMe: process.env.REACT_APP_FORMBLADE_HIREME || "",
-  phone: process.env.REACT_APP_PHONE_NUMBER || "",
-  phoneHref: process.env.REACT_APP_PHONEHref || "",
-  email: process.env.REACT_APP_EMAIL || "",
+  formbladeContact: import.meta.env.VITE_FORMBLADE_CONTACT || "",
+  formbladeHireMe: import.meta.env.VITE_FORMBLADE_HIREME || "",
+  phone: import.meta.env.VITE_PHONE_NUMBER || "",
+  phoneHref: import.meta.env.VITE_PHONEHref || "",
+  email: import.meta.env.VITE_EMAIL || "",
   socials: {
     linkedin: "https://www.linkedin.com/in/gemachis-tesfaye-137196318",
-    twitter: "https://x.com/GemachisTe79854",
+    twitter: "https://x.com/GemachisTesfaye",
+    instagram: "https://www.instagram.com/gemachistesfaye1",
     facebook: "https://www.facebook.com/urjiiko1",
     telegram: "https://t.me/urjiiko1",
     telegramCommunity: "https://t.me/UrjiikoLabs",

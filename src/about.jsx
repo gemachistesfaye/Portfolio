@@ -1,15 +1,16 @@
 import { useInView } from "react-intersection-observer";
-import { Download, Code2, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight } from "lucide-react";
+import { Download, Code2, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight, ExternalLink, Github } from "lucide-react";
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
 import TermsModal from "./components/TermsModal";
 import { useState } from "react";
 
 const highlights = [
-  { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Delivered" },
-  { icon: <Users size={18} />, label: "5+", desc: "Happy Clients" },
+  { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Built" },
+  { icon: <Users size={18} />, label: "5+", desc: "Real-world Apps" },
   { icon: <TrendingUp size={18} />, label: "30+", desc: "GitHub Repos" },
   { icon: <Code2 size={18} />, label: "3.8", desc: "CGPA" },
+  { icon: <Rocket size={18} />, label: "2+", desc: "Years Experience" },
 ];
 
 const steps = [
@@ -33,16 +34,12 @@ const About = () => {
                 <div className="absolute -inset-3 bg-gradient-to-br from-accent/20 via-teal-400/10 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/50">
                   <img
-                    src={process.env.PUBLIC_URL + "/Profile.jpg"}
+                    src="/Profile.jpg"
                     alt="Gemachis Tesfaye - Full-Stack Developer"
                     className="w-full object-cover aspect-[3/4] group-hover:scale-[1.03] transition-transform duration-700"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-                <div className="absolute -bottom-4 -right-4 px-4 py-2.5 bg-white dark:bg-[#0c1220] rounded-xl border border-slate-200 dark:border-slate-700/60 shadow-xl shadow-black/5 flex items-center gap-2.5">
-                  <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                  <span className="text-[11px] font-bold text-slate-700 dark:text-slate-300">Accepting new clients</span>
                 </div>
               </div>
             </div>
@@ -56,18 +53,17 @@ const About = () => {
 
               <div className="space-y-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
                 <p>
-                  I'm a Full-Stack Software Engineer and Information Science student at
-                  Haramaya University (CGPA: 3.8/4.0). I work across the entire stack —
-                  from database design to backend APIs to clean frontend interfaces.
+                  I am a Full-Stack Software Engineer focused on building scalable web applications,
+                  dashboards, and AI-powered systems.
                 </p>
                 <p>
-                  Over the past year I've built and shipped 10+ real-world projects
-                  including AI-powered marketplaces, healthcare platforms, and data analytics tools.
-                  I specialize in turning complex problems into elegant, scalable solutions.
+                  I specialize in turning ideas into real products using modern technologies like
+                  React, Node.js, and databases. I have built and deployed multiple real-world
+                  projects including business systems, healthcare platforms, and data-driven applications.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+              <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mb-8">
                 {highlights.map((h, i) => (
                   <div
                     key={h.label}
@@ -87,16 +83,28 @@ const About = () => {
                 ))}
               </div>
 
-              <div className="flex flex-nowrap gap-2.5">
+              <div className="flex flex-row items-center gap-3 justify-center sm:justify-start">
                 <a
-                  href={config.cvView}
+                  href={config.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2.5 sm:py-3.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-xs sm:text-base whitespace-nowrap"
+                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-3.5 bg-accent hover:bg-accent-hover text-white font-bold rounded-xl transition-all duration-300 text-sm sm:text-base whitespace-nowrap shadow-lg shadow-accent/20 hover:shadow-accent/40 min-h-[46px] sm:min-h-[50px]"
                 >
-                  <Download size={15} />
-                  Download CV
+                  <Github size={15} />
+                  Let's Collaborate
                 </a>
+                <div className="relative inline-flex flex-col items-start">
+                  <a
+                    href={config.cvView}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-3.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-300 hover:text-accent font-bold rounded-xl transition-all duration-300 text-sm sm:text-base whitespace-nowrap min-h-[46px] sm:min-h-[50px]"
+                  >
+                    <Download size={15} />
+                    Download CV
+                  </a>
+                  <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-500 mt-1 ml-1">PDF · Updated Jun 2026</p>
+                </div>
               </div>
             </div>
           </div>
@@ -112,23 +120,23 @@ const About = () => {
             description="A transparent, collaborative process designed to deliver results on time and within budget."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {steps.map((step, i) => (
               <div key={step.title} className="relative">
                 {i < steps.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-full w-full h-px bg-gradient-to-r from-slate-300 dark:from-slate-700 to-transparent z-0" />
                 )}
-                <div className="group relative z-10 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-500 hover:shadow-xl hover:shadow-accent/5 h-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}>
+                <div className="group relative z-10 p-5 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-500 hover:shadow-xl hover:shadow-accent/5 h-full text-center sm:text-left">
+                  <div className="flex items-center justify-center sm:justify-start gap-3 mb-4">
+                    <div className={`w-11 h-11 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}>
                       {step.icon}
                     </div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Step {i + 1}</span>
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="text-lg sm:text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  <p className="text-[15px] sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -136,16 +144,16 @@ const About = () => {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
+           <div className="mt-12 text-center">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mb-5">
               Ready to start? It all begins with a free 15-minute discovery call.
             </p>
             <button
               onClick={() => setIsTermsOpen(true)}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 glass hover:border-accent/30 text-slate-600 dark:text-slate-400 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-base"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-300 dark:border-slate-700 hover:border-accent/50 text-slate-600 dark:text-slate-300 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-sm"
             >
-              View Process & Payment Terms
-              <ArrowRight size={16} />
+              View Process & Terms
+              <ArrowRight size={14} />
             </button>
           </div>
         </div>

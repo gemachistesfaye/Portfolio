@@ -1,131 +1,117 @@
+# Gemachis Tesfaye — Portfolio
 
-# 💻 Professional Web Portfolio
+A focused, source-accurate README for this repository. It documents what is present in the codebase and how to run it.
 
-A personal portfolio website built with **React** and **Tailwind CSS**, showcasing projects, skills and contact information. Designed to be responsive, modern and easy to maintain.
-
-> Built during my **summer internship at Information System Hub**, with **two weeks of intense work** (including a couple of sleepless nights ) to create a polished, responsive portfolio highlighting projects, skills and contact info.
-
----
-
-## [Live Demo](https://gemachisdev.vercel.app/)
+Live demo: https://gemachisdev.vercel.app/
 
 ---
 
-## 📋 Features & What’s Included
+## What this repo contains
 
-- 🏠 **Home Section:** Introduction with name, title and call-to-action buttons.  
-- 🗂 **Projects Showcase:** Cards for each project with images, descriptions, view  and GitHub links.  
-- 💻 **Skills Section:** Grid displaying programming languages, frameworks and tools.  
-- 🙋‍♂️ **About Section:** Personal bio and professional summary.  
-- 📬 **Contact Form:** Functional contact form styled with Tailwind CSS.  
-- 📱 **Responsive Design:** Works seamlessly on all screen sizes.  
-- 🌙 **Dark Mode Support:** Smooth toggle between light and dark themes.  
-- 🔗 **Navigation:** Smooth scroll navigation between sections.  
-- 🛠 **Deployment:** Successfully deployed on GitHub Pages after overcoming challenges.  
-- ⏱ **Performance:** Optimized for fast loading and smooth user experience.
+- A single-page portfolio web app built with React and Vite (source in `src/`).
+- A small Sanity studio for CMS/content under the `studio/` folder.
+- Static assets and site metadata in `public/` (including `Profile.jpg`, `rss.xml`, `sitemap.xml`, `404.html`).
+- Build and tool configuration: `vite.config.js`, `tailwind.config.js`, `postcss.config.js`, `tsconfig.json`, `vercel.json`.
+- Environment variable example: `.env.example` (used for FormBlade endpoints, phone, and email placeholders).
 
 ---
 
-## 🛠 Tech Stack
+## Quick facts (based on repository files)
 
-- **Frontend:** ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)  
-- **Styling:** ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?logo=tailwind-css&logoColor=white)  
-- **Languages:**  ![JS](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)  
-- **Icons:** React Feather  
-- **Forms:** Formspree  
-- **Version Control:** Git, GitHub  
-- **Deployment:** GitHub Pages  
-
----
-
-## 📬 Contact & Connect
-
-- ✉️ Email: [gemachis.tesfaye.dev@gmail.com](mailto:gemachis.tesfaye.dev@gmail.com)  
-- 📞 Phone: [+251976601074](tel:+251976601074)  
-- 📍 Location: Adaama, Ethiopia  
-
-<p align="center">
-  <a href="https://x.com/GemachisTe79854">
-    <img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white&style=for-the-badge" alt="Twitter" />
-  </a>
-  <a href="https://www.instagram.com/urjiiko1">
-    <img src="https://img.shields.io/badge/Instagram-E4405F?logo=instagram&logoColor=white&style=for-the-badge" alt="Instagram" />
-  </a>
-  <a href="https://www.linkedin.com/in/gemachis-tesfaye-137196318">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white&style=for-the-badge" alt="LinkedIn" />
-  </a>
-  <a href="https://github.com/urjiiko1">
-    <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white&style=for-the-badge" alt="GitHub" />
-  </a>
-  <a href="https://t.me/urjiiko1">
-    <img src="https://img.shields.io/badge/Telegram-0088CC?logo=telegram&logoColor=white&style=for-the-badge" alt="Telegram" />
-  </a>
-</p>
+- Primary stack: React + Vite, styled with Tailwind CSS.
+- Notable libraries (from package.json): react, react-dom, react-router-dom, react-helmet-async, react-markdown, lucide-react, @sanity/client (studio uses `sanity`).
+- Scripts (from package.json):
+  - `npm run dev` — start Vite dev server
+  - `npm run build` — produce production build
+  - `npm run preview` — preview production build locally
+  - `npm run test` / `npm run test:watch` — run Vitest
+  - `npm run lint` — lint `src/`
+  - `npm run build:rss` — run `scripts/generate-rss.js` (RSS generation)
+  - `npm run build:all` — build + build:rss
+- Sanity studio scripts (studio/package.json): `dev`, `build`, `deploy` (Sanity commands).
 
 ---
 
-## 🗂 Table of Contents
-- [Front View](#-front-view)
-- [My Skills Section](#-my-skills-section)
-- [My Projects Section](#-my-projects-section)
-- [About Me Section](#-about-me-section)
-- [Contact Section](#-contact-section)
+## How to run (exact commands)
+
+1. Install root dependencies and run the app:
+
+   ```bash
+   git clone https://github.com/gemachistesfaye/Portfolio.git
+   cd Portfolio
+   npm install
+   npm run dev
+   ```
+
+   Open the URL printed by Vite (typically http://localhost:5173).
+
+2. Optional: run the Sanity studio (edit content / blog):
+
+   ```bash
+   cd studio
+   npm install
+   npm run dev
+   ```
+
+3. Build and preview production:
+
+   ```bash
+   # from project root
+   npm run build
+   npm run preview
+   ```
 
 ---
 
-## 🖼 Screenshots
+## Environment
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FFrontView.png" alt="Landing page of the portfolio showcasing the introduction and navigation" width="300"/>
-      <br>🏠 Front View
-    </td>
-    <td align="center">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FMyskill.png" alt="Skills section displaying technical skills in frontend development, data analysis, and tools" width="300"/>
-      <br>💡 My Skills Section
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FMyproject.png" alt="Projects section with featured projects, descriptions, and links" width="300"/>
-      <br>📂 My Projects Section
-    </td>
-    <td align="center">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FAboutme.png" alt="About Me section with personal background, education, and career goals" width="300"/>
-      <br>👨‍💻 About Me Section
-    </td>
-  </tr>
-  <tr>
-    <td align="center" colspan="2">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FContact.png" alt="Contact section with form and links to email and social media" width="600"/>
-      <br>📩 Contact Section
-    </td>
-  </tr>
-</table>
+- See `.env.example` for variables expected by the app (FormBlade contact/hireme endpoints, phone, email, Sanity project id/dataset placeholders). Copy `.env.example` to `.env` and fill the real values before running in production.
+
+Key variables shown in `.env.example`:
+- VITE_FORMBLADE_CONTACT
+- VITE_FORMBLADE_HIREME
+- VITE_PHONE_NUMBER
+- VITE_PHONEHref
+- VITE_EMAIL
+- VITE_SANITY_PROJECT_ID
+- VITE_SANITY_DATASET
+
+Note: `src/config.ts` checks for required env variables in development and logs a warning if they are missing.
 
 ---
 
-## 📚 Useful Resources
+## What you'll find in `src/`
 
-- [Standard Tailwind by tw elements ](https://tw-elements.com/docs/standard/getting-started/quick-start/)  
-- [React Contact Components](https://reactcomponents.com/?tags=contact&type=components&id=78)
-
----
-
-## 🚧 Future Improvements
-
-- 📄 Add downloadable CV / Resume  
-- 🗂 Add project filters and live demos  
-- 📊 Show interactive skill charts  
-- 📝 Add blog / insights section  
-- 💬 Include testimonials / references  
-- 🏆 Showcase certificates and achievements  
+- `index.jsx` — app bootstrap (ReactDOM + BrowserRouter + HelmetProvider)
+- `App.jsx` — application routes and main layout (lazy-loading blog pages under `/blog`)
+- Section components: `home.jsx`, `about.jsx`, `services.jsx`, `project.jsx`, `testimonials.jsx`, `experience.jsx`, `contact.jsx`
+- UI pieces: `navbar.jsx`, `footer.jsx`, `floatingButtons.jsx`, `components/` (reusable components)
+- Styling: `index.css` (Tailwind + custom styles)
+- `config.ts` — central config and social links (includes CV links and social URLs)
 
 ---
 
-## 🤝 Contributions & Feedback
+## Deployment
 
-Contributions are what make the open-source community an amazing place to learn and create. Any feedback, suggestions or bug reports are highly appreciated.
+- `vercel.json` is present for Vercel deployments; the repo is also set up for static hosting of the Vite build.
 
-> Made with ❤️ using React & Tailwind CSS
+---
+
+## Notes & small details observed in code
+
+- Contact form submits to the FormBlade endpoint configured via environment variables (see `src/contact.jsx` and `src/config.ts`). The form sends JSON including a few anti-spam timing fields.
+- Social links and a CV download/view link are declared in `src/config.ts`.
+- Blog pages are lazy-loaded from `src/pages` (App routes).
+- Tailwind classes with `dark:` appear in components, indicating dark-mode support in the UI.
+
+---
+
+## To improve this README (suggested, optional)
+
+- Add the exact env values and a short example of `scripts/generate-rss.js` usage if you want to publish the RSS.
+- Add a few screenshots (there are image references in the old README) by placing them under `public/` and linking here.
+- Add a short CONTRIBUTING.md if you want contribution guidelines.
+
+---
+
+If you want, I can commit this updated README to the repository now. Reply `yes` to proceed and I will update `README.md` on the `main` branch with this content.

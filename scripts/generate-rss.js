@@ -1,8 +1,8 @@
 const { createClient } = require("@sanity/client");
 
 const client = createClient({
-  projectId: process.env.REACT_APP_SANITY_PROJECT_ID || "dx08sfs5",
-  dataset: process.env.REACT_APP_SANITY_DATASET || "production",
+  projectId: process.env.VITE_SANITY_PROJECT_ID || "dx08sfs5",
+  dataset: process.env.VITE_SANITY_DATASET || "production",
   apiVersion: "2026-06-16",
   useCdn: true,
 });

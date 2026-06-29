@@ -26,7 +26,7 @@ const Services = () => {
 
   return (
     <>
-      <section id="services" className="py-28 px-6 bg-[#060a13]">
+      <section id="services" className="py-28 px-6 bg-[#060a13]" style={{ contain: 'layout style' }}>
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <SectionHeading
@@ -62,7 +62,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section id="skills" className="py-28 px-6 bg-[#060a13]">
+      <section id="skills" className="py-28 px-6 bg-[#060a13]" style={{ contain: 'layout style' }}>
         <div className="max-w-5xl mx-auto">
           <SectionHeading
             label="Skills"
@@ -116,8 +116,8 @@ const Services = () => {
                   aria-labelledby={`skills-button-${openCat}`}
                   className="h-full p-6 sm:p-8 rounded-2xl border border-accent/20 bg-white dark:bg-[#0c1220] shadow-xl dark:shadow-accent/5 relative overflow-hidden"
                 >
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-accent/10 via-emerald-500/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-violet-500/5 via-transparent to-transparent rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-accent/10 via-emerald-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none hidden sm:block blur-3xl" />
+                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-violet-500/5 via-transparent to-transparent rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none hidden sm:block blur-2xl" />
                   
                   {skills.categories.filter(c => c.label === openCat).map(cat => (
                     <div key={cat.label} className="relative z-10">
@@ -164,7 +164,7 @@ const Services = () => {
               ) : (
                 <div className="h-full p-8 rounded-2xl border-2 border-dashed border-accent/20 dark:border-accent/10 bg-gradient-to-br from-white to-slate-50 dark:from-[#0c1220] dark:to-[#080d17] flex flex-col items-center justify-center text-center min-h-[350px] relative overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.05] via-transparent to-emerald-500/[0.05] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent/5 dark:bg-accent/10 rounded-full blur-3xl" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent/5 dark:bg-accent/10 rounded-full hidden sm:block blur-3xl" />
                   <div className="relative z-10">
                     <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-accent/10 to-emerald-500/10 flex items-center justify-center mb-6 mx-auto ring-8 ring-accent/5 group-hover:scale-105 transition-transform duration-500">
                       <Sparkles size={32} className="text-accent animate-pulse" />

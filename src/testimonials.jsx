@@ -8,7 +8,7 @@ const Testimonials = () => {
 
   return (
     <>
-      <section id="testimonials" className="py-28 px-6 bg-[#060a13]">
+      <section id="testimonials" className="py-28 px-6 bg-[#060a13]" style={{ contain: 'layout style' }}>
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <SectionHeading

@@ -76,6 +76,7 @@ export interface BlogPost {
 export interface SocialLinks {
   linkedin: string;
   twitter: string;
+  instagram: string;
   facebook: string;
   telegram: string;
   telegramCommunity: string;

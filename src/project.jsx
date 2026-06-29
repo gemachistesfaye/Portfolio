@@ -62,17 +62,17 @@ const Project = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
               {p.featured && (
-                <div className="absolute top-5 left-5 px-3.5 py-1.5 bg-accent/90 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest shadow-lg">
+                <div className="absolute top-5 left-5 px-3.5 py-1.5 bg-accent/90 backdrop-blur-sm rounded-full text-[10px] font-bold text-white uppercase tracking-widest shadow-lg">
                   Featured
                 </div>
               )}
 
-              <div className="absolute top-5 right-5 flex items-center gap-1.5 px-3 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20">
+              <div className="absolute top-5 right-5 flex items-center gap-1.5 px-3 py-1.5 bg-black/40 backdrop-blur-sm rounded-full border border-white/20">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-[10px] font-bold text-white tracking-wide">LIVE</span>
               </div>
 
-              <div className="absolute bottom-5 left-5 px-3.5 py-1.5 bg-black/40 backdrop-blur-md rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/10">
+              <div className="absolute bottom-5 left-5 px-3.5 py-1.5 bg-black/40 backdrop-blur-sm rounded-full text-[10px] font-bold text-white uppercase tracking-widest border border-white/10">
                 {p.category}
               </div>
 

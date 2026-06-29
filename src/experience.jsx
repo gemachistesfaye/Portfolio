@@ -63,7 +63,7 @@ const Experience = () => {
 
   return (
     <>
-      <section id="experience" className="py-28 px-6 bg-[#060a13] relative z-10 overflow-hidden">
+      <section id="experience" className="py-28 px-6 bg-[#060a13] relative z-10" style={{ contain: 'layout style' }}>
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Experience</p>
@@ -160,7 +160,7 @@ const Experience = () => {
 
       {certImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80"
           onClick={() => setCertImage(null)}
           role="dialog"
           aria-modal="true"
@@ -176,7 +176,7 @@ const Experience = () => {
           <img
             src={`/Award/${certImage.file}`}
             alt={certImage.name}
-            className="w-full h-full max-w-5xl max-h-[85vh] rounded-2xl shadow-2xl object-cover"
+            className="w-full h-full max-w-5xl max-h-[85vh] rounded-2xl shadow-2xl object-contain"
             onClick={(e) => e.stopPropagation()}
             onError={(e) => {
               e.target.style.display = "none";
@@ -192,7 +192,7 @@ const Experience = () => {
         </div>
       )}
 
-      <section id="faq" className="py-28 px-6 bg-[#060a13]">
+      <section id="faq" className="py-28 px-6 bg-[#060a13]" style={{ contain: 'layout style' }}>
         <div className="max-w-3xl mx-auto">
           <SectionHeading
             label="FAQ"

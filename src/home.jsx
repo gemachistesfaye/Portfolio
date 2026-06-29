@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useInView } from "./hooks/useInView";
-import { Sparkles, RotateCcw } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 const rotatingTexts = [
   "I help businesses automate with AI",
@@ -120,27 +120,16 @@ const Home = () => {
     <section id="home" className="min-h-screen flex items-center px-6 relative overflow-hidden">
       {/* Animated background blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[350px] sm:w-[500px] lg:w-[700px] h-[350px] sm:h-[500px] lg:h-[700px] bg-accent/[0.07] dark:bg-accent/[0.04] rounded-full blur-[80px] sm:blur-[100px] lg:blur-[120px] animate-[pulse_6s_ease-in-out_infinite]" />
-        <div className="absolute top-20 right-4 sm:right-20 w-24 sm:w-36 lg:w-48 h-24 sm:h-36 lg:h-48 bg-violet-500/[0.06] dark:bg-violet-500/[0.03] rounded-full blur-[50px] sm:blur-[60px] lg:blur-[80px] animate-[pulse_8s_ease-in-out_infinite_1s]" />
-        <div className="absolute bottom-20 left-4 sm:left-20 w-24 sm:w-36 lg:w-48 h-24 sm:h-36 lg:h-48 bg-cyan-500/[0.06] dark:bg-cyan-500/[0.03] rounded-full blur-[50px] sm:blur-[60px] lg:blur-[80px] animate-[pulse_7s_ease-in-out_infinite_2s]" />
+        <div className="hidden sm:block absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] lg:w-[700px] h-[500px] lg:h-[700px] bg-accent/[0.07] dark:bg-accent/[0.04] rounded-full blur-[100px] lg:blur-[120px] animate-[pulse_6s_ease-in-out_infinite]" />
+        <div className="hidden sm:block absolute top-20 right-20 lg:right-20 w-36 lg:w-48 h-36 lg:h-48 bg-violet-500/[0.06] dark:bg-violet-500/[0.03] rounded-full blur-[60px] lg:blur-[80px] animate-[pulse_8s_ease-in-out_infinite_1s]" />
+        <div className="hidden sm:block absolute bottom-20 left-20 lg:left-20 w-36 lg:w-48 h-36 lg:h-48 bg-cyan-500/[0.06] dark:bg-cyan-500/[0.03] rounded-full blur-[60px] lg:blur-[80px] animate-[pulse_7s_ease-in-out_infinite_2s]" />
         <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
+          className="hidden sm:block absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
           style={{
             backgroundImage: `linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px)`,
             backgroundSize: '60px 60px',
           }}
         />
-      </div>
-
-      {/* Replay button — top right, hidden on mobile */}
-      <div className="hidden sm:block absolute top-6 right-6 z-20">
-        <button
-          onClick={replay}
-          className="p-2 rounded-lg glass hover:scale-110 transition-transform duration-200"
-          aria-label="Replay animations"
-        >
-          <RotateCcw size={16} className="text-accent" />
-        </button>
       </div>
 
       <div ref={ref} className="max-w-5xl w-full mx-auto flex flex-col lg:flex-row items-center gap-6 lg:gap-10 relative z-10">
@@ -266,7 +255,8 @@ const Home = () => {
               <div className="w-52 lg:w-56 h-1.5 sm:h-1.5 lg:h-2 bg-slate-200 dark:bg-slate-600 rounded-b-lg mx-auto -ml-2" />
             </div>
 
-            {/* Floating code particles — positioned around edges */}
+            {/* Floating code particles — positioned around edges, hidden on mobile */}
+            <div className="hidden sm:block">
             {codeSnippets.map((snippet, i) => (
               <div
                 key={i}
@@ -285,6 +275,7 @@ const Home = () => {
                 {snippet.text}
               </div>
             ))}
+            </div>
 
             {/* Coffee cup — enhanced */}
             <div className="absolute bottom-1.5 sm:bottom-1.5 lg:bottom-2 right-2.5 lg:right-3">

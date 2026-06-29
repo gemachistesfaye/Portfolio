@@ -61,7 +61,7 @@ const Navbar = () => {
       aria-label="Main navigation"
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#020617]/60 backdrop-blur-2xl border-b border-white/5 shadow-xl shadow-black/15'
+          ? 'bg-[#020617]/90 border-b border-white/5 shadow-xl shadow-black/15'
           : 'bg-transparent'
       }`}
     >
@@ -129,7 +129,7 @@ const Navbar = () => {
         }`}
         aria-hidden={!open}
       >
-        <div className="px-6 pb-5 pt-3 bg-[#020617]/60 backdrop-blur-2xl border-b border-white/5">
+        <div className="px-6 pb-5 pt-3 bg-[#020617]/90 border-b border-white/5">
           {links.map((l) => (
             <a
               key={l}

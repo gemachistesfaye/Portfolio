@@ -26,7 +26,7 @@ const FloatingButtons = () => {
         phone: formData.phone,
         projectType: formData.projectType,
         budget: formData.budget,
-        " project": formData.project,
+        "project": formData.project,
         _fb_hp: "",
         _fb_js: formLoadTime.current.toString(),
         _subject: "New Hire Me Inquiry from Portfolio"
@@ -155,7 +155,7 @@ const FloatingButtons = () => {
     <>
       {showCard && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50"
           onClick={() => setShowCard(false)}
           role="dialog"
           aria-modal="true"

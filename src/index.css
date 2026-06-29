@@ -4,7 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
@@ -14,9 +18,10 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  overflow-x: hidden;
-  color-scheme: dark;
+@media (max-width: 640px) {
+  html, body {
+    overflow-x: hidden;
+  }
 }
 
 :focus-visible {
@@ -66,7 +71,7 @@ html {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-accent via-emerald-400 to-teal-400;
   }
   .glass {
-    @apply bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10;
+    @apply bg-white/80 dark:bg-white/5 border border-slate-200 dark:border-white/10;
   }
   .animate-slideUpRotateIn {
     animation: slideUpRotateIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;

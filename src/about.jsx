@@ -9,7 +9,6 @@ const highlights = [
   { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Built" },
   { icon: <Users size={18} />, label: "5+", desc: "Real-world Apps" },
   { icon: <TrendingUp size={18} />, label: "30+", desc: "GitHub Repos" },
-  { icon: <Code2 size={18} />, label: "3.8", desc: "CGPA" },
   { icon: <Rocket size={18} />, label: "2+", desc: "Years Experience" },
 ];
 
@@ -103,7 +102,6 @@ const About = () => {
                     <Download size={15} />
                     Download CV
                   </a>
-                  <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-500 mt-1 ml-1">PDF · Updated Jun 2026</p>
                 </div>
               </div>
             </div>

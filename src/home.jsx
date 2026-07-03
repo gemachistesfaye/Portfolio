@@ -65,7 +65,18 @@ const Home = () => {
   useEffect(() => {
     if (!inView) return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
+    const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
+
+    // On mobile, skip the per-character animation entirely.
+    // Per-keystroke setState (every ~30-45ms) creates a repaint storm that
+    // collides with the layered blur blobs and causes GPU compositing
+    // artifacts (ghosting/tearing) on lower-end Android devices.
+    if (prefersReducedMotion || isSmallScreen) {
+      setDisplayedLines(codeLines.map((line) => ({ ...line, visibleText: line.text })));
+      setTypingLine(codeLines.length - 1);
+      return;
+    }
+
     let lineIdx = 0;
     let colIdx = 0;
     let lines = [];
@@ -117,7 +128,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex items-center px-6 relative overflow-hidden">
+    <section id="home" className="min-h-screen lg:min-h-screen flex items-center px-6 relative overflow-hidden pt-28 pb-10 lg:py-0">
       {/* Animated background blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="hidden sm:block absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] lg:w-[700px] h-[500px] lg:h-[700px] bg-accent/[0.07] dark:bg-accent/[0.04] rounded-full blur-[100px] lg:blur-[120px] animate-[pulse_6s_ease-in-out_infinite]" />
@@ -211,7 +222,7 @@ const Home = () => {
 
         {/* Right — Animated Developer Scene */}
         <div
-          className={`flex-shrink-0 opacity-0 ${inView ? 'animate-scale-in' : ''}`}
+          className={`hidden lg:block flex-shrink-0 opacity-0 ${inView ? 'animate-scale-in' : ''}`}
           style={{ animationDelay: '0.3s' }}
           key={`scene-${replayKey}`}
         >
@@ -333,6 +344,14 @@ const Home = () => {
             />
           </div>
         </div>
+      </div>
+
+      {/* Scroll indicator — mobile only */}
+      <div className="lg:hidden absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-0 animate-fade-in" style={{ animationDelay: '1.2s' }}>
+        <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 tracking-widest uppercase">Scroll</span>
+        <svg className="w-4 h-4 text-slate-400 dark:text-slate-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
     </section>
   );

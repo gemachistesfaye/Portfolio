@@ -222,14 +222,14 @@ const Home = () => {
 
           {/* CTA Buttons */}
           <div
-            className={`flex flex-wrap items-center gap-3 mt-6 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            className={`flex flex-row items-center justify-start gap-2 sm:gap-3 mt-6 w-full opacity-0 ${inView ? 'animate-slide-up' : ''}`}
             style={{ animationDelay: '0.8s' }}
             key={`cta-${replayKey}`}
           >
             <a
               href="#projects"
               onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-xl shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all duration-300 text-sm hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-1.5 sm:gap-2 flex-1 sm:flex-none px-2 sm:px-6 py-3.5 sm:py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-xl shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all duration-300 text-[13px] sm:text-sm hover:-translate-y-0.5 whitespace-nowrap"
             >
               View My Work
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -239,7 +239,7 @@ const Home = () => {
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-              className="inline-flex items-center gap-2 px-6 py-3 glass hover:border-accent/40 text-slate-700 dark:text-slate-300 hover:text-accent font-bold rounded-xl transition-all duration-300 text-sm hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-1.5 sm:gap-2 flex-1 sm:flex-none px-2 sm:px-6 py-3.5 sm:py-3 glass hover:border-accent/40 text-slate-700 dark:text-slate-300 hover:text-accent font-bold rounded-xl transition-all duration-300 text-[13px] sm:text-sm hover:-translate-y-0.5 whitespace-nowrap"
             >
               Let's Talk
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

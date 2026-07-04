@@ -65,7 +65,7 @@ const Experience = () => {
     <>
       <section id="experience" className="py-28 px-6 bg-[#060a13] relative z-10">
         <div ref={ref} className="max-w-6xl mx-auto">
-          <div className={`text-center mb-16 opacity-0 transform-gpu ${inView ? 'animate-slide-up' : ''}`}>
+          <div className={`text-center mb-16 max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-up' : ''}`}>
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Experience</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Education & <span className="text-gradient">Credentials</span>
@@ -76,7 +76,7 @@ const Experience = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div className={`opacity-0 transform-gpu ${inView ? 'animate-slide-right' : ''}`}>
+            <div className={`max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-right' : ''}`}>
               <div className="relative">
                 <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-accent/40 via-slate-200 dark:via-slate-800 to-transparent" />
 
@@ -92,7 +92,7 @@ const Experience = () => {
                         </div>
                       </div>
 
-                      <div className="group p-5 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-500 hover:shadow-xl hover:shadow-accent/5">
+                      <div className="group p-5 rounded-2xl bg-white dark:bg-[#0c1220] transition-all duration-500">
                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                           <div>
                             <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors">
@@ -132,14 +132,14 @@ const Experience = () => {
               </div>
             </div>
 
-            <div className={`opacity-0 transform-gpu ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
+            <div className={`max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
               <h3 className="text-xs font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-[0.15em]">Awards</h3>
               <div className="grid grid-cols-1 gap-2.5 bg-transparent">
                 {certificates.map((cert) => (
                   <button
                     key={cert.name}
                     onClick={() => setCertImage(cert)}
-                    className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-slate-800 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 text-left"
+                    className="group flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-[#0c1220] transition-all duration-300 text-left"
                   >
                     <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-accent/10 to-emerald-600/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       <Award size={18} className="text-accent" />

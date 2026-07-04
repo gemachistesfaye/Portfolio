@@ -29,10 +29,10 @@ const About = () => {
       <section id="about" className="py-28 px-6">
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
-            <div className={`lg:col-span-2 opacity-0 transform-gpu ${inView ? 'animate-slide-right' : ''}`}>
+            <div className={`lg:col-span-2 max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-right' : ''}`}>
               <div className="relative group">
                 <div className="absolute -inset-3 bg-gradient-to-br from-accent/20 via-teal-400/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 hidden sm:block blur-2xl" />
-                <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/50">
+                <div className="relative rounded-2xl overflow-hidden bg-[#0c1220]">
                   <img
                     src="/Profile.jpg"
                     alt="Gemachis Tesfaye - Full-Stack Developer"
@@ -57,7 +57,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className={`lg:col-span-3 opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
+            <div className={`lg:col-span-3 max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-up sm:delay-300' : ''}`} style={{ animationDelay: '0.15s' }}>
               <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">About</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">
                 Building software that{' '}
@@ -80,7 +80,7 @@ const About = () => {
                 {highlights.map((h, i) => (
                   <div
                     key={h.label}
-                    className="group p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
+                    className="group p-4 rounded-xl bg-white dark:bg-[#0c1220] transition-all duration-300"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <div className="text-accent mb-2 group-hover:scale-110 transition-transform duration-300">
@@ -138,7 +138,7 @@ const About = () => {
                 {i < steps.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-full w-full h-px bg-gradient-to-r from-slate-300 dark:from-slate-700 to-transparent z-0" />
                 )}
-                <div className="group relative z-10 p-5 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 transition-all duration-500 hover:shadow-xl hover:shadow-accent/5 h-full text-center sm:text-left">
+                <div key={i} className="group relative p-6 rounded-2xl bg-white dark:bg-[#0c1220] transition-all duration-300 overflow-hidden text-center sm:text-left">
                   <div className="flex items-center justify-center sm:justify-start gap-3 mb-4">
                     <div className={`w-11 h-11 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}>
                       {step.icon}

@@ -56,7 +56,6 @@ const BlogPost = () => {
           setLikeCount(p.likes || 0);
           setShareCount(p.shares || 0);
           setViewCount(p.views || 0);
-          setLiked(localStorage.getItem(`liked_${p._id}`) === "true");
         }
       })
       .catch(() => setError("Failed to load post."))
@@ -65,24 +64,21 @@ const BlogPost = () => {
 
   useEffect(() => {
     if (!post) return;
-    const viewedKey = `viewed_${post._id}`;
-    if (!localStorage.getItem(viewedKey)) {
-      incrementViews(post._id)
-        .then(() => setViewCount((v) => v + 1))
-        .catch(() => {});
-      localStorage.setItem(viewedKey, "true");
-    }
+    incrementViews(post._id)
+      .then(() => setViewCount((v) => v + 1))
+      .catch(() => {});
   }, [post]);
 
   const handleLike = () => {
-    if (!post || liked) return;
-    incrementLikes(post._id)
-      .then(() => {
-        setLiked(true);
-        setLikeCount((c) => c + 1);
-        localStorage.setItem(`liked_${post._id}`, "true");
-      })
-      .catch(() => {});
+    if (!post) return;
+    
+    // Optimistically update so it feels instant
+    setLikeCount((c) => c + 1);
+    
+    incrementLikes(post._id).catch(() => {
+      // Revert if API fails
+      setLikeCount((c) => c - 1);
+    });
   };
 
   const handleShare = async () => {
@@ -236,15 +232,10 @@ const BlogPost = () => {
         <div className="mt-12 flex items-center gap-4">
           <button
             onClick={handleLike}
-            disabled={liked}
-            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${
-              liked
-                ? "bg-red-50 text-red-500 border-red-200 cursor-default"
-                : "bg-white text-[#3d3833] border-[#e8e2da] hover:border-red-300 hover:text-red-500 hover:bg-red-50 cursor-pointer"
-            }`}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border bg-white text-[#3d3833] border-[#e8e2da] hover:border-red-300 hover:text-red-500 hover:bg-red-50 cursor-pointer active:scale-95"
           >
-            <HeartIcon filled={liked} />
-            {liked ? "Liked" : "Like"} ({likeCount})
+            <HeartIcon filled={false} />
+            Like ({likeCount})
           </button>
 
           <div className="relative">

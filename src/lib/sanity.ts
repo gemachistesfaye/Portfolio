@@ -61,27 +61,42 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function incrementViews(postId: string) {
-  return client
-    .patch(postId)
-    .setIfMissing({ views: 0 })
-    .inc({ views: 1 })
-    .commit();
+  try {
+    const res = await fetch("/api/increment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ postId, type: "views" }),
+    });
+    return res.json();
+  } catch (error) {
+    console.error("View increment failed", error);
+  }
 }
 
 export async function incrementLikes(postId: string) {
-  return client
-    .patch(postId)
-    .setIfMissing({ likes: 0 })
-    .inc({ likes: 1 })
-    .commit();
+  try {
+    const res = await fetch("/api/increment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ postId, type: "likes" }),
+    });
+    return res.json();
+  } catch (error) {
+    console.error("Like increment failed", error);
+  }
 }
 
 export async function incrementShares(postId: string) {
-  return client
-    .patch(postId)
-    .setIfMissing({ shares: 0 })
-    .inc({ shares: 1 })
-    .commit();
+  try {
+    const res = await fetch("/api/increment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ postId, type: "shares" }),
+    });
+    return res.json();
+  } catch (error) {
+    console.error("Share increment failed", error);
+  }
 }
 
 export function urlFor(source: SanityImage) {

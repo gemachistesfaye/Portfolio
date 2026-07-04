@@ -10,6 +10,7 @@ const highlights = [
   { icon: <Users size={18} />, label: "5+", desc: "Real-world Apps" },
   { icon: <TrendingUp size={18} />, label: "30+", desc: "GitHub Repos" },
   { icon: <Rocket size={18} />, label: "2+", desc: "Years Experience" },
+
 ];
 
 const steps = [
@@ -37,7 +38,20 @@ const About = () => {
                     alt="Gemachis Tesfaye - Full-Stack Developer"
                     className="w-full object-cover aspect-[3/4] group-hover:scale-[1.03] transition-transform duration-700"
                     loading="lazy"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
                   />
+                  {/* Fallback avatar if image fails */}
+                  <div
+                    className="hidden w-full aspect-[3/4] items-center justify-center bg-gradient-to-br from-accent/20 to-emerald-600/20"
+                    aria-hidden="true"
+                  >
+                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-accent to-emerald-600 flex items-center justify-center text-white text-5xl font-black shadow-2xl shadow-accent/30">
+                      GT
+                    </div>
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </div>
@@ -62,7 +76,7 @@ const About = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                 {highlights.map((h, i) => (
                   <div
                     key={h.label}
@@ -109,7 +123,7 @@ const About = () => {
         </div>
       </section>
 
-      <section id="process" className="py-28 px-6 bg-[#060a13]" style={{ contain: 'layout style' }}>
+      <section id="process" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-5xl mx-auto">
           <SectionHeading
             label="How I Work"

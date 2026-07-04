@@ -125,10 +125,11 @@ const Home = () => {
     setReplayKey((k) => k + 1);
     setTextIndex(0);
     setDisplayedLines([]);
+    setTypingLine(0);
   }, []);
 
   return (
-    <section id="home" className="min-h-screen lg:min-h-screen flex items-center px-6 relative overflow-hidden pt-28 pb-10 lg:py-0">
+    <section id="home" className="min-h-screen lg:min-h-screen flex items-center px-6 relative overflow-clip pt-28 pb-10 lg:py-0">
       {/* Animated background blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="hidden sm:block absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] lg:w-[700px] h-[500px] lg:h-[700px] bg-accent/[0.07] dark:bg-accent/[0.04] rounded-full blur-[100px] lg:blur-[120px] animate-[pulse_6s_ease-in-out_infinite]" />
@@ -217,6 +218,34 @@ const Home = () => {
                 </span>
               </div>
             </div>
+          </div>
+
+          {/* CTA Buttons */}
+          <div
+            className={`flex flex-wrap items-center gap-3 mt-6 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            style={{ animationDelay: '0.8s' }}
+            key={`cta-${replayKey}`}
+          >
+            <a
+              href="#projects"
+              onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-xl shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all duration-300 text-sm hover:-translate-y-0.5"
+            >
+              View My Work
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+              className="inline-flex items-center gap-2 px-6 py-3 glass hover:border-accent/40 text-slate-700 dark:text-slate-300 hover:text-accent font-bold rounded-xl transition-all duration-300 text-sm hover:-translate-y-0.5"
+            >
+              Let's Talk
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </a>
           </div>
         </div>
 

@@ -82,7 +82,7 @@ const Contact = () => {
           <div className={`lg:col-span-2 space-y-4 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
             {[
               { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-blue-500 to-indigo-500" },
-              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: config.phoneHref, color: "from-emerald-500 to-teal-500" },
+              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-emerald-500 to-teal-500" },
               { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null, color: "from-violet-500 to-purple-500" },
             ].map((c, i) => (
               <div

@@ -26,7 +26,7 @@ const Services = () => {
 
   return (
     <>
-      <section id="services" className="py-28 px-6 bg-[#060a13]" style={{ contain: 'layout style' }}>
+      <section id="services" className="py-28 px-6 bg-[#060a13]">
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <SectionHeading
@@ -62,7 +62,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section id="skills" className="py-28 px-6 bg-[#060a13]" style={{ contain: 'layout style' }}>
+      <section id="skills" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-5xl mx-auto">
           <SectionHeading
             label="Skills"

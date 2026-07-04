@@ -7,13 +7,19 @@ const BlogList = () => {
   const [loading, setLoading] = useState(true);
   const [showEmpty, setShowEmpty] = useState(false);
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   useEffect(() => {
     getAllPosts()
       .then((data) => {
         setPosts(data || []);
         if (!data || data.length === 0) setShowEmpty(true);
       })
-      .catch(() => setShowEmpty(true))
+      .catch((err) => {
+        console.error("Sanity fetch error:", err);
+        setErrorMsg(err.message || "Failed to fetch posts");
+        setShowEmpty(true);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -40,6 +46,12 @@ const BlogList = () => {
           <p className="text-[#8a837d] text-base max-w-md leading-relaxed">
             I'm working on some exciting articles about web development, AI, and building scalable applications. Stay tuned!
           </p>
+          {errorMsg && (
+            <div className="mt-4 p-3 bg-red-50 text-red-600 rounded-lg text-xs font-mono max-w-sm mx-auto border border-red-100">
+              <span className="font-bold">Debug Error:</span> {errorMsg}
+              <p className="mt-1">If this is a CORS error, add your IP (e.g. 192.168.x.x) to Sanity's CORS origins at sanity.io/manage.</p>
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-3 mt-4">
           <div className="w-2 h-2 rounded-full bg-[#5a9a7a] animate-pulse" />

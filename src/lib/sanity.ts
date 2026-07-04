@@ -2,7 +2,7 @@ import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImage } from "../types";
 
-const projectId = import.meta.env.VITE_SANITY_PROJECT_ID;
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || "dx08sfs5";
 const dataset = import.meta.env.VITE_SANITY_DATASET || "production";
 
 if (!projectId && import.meta.env.MODE === "development") {

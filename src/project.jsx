@@ -36,7 +36,7 @@ const Project = () => {
   const p = projects[current];
 
   return (
-    <section id="projects" className="py-28 px-6 overflow-hidden">
+    <section id="projects" className="py-28 px-6 overflow-clip">
       <div ref={ref} className="max-w-4xl mx-auto">
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
           <SectionHeading
@@ -58,6 +58,7 @@ const Project = () => {
                 alt={p.name}
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
+                onError={(e) => { e.target.style.display = 'none'; }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 

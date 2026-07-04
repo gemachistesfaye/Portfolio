@@ -7,7 +7,6 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
-  overflow-x: hidden;
 }
 
 body {
@@ -15,13 +14,12 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
-@media (max-width: 640px) {
-  html, body {
-    overflow-x: hidden;
-  }
+/* Move overflow control to the root container instead to prevent mobile GPU tearing */
+#root {
+  overflow-x: clip;
+  position: relative;
 }
 
 :focus-visible {

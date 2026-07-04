@@ -63,7 +63,7 @@ const Experience = () => {
 
   return (
     <>
-      <section id="experience" className="py-28 px-6 bg-[#060a13] relative z-10" style={{ contain: 'layout style' }}>
+      <section id="experience" className="py-28 px-6 bg-[#060a13] relative z-10">
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Experience</p>
@@ -192,7 +192,7 @@ const Experience = () => {
         </div>
       )}
 
-      <section id="faq" className="py-28 px-6 bg-[#060a13]" style={{ contain: 'layout style' }}>
+      <section id="faq" className="py-28 px-6 bg-[#060a13]">
         <div className="max-w-3xl mx-auto">
           <SectionHeading
             label="FAQ"

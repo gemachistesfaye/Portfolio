@@ -289,7 +289,7 @@ const FloatingButtons = () => {
         onTouchStart={startHold}
         onTouchEnd={cancelHold}
         onTouchCancel={cancelHold}
-        className={`fixed bottom-4 right-6 z-50 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full shadow-xl shadow-accent/30 hover:shadow-accent/50 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full shadow-xl shadow-accent/30 hover:shadow-accent/50 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         aria-label={showCard ? "Close" : "Hold to scroll to top, click to contact"}
       >
         {showCard ? (

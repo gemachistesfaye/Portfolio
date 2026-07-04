@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, PenLine } from "lucide-react";
 import { scrollToSection } from "./utils/scrollTo";
 
 const links = ["About", "Services", "Skills", "Projects", "Experience", "Contact"];
@@ -105,7 +105,7 @@ const Navbar = () => {
             onClick={(e) => { e.preventDefault(); window.open("/blog", "_blank", "noopener,noreferrer"); }}
             className="relative px-5 py-2 text-[13px] font-semibold rounded-full text-white bg-gradient-to-r from-accent to-emerald-500 shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:scale-105 transition-all duration-300"
           >
-            ✍ Blog
+            <PenLine size={14} className="inline -mt-0.5" /> Blog
           </a>
         </div>
 
@@ -173,7 +173,7 @@ const Navbar = () => {
             onClick={(e) => { e.preventDefault(); window.open("/blog", "_blank", "noopener,noreferrer"); }}
             className="block w-full text-center py-3 text-sm font-semibold rounded-full text-white bg-gradient-to-r from-accent to-emerald-500 shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:scale-105 transition-all duration-300"
           >
-            ✍ Blog
+            <PenLine size={14} className="inline -mt-0.5" /> Blog
           </a>
         </div>
       </div>

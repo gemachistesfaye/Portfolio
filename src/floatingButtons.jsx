@@ -13,7 +13,7 @@ const CustomSelect = ({ value, options, placeholder, onChange, disabled, isOpen,
       type="button"
       onClick={(e) => { e.stopPropagation(); onToggle(); }}
       disabled={disabled}
-      className={`w-full px-4 py-3 text-left rounded-xl border ${isOpen ? 'border-accent/50 ring-4 ring-accent/10' : 'border-slate-200 dark:border-slate-700/60'} bg-slate-50/80 dark:bg-white/[0.03] text-sm ${value ? 'text-slate-900 dark:text-white' : 'text-slate-400'} transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-between`}
+      className={`w-full px-4 py-3 text-left rounded-xl border ${isOpen ? 'border-indigo-500/50 ring-4 ring-indigo-500/10' : 'border-slate-200 dark:border-slate-700/60'} bg-slate-50/80 dark:bg-white/[0.03] text-sm ${value ? 'text-slate-900 dark:text-white' : 'text-slate-400'} transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-between`}
     >
       <span className="truncate">{value || placeholder}</span>
       <ChevronDown size={14} className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
@@ -209,9 +209,7 @@ const FloatingButtons = () => {
           >
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-accent/20">
-                  GT
-                </div>
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-indigo-500/20">GT</div>
                 <div>
                   <p className="text-sm font-bold text-slate-900 dark:text-white">Let's Work Together</p>
                   <p className="text-[11px] text-slate-400">I'll get back to you within 24 hours</p>
@@ -283,7 +281,7 @@ const FloatingButtons = () => {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent hover:bg-accent-hover text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40 disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 disabled:opacity-50"
               >
                 <Mail size={15} />
                 {status === "sending" ? "Sending..." : status === "sent" ? "Sent!" : "Send via Email"}
@@ -335,6 +333,7 @@ const FloatingButtons = () => {
             ) : (
               <MessageCircle size={16} className="group-hover:rotate-12 transition-transform" />
             )}
+
             <span className="text-sm">{isHolding ? 'Hold...' : 'Hire Me'}</span>
           </>
         )}

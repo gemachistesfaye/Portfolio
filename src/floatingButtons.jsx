@@ -289,7 +289,7 @@ const FloatingButtons = () => {
         onTouchStart={startHold}
         onTouchEnd={cancelHold}
         onTouchCancel={cancelHold}
-        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-semibold rounded-full shadow-xl shadow-accent/30 hover:shadow-accent/50 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-white hover:bg-slate-200 text-slate-900 font-bold rounded-full shadow-xl shadow-white/10 hover:shadow-white/30 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         aria-label={showCard ? "Close" : "Hold to scroll to top, click to contact"}
       >
         {showCard ? (
@@ -301,9 +301,9 @@ const FloatingButtons = () => {
           <>
             {isHolding ? (
               <svg className="w-4 h-4 -rotate-90" viewBox="0 0 36 36" aria-hidden="true">
-                <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
+                <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="3" />
                 <circle
-                  cx="18" cy="18" r="15" fill="none" stroke="white" strokeWidth="3"
+                  cx="18" cy="18" r="15" fill="none" stroke="#0f172a" strokeWidth="3"
                   strokeDasharray={`${holdProgress * 94.25} 94.25`}
                   strokeLinecap="round"
                 />

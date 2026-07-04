@@ -129,7 +129,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen lg:min-h-screen flex items-center px-6 relative overflow-clip pt-28 pb-10 lg:py-0">
+    <section id="home" className="min-h-screen lg:min-h-screen flex items-center px-6 relative overflow-clip pt-20 lg:py-0 pb-32 lg:pb-0">
       {/* Animated background blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="hidden sm:block absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] lg:w-[700px] h-[500px] lg:h-[700px] bg-accent/[0.07] dark:bg-accent/[0.04] rounded-full blur-[100px] lg:blur-[120px] animate-[pulse_6s_ease-in-out_infinite]" />
@@ -222,7 +222,7 @@ const Home = () => {
 
           {/* CTA Buttons */}
           <div
-            className={`flex flex-row items-center justify-start gap-2 sm:gap-3 mt-6 w-full opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            className={`flex flex-row items-center justify-start gap-2 sm:gap-3 mt-6 pb-12 sm:pb-0 w-full opacity-0 ${inView ? 'animate-slide-up' : ''}`}
             style={{ animationDelay: '0.8s' }}
             key={`cta-${replayKey}`}
           >

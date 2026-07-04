@@ -21,9 +21,9 @@ if (import.meta.env.MODE === "development") {
 const config: Config = {
   formbladeContact: import.meta.env.VITE_FORMBLADE_CONTACT || "",
   formbladeHireMe: import.meta.env.VITE_FORMBLADE_HIREME || "",
-  phone: import.meta.env.VITE_PHONE_NUMBER || "",
-  phoneHref: import.meta.env.VITE_PHONEHref || "",
-  email: import.meta.env.VITE_EMAIL || "",
+  phone: import.meta.env.VITE_PHONE_NUMBER || "+251976601074",
+  phoneHref: import.meta.env.VITE_PHONEHref || "tel:+251976601074",
+  email: import.meta.env.VITE_EMAIL || "gemachis.tesfaye.dev@gmail.com",
   socials: {
     linkedin: "https://www.linkedin.com/in/gemachis-tesfaye-137196318",
     twitter: "https://x.com/GemachisTesfaye",

@@ -204,7 +204,7 @@ const FloatingButtons = () => {
           aria-label="Project inquiry form"
         >
           <div
-            className="w-full max-w-lg p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
+            className="w-full max-w-lg max-h-[80vh] overflow-y-auto p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-5">

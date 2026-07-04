@@ -85,14 +85,31 @@ const BlogPost = () => {
       .catch(() => {});
   };
 
-  const handleShare = () => {
+  const handleShare = async () => {
     if (!post) return;
-    navigator.clipboard.writeText(window.location.href).catch(() => {});
-    incrementShares(post._id)
-      .then(() => setShareCount((c) => c + 1))
-      .catch(() => {});
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    
+    try {
+      // Use Native Web Share API if supported (mobile devices love this)
+      if (navigator.share) {
+        await navigator.share({
+          title: post.title,
+          text: post.excerpt || "Check out this post!",
+          url: window.location.href,
+        });
+      } else {
+        // Fallback to clipboard if not supported (e.g. some desktop browsers)
+        await navigator.clipboard.writeText(window.location.href);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+      
+      // Increment share count after successful share action
+      incrementShares(post._id)
+        .then(() => setShareCount((c) => c + 1))
+        .catch(() => {});
+    } catch (error) {
+      console.log("Share failed or was cancelled", error);
+    }
   };
 
   if (loading) {

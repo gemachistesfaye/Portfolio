@@ -1,117 +1,173 @@
-# Gemachis Tesfaye — Portfolio
+# 🚀 Gemachis Tesfaye — Developer Portfolio
 
-A focused, source-accurate README for this repository. It documents what is present in the codebase and how to run it.
+A modern, dark-themed developer portfolio built with **React**, **Vite**, and **Tailwind CSS**. Features smooth animations, a CMS-powered blog via Sanity, and a fully responsive design.
 
-Live demo: https://gemachisdev.vercel.app/
-
----
-
-## What this repo contains
-
-- A single-page portfolio web app built with React and Vite (source in `src/`).
-- A small Sanity studio for CMS/content under the `studio/` folder.
-- Static assets and site metadata in `public/` (including `Profile.jpg`, `rss.xml`, `sitemap.xml`, `404.html`).
-- Build and tool configuration: `vite.config.js`, `tailwind.config.js`, `postcss.config.js`, `tsconfig.json`, `vercel.json`.
-- Environment variable example: `.env.example` (used for FormBlade endpoints, phone, and email placeholders).
+🔗 **Live:** [gemachisdev.vercel.app](https://gemachisdev.vercel.app/)
 
 ---
 
-## Quick facts (based on repository files)
+## ✨ Features
 
-- Primary stack: React + Vite, styled with Tailwind CSS.
-- Notable libraries (from package.json): react, react-dom, react-router-dom, react-helmet-async, react-markdown, lucide-react, @sanity/client (studio uses `sanity`).
-- Scripts (from package.json):
-  - `npm run dev` — start Vite dev server
-  - `npm run build` — produce production build
-  - `npm run preview` — preview production build locally
-  - `npm run test` / `npm run test:watch` — run Vitest
-  - `npm run lint` — lint `src/`
-  - `npm run build:rss` — run `scripts/generate-rss.js` (RSS generation)
-  - `npm run build:all` — build + build:rss
-- Sanity studio scripts (studio/package.json): `dev`, `build`, `deploy` (Sanity commands).
-
----
-
-## How to run (exact commands)
-
-1. Install root dependencies and run the app:
-
-   ```bash
-   git clone https://github.com/gemachistesfaye/Portfolio.git
-   cd Portfolio
-   npm install
-   npm run dev
-   ```
-
-   Open the URL printed by Vite (typically http://localhost:5173).
-
-2. Optional: run the Sanity studio (edit content / blog):
-
-   ```bash
-   cd studio
-   npm install
-   npm run dev
-   ```
-
-3. Build and preview production:
-
-   ```bash
-   # from project root
-   npm run build
-   npm run preview
-   ```
+| Feature | Description |
+|---------|-------------|
+| **Single-Page Portfolio** | Smooth-scrolling sections for About, Services, Skills, Projects, Experience & Contact |
+| **Blog (CMS)** | Dynamic blog powered by [Sanity](https://www.sanity.io/) with markdown rendering |
+| **Dark Mode** | Elegant dark theme with glassmorphism effects and subtle gradients |
+| **Responsive** | Mobile-first design with a slide-in side-drawer navigation |
+| **Contact Form** | FormBlade-powered form with anti-spam protection |
+| **Hire Me Modal** | Floating action button with a quick inquiry form |
+| **SEO Optimized** | Meta tags, sitemap, robots.txt, RSS feed, and Open Graph support |
+| **Animations** | Scroll-triggered animations using Intersection Observer |
+| **CV Download** | One-click resume download/view from Google Drive |
 
 ---
 
-## Environment
+## 🛠 Tech Stack
 
-- See `.env.example` for variables expected by the app (FormBlade contact/hireme endpoints, phone, email, Sanity project id/dataset placeholders). Copy `.env.example` to `.env` and fill the real values before running in production.
-
-Key variables shown in `.env.example`:
-- VITE_FORMBLADE_CONTACT
-- VITE_FORMBLADE_HIREME
-- VITE_PHONE_NUMBER
-- VITE_PHONEHref
-- VITE_EMAIL
-- VITE_SANITY_PROJECT_ID
-- VITE_SANITY_DATASET
-
-Note: `src/config.ts` checks for required env variables in development and logs a warning if they are missing.
+- **Framework:** React 18 + Vite 6
+- **Styling:** Tailwind CSS 3
+- **Routing:** React Router DOM 7
+- **Icons:** Lucide React
+- **CMS:** Sanity (headless)
+- **Forms:** FormBlade
+- **Markdown:** react-markdown + remark-gfm
+- **SEO:** react-helmet-async
+- **Testing:** Vitest + React Testing Library
+- **Deployment:** Vercel
 
 ---
 
-## What you'll find in `src/`
+## 📁 Project Structure
 
-- `index.jsx` — app bootstrap (ReactDOM + BrowserRouter + HelmetProvider)
-- `App.jsx` — application routes and main layout (lazy-loading blog pages under `/blog`)
-- Section components: `home.jsx`, `about.jsx`, `services.jsx`, `project.jsx`, `testimonials.jsx`, `experience.jsx`, `contact.jsx`
-- UI pieces: `navbar.jsx`, `footer.jsx`, `floatingButtons.jsx`, `components/` (reusable components)
-- Styling: `index.css` (Tailwind + custom styles)
-- `config.ts` — central config and social links (includes CV links and social URLs)
+```
+Portfolio/
+├── public/               # Static assets (profile image, sitemap, RSS, robots.txt)
+├── src/
+│   ├── components/       # Reusable UI (SectionHeading, ProcessModal, TermsModal)
+│   ├── data/             # Static data files
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility libraries (Sanity client, etc.)
+│   ├── pages/            # Blog pages (BlogLayout, BlogList, BlogPost)
+│   ├── types/            # TypeScript type definitions
+│   ├── utils/            # Helper functions (smooth scroll, etc.)
+│   ├── home.jsx          # Hero section
+│   ├── about.jsx         # About section with process steps
+│   ├── services.jsx      # Services grid
+│   ├── project.jsx       # Projects showcase
+│   ├── experience.jsx    # Work experience timeline
+│   ├── contact.jsx       # Contact form + info
+│   ├── testimonials.jsx  # Client testimonials
+│   ├── navbar.jsx        # Sticky navigation with mobile drawer
+│   ├── footer.jsx        # Footer with social links
+│   ├── floatingButtons.jsx # Floating "Hire Me" button + modal
+│   ├── config.ts         # Central configuration (socials, API keys, contact info)
+│   ├── index.css         # Tailwind base + custom styles
+│   └── App.jsx           # Routes & main layout
+├── studio/               # Sanity Studio (CMS for blog content)
+├── scripts/              # Build scripts (RSS generation)
+├── .env.example          # Environment variable template
+├── vite.config.js        # Vite configuration
+├── tailwind.config.js    # Tailwind configuration
+├── vercel.json           # Vercel deployment config
+└── package.json
+```
 
 ---
 
-## Deployment
+## 🚀 Getting Started
 
-- `vercel.json` is present for Vercel deployments; the repo is also set up for static hosting of the Vite build.
+### Prerequisites
+
+- **Node.js** ≥ 18
+- **npm** ≥ 9
+
+### Installation
+
+```bash
+git clone https://github.com/gemachistesfaye/Portfolio.git
+cd Portfolio
+npm install
+```
+
+### Environment Variables
+
+Copy the example file and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Description |
+|----------|-------------|
+| `VITE_FORMBLADE_CONTACT` | FormBlade endpoint for contact form |
+| `VITE_FORMBLADE_HIREME` | FormBlade endpoint for hire-me modal |
+| `VITE_PHONE_NUMBER` | Your phone number (displayed on site) |
+| `VITE_PHONEHref` | Phone `tel:` link |
+| `VITE_EMAIL` | Your email address (displayed on site) |
+| `VITE_SANITY_PROJECT_ID` | Sanity project ID (for blog) |
+| `VITE_SANITY_DATASET` | Sanity dataset name |
+
+> **Note:** Contact info has hardcoded fallbacks in `config.ts`, so the site works without env vars — but form submissions require the FormBlade endpoints.
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Run Sanity Studio (Blog CMS)
+
+```bash
+cd studio
+npm install
+npm run dev
+```
 
 ---
 
-## Notes & small details observed in code
+## 📜 Available Scripts
 
-- Contact form submits to the FormBlade endpoint configured via environment variables (see `src/contact.jsx` and `src/config.ts`). The form sends JSON including a few anti-spam timing fields.
-- Social links and a CV download/view link are declared in `src/config.ts`.
-- Blog pages are lazy-loaded from `src/pages` (App routes).
-- Tailwind classes with `dark:` appear in components, indicating dark-mode support in the UI.
-
----
-
-## To improve this README (suggested, optional)
-
-- Add the exact env values and a short example of `scripts/generate-rss.js` usage if you want to publish the RSS.
-- Add a few screenshots (there are image references in the old README) by placing them under `public/` and linking here.
-- Add a short CONTRIBUTING.md if you want contribution guidelines.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start Vite dev server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build locally |
+| `npm run test` | Run tests with Vitest |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run lint` | Lint source files |
+| `npm run build:rss` | Generate RSS feed |
+| `npm run build:all` | Build + generate RSS |
 
 ---
 
-If you want, I can commit this updated README to the repository now. Reply `yes` to proceed and I will update `README.md` on the `main` branch with this content.
+## 🌐 Deployment
+
+The project is configured for **Vercel** deployment:
+
+1. Push to your GitHub repository
+2. Connect the repo to [Vercel](https://vercel.com)
+3. Add environment variables in Vercel → Settings → Environment Variables
+4. Deploy
+
+The `vercel.json` handles SPA routing for client-side navigation.
+
+---
+
+## 📬 Contact
+
+- **Email:** gemachis.tesfaye.dev@gmail.com
+- **LinkedIn:** [Gemachis Tesfaye](https://www.linkedin.com/in/gemachis-tesfaye-137196318)
+- **Telegram:** [@urjiiko1](https://t.me/urjiiko1)
+- **GitHub:** [gemachistesfaye](https://github.com/gemachistesfaye)
+
+---
+
+## 📄 License
+
+This project is open source and available for personal use and learning.
+
+---
+
+Built with ❤️ by **Gemachis Tesfaye**

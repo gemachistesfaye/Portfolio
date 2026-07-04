@@ -170,11 +170,9 @@ const TermsModal = ({ isOpen, onClose }) => {
                 </span>
                 <div>
                   <p className="font-semibold" style={{ color: "#3D2E1F" }}>
-                    Launch + 30-Day Support
+                    Launch + 6-Month Support
                   </p>
-                  <p className="text-[12px] sm:text-[13px] text-stone-500">
-                    We deploy your product and fix any issues for 30 days at no extra cost.
-                  </p>
+                  <p className="text-[12px] sm:text-[13px] text-stone-500">We deploy your product and fix any issues for 6 months at no extra cost.</p>
                 </div>
               </div>
             </div>
@@ -197,9 +195,7 @@ const TermsModal = ({ isOpen, onClose }) => {
                 <span className="font-semibold" style={{ color: "#3D2E1F" }}>30%</span> — Final delivery & deployment
               </li>
             </ul>
-            <p className="mt-2 text-[12px] sm:text-[13px] text-stone-500">
-              <span className="font-semibold" style={{ color: "#3D2E1F" }}>Accepted:</span> CBE, Telebirr, Awash Bank.
-            </p>
+            <p className="mt-2 text-[12px] sm:text-[13px] text-stone-500"><span className="font-semibold" style={{ color: "#3D2E1F" }}>Accepted:</span> CBE, Telebirr, Bank of Abyssinia, Dashen Bank, Awash Bank.</p>
           </div>
 
           {/* Promise */}

@@ -189,31 +189,31 @@ export const experience: Experience[] = [
 
 export const faqs: FAQ[] = [
   {
-    q: "What services do you offer?",
-    a: "I build modern, responsive websites and full-stack web applications using React, Next.js, Node.js, and Python. I also integrate AI features (GPT, Gemini APIs), design databases (MySQL, PostgreSQL, Firebase), and provide UI/UX design, API development, and cloud deployment on Vercel or Render.",
+    q: "How can you help my business or project?",
+    a: "I turn your ideas into functional, beautiful digital products. Whether you need a modern business website to attract clients, a custom web app to automate your workflow, or an AI-powered system (like custom ChatGPT integrations) to save time, I handle everything from design to final deployment.",
   },
   {
-    q: "What are your rates?",
-    a: "Pricing depends on project complexity. Frontend starts from 1,000 ETB for small fixes up to 20,000+ ETB for business websites. Full-stack applications, AI integrations, and database projects are custom-quoted. I provide a detailed breakdown before starting so there are no surprises. International clients can pay in USD.",
+    q: "How much will my project cost?",
+    a: "Pricing is tailored to your specific needs so you only pay for what brings you value. Simple frontend fixes or landing pages start around 1,000 to 5,000 ETB. Larger business websites or custom AI web apps can range from 10,000 to 50,000+ ETB. I always provide a clear, upfront quote before we begin so there are zero surprises.",
   },
   {
-    q: "What payment methods do you accept?",
-    a: "I accept Telebirr, CBE Birr, bank transfers (local), and PayPal / Wise for international clients. For larger projects, I split payments into milestones: 30% upfront, 40% at mid-point, and 30% on delivery. This keeps everything transparent and fair for both sides.",
+    q: "How does the payment process work?",
+    a: "To keep things fair and transparent, payments for larger projects are split into milestones: typically 30% upfront to secure the booking, 40% at the halfway point, and 30% when you are completely satisfied with the final delivery. I accept payments via Telebirr, CBE, Bank of Abyssinia, Dashen Bank, and Awash Bank.",
   },
   {
-    q: "What is your typical project timeline?",
-    a: "Simple landing pages: 3-7 days. Business websites with multiple pages: 1-2 weeks. Full-stack web applications: 3-6 weeks. AI-integrated platforms or complex SaaS: 4-8 weeks. I always provide a milestone schedule during the proposal so you know exactly when to expect each deliverable.",
+    q: "How long will it take to build my website or app?",
+    a: "It depends on what we're building! A sleek landing page can be live in 3-7 days. A multi-page business website takes about 1-2 weeks. For complex full-stack apps or AI tools, expect 3-8 weeks. During our first chat, I'll give you a realistic timeline so you know exactly when to expect results.",
   },
   {
-    q: "What technologies do you work with?",
-    a: "Frontend: React.js, Next.js, TypeScript, Tailwind CSS. Backend: Node.js, Express.js, Python, Flask. Databases: MySQL, PostgreSQL, Firebase, Supabase. AI: GPT integration, Gemini APIs, prompt engineering. Tools: Git, GitHub, Vercel, Render, Power BI. I pick the right stack for your project, not just what is trendy.",
+    q: "Do you use the latest technologies to build my app?",
+    a: "Absolutely. I use modern, industry-standard tools to ensure your project is fast, secure, and easy to scale. For the frontend, I use React and Next.js. For the backend, Node.js and Python. I also integrate cutting-edge AI features using OpenAI and Gemini APIs. My goal is to pick the right tech stack for your specific goals, not just what's trendy.",
   },
   {
-    q: "Do you provide ongoing support after launch?",
-    a: "Yes! Every project includes 30 days of free post-launch support for bug fixes and minor tweaks. After that, I offer monthly maintenance packages starting from 3,000 ETB/month that cover updates, security patches, feature additions, and performance monitoring. I also offer hourly support for one-off tasks.",
+    q: "What happens after my project goes live? Do you offer support?",
+    a: "I won't leave you stranded! Every project includes 6 months of free post-launch support to ensure everything runs perfectly. After that, we can set up a low-cost monthly maintenance plan where I handle security updates, bug fixes, and minor changes, allowing you to focus purely on running your business.",
   },
   {
-    q: "Can you build MVPs for startups?",
-    a: "Yes! I specialize in building MVPs that are lean, functional, and scalable. I help founders validate ideas quickly with core features, then iterate based on user feedback. I can also advise on tech stack choices, hosting, and scaling strategies to keep costs low while you prove your concept.",
+    q: "I have a startup idea. Can you build an MVP to test the market?",
+    a: "Yes! I specialize in helping founders launch Minimum Viable Products (MVPs) quickly and affordably. I will help you cut through the noise, build only the core features needed to validate your idea, and set up cheap hosting options so you can test your concept without breaking the bank.",
   },
 ];

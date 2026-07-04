@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useInView } from "./hooks/useInView";
+import { useInView } from "react-intersection-observer";
 import { Sparkles } from "lucide-react";
 
 const rotatingTexts = [

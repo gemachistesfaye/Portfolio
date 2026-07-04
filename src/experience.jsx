@@ -65,7 +65,7 @@ const Experience = () => {
     <>
       <section id="experience" className="py-28 px-6 bg-[#060a13] relative z-10">
         <div ref={ref} className="max-w-6xl mx-auto">
-          <div className={`text-center mb-16 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+          <div className={`text-center mb-16 opacity-0 transform-gpu ${inView ? 'animate-slide-up' : ''}`}>
             <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Experience</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Education & <span className="text-gradient">Credentials</span>
@@ -76,7 +76,7 @@ const Experience = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div className={`opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
+            <div className={`opacity-0 transform-gpu ${inView ? 'animate-slide-right' : ''}`}>
               <div className="relative">
                 <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-accent/40 via-slate-200 dark:via-slate-800 to-transparent" />
 
@@ -132,7 +132,7 @@ const Experience = () => {
               </div>
             </div>
 
-            <div className={`opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
+            <div className={`opacity-0 transform-gpu ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
               <h3 className="text-xs font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-[0.15em]">Awards</h3>
               <div className="grid grid-cols-1 gap-2.5 bg-transparent">
                 {certificates.map((cert) => (

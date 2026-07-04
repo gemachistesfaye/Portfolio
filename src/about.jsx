@@ -29,7 +29,7 @@ const About = () => {
       <section id="about" className="py-28 px-6">
         <div ref={ref} className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
-            <div className={`lg:col-span-2 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
+            <div className={`lg:col-span-2 opacity-0 transform-gpu ${inView ? 'animate-slide-right' : ''}`}>
               <div className="relative group">
                 <div className="absolute -inset-3 bg-gradient-to-br from-accent/20 via-teal-400/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 hidden sm:block blur-2xl" />
                 <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/50">

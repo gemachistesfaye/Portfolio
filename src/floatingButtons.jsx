@@ -4,6 +4,38 @@ import config from "./config";
 
 
 
+const PROJECT_TYPES = ["Frontend", "Backend / API", "Database", "Web App", "AI Integration", "Other"];
+const BUDGETS = ["1,000 - 3,000 ETB", "3,000 - 5,000 ETB", "5,000 - 10,000 ETB", "10,000 - 20,000 ETB", "20,000 - 50,000 ETB", "50,000+ ETB"];
+
+const CustomSelect = ({ value, options, placeholder, onChange, disabled, isOpen, onToggle }) => (
+  <div className="relative">
+    <button
+      type="button"
+      onClick={(e) => { e.stopPropagation(); onToggle(); }}
+      disabled={disabled}
+      className={`w-full px-4 py-3 text-left rounded-xl border ${isOpen ? 'border-accent/50 ring-4 ring-accent/10' : 'border-slate-200 dark:border-slate-700/60'} bg-slate-50/80 dark:bg-white/[0.03] text-sm ${value ? 'text-slate-900 dark:text-white' : 'text-slate-400'} transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-between`}
+    >
+      <span className="truncate">{value || placeholder}</span>
+      <ChevronDown size={14} className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+    </button>
+    
+    {isOpen && !disabled && (
+      <div className="absolute z-50 w-full mt-2 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl max-h-48 overflow-y-auto">
+        {options.map((opt) => (
+          <button
+            key={opt}
+            type="button"
+            onClick={(e) => { e.stopPropagation(); onChange(opt); onToggle(); }}
+            className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${value === opt ? 'bg-accent/10 text-accent font-medium' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50'}`}
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+    )}
+  </div>
+);
+
 const FloatingButtons = () => {
   const [showCard, setShowCard] = useState(false);
   const [nearFooter, setNearFooter] = useState(false);
@@ -15,6 +47,16 @@ const FloatingButtons = () => {
   const formLoadTime = useRef(Date.now());
 
   const [status, setStatus] = useState("idle");
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => setOpenDropdown(null);
+    if (openDropdown) {
+      document.addEventListener('click', handleClickOutside);
+    }
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [openDropdown]);
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -212,41 +254,23 @@ const FloatingButtons = () => {
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="relative">
-                  <select
-                    required
-                    value={formData.projectType}
-                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value, budget: "" })}
-                    className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none"
-                  >
-                    <option value="" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Project Type</option>
-                    <option value="Frontend" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Frontend</option>
-                    <option value="Backend / API" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Backend / API</option>
-                    <option value="Database" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Database</option>
-                    <option value="Web App" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Web App</option>
-                    <option value="AI Integration" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">AI Integration</option>
-                    <option value="Other" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">Other</option>
-                  </select>
-                  <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                </div>
-                <div className="relative">
-                  <select
-                    required
-                    value={formData.budget}
-                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                    disabled={!formData.projectType}
-                    className="w-full px-4 py-3 pr-10 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 appearance-none disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    <option value="" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">{formData.projectType ? "Select Budget" : "Select Type First"}</option>
-                    <option value="1,000 - 3,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">1,000 - 3,000 ETB</option>
-                    <option value="3,000 - 5,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">3,000 - 5,000 ETB</option>
-                    <option value="5,000 - 10,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">5,000 - 10,000 ETB</option>
-                    <option value="10,000 - 20,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">10,000 - 20,000 ETB</option>
-                    <option value="20,000 - 50,000 ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">20,000 - 50,000 ETB</option>
-                    <option value="50,000+ ETB" className="bg-white dark:bg-slate-800 text-slate-900 dark:text-white">50,000+ ETB</option>
-                  </select>
-                  <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                </div>
+                <CustomSelect
+                  value={formData.projectType}
+                  options={PROJECT_TYPES}
+                  placeholder="Project Type"
+                  isOpen={openDropdown === 'type'}
+                  onToggle={() => setOpenDropdown(openDropdown === 'type' ? null : 'type')}
+                  onChange={(val) => setFormData({ ...formData, projectType: val, budget: "" })}
+                />
+                <CustomSelect
+                  value={formData.budget}
+                  options={BUDGETS}
+                  placeholder={formData.projectType ? "Select Budget" : "Select Type First"}
+                  disabled={!formData.projectType}
+                  isOpen={openDropdown === 'budget'}
+                  onToggle={() => setOpenDropdown(openDropdown === 'budget' ? null : 'budget')}
+                  onChange={(val) => setFormData({ ...formData, budget: val })}
+                />
               </div>
               <textarea
                 rows="4"
@@ -289,7 +313,7 @@ const FloatingButtons = () => {
         onTouchStart={startHold}
         onTouchEnd={cancelHold}
         onTouchCancel={cancelHold}
-        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-white hover:bg-slate-200 text-slate-900 font-bold rounded-full shadow-xl shadow-white/10 hover:shadow-white/30 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold rounded-full shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 border border-white/10 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         aria-label={showCard ? "Close" : "Hold to scroll to top, click to contact"}
       >
         {showCard ? (
@@ -301,9 +325,9 @@ const FloatingButtons = () => {
           <>
             {isHolding ? (
               <svg className="w-4 h-4 -rotate-90" viewBox="0 0 36 36" aria-hidden="true">
-                <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="3" />
+                <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
                 <circle
-                  cx="18" cy="18" r="15" fill="none" stroke="#0f172a" strokeWidth="3"
+                  cx="18" cy="18" r="15" fill="none" stroke="white" strokeWidth="3"
                   strokeDasharray={`${holdProgress * 94.25} 94.25`}
                   strokeLinecap="round"
                 />

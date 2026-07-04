@@ -121,21 +121,42 @@ const Navbar = () => {
         </button>
       </div>
 
+      {/* Mobile Menu Backdrop */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Mobile Menu Side Drawer */}
       <div
         ref={menuRef}
         id="mobile-menu"
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className={`fixed top-0 right-0 h-[100dvh] w-64 bg-[#020617] border-l border-white/5 z-50 transform transition-transform duration-300 ease-in-out md:hidden flex flex-col shadow-2xl ${
+          open ? 'translate-x-0' : 'translate-x-full'
         }`}
         aria-hidden={!open}
       >
-        <div className="px-6 pb-5 pt-3 bg-[#020617]/90 border-b border-white/5">
+        <div className="flex items-center justify-between p-6 border-b border-slate-800/60">
+          <span className="text-sm font-bold text-white tracking-tight">Menu</span>
+          <button
+            onClick={() => setOpen(false)}
+            className="p-2 -mr-2 text-slate-400 hover:text-accent transition-colors rounded-lg bg-slate-800/50"
+            aria-label="Close menu"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto py-2 px-6">
           {links.map((l) => (
             <a
               key={l}
               href={`#${l.toLowerCase()}`}
               onClick={(e) => go(e, l)}
-              className={`block py-3 text-sm font-medium transition-colors border-b border-slate-700/50 last:border-0 ${
+              className={`block py-4 text-sm font-medium transition-colors border-b border-slate-800/50 last:border-0 ${
                 active === l.toLowerCase()
                   ? 'text-accent'
                   : 'text-slate-400 hover:text-accent'
@@ -144,10 +165,13 @@ const Navbar = () => {
               {l}
             </a>
           ))}
+        </div>
+
+        <div className="p-6 border-t border-slate-800/60">
           <a
             href="/blog"
             onClick={(e) => { e.preventDefault(); window.open("/blog", "_blank", "noopener,noreferrer"); }}
-            className="mt-3 block text-center py-3 text-sm font-semibold rounded-full text-white bg-gradient-to-r from-accent to-emerald-500 shadow-lg shadow-accent/30"
+            className="block w-full text-center py-3 text-sm font-semibold rounded-full text-white bg-gradient-to-r from-accent to-emerald-500 shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:scale-105 transition-all duration-300"
           >
             ✍ Blog
           </a>

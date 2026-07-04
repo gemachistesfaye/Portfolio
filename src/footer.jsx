@@ -21,14 +21,11 @@ const socials = [
 const Footer = () => (
   <footer className="border-t border-slate-200 dark:border-slate-800/60 bg-[#020617]" role="contentinfo">
     <div className="max-w-6xl mx-auto px-6 py-12">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-10">
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-2.5 mb-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent to-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-accent/20">
-              GT
-            </div>
-            <span className="text-sm font-bold text-white tracking-tight">Gemachis Tesfaye</span>
+          <div className="flex items-center mb-3">
+            <span className="text-lg font-extrabold text-white tracking-tight">Gemachis Tesfaye</span>
           </div>
           <p className="text-[13px] text-slate-400 leading-relaxed max-w-xs">
             Full-Stack Developer &amp; AI Engineer based in Ethiopia. Building scalable products that solve real problems.
@@ -66,18 +63,6 @@ const Footer = () => (
           </div>
         </div>
 
-        {/* Contact */}
-        <div>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.15em] mb-4">Get In Touch</p>
-          <div className="space-y-2">
-            <a href={`mailto:${config.email}`} className="block text-[13px] text-slate-400 hover:text-accent transition-colors">
-              {config.email || "gemachisdev@gmail.com"}
-            </a>
-            <a href={config.socials.telegramCommunity} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-3 px-4 py-2 rounded-xl bg-accent/10 hover:bg-accent/20 border border-accent/20 text-accent text-xs font-semibold transition-all duration-300">
-              Join Telegram Community
-            </a>
-          </div>
-        </div>
       </div>
 
       <div className="pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">

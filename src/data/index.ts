@@ -159,7 +159,7 @@ export const experience: Experience[] = [
       "Working on full-stack systems and real-world applications while collaborating on team-based software projects.",
       "Collaborating with teams on real-world software solutions and best practices.",
     ],
-    tags: ["Full-Stack", "Industry Experience", "Agile"],
+    tags: ["Agile", "Teamwork", "Full-Stack", "Industry Experience"],
   },
   {
     role: "Frontend Development Trainee",
@@ -180,10 +180,10 @@ export const experience: Experience[] = [
     type: "Degree",
     color: "from-emerald-500 to-teal-500",
     points: [
-      "CGPA: 3.8 / 4.0",
-      "Coursework: Database Systems, Data Structures, Web Development, Artificial Intelligence, Networking.",
+      "Built multiple class projects including full-stack web applications and data-driven systems.",
+      "Coursework: Database Systems, Data Structures, Web Development, Artificial Intelligence, Networking, Digital Literacy.",
     ],
-    tags: ["DB Systems", "AI", "Networking"],
+    tags: ["DB Systems", "AI", "Networking", "Web Dev", "Digital Literacy"],
   },
 ];
 

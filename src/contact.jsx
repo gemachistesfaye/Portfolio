@@ -113,28 +113,6 @@ const Contact = () => {
                   <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Within 24 hours</p>
                 </div>
               </div>
-              <a href={config.socials.telegramCommunity} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 px-4 py-2.5 bg-accent/10 hover:bg-accent/20 border border-accent/20 text-accent text-xs font-semibold rounded-xl transition-all duration-300">
-                Join our Telegram community
-              </a>
-            </div>
-
-            <div className="pt-2">
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] font-semibold mb-3 pl-1">Find me on</p>
-              <div className="flex gap-2">
-                {socials.map((s, i) => (
-                  <a
-                    key={i}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={s.label}
-                    aria-label={s.label}
-                    className="group/social w-11 h-11 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent/40 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300"
-                  >
-                    {s.icon}
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
 

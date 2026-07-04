@@ -22,7 +22,6 @@ const skillIcons = {
 
 const Services = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
-  const [openCat, setOpenCat] = useState(skills.categories[0].label);
 
   return (
     <>
@@ -37,23 +36,22 @@ const Services = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((s, i) => (
               <div
                 key={s.title}
-                className={`group p-4 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-lg hover:border-accent/30 transition-all duration-500 hover:shadow-accent/5 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+                className={`group p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-500 hover:-translate-y-1 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
-                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white shadow-lg mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white shadow-lg mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
                   {serviceIcons[s.title]}
                 </div>
-                <h3 className="text-[13px] sm:text-lg font-bold text-slate-900 dark:text-white mb-1.5 sm:mb-2 group-hover:text-accent transition-colors">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-accent transition-colors">
                   {s.title}
                 </h3>
-                <p className="text-[11px] sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-0 sm:mb-4">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-0">
                   {s.desc}
                 </p>
-
               </div>
             ))}
           </div>
@@ -71,110 +69,42 @@ const Services = () => {
             description="Full-stack development, databases, AI, and analytics."
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="space-y-2">
-              {skills.categories.map((cat, i) => {
-                const isActive = openCat === cat.label;
-                return (
-                  <button
-                    key={cat.label}
-                    onClick={() => setOpenCat(isActive ? null : cat.label)}
-                    aria-expanded={isActive}
-                    aria-controls={`skills-panel-${cat.label}`}
-                    id={`skills-button-${cat.label}`}
-                    className={`group w-full flex items-center gap-4 p-4 rounded-2xl border transition-all duration-500 text-left ${
-                      isActive
-                        ? 'border-accent/40 bg-white dark:bg-[#0c1220] shadow-xl shadow-accent/10 scale-[1.02]'
-                        : 'border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/20 hover:shadow-lg hover:shadow-accent/5 hover:scale-[1.01]'
-                    }`}
-                  >
-                    <div className={`relative w-12 h-12 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white shadow-lg flex-shrink-0 transition-all duration-500 ${isActive ? 'scale-110 rotate-3' : 'group-hover:scale-105'}`}>
-                      {skillIcons[cat.label]}
-                      {isActive && (
-                        <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-accent/20 to-emerald-500/20 blur-sm -z-10" />
-                      )}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between">
-                        <h3 className={`text-sm font-bold uppercase tracking-wide transition-colors duration-300 ${isActive ? 'text-accent' : 'text-slate-900 dark:text-white group-hover:text-accent'}`}>
-                          {cat.label}
-                        </h3>
-                        <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-accent scale-100' : 'bg-slate-300 dark:bg-slate-600 scale-75 group-hover:scale-100'}`} />
-                      </div>
-                      <p className="text-[11px] text-slate-400 mt-0.5">{cat.items.length} technologies</p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+            {skills.categories.map((cat, i) => (
+              <div
+                key={cat.label}
+                className="group p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-500 relative overflow-hidden"
+              >
+                {/* Background glow effect on hover */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-accent/10 to-emerald-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-            <div className="lg:col-span-2">
-              {openCat ? (
-                <div
-                  id={`skills-panel-${openCat}`}
-                  role="region"
-                  aria-labelledby={`skills-button-${openCat}`}
-                  className="h-full p-6 sm:p-8 rounded-2xl border border-accent/20 bg-white dark:bg-[#0c1220] shadow-xl dark:shadow-accent/5 relative overflow-hidden"
-                >
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-accent/10 via-emerald-500/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none hidden sm:block blur-3xl" />
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-violet-500/5 via-transparent to-transparent rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none hidden sm:block blur-2xl" />
-                  
-                  {skills.categories.filter(c => c.label === openCat).map(cat => (
-                    <div key={cat.label} className="relative z-10">
-                      <div className="flex items-center gap-4 mb-8">
-                        <div className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white shadow-xl shadow-accent/20`}>
-                          {skillIcons[cat.label]}
-                          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent/20 to-emerald-500/20 blur-md -z-10" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-extrabold text-slate-900 dark:text-white uppercase tracking-wide">
-                            {cat.label}
-                          </h3>
-                          <p className="text-xs text-slate-400 mt-0.5">Hover to explore each technology</p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2.5">
-                        {cat.items.map((s, i) => (
-                          <span
-                            key={s}
-                            className="group/skill relative px-4 py-2.5 text-sm font-bold rounded-xl bg-white dark:bg-[#060a13] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60 hover:border-accent hover:text-white hover:bg-gradient-to-r hover:from-accent hover:to-emerald-500 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 overflow-hidden cursor-default shadow-sm hover:scale-105 hover:-translate-y-0.5"
-                            style={{ animationDelay: `${i * 0.04}s` }}
-                          >
-                            <span className="relative z-10">{s}</span>
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="mt-8 pt-6 border-t border-slate-200/80 dark:border-slate-800/60">
-                        <div className="flex items-center justify-between">
-                          <p className="text-xs text-slate-400">
-                            <span className="font-bold text-accent">{cat.items.length}</span> technologies in this category
-                          </p>
-                          <div className="flex -space-x-1">
-                            {[...Array(Math.min(cat.items.length, 5))].map((_, i) => (
-                              <div key={i} className={`w-5 h-5 rounded-full bg-gradient-to-br ${cat.color} border-2 border-white dark:border-[#0c1220]`} style={{ opacity: 0.6 + i * 0.1 }} />
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="h-full p-8 rounded-2xl border-2 border-dashed border-accent/20 dark:border-accent/10 bg-gradient-to-br from-white to-slate-50 dark:from-[#0c1220] dark:to-[#080d17] flex flex-col items-center justify-center text-center min-h-[350px] relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.05] via-transparent to-emerald-500/[0.05] pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent/5 dark:bg-accent/10 rounded-full hidden sm:block blur-3xl" />
-                  <div className="relative z-10">
-                    <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-accent/10 to-emerald-500/10 flex items-center justify-center mb-6 mx-auto ring-8 ring-accent/5 group-hover:scale-105 transition-transform duration-500">
-                      <Sparkles size={32} className="text-accent animate-pulse" />
-                    </div>
-                    <p className="text-xl font-extrabold text-slate-900 dark:text-white mb-2">Explore Expertise</p>
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 max-w-xs mx-auto leading-relaxed">Select a category on the left to reveal the technology stack powering my projects.</p>
+                {/* Header */}
+                <div className="flex items-center gap-4 mb-8 relative z-10">
+                  <div className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                    {skillIcons[cat.label]}
+                    <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent/20 to-emerald-500/20 blur-md -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-extrabold text-slate-900 dark:text-white uppercase tracking-wide group-hover:text-accent transition-colors duration-300">
+                      {cat.label}
+                    </h3>
+                    <p className="text-xs text-slate-500 font-medium tracking-wide mt-1">{cat.items.length} technologies</p>
                   </div>
                 </div>
-              )}
-            </div>
+
+                {/* Pills */}
+                <div className="flex flex-wrap gap-2.5 relative z-10">
+                  {cat.items.map((s) => (
+                    <span
+                      key={s}
+                      className="px-3.5 py-2 text-xs sm:text-sm font-bold rounded-xl bg-slate-50 dark:bg-slate-800/40 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 hover:bg-white dark:hover:bg-[#0c1220] hover:border-accent hover:text-accent hover:shadow-md hover:shadow-accent/10 hover:-translate-y-0.5 transition-all duration-300 cursor-default"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

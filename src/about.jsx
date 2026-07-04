@@ -3,7 +3,6 @@ import { useInView } from "react-intersection-observer";
 import { Download, Code2, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight, ExternalLink, Github } from "lucide-react";
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
-import ProcessModal from "./components/ProcessModal";
 import TermsModal from "./components/TermsModal";
 
 const highlights = [
@@ -24,7 +23,6 @@ const steps = [
 const About = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
   const [isTermsOpen, setIsTermsOpen] = useState(false);
-  const [isProcessOpen, setIsProcessOpen] = useState(false);
 
   return (
     <>
@@ -167,17 +165,10 @@ const About = () => {
               Ready to start? It all begins with a free 15-minute discovery call.
             </p>
                 <button
-                  onClick={() => setIsProcessOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-300 dark:border-slate-700 hover:border-accent/50 text-slate-600 dark:text-slate-300 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-sm"
-                >
-                  View Process
-                  <ArrowRight size={14} />
-                </button>
-                <button
                   onClick={() => setIsTermsOpen(true)}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-300 dark:border-slate-700 hover:border-accent/50 text-slate-600 dark:text-slate-300 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-sm"
                 >
-                  View Terms
+                  How We Work
                   <ArrowRight size={14} />
                 </button>
           </div>
@@ -185,7 +176,6 @@ const About = () => {
       </section>
 
       <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
-      <ProcessModal isOpen={isProcessOpen} onClose={() => setIsProcessOpen(false)} />
     </>
   );
 };

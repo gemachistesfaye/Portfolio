@@ -60,19 +60,19 @@ const About = () => {
             <div className={`lg:col-span-3 max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-up sm:delay-300' : ''}`} style={{ animationDelay: '0.15s' }}>
               <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">About</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">
-                Building software that{' '}
-                <span className="text-gradient">solves real problems</span>
+                Building scalable digital products{' '}
+                <span className="text-gradient">and AI-powered systems</span>
               </h2>
 
               <div className="space-y-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
                 <p>
-                  I am a Full-Stack Software Engineer focused on building scalable web applications,
-                  dashboards, and AI-powered systems.
+                  I am a Software Engineer focused on building scalable digital products and
+                  AI-powered systems that solve real-world problems.
                 </p>
                 <p>
-                  I specialize in turning ideas into real products using modern technologies like
-                  React, Node.js, and databases. I have built and deployed multiple real-world
-                  projects including business systems, healthcare platforms, and data-driven applications.
+                  I specialize in turning ideas into production-grade applications using modern technologies like
+                  React, Node.js, Python, and AI APIs. I have built and deployed multiple systems
+                  including healthcare platforms, business dashboards, and data-driven applications.
                 </p>
               </div>
 

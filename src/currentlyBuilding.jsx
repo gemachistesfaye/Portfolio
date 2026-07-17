@@ -1,0 +1,88 @@
+import { useInView } from "react-intersection-observer";
+import { GraduationCap, Shirt, Briefcase } from "lucide-react";
+import SectionHeading from "./components/SectionHeading";
+
+const projects = [
+  {
+    name: "EduFlow",
+    description: "Modern school management system designed to simplify academic operations through dashboards, attendance tracking, grading, timetable scheduling, and role-based access control.",
+    category: "Education Platform",
+    tags: ["React", "Node.js", "Database", "Authentication"],
+    icon: <GraduationCap size={20} />,
+    color: "from-blue-500 to-indigo-600",
+  },
+  {
+    name: "LaundryFlow",
+    description: "Smart laundry management platform with real-time order tracking, role-based dashboards, and AI-powered assistance for students, workers, deliverers, and administrators.",
+    category: "Business Platform",
+    tags: ["React", "Node.js", "Supabase", "AI"],
+    icon: <Shirt size={20} />,
+    color: "from-emerald-500 to-teal-600",
+  },
+  {
+    name: "SmartHire AI",
+    description: "AI-powered candidate screening platform that uses semantic matching and intelligent analysis to improve recruitment workflows.",
+    category: "AI Platform",
+    tags: ["AI", "Machine Learning", "Full Stack"],
+    icon: <Briefcase size={20} />,
+    color: "from-violet-500 to-purple-600",
+  },
+];
+
+const CurrentlyBuilding = () => {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  return (
+    <section id="building" className="py-28 px-6">
+      <div ref={ref} className="max-w-6xl mx-auto">
+        <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+          <SectionHeading
+            label="Active Development"
+            title="Currently"
+            highlight="Building"
+            description="Currently building and exploring real-world software solutions."
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {projects.map((p, i) => (
+            <div
+              key={p.name}
+              className={`group p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-500 hover:-translate-y-1 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+              style={{ animationDelay: `${i * 0.1}s` }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${p.color} flex items-center justify-center text-white shadow-lg`}>
+                  {p.icon}
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors">
+                    {p.name}
+                  </h3>
+                  <p className="text-[10px] font-bold text-accent uppercase tracking-widest">{p.category}</p>
+                </div>
+              </div>
+
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5">
+                {p.description}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5">
+                {p.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CurrentlyBuilding;

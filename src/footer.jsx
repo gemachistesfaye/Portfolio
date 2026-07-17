@@ -28,7 +28,7 @@ const Footer = () => (
             <span className="text-lg font-extrabold text-white tracking-tight">Gemachis Tesfaye</span>
           </div>
           <p className="text-[13px] text-slate-400 leading-relaxed max-w-xs">
-            Full-Stack Developer &amp; AI Engineer based in Ethiopia. Building scalable products that solve real problems.
+            Software Engineer building intelligent software solutions that create real-world impact.
           </p>
           <div className="flex gap-2 mt-4">
             {socials.map((s) => (
@@ -62,15 +62,19 @@ const Footer = () => (
             ))}
           </div>
         </div>
-
       </div>
 
       <div className="pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
-        <p className="text-[11px] text-slate-500">
-          &copy; {new Date().getFullYear()} Gemachis Tesfaye. All rights reserved.
-        </p>
-        <p className="text-[11px] text-slate-600">
-          Built with <span className="text-accent">React</span> &bull; <span className="text-accent">Vite</span> &bull; <span className="text-accent">Tailwind CSS</span>
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+          <p className="text-[11px] text-slate-500">
+            &copy; {new Date().getFullYear()} Gemachis Tesfaye. All rights reserved.
+          </p>
+          <p className="text-[11px] text-slate-600">
+            Built with <span className="text-accent">React</span> &bull; <span className="text-accent">TypeScript</span> &bull; <span className="text-accent">Tailwind CSS</span> &bull; <span className="text-accent">Vite</span>
+          </p>
+        </div>
+        <p className="text-[11px] text-slate-500 italic">
+          Building intelligent software solutions that create real-world impact.
         </p>
       </div>
     </div>

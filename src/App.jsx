@@ -5,7 +5,9 @@ import Home from "./home";
 import About from "./about";
 import Services from "./services";
 import Project from "./project";
-import Testimonials from "./testimonials";
+import CurrentlyBuilding from "./currentlyBuilding";
+import Achievements from "./achievements";
+import EngineeringJourney from "./engineeringJourney";
 import Experience from "./experience";
 import Contact from "./contact";
 import Footer from "./footer";
@@ -70,7 +72,9 @@ function Portfolio() {
         <About />
         <Services />
         <Project />
-        <Testimonials />
+        <CurrentlyBuilding />
+        <Achievements />
+        <EngineeringJourney />
         <Experience />
         <Contact />
         <Footer />

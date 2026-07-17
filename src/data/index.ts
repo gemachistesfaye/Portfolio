@@ -66,57 +66,38 @@ export const projects: Project[] = [
 
 export const services: Service[] = [
   {
-    title: "Full-Stack Web Apps",
-    desc: "Custom business websites and web applications built for performance, scalability, and real users.",
+    title: "Business Platforms",
+    desc: "Full-stack platforms built for real operations — dashboards, user management, and production-grade systems.",
     color: "from-blue-500 to-indigo-600",
   },
   {
-    title: "AI Integration",
-    desc: "Smart AI features like chatbots, automation, and recommendation systems integrated into your product.",
+    title: "AI-Powered Applications",
+    desc: "Intelligent features using GPT, Gemini, and custom ML models — from recommendation engines to automated analysis.",
     color: "from-emerald-500 to-teal-600",
   },
   {
-    title: "Database Design",
-    desc: "Well-structured databases designed for speed, scalability, and real business use cases.",
+    title: "Data-Driven Systems",
+    desc: "Analytics dashboards, forecasting tools, and data pipelines that turn raw data into actionable insights.",
     color: "from-amber-500 to-orange-600",
   },
   {
     title: "API Development",
-    desc: "Secure and scalable backend APIs for mobile apps and web platforms.",
+    desc: "Secure, documented REST APIs built with Node.js and Python — designed for scalability and third-party integration.",
     color: "from-cyan-500 to-blue-600",
   },
   {
-    title: "Data Analytics",
-    desc: "Dashboards and insights that help businesses understand and improve performance.",
+    title: "Database Architecture",
+    desc: "Schema design, query optimization, and data modeling for MySQL, PostgreSQL, Firebase, and Supabase.",
     color: "from-violet-500 to-purple-600",
   },
   {
-    title: "UI/UX Implementation",
-    desc: "Clean, modern, and user-friendly interfaces focused on usability and conversion.",
+    title: "Digital Transformation",
+    desc: "Converting manual processes into automated digital workflows — from legacy systems to modern cloud architectures.",
     color: "from-rose-500 to-pink-600",
   },
 ];
 
-export const testimonials: Testimonial[] = [
-  {
-    name: "Mr. Irandufa",
-    role: "Department Head, Haramaya University",
-    text: "Gemachis is one of the most dedicated students I've taught. His ability to translate complex concepts into functional applications is remarkable.",
-    rating: 5,
-  },
-  {
-    name: "ISHub AAU Team",
-    role: "ISHub Summer Bootcamp",
-    text: "Gemachis completed our intensive frontend bootcamp with outstanding results. He built and deployed 5 projects in just 2 months.",
-    rating: 5,
-  },
-  {
-    name: "Kenanisa Boru",
-    role: "Fellow Developer",
-    text: "I've worked with Gemachis on several projects. His code is clean, well-organized, and he always delivers on time.",
-    rating: 5,
-  },
-];
+export const testimonials: Testimonial[] = [];
 
 export const certificates: Certificate[] = [
   { name: "Frontend Development", issuer: "IS Hub AAU", file: "Frontend-Dev-certificate.jpeg" },
@@ -124,8 +105,58 @@ export const certificates: Certificate[] = [
   { name: "ALX Foundations", issuer: "ALX", file: "alx-certificate.jpeg" },
   { name: "Software Frameworks", issuer: "Haramaya University", file: "Software-Frameworks-certificate.jpeg" },
   { name: "Ethidigizens", issuer: "Ethidigizens", file: "ethidigizens.jpg" },
-  { name: "Graphic Design", issuer: "HUCISA", file: "Graphic-Design-Training-certificate.jpeg" },
-  { name: "HUCISA", issuer: "HUCISA", file: "HUCISA-AMEN-CREATIVE-CERTIFICATE.jpg" },
+];
+
+export interface Achievement {
+  title: string;
+  org: string;
+  year: string;
+  description: string;
+  category: "achievement" | "credential";
+  proofUrl?: string;
+}
+
+export const achievements: Achievement[] = [
+  {
+    title: "ISHub AAU Frontend Development Bootcamp",
+    org: "ISHub AAU",
+    year: "2025",
+    description: "Intensive 2-month program covering HTML5, CSS3, JavaScript ES6+, responsive design, and UI architecture. Built and deployed 5 live projects.",
+    category: "achievement",
+    proofUrl: "#",
+  },
+  {
+    title: "GeezX AI Bootcamp",
+    org: "GeezX",
+    year: "2025",
+    description: "Hands-on training in AI integration, prompt engineering, and building real-world AI-powered applications.",
+    category: "achievement",
+    proofUrl: "#",
+  },
+  {
+    title: "ALX Ventures Founder Academy",
+    org: "ALX",
+    year: "2025",
+    description: "Program focused on product thinking, venture building, and technology-driven entrepreneurship fundamentals.",
+    category: "achievement",
+    proofUrl: "#",
+  },
+  {
+    title: "Software Frameworks Training",
+    org: "Haramaya University",
+    year: "2024",
+    description: "Technical training on software frameworks, design patterns, and modern development practices.",
+    category: "achievement",
+    proofUrl: "#",
+  },
+  {
+    title: "EthioDigizens Digital Literacy",
+    org: "Ethidigizens",
+    year: "2024",
+    description: "Digital literacy and online wellbeing training covering cybersecurity awareness and responsible technology use.",
+    category: "credential",
+    proofUrl: "#",
+  },
 ];
 
 export const skills: { categories: SkillCategory[] } = {

@@ -33,7 +33,7 @@ const Experience = () => {
             Experience & <span className="text-gradient">Education</span>
           </h2>
           <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
-            My professional experience, academic background, and software engineering growth.
+            My professional experience, academic background, and journey toward becoming a software engineer.
           </p>
         </div>
 
@@ -91,19 +91,20 @@ const Experience = () => {
                             </ul>
 
                             {exp.tags.length > 0 && (
-                              <div className="flex flex-wrap gap-1.5">
-                                {exp.tags.map((t) => (
-                                  <span
-                                    key={t}
-                                    className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md ${
-                                      exp.type === "Internship"
-                                        ? `text-white bg-gradient-to-r ${exp.color}`
-                                        : "text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/60"
-                                    }`}
-                                  >
-                                    {t}
-                                  </span>
-                                ))}
+                              <div className="mt-1">
+                                {exp.type !== "Internship" && (
+                                  <p className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold mb-1.5">Relevant Areas</p>
+                                )}
+                                <div className="flex flex-wrap gap-1.5">
+                                  {exp.tags.map((t) => (
+                                    <span
+                                      key={t}
+                                    className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400"
+                                    >
+                                      {t}
+                                    </span>
+                                  ))}
+                                </div>
                               </div>
                             )}
                           </div>

@@ -193,10 +193,12 @@ export const experience: Experience[] = [
     type: "Degree",
     color: "from-emerald-500 to-teal-500",
     points: [
-      "Building a strong foundation in software development, database systems, AI, and web technologies while applying academic knowledge through real-world projects.",
-      "Relevant coursework: Database Systems • Software Development • Artificial Intelligence • Web Technologies",
+      "Building a strong foundation in software development, information systems, and technology solutions.",
+      "Studying software development, database systems, AI, networking, and information systems.",
+      "Applying academic knowledge through real-world software projects and practical development.",
+      "Combining technology, problem-solving, and system design to build digital solutions.",
     ],
-    tags: ["Software Development", "Database Systems", "AI", "Web Technologies"],
+    tags: ["Information Systems", "Software Development", "Database Systems", "Artificial Intelligence"],
   },
   {
     role: "Software Engineering Intern",
@@ -207,7 +209,7 @@ export const experience: Experience[] = [
     points: [
       "Collaborating on full-stack application development in a team environment.",
       "Building and maintaining full-stack applications using React, Node.js, and relational databases.",
-      "Participating in engineering practices including code reviews, sprint planning, and collaboration.",
+      "Participating in engineering practices including code reviews, sprint planning, and team collaboration.",
     ],
     tags: ["Full-Stack", "Agile", "Code Reviews", "Team Collaboration"],
   },

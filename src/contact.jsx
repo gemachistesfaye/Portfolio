@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import { Mail, Phone, MapPin, Linkedin, Send, ArrowRight, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, ArrowRight, Clock } from "lucide-react";
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
 import CustomSelect from "./components/CustomSelect";
@@ -81,7 +81,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-28 px-6">
+    <section id="contact" className="pt-28 pb-16 px-6">
       <div ref={ref} className="max-w-6xl mx-auto">
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <SectionHeading
@@ -125,16 +125,6 @@ const Contact = () => {
                 <div>
                   <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">Response Time</p>
                   <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Within 24 hours</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-3 p-4 rounded-2xl border border-accent/20 bg-accent/[0.03]">
-              <div className="flex items-center gap-3">
-                <Send size={16} className="text-accent flex-shrink-0" />
-                <div>
-                  <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">Preferred Contact</p>
-                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Telegram / Email</p>
                 </div>
               </div>
             </div>

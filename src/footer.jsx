@@ -61,9 +61,12 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="pt-6 border-t border-slate-800/60 text-center">
+      <div className="pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
         <p className="text-[11px] text-slate-500">
           &copy; {new Date().getFullYear()} Gemachis Tesfaye. All rights reserved.
+        </p>
+        <p className="text-[11px] text-slate-500">
+          Last updated: July 2026
         </p>
       </div>
     </div>

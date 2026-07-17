@@ -1,6 +1,7 @@
 export interface Project {
   name: string;
   category: string;
+  role: string;
   problem: string;
   approach: string;
   outcome: string;
@@ -109,19 +110,6 @@ export interface Service {
   title: string;
   desc: string;
   color: string;
-}
-
-export interface Testimonial {
-  name: string;
-  role: string;
-  text: string;
-  rating: number;
-}
-
-export interface Certificate {
-  name: string;
-  issuer: string;
-  file: string;
 }
 
 export interface SkillCategory {

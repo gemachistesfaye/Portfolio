@@ -3,10 +3,10 @@ import { useInView } from "react-intersection-observer";
 import { Sparkles } from "lucide-react";
 
 const rotatingTexts = [
-  "I help businesses automate with AI",
-  "Building systems that scale",
-  "Turning ideas into real products",
-  "Full-Stack • AI • Systems",
+  "Building modern web applications",
+  "Full-Stack Development & AI Integration",
+  "Turning ideas into production-ready products",
+  "Healthcare • Education • Business • Aviation",
   "Clean code, real results",
 ];
 
@@ -156,7 +156,7 @@ const Home = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" aria-hidden="true" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
             </span>
-            Available for freelance
+            Available for: Freelance • Internships • Engineering Roles
           </div>
 
           {/* Name */}
@@ -185,7 +185,7 @@ const Home = () => {
           >
             <Sparkles size={14} className="text-accent" />
             <p className="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-300" style={{ letterSpacing: '0.04em' }}>
-              Full-Stack Software Engineer & AI Systems Builder
+              Full-Stack Developer | Aspiring Software & AI Engineer
             </p>
           </div>
 
@@ -195,8 +195,8 @@ const Home = () => {
             style={{ animationDelay: '0.4s', letterSpacing: '0.01em' }}
             key={`desc-${replayKey}`}
           >
-            I build business websites, web apps, and AI-powered systems that help companies automate, scale, and grow.
-            From idea to deployment — I turn concepts into real working products.
+            I build modern web applications, backend systems, and AI-enhanced solutions that help businesses and organizations improve operations, automate workflows, and solve real-world challenges.
+            From idea to deployment — I turn concepts into production-ready products.
           </p>
 
           {/* SlideUpRotate rotating text */}

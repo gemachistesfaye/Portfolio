@@ -22,7 +22,7 @@ const Project = () => {
             label="Projects"
             title="Featured"
             highlight="Work"
-            description="Real projects with real results. Each one built from problem to production."
+            description="Real-world projects built to solve practical problems through full-stack development, database engineering, and AI integration."
           />
         </div>
 

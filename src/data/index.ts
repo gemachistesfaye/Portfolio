@@ -1,9 +1,10 @@
-import { Project, Service, Testimonial, Certificate, SkillCategory, Experience } from "../types";
+import { Project, Service, SkillCategory, Experience } from "../types";
 
 export const projects: Project[] = [
   {
     name: "Sheger Health Connect",
     category: "Healthcare",
+    role: "Full-Stack Developer",
     problem: "Clinics in Addis Ababa needed a digital system to manage appointments and reduce patient wait times.",
     approach: "Built a smart healthcare platform that helps clinics manage patients, schedule appointments, and enable video consultations.",
     outcome: "Built a role-based healthcare platform with real-time messaging, AI triage, and multilingual support.",
@@ -17,7 +18,8 @@ export const projects: Project[] = [
   {
     name: "Ethio-Brew",
     category: "E-Commerce",
-    problem: "Ethiopian coffee producers needed a modern online marketplace to reach international buyers.",
+    role: "Full-Stack Developer",
+    problem: "Ethiopian coffee producers needed a modern online marketplace to connect with customers through digital commerce.",
     approach: "Developed a multilingual coffee marketplace with smart product recommendations and local payment support.",
     outcome: "Built a complete marketplace platform with product listings, search, and multilingual support.",
     tags: ["Node.js", "MySQL", "Gemini AI", "React"],
@@ -29,8 +31,9 @@ export const projects: Project[] = [
   {
     name: "AeroDemand-AI",
     category: "AI / ML",
+    role: "ML Engineer & Backend Developer",
     problem: "Airlines needed accurate demand forecasting to optimize pricing and capacity planning.",
-    approach: "Built an AI-powered forecasting tool with interactive dashboards and automated report generation.",
+    approach: "Built an AI-powered forecasting system with interactive dashboards and automated report generation to help airlines predict passenger demand.",
     outcome: "Built an ML forecasting pipeline with interactive dashboards and automated report generation.",
     tags: ["Python", "Flask", "ML", "REST API", "Plotly"],
     github: "https://github.com/gemachistesfaye/AeroDemand-AI",
@@ -41,6 +44,7 @@ export const projects: Project[] = [
   {
     name: "TracePoint",
     category: "PWA / Maps",
+    role: "Full-Stack Developer",
     problem: "Students on campus frequently lost items with no efficient way to report or find them.",
     approach: "Created a smart lost-and-found app with AI matching, interactive campus maps, and real-time notifications.",
     outcome: "Built a PWA with AI matching, interactive campus maps, and real-time notifications.",
@@ -53,6 +57,7 @@ export const projects: Project[] = [
   {
     name: "SmartQuiz AI",
     category: "EdTech",
+    role: "Full-Stack Developer",
     problem: "Students needed an interactive way to learn programming with personalized feedback.",
     approach: "Designed a gamified learning platform with AI tutor, code labs, and progress tracking.",
     outcome: "Built a gamified learning platform with AI tutor, code labs, and progress tracking.",
@@ -71,8 +76,8 @@ export const services: Service[] = [
     color: "from-blue-500 to-indigo-600",
   },
   {
-    title: "AI-Powered Applications",
-    desc: "Intelligent features using GPT, Gemini, and custom ML models — from recommendation engines to automated analysis.",
+    title: "AI-Enhanced Applications",
+    desc: "Integrating AI capabilities into software products through intelligent assistants, automation, recommendations, and AI-powered features.",
     color: "from-emerald-500 to-teal-600",
   },
   {
@@ -91,20 +96,10 @@ export const services: Service[] = [
     color: "from-violet-500 to-purple-600",
   },
   {
-    title: "Digital Transformation",
+    title: "Business Automation Systems",
     desc: "Converting manual processes into automated digital workflows — from legacy systems to modern cloud architectures.",
     color: "from-rose-500 to-pink-600",
   },
-];
-
-export const testimonials: Testimonial[] = [];
-
-export const certificates: Certificate[] = [
-  { name: "Frontend Development", issuer: "IS Hub AAU", file: "Frontend-Dev-certificate.jpeg" },
-  { name: "AI Bootcamp", issuer: "ISHub", file: "AI-bootcamp-certificate.jpeg" },
-  { name: "ALX Foundations", issuer: "ALX", file: "alx-certificate.jpeg" },
-  { name: "Software Frameworks", issuer: "Haramaya University", file: "Software-Frameworks-certificate.jpeg" },
-  { name: "Ethidigizens", issuer: "Ethidigizens", file: "ethidigizens.jpg" },
 ];
 
 export interface Achievement {
@@ -162,24 +157,24 @@ export const achievements: Achievement[] = [
 export const skills: { categories: SkillCategory[] } = {
   categories: [
     {
-      label: "Frontend",
+      label: "Full-Stack Development",
       color: "from-blue-500 to-indigo-600",
-      items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React.js", "Next.js", "Tailwind CSS", "Responsive Design", "UI Development", "Component Architecture"],
+      items: ["React.js", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Node.js", "Express.js", "Python", "Flask", "REST APIs", "Authentication"],
     },
     {
-      label: "Backend",
+      label: "Database & Backend Systems",
       color: "from-cyan-500 to-blue-600",
-      items: ["Node.js", "Express.js", "Python", "Flask", "REST APIs", "Authentication", "API Design", "Server-Side Logic"],
+      items: ["MySQL", "PostgreSQL", "Firebase", "Supabase", "Database Design", "SQL Optimization", "Data Modeling", "Schema Design", "Backend Architecture"],
     },
     {
-      label: "Databases",
-      color: "from-amber-500 to-orange-600",
-      items: ["SQL", "MySQL", "PostgreSQL", "Firebase", "Supabase", "Database Design", "Normalization", "Query Optimization"],
-    },
-    {
-      label: "AI & Tools",
+      label: "AI Integration",
       color: "from-emerald-500 to-teal-600",
-      items: ["GPT Integration", "Gemini APIs", "Prompt Engineering", "Power BI", "Data Visualization", "Git", "GitHub", "Vercel", "Render"],
+      items: ["OpenAI APIs", "Gemini APIs", "Prompt Engineering", "AI Assistants", "AI Automation", "Machine Learning Fundamentals"],
+    },
+    {
+      label: "Development Tools & Cloud",
+      color: "from-amber-500 to-orange-600",
+      items: ["Git", "GitHub", "Vercel", "Render", "Firebase Hosting", "VS Code", "Agile Development", "CI/CD"],
     },
   ],
 };

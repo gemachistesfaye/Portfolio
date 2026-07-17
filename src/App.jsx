@@ -7,7 +7,9 @@ import Services from "./services";
 import Project from "./project";
 import CurrentlyBuilding from "./currentlyBuilding";
 import Achievements from "./achievements";
+import ArchitectureSection from "./architectureSection";
 import EngineeringJourney from "./engineeringJourney";
+import GitHubActivity from "./githubActivity";
 import Organizations from "./organizations";
 import Experience from "./experience";
 import Contact from "./contact";
@@ -75,7 +77,9 @@ function Portfolio() {
         <Project />
         <CurrentlyBuilding />
         <Achievements />
+        <ArchitectureSection />
         <EngineeringJourney />
+        <GitHubActivity />
         <Organizations />
         <Experience />
         <Contact />

@@ -28,7 +28,7 @@ const Footer = () => (
             <span className="text-lg font-extrabold text-white tracking-tight">Gemachis Tesfaye</span>
           </div>
           <p className="text-[13px] text-slate-400 leading-relaxed max-w-xs">
-            Full-Stack Software Engineer & AI Systems Builder
+            Full-Stack Developer | Aspiring Software & AI Engineer
           </p>
           <div className="flex gap-2 mt-4">
             {socials.map((s) => (

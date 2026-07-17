@@ -6,18 +6,18 @@ import SectionHeading from "./components/SectionHeading";
 
 const serviceIcons = {
   "Business Platforms": <Globe size={22} />,
-  "AI-Powered Applications": <Brain size={22} />,
+  "AI-Enhanced Applications": <Brain size={22} />,
   "Data-Driven Systems": <BarChart3 size={22} />,
   "API Development": <Code size={22} />,
   "Database Architecture": <Database size={22} />,
-  "Digital Transformation": <Layers size={22} />,
+  "Business Automation Systems": <Layers size={22} />,
 };
 
 const skillIcons = {
-  Frontend: <Code size={18} />,
-  Backend: <Server size={18} />,
-  Databases: <Database size={18} />,
-  "AI & Tools": <Brain size={18} />,
+  "Full-Stack Development": <Code size={18} />,
+  "Database & Backend Systems": <Database size={18} />,
+  "AI Integration": <Brain size={18} />,
+  "Development Tools & Cloud": <Server size={18} />,
 };
 
 const Services = () => {
@@ -32,7 +32,7 @@ const Services = () => {
               label="Services"
               title="What I Can Build"
               highlight="For You"
-              description="Full-stack development, AI integration, and data-driven solutions — from concept to deployment."
+              description="Full-stack development, AI integration, and modern deployment — from concept to production."
             />
           </div>
 
@@ -64,9 +64,9 @@ const Services = () => {
         <div className="max-w-5xl mx-auto">
           <SectionHeading
             label="Skills"
-            title="Technical"
-            highlight="Expertise"
-            description="Full-stack development, databases, AI, and analytics."
+            title="Engineering"
+            highlight="Capabilities"
+            description="Building scalable web applications, backend systems, and AI-enhanced software solutions."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">

@@ -20,9 +20,14 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true }) => {
       </div>
 
       <div className="p-6">
-        <h3 className="text-lg font-extrabold text-slate-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
-          {project.name}
-        </h3>
+        <div className="flex items-center justify-between mb-1">
+          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-accent transition-colors">
+            {project.name}
+          </h3>
+        </div>
+        <p className="text-[11px] font-semibold text-accent uppercase tracking-wider mb-2">
+          {project.role}
+        </p>
 
         <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
           {project.problem}

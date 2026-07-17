@@ -7,15 +7,16 @@ import TermsModal from "./components/TermsModal";
 
 const highlights = [
   { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Built" },
-  { icon: <Users size={18} />, label: "5+", desc: "Production Apps" },
-  { icon: <Rocket size={18} />, label: "2+", desc: "Years Building Software" },
+  { icon: <Users size={18} />, label: "5+", desc: "Full-Stack Applications" },
+  { icon: <Rocket size={18} />, label: "15+", desc: "Technologies Used" },
+  { icon: <Github size={18} />, label: "2+", desc: "Years Learning & Building" },
 ];
 
 const steps = [
   { icon: <MessageSquare size={20} />, title: "Discovery & Planning", desc: "We discuss your goals, requirements, and timeline. I analyze the technical needs and create a clear project roadmap.", color: "from-blue-500 to-indigo-600" },
   { icon: <Palette size={20} />, title: "Design & Architecture", desc: "I design the system architecture, database schema, and user flows. You review and approve before development begins.", color: "from-violet-500 to-purple-600" },
   { icon: <Rocket size={20} />, title: "Development & Testing", desc: "Agile development with regular demos. You see progress every week and can provide feedback in real-time.", color: "from-emerald-500 to-teal-600" },
-  { icon: <Headphones size={20} />, title: "Launch & Support", desc: "Deployment, documentation, and 6 months of free post-launch support. I am always a message away.", color: "from-amber-500 to-orange-600" },
+  { icon: <Headphones size={20} />, title: "Deployment & Maintenance", desc: "I deploy applications to cloud platforms and provide ongoing improvements, monitoring, and bug fixes.", color: "from-amber-500 to-orange-600" },
 ];
 
 const About = () => {
@@ -59,22 +60,21 @@ const About = () => {
               <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">About</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">
                 Building scalable digital products{' '}
-                <span className="text-gradient">and AI-powered systems</span>
+                <span className="text-gradient">and AI-enhanced systems</span>
               </h2>
 
               <div className="space-y-3 text-base text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
                 <p>
-                  I am a Software Engineer focused on building scalable digital products and
-                  AI-powered systems that solve real-world problems.
+                  I am a Full-Stack Developer and aspiring Software & AI Engineer focused on building scalable digital products that solve real-world problems.
                 </p>
                 <p>
-                  I specialize in turning ideas into production-grade applications using modern technologies like
-                  React, Node.js, Python, and AI APIs. I have built and deployed multiple systems
+                  I specialize in creating modern web applications, backend systems, and AI-enhanced solutions using technologies like
+                  React, Node.js, Python, and modern cloud platforms. I have built and deployed multiple systems
                   including healthcare platforms, business dashboards, and data-driven applications.
                 </p>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                 {highlights.map((h, i) => (
                   <div
                     key={h.label}
@@ -142,7 +142,7 @@ const About = () => {
                       {step.icon}
                     </div>
                     {i === steps.length - 1 ? (
-                      <h3 className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-widest mb-3">Launch + 6-Month Support</h3>
+                      <h3 className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-widest mb-3">Deployment & Maintenance</h3>
                     ) : (
                       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Step {i + 1}</span>
                     )}
@@ -151,7 +151,7 @@ const About = () => {
                     {step.title}
                   </h3>
                   <p className="text-[12px] sm:text-[13px] text-stone-500">
-                    {i === steps.length - 1 ? "I deploy your product and fix any issues for 6 months at no extra cost." : step.desc}
+                    {i === steps.length - 1 ? "I deploy applications to cloud platforms and provide ongoing improvements, monitoring, and bug fixes." : step.desc}
                   </p>
                 </div>
               </div>

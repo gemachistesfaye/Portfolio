@@ -101,7 +101,7 @@ const Contact = () => {
             <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220]">
               <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-2">Typical projects</p>
               <ul className="space-y-1">
-                {["Business websites", "Full-stack applications", "AI-powered systems", "Dashboards and automation tools"].map((item) => (
+                {["Business websites", "Full-stack applications", "AI-enhanced systems", "Dashboards and automation tools"].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
                     <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
                     {item}
@@ -141,6 +141,16 @@ const Contact = () => {
                 <div>
                   <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">Response Time</p>
                   <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Within 24 hours</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3 p-4 rounded-2xl border border-accent/20 bg-accent/[0.03]">
+              <div className="flex items-center gap-3">
+                <Send size={16} className="text-accent flex-shrink-0" />
+                <div>
+                  <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">Preferred Contact</p>
+                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Telegram / Email</p>
                 </div>
               </div>
             </div>

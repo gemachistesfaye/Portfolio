@@ -39,6 +39,8 @@ const CustomSelect = ({ value, options, placeholder, onChange, disabled, isOpen,
 const FloatingButtons = () => {
   const [showCard, setShowCard] = useState(false);
   const [nearFooter, setNearFooter] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", projectType: "", budget: "", project: "" });
   const [holdProgress, setHoldProgress] = useState(0);
   const [isHolding, setIsHolding] = useState(false);
@@ -107,6 +109,16 @@ const FloatingButtons = () => {
     const winHeight = window.innerHeight;
     const fromBottom = docHeight - winHeight - scrollTop;
     setNearFooter(fromBottom < 200);
+    setPastHero(scrollTop > 300);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(max-width: 639px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
   useEffect(() => {
@@ -305,7 +317,7 @@ const FloatingButtons = () => {
         onTouchStart={startHold}
         onTouchEnd={cancelHold}
         onTouchCancel={cancelHold}
-        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-full shadow-xl shadow-accent/20 hover:shadow-accent/40 border border-white/10 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-full shadow-xl shadow-accent/20 hover:shadow-accent/40 border border-white/10 transition-all duration-300 group sm:bottom-20 select-none outline-none focus:outline-none ${(nearFooter || (isMobile && !pastHero)) ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         aria-label={showCard ? "Close project inquiry form" : "Open project inquiry form"}
         aria-expanded={showCard}
         aria-controls="hire-me-modal"

@@ -50,7 +50,7 @@ const TermsModal = ({ isOpen, onClose }) => {
       aria-labelledby="modal-title"
     >
       <div
-        className="w-full max-w-xl max-h-[90vh] sm:max-h-[85vh] flex flex-col rounded-2xl sm:rounded-3xl border border-amber-100/60 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] animate-scale-in"
+        className="w-full max-w-xl max-h-[90vh] sm:max-h-[85vh] flex flex-col rounded-2xl sm:rounded-3xl border border-amber-100/60 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.15)] animate-scale-in overflow-hidden"
         style={{ background: "#FFFBF5" }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -73,7 +73,7 @@ const TermsModal = ({ isOpen, onClose }) => {
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-5 sm:py-6 space-y-7 text-[13px] sm:text-sm leading-relaxed text-stone-600 overscroll-contain">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden px-5 sm:px-7 py-5 sm:py-6 space-y-7 text-[13px] sm:text-sm leading-relaxed text-stone-600 overscroll-contain">
 
           {/* Intro */}
           <div>
@@ -95,12 +95,12 @@ const TermsModal = ({ isOpen, onClose }) => {
             <h3 className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-widest mb-3">
               What I Build
             </h3>
-            <ul className="space-y-1.5 pl-4 list-disc marker:text-amber-400">
-              <li>Business websites & landing pages that convert</li>
-              <li>Full-stack web applications with modern architecture</li>
-              <li>Admin dashboards & management systems</li>
-              <li>AI-enhanced tools and automation systems</li>
-              <li>Database design, APIs, and third-party integrations</li>
+            <ul className="space-y-1.5 pl-4 list-disc marker:text-amber-400 overflow-hidden">
+              <li className="break-words">Business websites & landing pages that convert</li>
+              <li className="break-words">Full-stack web applications with modern architecture</li>
+              <li className="break-words">Admin dashboards & management systems</li>
+              <li className="break-words">AI-enhanced tools and automation systems</li>
+              <li className="break-words">Database design, APIs, and third-party integrations</li>
             </ul>
           </div>
 

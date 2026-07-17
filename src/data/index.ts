@@ -196,7 +196,7 @@ export const experience: Experience[] = [
       "Building a strong foundation in software development, database systems, AI, and web technologies while applying academic knowledge through real-world projects.",
       "Relevant coursework: Database Systems • Software Development • Artificial Intelligence • Web Technologies",
     ],
-    tags: [],
+    tags: ["Software Development", "Database Systems", "AI", "Web Technologies"],
   },
   {
     role: "Software Engineering Intern",

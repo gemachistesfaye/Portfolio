@@ -39,7 +39,7 @@ const Experience = () => {
 
         <div className={`max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-right' : ''}`}>
           <div className="relative">
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-accent/40 via-slate-200 dark:via-slate-800 to-transparent" />
+            <div className="absolute left-6 top-0 w-px h-full bg-gradient-to-b from-accent/40 via-slate-200 dark:via-slate-800 to-transparent" />
 
             <div className="space-y-10">
               {sectionOrder.map((type) => {
@@ -90,16 +90,22 @@ const Experience = () => {
                               ))}
                             </ul>
 
-                            <div className="flex flex-wrap gap-1.5">
-                              {exp.tags.map((t) => (
-                                <span
-                                  key={t}
-                                  className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md text-white bg-gradient-to-r ${exp.color}`}
-                                >
-                                  {t}
-                                </span>
-                              ))}
-                            </div>
+                            {exp.tags.length > 0 && (
+                              <div className="flex flex-wrap gap-1.5">
+                                {exp.tags.map((t) => (
+                                  <span
+                                    key={t}
+                                    className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md ${
+                                      exp.type === "Internship"
+                                        ? `text-white bg-gradient-to-r ${exp.color}`
+                                        : "text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/60"
+                                    }`}
+                                  >
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
                       ))}

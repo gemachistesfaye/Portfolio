@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Download, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight, Github } from "lucide-react";
+import { Download, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight, Github } from "lucide-react";
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
 import TermsModal from "./components/TermsModal";
 
 const highlights = [
   { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Built" },
-  { icon: <Users size={18} />, label: "5+", desc: "Real-world Apps" },
-  { icon: <TrendingUp size={18} />, label: "30+", desc: "GitHub Repos" },
-  { icon: <Rocket size={18} />, label: "2+", desc: "Years Experience" },
-
+  { icon: <Users size={18} />, label: "5+", desc: "Production Apps" },
+  { icon: <Rocket size={18} />, label: "2+", desc: "Years Building Software" },
 ];
 
 const steps = [
@@ -76,7 +74,7 @@ const About = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+              <div className="grid grid-cols-3 gap-3 mb-8">
                 {highlights.map((h, i) => (
                   <div
                     key={h.label}
@@ -94,29 +92,6 @@ const About = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-
-              <div className="mb-8">
-                <p className="text-[11px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-3">Featured Repos</p>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    { name: "Sheger-Health-Connect", desc: "Healthcare platform" },
-                    { name: "ethio_brew", desc: "Business app" },
-                    { name: "AeroDemand-AI", desc: "AI system" },
-                    { name: "TracePoint", desc: "Data tracker" },
-                  ].map((repo) => (
-                    <a
-                      key={repo.name}
-                      href={`https://github.com/gemachistesfaye/${repo.name}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700/60 bg-slate-50 dark:bg-white/[0.03] hover:border-accent/40 hover:text-accent text-slate-600 dark:text-slate-400 transition-all duration-300 text-xs font-medium"
-                    >
-                      <Github size={12} />
-                      {repo.name}
-                    </a>
-                  ))}
-                </div>
               </div>
 
               <div className="flex flex-row items-center gap-3 justify-center sm:justify-start">

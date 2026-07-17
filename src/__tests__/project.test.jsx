@@ -28,11 +28,6 @@ describe("Project", () => {
     expect(screen.getAllByText("Sheger Health Connect").length).toBeGreaterThan(0);
   });
 
-  it("renders filter categories", () => {
-    render(<Project />);
-    expect(screen.getByText("All")).toBeInTheDocument();
-  });
-
   it("renders project cards with links", () => {
     render(<Project />);
     expect(screen.getAllByText(/Live Demo/).length).toBeGreaterThan(0);

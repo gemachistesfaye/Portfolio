@@ -161,21 +161,92 @@ const Contact = () => {
               </div>
 
               <div className="mb-5 relative z-10">
-                <label htmlFor="subject" className="sr-only">Subject</label>
-                <input
-                  id="subject"
-                  type="text"
-                  name="subject"
-                  placeholder="Subject"
+                <label htmlFor="projectType" className="sr-only">Project type</label>
+                <select
+                  id="projectType"
+                  name="projectType"
                   required
-                  onFocus={() => setFocused("subject")}
+                  onFocus={() => setFocused("projectType")}
                   onBlur={() => setFocused(null)}
-                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
-                    focused === "subject"
+                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white focus:outline-none transition-all duration-300 ${
+                    focused === "projectType"
                       ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
                       : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
                   }`}
-                />
+                  defaultValue=""
+                >
+                  <option value="" disabled>Project Type</option>
+                  <option value="website">Website</option>
+                  <option value="webapp">Business Application</option>
+                  <option value="ai">AI System</option>
+                  <option value="dashboard">Dashboard</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 relative z-10">
+                <div className="relative">
+                  <label htmlFor="budget" className="sr-only">Budget</label>
+                  <select
+                    id="budget"
+                    name="budget"
+                    onFocus={() => setFocused("budget")}
+                    onBlur={() => setFocused(null)}
+                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white focus:outline-none transition-all duration-300 ${
+                      focused === "budget"
+                        ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
+                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                    }`}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Budget (Optional)</option>
+                    <option value="discuss-later">Discuss Later</option>
+                    <option value="under-10k">Under 10,000 ETB</option>
+                    <option value="10k-50k">10,000 - 50,000 ETB</option>
+                    <option value="50k+">50,000+ ETB</option>
+                  </select>
+                </div>
+                <div className="relative">
+                  <label htmlFor="timeline" className="sr-only">Timeline</label>
+                  <select
+                    id="timeline"
+                    name="timeline"
+                    onFocus={() => setFocused("timeline")}
+                    onBlur={() => setFocused(null)}
+                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white focus:outline-none transition-all duration-300 ${
+                      focused === "timeline"
+                        ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
+                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                    }`}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Timeline (Optional)</option>
+                    <option value="asap">ASAP</option>
+                    <option value="1month">Within 1 month</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </div>
+                <div className="relative">
+                  <label htmlFor="size" className="sr-only">Project size</label>
+                  <select
+                    id="size"
+                    name="size"
+                    onFocus={() => setFocused("size")}
+                    onBlur={() => setFocused(null)}
+                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white focus:outline-none transition-all duration-300 ${
+                      focused === "size"
+                        ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
+                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                    }`}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Size (Optional)</option>
+                    <option value="small">Small (1-3 pages)</option>
+                    <option value="medium">Medium (4-10 pages)</option>
+                    <option value="large">Large (10+ pages)</option>
+                    <option value="ongoing">Ongoing / Retainer</option>
+                  </select>
+                </div>
               </div>
 
               <div className="mb-5 relative z-10">
@@ -197,10 +268,14 @@ const Contact = () => {
                 />
               </div>
 
+              <p className="text-[11px] text-slate-400 mb-5 relative z-10">
+                Your information is kept private and never shared. I'll only use it to respond to your inquiry.
+              </p>
+
               {status === "sent" && (
                 <div className="flex items-center gap-2 p-3 mb-4 rounded-xl bg-accent/10 border border-accent/20">
                   <div className="w-2 h-2 rounded-full bg-accent" />
-                  <p className="text-sm text-accent font-medium">Message sent! I'll get back to you within 24 hours.</p>
+                  <p className="text-sm text-accent font-medium">Inquiry received! I'll review your project details and get back to you within 24 hours.</p>
                 </div>
               )}
               {status === "error" && (

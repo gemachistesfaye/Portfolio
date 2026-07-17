@@ -7,7 +7,7 @@ const client = createClient({
   useCdn: true,
 });
 
-const SITE_URL = "https://gemachistesfaye.github.io/Portfolio";
+const SITE_URL = "https://gemachisdev.vercel.app";
 const SITE_TITLE = "Gemachis Tesfaye | Blog";
 const SITE_DESCRIPTION = "Thoughts on web development, AI, and building scalable applications.";
 

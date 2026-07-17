@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Project from "../project";
 
-jest.mock("react-intersection-observer", () => {
+vi.mock("react-intersection-observer", () => {
   const mockRef = { current: null };
   const useInView = () => [mockRef, true, { isIntersecting: true }];
   return {
@@ -13,32 +13,28 @@ jest.mock("react-intersection-observer", () => {
   };
 });
 
+vi.mock("react-router-dom", () => ({
+  useNavigate: () => vi.fn(),
+}));
+
 describe("Project", () => {
   it("renders the section heading", () => {
     render(<Project />);
     expect(screen.getAllByText("Featured").length).toBeGreaterThan(0);
   });
 
-  it("renders the first project", () => {
+  it("renders projects", () => {
     render(<Project />);
     expect(screen.getAllByText("Sheger Health Connect").length).toBeGreaterThan(0);
   });
 
-  it("renders navigation buttons", () => {
+  it("renders filter categories", () => {
     render(<Project />);
-    expect(screen.getByRole("button", { name: /previous project/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /next project/i })).toBeInTheDocument();
+    expect(screen.getByText("All")).toBeInTheDocument();
   });
 
-  it("renders dot indicators", () => {
+  it("renders project cards with links", () => {
     render(<Project />);
-    const tabs = screen.getAllByRole("tab");
-    expect(tabs.length).toBe(5);
-  });
-
-  it("renders demo and github links", () => {
-    render(<Project />);
-    expect(screen.getByLabelText(/View live demo of Sheger Health Connect/)).toBeInTheDocument();
-    expect(screen.getByLabelText(/View source code of Sheger Health Connect/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Live Demo/).length).toBeGreaterThan(0);
   });
 });

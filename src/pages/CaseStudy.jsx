@@ -63,6 +63,22 @@ const CaseStudy = () => {
         <meta property="og:title" content={`${study.name} — Case Study`} />
         <meta property="og:description" content={study.description} />
         <meta property="og:type" content="article" />
+        <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareSourceCode",
+          "name": study.name,
+          "description": study.description,
+          "author": {
+            "@type": "Person",
+            "name": "Gemachis Tesfaye",
+            "url": "https://gemachisdev.vercel.app"
+          },
+          "codeRepository": study.github,
+          "programmingLanguage": study.tags,
+          "url": study.demo
+        })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-[#020617]">

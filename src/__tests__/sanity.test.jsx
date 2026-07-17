@@ -1,22 +1,21 @@
 import { urlFor, urlForPreview, urlForBlur } from "../lib/sanity";
 
-
-jest.mock("@sanity/client", () => ({
-  createClient: jest.fn(() => ({})),
+vi.mock("@sanity/client", () => ({
+  createClient: vi.fn(() => ({})),
 }));
 
-jest.mock("@sanity/image-url", () => {
+vi.mock("@sanity/image-url", () => {
   const builder = {
-    image: jest.fn().mockReturnThis(),
-    auto: jest.fn().mockReturnThis(),
-    width: jest.fn().mockReturnThis(),
-    quality: jest.fn().mockReturnThis(),
-    blur: jest.fn().mockReturnThis(),
-    url: jest.fn().mockReturnValue("https://example.com/image.jpg"),
+    image: vi.fn().mockReturnThis(),
+    auto: vi.fn().mockReturnThis(),
+    width: vi.fn().mockReturnThis(),
+    quality: vi.fn().mockReturnThis(),
+    blur: vi.fn().mockReturnThis(),
+    url: vi.fn().mockReturnValue("https://example.com/image.jpg"),
   };
   return {
     __esModule: true,
-    default: jest.fn(() => builder),
+    default: vi.fn(() => builder),
   };
 });
 

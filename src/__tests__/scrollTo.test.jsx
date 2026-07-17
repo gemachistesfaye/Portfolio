@@ -5,7 +5,7 @@ describe("scrollToSection", () => {
     const el = document.createElement("div");
     el.id = "test-section";
     document.body.appendChild(el);
-    el.scrollIntoView = jest.fn();
+    el.scrollIntoView = vi.fn();
     scrollToSection("test-section");
     expect(el.scrollIntoView).toHaveBeenCalledWith({ behavior: "smooth" });
     document.body.removeChild(el);
@@ -18,7 +18,7 @@ describe("scrollToSection", () => {
 
 describe("scrollToTop", () => {
   it("scrolls to top", () => {
-    window.scrollTo = jest.fn();
+    window.scrollTo = vi.fn();
     scrollToTop();
     expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
   });

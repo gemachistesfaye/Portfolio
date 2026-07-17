@@ -3,6 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Linkedin, Send, ArrowRight, Clock } from "lucide-react";
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
+import CustomSelect from "./components/CustomSelect";
 
 const XIcon = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
@@ -34,6 +35,10 @@ const Contact = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [status, setStatus] = useState("idle");
   const [focused, setFocused] = useState(null);
+  const [projectType, setProjectType] = useState("");
+  const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [size, setSize] = useState("");
   const formLoadTime = useRef(Date.now());
 
   const handleSubmit = async (e) => {
@@ -63,7 +68,13 @@ const Contact = () => {
         body: JSON.stringify(payload)
       });
       setStatus(res.ok ? "sent" : "error");
-      if (res.ok) e.target.reset();
+      if (res.ok) {
+        e.target.reset();
+        setProjectType("");
+        setBudget("");
+        setTimeline("");
+        setSize("");
+      }
     } catch {
       setStatus("error");
     }
@@ -75,14 +86,30 @@ const Contact = () => {
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <SectionHeading
               label="Contact"
-              title="Let's Discuss Your"
-              highlight="Project"
-              description="Share your project details and I will review your requirements and respond within 24 hours."
+              title="Let's Build"
+              highlight="Something Together"
+              description="Tell me about your idea, requirements, and goals. I'll review your project details and respond within 24 hours."
             />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className={`lg:col-span-2 space-y-4 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              For quick questions → use the Hire Me button. For detailed projects → complete this form.
+            </p>
+
+            <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220]">
+              <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-2">Typical projects</p>
+              <ul className="space-y-1">
+                {["Business websites", "Full-stack applications", "AI-powered systems", "Dashboards and automation tools"].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                    <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             {[
               { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-blue-500 to-indigo-500" },
               { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-emerald-500 to-teal-500" },
@@ -120,12 +147,9 @@ const Contact = () => {
           </div>
 
           <div className={`lg:col-span-3 opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
-            <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
-              For a quick inquiry, use the floating button above. This form is for detailed project requirements.
-            </p>
             <form
               onSubmit={handleSubmit}
-              className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm relative overflow-hidden"
+              className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm relative"
             >
               <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -167,91 +191,57 @@ const Contact = () => {
               </div>
 
               <div className="mb-5 relative z-10">
-                <label htmlFor="projectType" className="sr-only">Project type</label>
-                <select
-                  id="projectType"
+                <CustomSelect
                   name="projectType"
+                  value={projectType}
+                  onChange={setProjectType}
+                  placeholder="Project Type"
                   required
-                  onFocus={() => setFocused("projectType")}
-                  onBlur={() => setFocused(null)}
-                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white focus:outline-none transition-all duration-300 ${
-                    focused === "projectType"
-                      ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                      : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
-                  }`}
-                  defaultValue=""
-                >
-                  <option value="" disabled>Project Type</option>
-                  <option value="website">Website</option>
-                  <option value="webapp">Business Application</option>
-                  <option value="ai">AI System</option>
-                  <option value="dashboard">Dashboard</option>
-                  <option value="other">Other</option>
-                </select>
+                  options={[
+                    { value: "website", label: "Website" },
+                    { value: "webapp", label: "Business Application" },
+                    { value: "ai", label: "AI System" },
+                    { value: "dashboard", label: "Dashboard" },
+                    { value: "other", label: "Other" },
+                  ]}
+                />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 relative z-10">
-                <div className="relative">
-                  <label htmlFor="budget" className="sr-only">Budget</label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    onFocus={() => setFocused("budget")}
-                    onBlur={() => setFocused(null)}
-                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white focus:outline-none transition-all duration-300 ${
-                      focused === "budget"
-                        ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
-                    }`}
-                    defaultValue=""
-                  >
-                    <option value="" disabled>Budget (Optional)</option>
-                    <option value="discuss-later">Discuss Later</option>
-                    <option value="under-10k">Under 10,000 ETB</option>
-                    <option value="10k-50k">10,000 - 50,000 ETB</option>
-                    <option value="50k+">50,000+ ETB</option>
-                  </select>
-                </div>
-                <div className="relative">
-                  <label htmlFor="timeline" className="sr-only">Timeline</label>
-                  <select
-                    id="timeline"
-                    name="timeline"
-                    onFocus={() => setFocused("timeline")}
-                    onBlur={() => setFocused(null)}
-                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white focus:outline-none transition-all duration-300 ${
-                      focused === "timeline"
-                        ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
-                    }`}
-                    defaultValue=""
-                  >
-                    <option value="" disabled>Timeline (Optional)</option>
-                    <option value="asap">ASAP</option>
-                    <option value="1month">Within 1 month</option>
-                    <option value="flexible">Flexible</option>
-                  </select>
-                </div>
-                <div className="relative">
-                  <label htmlFor="size" className="sr-only">Project size</label>
-                  <select
-                    id="size"
-                    name="size"
-                    onFocus={() => setFocused("size")}
-                    onBlur={() => setFocused(null)}
-                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white focus:outline-none transition-all duration-300 ${
-                      focused === "size"
-                        ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
-                    }`}
-                    defaultValue=""
-                  >
-                    <option value="" disabled>Size (Optional)</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                  </select>
-                </div>
+                <CustomSelect
+                  name="budget"
+                  value={budget}
+                  onChange={setBudget}
+                  placeholder="Budget (Optional)"
+                  options={[
+                    { value: "discuss-later", label: "Discuss Later" },
+                    { value: "under-10k", label: "Under 10,000 ETB" },
+                    { value: "10k-50k", label: "10,000 - 50,000 ETB" },
+                    { value: "50k+", label: "50,000+ ETB" },
+                  ]}
+                />
+                <CustomSelect
+                  name="timeline"
+                  value={timeline}
+                  onChange={setTimeline}
+                  placeholder="Timeline (Optional)"
+                  options={[
+                    { value: "asap", label: "ASAP" },
+                    { value: "1month", label: "Within 1 month" },
+                    { value: "flexible", label: "Flexible" },
+                  ]}
+                />
+                <CustomSelect
+                  name="size"
+                  value={size}
+                  onChange={setSize}
+                  placeholder="Size (Optional)"
+                  options={[
+                    { value: "small", label: "Small" },
+                    { value: "medium", label: "Medium" },
+                    { value: "large", label: "Large" },
+                  ]}
+                />
               </div>
 
               <div className="mb-5 relative z-10">

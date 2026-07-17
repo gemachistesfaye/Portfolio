@@ -17,7 +17,7 @@ vi.mock("react-intersection-observer", () => {
 describe("Contact", () => {
   it("renders the contact heading", () => {
     render(<Contact />);
-    expect(screen.getByText(/Let's Discuss Your/)).toBeInTheDocument();
+    expect(screen.getByText(/Let's Build/)).toBeInTheDocument();
   });
 
   it("renders form fields", () => {
@@ -39,6 +39,6 @@ describe("Contact", () => {
 
   it("renders helper text about quick inquiry", () => {
     render(<Contact />);
-    expect(screen.getByText(/quick inquiry/i)).toBeInTheDocument();
+    expect(screen.getByText(/quick questions/i)).toBeInTheDocument();
   });
 });

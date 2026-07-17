@@ -13,10 +13,10 @@ const highlights = [
 ];
 
 const steps = [
-  { icon: <MessageSquare size={20} />, title: "Discovery & Planning", desc: "We discuss your goals, requirements, and timeline. I analyze the technical needs and create a clear project roadmap.", color: "from-blue-500 to-indigo-600" },
+  { icon: <MessageSquare size={20} />, title: "Discovery & Planning", desc: "I learn about your goals, define the scope, and deliver a clear project roadmap — free of charge.", color: "from-blue-500 to-indigo-600" },
   { icon: <Palette size={20} />, title: "Design & Architecture", desc: "I design the system architecture, database schema, and user flows. You review and approve before development begins.", color: "from-violet-500 to-purple-600" },
   { icon: <Rocket size={20} />, title: "Development & Testing", desc: "Agile development with regular demos. You see progress every week and can provide feedback in real-time.", color: "from-emerald-500 to-teal-600" },
-  { icon: <Headphones size={20} />, title: "Deployment & Maintenance", desc: "I deploy applications to cloud platforms and provide ongoing improvements, monitoring, and bug fixes.", color: "from-amber-500 to-orange-600" },
+  { icon: <Headphones size={20} />, title: "Deployment & Improvement", desc: "I deploy your application to cloud platforms and provide ongoing improvements, monitoring, and bug fixes.", color: "from-amber-500 to-orange-600" },
 ];
 
 const About = () => {
@@ -142,7 +142,7 @@ const About = () => {
                       {step.icon}
                     </div>
                     {i === steps.length - 1 ? (
-                      <h3 className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-widest mb-3">Deployment & Maintenance</h3>
+                      <h3 className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-widest mb-3">Deployment & Improvement</h3>
                     ) : (
                       <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Step {i + 1}</span>
                     )}
@@ -151,7 +151,7 @@ const About = () => {
                     {step.title}
                   </h3>
                   <p className="text-[12px] sm:text-[13px] text-stone-500">
-                    {i === steps.length - 1 ? "I deploy applications to cloud platforms and provide ongoing improvements, monitoring, and bug fixes." : step.desc}
+                    {i === steps.length - 1 ? "I deploy your application to cloud platforms and provide ongoing improvements, monitoring, and bug fixes." : step.desc}
                   </p>
                 </div>
               </div>

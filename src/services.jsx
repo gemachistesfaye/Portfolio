@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Globe, Brain, Database, Code, BarChart3, Layers, Server, Sparkles } from "lucide-react";
+import { Globe, Brain, Database, Code, Layers, Server, Sparkles } from "lucide-react";
 import { services, skills } from "./data";
 import SectionHeading from "./components/SectionHeading";
 
 const serviceIcons = {
-  "Business Platforms": <Globe size={22} />,
+  "Full-Stack Web Applications": <Globe size={22} />,
   "AI-Enhanced Applications": <Brain size={22} />,
-  "Data-Driven Systems": <BarChart3 size={22} />,
   "API Development": <Code size={22} />,
   "Database Architecture": <Database size={22} />,
   "Business Automation Systems": <Layers size={22} />,
@@ -49,9 +48,21 @@ const Services = () => {
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-accent transition-colors">
                   {s.title}
                 </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-0">
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
                   {s.desc}
                 </p>
+                {s.examples && s.examples.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {s.examples.map((ex) => (
+                      <span
+                        key={ex}
+                        className="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider rounded-md bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50"
+                      >
+                        {ex}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

@@ -61,7 +61,7 @@ const TermsModal = ({ isOpen, onClose }) => {
             className="text-sm sm:text-base font-bold tracking-tight"
             style={{ color: "#3D2E1F" }}
           >
-            How We Work Together
+            How I Work
           </h2>
           <button
             onClick={onClose}
@@ -78,36 +78,36 @@ const TermsModal = ({ isOpen, onClose }) => {
           {/* Intro */}
           <div>
             <p>
-              We are a full-stack development team focused on building modern, scalable, and
-              high-performance digital products. We work with startups, businesses, and individuals
+              I am a full-stack developer focused on building modern, scalable, and
+              high-performance digital products. I work with startups, businesses, and individuals
               to turn ideas into real software solutions — clean, reliable, and easy to use.
             </p>
             <p className="mt-2">
-              Our goal is not just to build websites — but to create{" "}
+              My goal is not just to build websites — but to create{" "}
               <span className="font-semibold" style={{ color: "#3D2E1F" }}>
                 systems that help businesses grow and operate efficiently.
               </span>
             </p>
           </div>
 
-          {/* What We Do */}
+          {/* What I Build */}
           <div>
             <h3 className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-widest mb-3">
-              What We Do
+              What I Build
             </h3>
             <ul className="space-y-1.5 pl-4 list-disc marker:text-amber-400">
               <li>Business websites & landing pages that convert</li>
               <li>Full-stack web applications with modern architecture</li>
               <li>Admin dashboards & management systems</li>
-              <li>AI-powered tools and automation systems</li>
+              <li>AI-enhanced tools and automation systems</li>
               <li>Database design, APIs, and third-party integrations</li>
             </ul>
           </div>
 
-          {/* How We Work */}
+          {/* How I Work */}
           <div>
             <h3 className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-widest mb-3">
-              How We Work
+              How I Work
             </h3>
             <div className="space-y-3">
               <div className="flex gap-3">
@@ -122,7 +122,7 @@ const TermsModal = ({ isOpen, onClose }) => {
                     Discovery & Planning
                   </p>
                   <p className="text-[12px] sm:text-[13px] text-stone-500">
-                    We understand your idea, define the scope, and deliver a clear roadmap — free of charge.
+                    I learn about your idea, define the scope, and deliver a clear roadmap — free of charge.
                   </p>
                 </div>
               </div>
@@ -156,7 +156,7 @@ const TermsModal = ({ isOpen, onClose }) => {
                     Weekly Updates
                   </p>
                   <p className="text-[12px] sm:text-[13px] text-stone-500">
-                    We build in short cycles with live previews so you can track progress and give feedback anytime.
+                    I build in short cycles with live previews so you can track progress and give feedback anytime.
                   </p>
                 </div>
               </div>
@@ -170,9 +170,9 @@ const TermsModal = ({ isOpen, onClose }) => {
                 </span>
                 <div>
                   <p className="font-semibold" style={{ color: "#3D2E1F" }}>
-                    Launch + 6-Month Support
+                    Deployment & Improvement
                   </p>
-                  <p className="text-[12px] sm:text-[13px] text-stone-500">We deploy your product and fix any issues for 6 months at no extra cost.</p>
+                  <p className="text-[12px] sm:text-[13px] text-stone-500">I deploy your product and provide ongoing improvements and bug fixes.</p>
                 </div>
               </div>
             </div>
@@ -204,9 +204,9 @@ const TermsModal = ({ isOpen, onClose }) => {
             style={{ background: "linear-gradient(135deg, #FFF8EE 0%, #FFFBF5 100%)" }}
           >
             <p className="text-[12px] sm:text-[13px]">
-              <span className="font-semibold" style={{ color: "#3D2E1F" }}>Our promise:</span>{" "}
-              If after the initial discussion you feel we are not the right fit, you can stop before
-              development begins — no pressure, no obligation. We value quality partnerships over
+              <span className="font-semibold" style={{ color: "#3D2E1F" }}>My promise:</span>{" "}
+              If after the initial discussion you feel I am not the right fit, you can stop before
+              development begins — no pressure, no obligation. I value quality work over
               quantity of projects.
             </p>
           </div>
@@ -223,7 +223,7 @@ const TermsModal = ({ isOpen, onClose }) => {
             onMouseLeave={(e) => e.currentTarget.style.background = "#92672B"}
           >
             <Phone size={12} />
-            Call Us
+            Call Me
           </a>
           <a
             href={config.socials.telegram}

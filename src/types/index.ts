@@ -109,6 +109,7 @@ export interface CaseStudy {
 export interface Service {
   title: string;
   desc: string;
+  examples: string[];
   color: string;
 }
 

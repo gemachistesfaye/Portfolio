@@ -71,33 +71,33 @@ export const projects: Project[] = [
 
 export const services: Service[] = [
   {
-    title: "Business Platforms",
-    desc: "Full-stack platforms built for real operations — dashboards, user management, and production-grade systems.",
+    title: "Full-Stack Web Applications",
+    desc: "Complete web platforms built for real operations — dashboards, user management, and production-grade systems.",
+    examples: ["Healthcare platforms", "E-commerce systems", "Student portals", "Business dashboards"],
     color: "from-blue-500 to-indigo-600",
   },
   {
     title: "AI-Enhanced Applications",
-    desc: "Integrating AI capabilities into software products through intelligent assistants, automation, recommendations, and AI-powered features.",
+    desc: "Integrating AI capabilities into software products — intelligent assistants, automation, recommendations, and AI-powered features.",
+    examples: ["AI chatbots", "Smart recommendations", "Automated content generation", "Predictive tools"],
     color: "from-emerald-500 to-teal-600",
-  },
-  {
-    title: "Data-Driven Systems",
-    desc: "Analytics dashboards, forecasting tools, and data pipelines that turn raw data into actionable insights.",
-    color: "from-amber-500 to-orange-600",
   },
   {
     title: "API Development",
     desc: "Secure, documented REST APIs built with Node.js and Python — designed for scalability and third-party integration.",
+    examples: ["REST APIs", "Payment integrations", "Third-party APIs", "Webhook systems"],
     color: "from-cyan-500 to-blue-600",
   },
   {
     title: "Database Architecture",
     desc: "Schema design, query optimization, and data modeling for MySQL, PostgreSQL, Firebase, and Supabase.",
+    examples: ["Schema design", "Query optimization", "Data migrations", "Backup systems"],
     color: "from-violet-500 to-purple-600",
   },
   {
     title: "Business Automation Systems",
     desc: "Converting manual processes into automated digital workflows — from legacy systems to modern cloud architectures.",
+    examples: ["Inventory systems", "Appointment booking", "Report generation", "Workflow automation"],
     color: "from-rose-500 to-pink-600",
   },
 ];

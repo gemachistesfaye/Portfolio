@@ -48,7 +48,7 @@ const DeveloperActivity = () => {
           {/* Open Source & GitHub */}
           <div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-5">
-              Open Source & GitHub
+              GitHub & Development Activity
             </h3>
 
             <div className="space-y-2.5 mb-6">

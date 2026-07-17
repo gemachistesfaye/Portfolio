@@ -36,7 +36,7 @@ const layers = [
 const securityPractices = [
   "Authentication & Authorization",
   "Input Validation & Sanitization",
-  "API Rate Limiting & Protection",
+  "API Security Basics",
   "Environment Variable Security",
   "Database Optimization",
 ];

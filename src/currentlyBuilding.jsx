@@ -26,7 +26,7 @@ const projects = [
   {
     name: "SmartHire AI",
     description: "AI-powered candidate screening platform that uses semantic matching and intelligent analysis to improve recruitment workflows.",
-    category: "AI Platform",
+    category: "AI-Powered Recruitment Platform",
     status: "MVP",
     milestone: "AI resume ranking & interview insights",
     tags: ["AI", "Machine Learning", "Full Stack"],

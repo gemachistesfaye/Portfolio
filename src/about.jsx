@@ -70,7 +70,7 @@ const About = () => {
                 <p>
                   I specialize in creating modern web applications, backend systems, and AI-enhanced solutions using technologies like
                   React, Node.js, Python, and modern cloud platforms. I have built and deployed multiple systems
-                  including healthcare platforms, business dashboards, and data-driven applications.
+                  including healthcare platforms, business applications, dashboards, and AI-enhanced solutions.
                 </p>
               </div>
 
@@ -127,7 +127,7 @@ const About = () => {
             label="How I Work"
             title="From Idea to"
             highlight="Launch"
-            description="A transparent, collaborative process designed to deliver results on time and within budget."
+            description="A structured process designed to keep development clear and organized."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
@@ -166,7 +166,7 @@ const About = () => {
                   onClick={() => setIsTermsOpen(true)}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-300 dark:border-slate-700 hover:border-accent/50 text-slate-600 dark:text-slate-300 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-sm"
                 >
-                  How We Work
+                  How I Work
                   <ArrowRight size={14} />
                 </button>
           </div>

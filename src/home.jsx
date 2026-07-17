@@ -5,7 +5,7 @@ import { Sparkles } from "lucide-react";
 const rotatingTexts = [
   "Building modern web applications",
   "Full-Stack Development & AI Integration",
-  "Turning ideas into production-ready products",
+  "Turning ideas into reliable digital products",
   "Healthcare • Education • Business • Aviation",
   "Clean code, real results",
 ];
@@ -196,7 +196,7 @@ const Home = () => {
             key={`desc-${replayKey}`}
           >
             I build modern web applications, backend systems, and AI-enhanced solutions that help businesses and organizations improve operations, automate workflows, and solve real-world challenges.
-            From idea to deployment — I turn concepts into production-ready products.
+            From idea to deployment — I turn concepts into functional software solutions.
           </p>
 
           {/* SlideUpRotate rotating text */}

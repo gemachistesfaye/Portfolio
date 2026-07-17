@@ -30,6 +30,6 @@ describe("CurrentlyBuilding", () => {
     render(<CurrentlyBuilding />);
     expect(screen.getByText("Education Platform")).toBeInTheDocument();
     expect(screen.getByText("Business Platform")).toBeInTheDocument();
-    expect(screen.getByText("AI Platform")).toBeInTheDocument();
+    expect(screen.getByText("AI-Powered Recruitment Platform")).toBeInTheDocument();
   });
 });

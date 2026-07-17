@@ -31,7 +31,7 @@ export const projects: Project[] = [
   {
     name: "AeroDemand-AI",
     category: "AI / ML",
-    role: "ML Engineer & Backend Developer",
+    role: "Backend Developer | ML Integration",
     problem: "Airlines needed accurate demand forecasting to optimize pricing and capacity planning.",
     approach: "Built an AI-powered forecasting system with interactive dashboards and automated report generation to help airlines predict passenger demand.",
     outcome: "Built an ML forecasting pipeline with interactive dashboards and automated report generation.",
@@ -72,7 +72,7 @@ export const projects: Project[] = [
 export const services: Service[] = [
   {
     title: "Full-Stack Web Applications",
-    desc: "Complete web platforms built for real operations — dashboards, user management, and production-grade systems.",
+    desc: "Complete web platforms built for real operations — dashboards, user management, and reliable business systems.",
     examples: ["Healthcare platforms", "E-commerce systems", "Student portals", "Business dashboards"],
     color: "from-blue-500 to-indigo-600",
   },
@@ -123,6 +123,15 @@ export const achievements: Achievement[] = [
     proofFile: "Frontend-Dev-certificate.jpeg",
   },
   {
+    title: "Software Development Frameworks Training",
+    org: "Haramaya University",
+    year: "2024",
+    description: "Technical training on software architecture fundamentals and structured application development.",
+    tags: ["Software Architecture", "Design Patterns", "Development Practices"],
+    category: "credential",
+    proofFile: "Software-Frameworks-certificate.jpeg",
+  },
+  {
     title: "GeezX AI Bootcamp",
     org: "GeezX",
     year: "2025",
@@ -130,15 +139,6 @@ export const achievements: Achievement[] = [
     tags: ["AI Tools", "Prompt Engineering", "AI Integration"],
     category: "credential",
     proofFile: "AI-bootcamp-certificate.jpeg",
-  },
-  {
-    title: "EthioDigizens Digital Literacy",
-    org: "EthioDigizens",
-    year: "2025",
-    description: "Digital literacy and online safety training covering cybersecurity awareness and responsible technology use.",
-    tags: ["Digital Skills", "Cybersecurity Awareness"],
-    category: "credential",
-    proofFile: "ethidigizens.jpg",
   },
   {
     title: "ALX Ventures Founder Academy",
@@ -150,13 +150,13 @@ export const achievements: Achievement[] = [
     proofFile: "alx-certificate.jpeg",
   },
   {
-    title: "Software Development Frameworks Training",
-    org: "Haramaya University",
-    year: "2024",
-    description: "Technical training on software architecture fundamentals and structured application development.",
-    tags: ["Software Architecture", "Design Patterns", "Development Practices"],
+    title: "EthioDigizens Digital Literacy",
+    org: "EthioDigizens",
+    year: "2025",
+    description: "Digital literacy and online safety training covering cybersecurity awareness and responsible technology use.",
+    tags: ["Digital Skills", "Cybersecurity Awareness"],
     category: "credential",
-    proofFile: "Software-Frameworks-certificate.jpeg",
+    proofFile: "ethidigizens.jpg",
   },
 ];
 
@@ -175,7 +175,7 @@ export const skills: { categories: SkillCategory[] } = {
     {
       label: "AI Integration",
       color: "from-emerald-500 to-teal-600",
-      items: ["OpenAI APIs", "Gemini APIs", "Prompt Engineering", "AI Assistants", "AI Automation", "Machine Learning Fundamentals"],
+      items: ["OpenAI APIs", "Gemini APIs", "Prompt Engineering", "AI Assistants", "AI API Integration", "Machine Learning Fundamentals"],
     },
     {
       label: "Development Tools & Cloud",

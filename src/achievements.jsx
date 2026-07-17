@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { Award, ExternalLink, X } from "lucide-react";
+import { ExternalLink, X } from "lucide-react";
 import { achievements } from "./data";
-import SectionHeading from "./components/SectionHeading";
 
 const Achievements = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -27,50 +26,51 @@ const Achievements = () => {
   }, [certImage]);
 
   return (
-    <section id="achievements" className="py-28 px-6 bg-[#060a13]">
-      <div ref={ref} className="max-w-6xl mx-auto">
-        <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
-          <SectionHeading
-            label="Credentials"
-            title="Professional"
-            highlight="Credentials"
-            description="Bootcamps, training programs, and certifications that have strengthened my software engineering, AI, and product development expertise."
-          />
-        </div>
+    <div ref={ref}>
+      <div className={`mb-8 opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+        <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-3">Credentials</p>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Professional <span className="text-gradient">Credentials</span>
+        </h2>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+          Bootcamps, training programs, and certifications.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {achievements.map((item, i) => (
-            <div
-              key={item.title}
-              className={`group p-5 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-lg hover:border-accent/40 transition-all duration-500 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
-              style={{ animationDelay: `${i * 0.08}s` }}
-            >
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
-                    <Award size={16} />
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold text-slate-900 dark:text-white">{item.title}</h4>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">{item.year} &bull; {item.org}</p>
-                  </div>
-                </div>
+      <div className="space-y-3">
+        {achievements.map((item, i) => (
+          <div
+            key={item.title}
+            className={`group p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/40 transition-all duration-300 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+            style={{ animationDelay: `${i * 0.06}s` }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white leading-snug">{item.title}</h4>
+                <p className="text-[11px] text-slate-400 mt-0.5">{item.year}</p>
               </div>
-              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-3">
-                {item.description}
-              </p>
               {item.proofFile && (
                 <button
                   onClick={() => setCertImage(item)}
-                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-accent hover:text-accent-hover transition-colors"
+                  className="flex-shrink-0 p-1.5 rounded-lg text-slate-400 hover:text-accent hover:bg-accent/10 transition-colors"
+                  aria-label={`View ${item.title} certificate`}
                 >
-                  <ExternalLink size={11} />
-                  View Certificate
+                  <ExternalLink size={13} />
                 </button>
               )}
             </div>
-          ))}
-        </div>
+            <div className="flex flex-wrap gap-1.5 mt-2.5">
+              {item.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-slate-100 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
 
       {certImage && (
@@ -106,7 +106,7 @@ const Achievements = () => {
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 

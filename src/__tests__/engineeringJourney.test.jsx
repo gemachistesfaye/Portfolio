@@ -31,7 +31,7 @@ describe("EngineeringJourney", () => {
     render(<EngineeringJourney />);
     expect(screen.getByText("Started My Tech Journey")).toBeInTheDocument();
     expect(screen.getByText("Frontend Development")).toBeInTheDocument();
-    expect(screen.getByText("Full-Stack & AI Engineering")).toBeInTheDocument();
+    expect(screen.getByText("Full-Stack Development & AI Exploration")).toBeInTheDocument();
     expect(screen.getByText("Building Technology Products")).toBeInTheDocument();
   });
 });

@@ -28,9 +28,9 @@ describe("Achievements", () => {
     expect(screen.getByText("EthioDigizens Digital Literacy")).toBeInTheDocument();
   });
 
-  it("renders View Certificate buttons", () => {
+  it("renders certificate view buttons", () => {
     render(<Achievements />);
-    const buttons = screen.getAllByText("View Certificate");
+    const buttons = screen.getAllByRole("button", { name: /View .* certificate/i });
     expect(buttons.length).toBe(5);
   });
 });

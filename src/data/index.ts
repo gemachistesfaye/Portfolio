@@ -107,6 +107,7 @@ export interface Achievement {
   org: string;
   year: string;
   description: string;
+  tags: string[];
   category: "achievement" | "credential";
   proofFile?: string;
 }
@@ -116,7 +117,8 @@ export const achievements: Achievement[] = [
     title: "ISHub AAU Frontend Development Bootcamp",
     org: "ISHub AAU",
     year: "2025",
-    description: "Completed an intensive two-month frontend development bootcamp covering HTML5, CSS3, JavaScript, React fundamentals, responsive design, Git, and modern development workflows while building and deploying multiple real-world projects.",
+    description: "Intensive frontend development bootcamp covering modern web technologies and real-world project building.",
+    tags: ["React", "JavaScript", "Tailwind CSS", "Git"],
     category: "credential",
     proofFile: "Frontend-Dev-certificate.jpeg",
   },
@@ -124,7 +126,8 @@ export const achievements: Achievement[] = [
     title: "GeezX AI Bootcamp",
     org: "GeezX",
     year: "2025",
-    description: "Completed hands-on AI training focused on AI tools, prompt engineering, practical AI integration, ethical AI, and developing intelligent software solutions.",
+    description: "Hands-on AI training focused on practical AI integration and intelligent software solutions.",
+    tags: ["AI Tools", "Prompt Engineering", "AI Integration"],
     category: "credential",
     proofFile: "AI-bootcamp-certificate.jpeg",
   },
@@ -132,7 +135,8 @@ export const achievements: Achievement[] = [
     title: "ALX Ventures Founder Academy",
     org: "ALX Ventures",
     year: "2025",
-    description: "Completed entrepreneurship and product development training focused on product thinking, customer discovery, business strategy, leadership, and technology-driven innovation.",
+    description: "Entrepreneurship and product development training focused on technology-driven innovation.",
+    tags: ["Product Development", "Entrepreneurship", "Customer Discovery"],
     category: "credential",
     proofFile: "alx-certificate.jpeg",
   },
@@ -140,7 +144,8 @@ export const achievements: Achievement[] = [
     title: "Software Development Frameworks Training",
     org: "Haramaya University",
     year: "2024",
-    description: "Completed technical training on software development frameworks, software architecture fundamentals, design patterns, and structured application development.",
+    description: "Technical training on software architecture fundamentals and structured application development.",
+    tags: ["Software Architecture", "Design Patterns", "Development Practices"],
     category: "credential",
     proofFile: "Software-Frameworks-certificate.jpeg",
   },
@@ -148,7 +153,8 @@ export const achievements: Achievement[] = [
     title: "EthioDigizens Digital Literacy",
     org: "EthioDigizens",
     year: "2024",
-    description: "Completed digital literacy and online safety training covering responsible technology use, cybersecurity awareness, digital citizenship, and online wellbeing.",
+    description: "Digital literacy and online safety training covering cybersecurity awareness and responsible technology use.",
+    tags: ["Digital Skills", "Cybersecurity Awareness"],
     category: "credential",
     proofFile: "ethidigizens.jpg",
   },

@@ -76,9 +76,17 @@ function Portfolio() {
         <Services />
         <Project />
         <CurrentlyBuilding />
-        <Achievements />
+        <section id="journey" className="py-28 px-6 bg-[#060a13]">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+              <EngineeringJourney />
+              <div id="achievements">
+                <Achievements />
+              </div>
+            </div>
+          </div>
+        </section>
         <ArchitectureSection />
-        <EngineeringJourney />
         <GitHubActivity />
         <Organizations />
         <Experience />

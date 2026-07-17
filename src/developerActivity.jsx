@@ -30,12 +30,14 @@ const communities = [
 ];
 
 const DeveloperActivity = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
 
   return (
-    <section id="developer" className="py-28 px-6">
+    <section id="developer" className="py-16 sm:py-28 px-4 sm:px-6 bg-[#060a13]">
       <div ref={ref} className="max-w-5xl mx-auto">
-        <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
+        <div
+          className={`transition-all duration-500 ease-out transform-gpu ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        >
           <SectionHeading
             label="Activity"
             title="Developer"
@@ -44,7 +46,7 @@ const DeveloperActivity = () => {
           />
         </div>
 
-        <div className={`mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.15s' }}>
+        <div className={`mt-8 sm:mt-14 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 transition-all duration-500 ease-out delay-150 transform-gpu ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           {/* Open Source & GitHub */}
           <div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-5">
@@ -52,11 +54,10 @@ const DeveloperActivity = () => {
             </h3>
 
             <div className="space-y-2.5 mb-6">
-              {devStats.map((stat, i) => (
+              {devStats.map((stat) => (
                 <div
                   key={stat.label}
                   className="flex items-center gap-3 group"
-                  style={{ animationDelay: `${i * 0.06}s` }}
                 >
                   <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                     {stat.icon}
@@ -85,11 +86,10 @@ const DeveloperActivity = () => {
             </h3>
 
             <div className="space-y-4">
-              {communities.map((org, i) => (
+              {communities.map((org) => (
                 <div
                   key={org.name}
                   className="group p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/40 transition-all duration-300"
-                  style={{ animationDelay: `${i * 0.08}s` }}
                 >
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center text-accent flex-shrink-0 group-hover:scale-110 transition-transform duration-300">

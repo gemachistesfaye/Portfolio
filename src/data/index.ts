@@ -73,32 +73,38 @@ export const services: Service[] = [
   {
     title: "Full-Stack Web Applications",
     desc: "Complete web platforms built for real operations — dashboards, user management, and reliable business systems.",
-    examples: ["Healthcare platforms", "E-commerce systems", "Student portals", "Business dashboards"],
+    examples: [],
     color: "from-blue-500 to-indigo-600",
   },
   {
     title: "AI-Enhanced Applications",
     desc: "Integrating AI capabilities into software products — intelligent assistants, automation, recommendations, and AI-powered features.",
-    examples: ["AI chatbots", "Smart recommendations", "Automated content generation", "Predictive tools"],
+    examples: [],
     color: "from-emerald-500 to-teal-600",
   },
   {
     title: "API Development",
     desc: "Secure, documented REST APIs built with Node.js and Python — designed for scalability and third-party integration.",
-    examples: ["REST APIs", "Payment integrations", "Third-party APIs", "Webhook systems"],
+    examples: [],
     color: "from-cyan-500 to-blue-600",
   },
   {
     title: "Database Architecture",
     desc: "Schema design, query optimization, and data modeling for MySQL, PostgreSQL, Firebase, and Supabase.",
-    examples: ["Schema design", "Query optimization", "Data migrations", "Backup systems"],
+    examples: [],
     color: "from-violet-500 to-purple-600",
   },
   {
     title: "Business Automation Systems",
     desc: "Converting manual processes into automated digital workflows — from legacy systems to modern cloud architectures.",
-    examples: ["Inventory systems", "Appointment booking", "Report generation", "Workflow automation"],
+    examples: [],
     color: "from-rose-500 to-pink-600",
+  },
+  {
+    title: "UX Design",
+    desc: "Designing intuitive user interfaces and experiences — from wireframes and prototypes to polished, user-centered designs.",
+    examples: [],
+    color: "from-amber-500 to-orange-600",
   },
 ];
 

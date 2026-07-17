@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Globe, Brain, Database, Code, Layers, Server, Sparkles } from "lucide-react";
+import { Globe, Brain, Database, Code, Layers, Server, Sparkles, Palette } from "lucide-react";
 import { services, skills } from "./data";
 import SectionHeading from "./components/SectionHeading";
 
@@ -10,6 +10,7 @@ const serviceIcons = {
   "API Development": <Code size={22} />,
   "Database Architecture": <Database size={22} />,
   "Business Automation Systems": <Layers size={22} />,
+  "UX Design": <Palette size={22} />,
 };
 
 const skillIcons = {
@@ -48,26 +49,12 @@ const Services = () => {
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-accent transition-colors">
                   {s.title}
                 </h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                   {s.desc}
                 </p>
-                {s.examples && s.examples.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {s.examples.map((ex) => (
-                      <span
-                        key={ex}
-                        className="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider rounded-md bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50"
-                      >
-                        {ex}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
           </div>
-
-
         </div>
       </section>
 
@@ -86,29 +73,26 @@ const Services = () => {
                 key={cat.label}
                 className="group p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-500 relative overflow-hidden"
               >
-                {/* Background glow effect on hover */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-accent/10 to-emerald-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-                {/* Header */}
                 <div className="flex items-center gap-4 mb-8 relative z-10">
                   <div className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
                     {skillIcons[cat.label]}
                     <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-accent/20 to-emerald-500/20 blur-md -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-extrabold text-slate-900 dark:text-white uppercase tracking-wide group-hover:text-accent transition-colors duration-300">
+                    <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-accent transition-colors duration-300">
                       {cat.label}
                     </h3>
                     <p className="text-xs text-slate-500 font-medium tracking-wide mt-1">{cat.items.length} technologies</p>
                   </div>
                 </div>
 
-                {/* Pills */}
-                <div className="flex flex-wrap gap-2.5 relative z-10">
+                <div className="flex flex-wrap gap-2 relative z-10">
                   {cat.items.map((s) => (
                     <span
                       key={s}
-                      className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg bg-slate-50 dark:bg-slate-800/40 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 hover:bg-white dark:hover:bg-[#0c1220] hover:border-accent hover:text-accent hover:shadow-md hover:shadow-accent/10 hover:-translate-y-0.5 transition-all duration-300 cursor-default"
+                      className="px-3 py-1.5 text-[11px] font-semibold rounded-lg bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 hover:bg-white dark:hover:bg-[#0c1220] hover:border-accent/50 hover:text-accent hover:shadow-md hover:shadow-accent/10 hover:-translate-y-0.5 transition-all duration-300 cursor-default"
                     >
                       {s}
                     </span>

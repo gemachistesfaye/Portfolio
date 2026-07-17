@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import { Mail, Phone, MapPin, Linkedin, ArrowRight, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Send, ArrowRight, Clock } from "lucide-react";
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
 import CustomSelect from "./components/CustomSelect";

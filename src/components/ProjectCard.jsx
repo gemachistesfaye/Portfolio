@@ -14,12 +14,6 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true }) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-        {project.featured && (
-          <div className="absolute top-4 left-4 px-3 py-1 bg-accent/90 backdrop-blur-sm rounded-full text-[10px] font-bold text-white uppercase tracking-widest shadow-lg">
-            Featured
-          </div>
-        )}
-
         <div className="absolute top-4 right-4 px-3 py-1 bg-black/40 backdrop-blur-sm rounded-full border border-white/20">
           <span className="text-[10px] font-bold text-white tracking-wide">{project.category}</span>
         </div>

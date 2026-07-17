@@ -134,15 +134,10 @@ export interface Experience {
   role: string;
   org: string;
   date: string;
-  type: "Training" | "Degree";
+  type: "Internship" | "Training" | "Degree";
   color: string;
   points: string[];
   tags: string[];
-}
-
-export interface FAQ {
-  q: string;
-  a: string;
 }
 
 export interface SanityImage {

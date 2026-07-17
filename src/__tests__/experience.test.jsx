@@ -19,19 +19,10 @@ describe("Experience", () => {
     expect(screen.getByText(/Experience &/)).toBeInTheDocument();
   });
 
-  it("renders the FAQ heading", () => {
-    render(<Experience />);
-    expect(screen.getByText(/Frequently Asked/)).toBeInTheDocument();
-  });
-
-  it("renders FAQ items", () => {
-    render(<Experience />);
-    expect(screen.getByText(/How can you help/)).toBeInTheDocument();
-  });
-
   it("renders experience entries", () => {
     render(<Experience />);
     expect(screen.getByText("Software Engineering Intern")).toBeInTheDocument();
+    expect(screen.getByText("BSc Information Science")).toBeInTheDocument();
     expect(screen.getByText("Frontend Development Trainee")).toBeInTheDocument();
   });
 });

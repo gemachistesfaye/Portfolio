@@ -1,4 +1,4 @@
-import { Project, Service, Testimonial, Certificate, SkillCategory, Experience, FAQ } from "../types";
+import { Project, Service, Testimonial, Certificate, SkillCategory, Experience } from "../types";
 
 export const projects: Project[] = [
   {
@@ -186,16 +186,17 @@ export const skills: { categories: SkillCategory[] } = {
 
 export const experience: Experience[] = [
   {
-    role: "Software Engineering Intern",
-    org: "ASTU (Adama Science and Technology University)",
-    date: "2026 – Present",
-    type: "Training",
-    color: "from-violet-500 to-purple-500",
+    role: "BSc Information Science",
+    org: "Haramaya University",
+    date: "2024 – 2027",
+    type: "Degree",
+    color: "from-emerald-500 to-teal-500",
     points: [
-      "Working on full-stack systems and real-world applications while collaborating on team-based software projects.",
-      "Applying agile methodologies, code reviews, and industry best practices in a professional environment.",
+      "Building a strong foundation in software development, database systems, and computational thinking.",
+      "Relevant coursework: Database Systems, Data Structures & Algorithms, Software Development, Artificial Intelligence, Web Technologies, Networking.",
+      "Applying academic knowledge to real-world projects including full-stack web applications and data-driven systems.",
     ],
-    tags: ["Agile", "Teamwork", "Full-Stack", "Industry Experience"],
+    tags: ["Database Systems", "Data Structures", "AI", "Web Technologies"],
   },
   {
     role: "Frontend Development Trainee",
@@ -204,52 +205,22 @@ export const experience: Experience[] = [
     type: "Training",
     color: "from-blue-500 to-indigo-500",
     points: [
-      "Intensive 2-month program covering HTML5, CSS3, JavaScript ES6+, responsive design and UI architecture.",
-      "Built and deployed 5 live projects with Tailwind CSS, LocalStorage, Fetch API and GitHub version control.",
+      "Completed an intensive 2-month program covering modern frontend engineering.",
+      "Built and deployed 5 live projects using React, Tailwind CSS, and modern development workflows.",
     ],
-    tags: ["HTML5", "CSS3", "JS ES6+", "Tailwind"],
+    tags: ["React", "Tailwind CSS", "JavaScript", "Responsive Design"],
   },
   {
-    role: "BSc Information Science",
-    org: "Haramaya University",
-    date: "2024 – 2027",
-    type: "Degree",
-    color: "from-emerald-500 to-teal-500",
+    role: "Software Engineering Intern",
+    org: "Adama Science and Technology University (ASTU)",
+    date: "2026 – Present",
+    type: "Internship",
+    color: "from-violet-500 to-purple-500",
     points: [
-      "Built multiple class projects including full-stack web applications and data-driven systems.",
-      "Coursework: Database Systems, Data Structures, Web Development, Artificial Intelligence, Networking, Digital Literacy.",
+      "Collaborating on full-stack application development in a team-based agile environment.",
+      "Building and maintaining production systems using React, Node.js, and relational databases.",
+      "Participating in code reviews, sprint planning, and engineering best practices.",
     ],
-    tags: ["DB Systems", "AI", "Networking", "Web Dev", "Digital Literacy"],
-  },
-];
-
-export const faqs: FAQ[] = [
-  {
-    q: "How can you help my business or project?",
-    a: "I turn your ideas into functional, beautiful digital products. Whether you need a modern business website to attract clients, a custom web app to automate your workflow, or an AI-powered system (like custom ChatGPT integrations) to save time, I handle everything from design to final deployment.",
-  },
-  {
-    q: "How much will my project cost?",
-    a: "Pricing is tailored to your specific needs so you only pay for what brings you value. Simple frontend fixes or landing pages start around 1,000 to 5,000 ETB. Larger business websites or custom AI web apps can range from 10,000 to 50,000+ ETB. I always provide a clear, upfront quote before we begin so there are zero surprises.",
-  },
-  {
-    q: "How does the payment process work?",
-    a: "To keep things fair and transparent, payments for larger projects are split into milestones: typically 30% upfront to secure the booking, 40% at the halfway point, and 30% when you are completely satisfied with the final delivery. I accept payments via Telebirr, CBE, Bank of Abyssinia, Dashen Bank, and Awash Bank.",
-  },
-  {
-    q: "How long will it take to build my website or app?",
-    a: "It depends on what we're building! A sleek landing page can be live in 3-7 days. A multi-page business website takes about 1-2 weeks. For complex full-stack apps or AI tools, expect 3-8 weeks. During our first chat, I'll give you a realistic timeline so you know exactly when to expect results.",
-  },
-  {
-    q: "Do you use the latest technologies to build my app?",
-    a: "Absolutely. I use modern, industry-standard tools to ensure your project is fast, secure, and easy to scale. For the frontend, I use React and Next.js. For the backend, Node.js and Python. I also integrate cutting-edge AI features using OpenAI and Gemini APIs. My goal is to pick the right tech stack for your specific goals, not just what's trendy.",
-  },
-  {
-    q: "What happens after my project goes live? Do you offer support?",
-    a: "I won't leave you stranded! Every project includes 6 months of free post-launch support to ensure everything runs perfectly. After that, we can set up a low-cost monthly maintenance plan where I handle security updates, bug fixes, and minor changes, allowing you to focus purely on running your business.",
-  },
-  {
-    q: "I have a startup idea. Can you build an MVP to test the market?",
-    a: "Yes! I specialize in helping founders launch Minimum Viable Products (MVPs) quickly and affordably. I will help you cut through the noise, build only the core features needed to validate your idea, and set up cheap hosting options so you can test your concept without breaking the bank.",
+    tags: ["Full-Stack", "Agile", "Code Reviews", "Team Collaboration"],
   },
 ];

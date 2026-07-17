@@ -51,7 +51,7 @@ const Navbar = () => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = ["home", "about", "process", "services", "skills", "projects", "building", "achievements", "journey", "experience", "faq", "contact"];
+      const sections = ["home", "about", "process", "services", "skills", "projects", "building", "achievements", "journey", "experience", "contact"];
       for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= 100) {

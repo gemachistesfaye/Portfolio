@@ -44,11 +44,14 @@ const Contact = () => {
       const payload = {
         name: data.name,
         email: data.email,
-        subject: data.subject,
+        projectType: data.projectType || "",
+        budget: data.budget || "",
+        timeline: data.timeline || "",
+        size: data.size || "",
         message: data.message,
         _fb_hp: "",
         _fb_js: formLoadTime.current.toString(),
-        _subject: "New Contact Inquiry from Portfolio"
+        _subject: "New Project Inquiry from Portfolio"
       };
 
       const res = await fetch(config.formbladeContact, {
@@ -241,10 +244,9 @@ const Contact = () => {
                     defaultValue=""
                   >
                     <option value="" disabled>Size (Optional)</option>
-                    <option value="small">Small (1-3 pages)</option>
-                    <option value="medium">Medium (4-10 pages)</option>
-                    <option value="large">Large (10+ pages)</option>
-                    <option value="ongoing">Ongoing / Retainer</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
                   </select>
                 </div>
               </div>
@@ -266,6 +268,24 @@ const Contact = () => {
                       : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
                   }`}
                 />
+              </div>
+
+              <div className="mb-5 relative z-10">
+                <label htmlFor="attachment" className="sr-only">Attachment</label>
+                <input
+                  id="attachment"
+                  type="file"
+                  name="attachment"
+                  accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
+                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 focus:outline-none transition-all duration-300 ${
+                    focused === "attachment"
+                      ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
+                      : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                  }`}
+                  onFocus={() => setFocused("attachment")}
+                  onBlur={() => setFocused(null)}
+                />
+                <p className="text-[10px] text-slate-400 mt-1">Optional — PDF, DOC, or image (max 5MB)</p>
               </div>
 
               <p className="text-[11px] text-slate-400 mb-5 relative z-10">

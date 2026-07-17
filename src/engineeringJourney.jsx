@@ -4,23 +4,23 @@ import SectionHeading from "./components/SectionHeading";
 const milestones = [
   {
     year: "2023",
-    title: "Fundamentals",
-    description: "Started software development fundamentals.",
+    title: "Software Fundamentals",
+    description: "Started with programming fundamentals, HTML, CSS, JavaScript, and version control with Git.",
   },
   {
     year: "2024",
-    title: "Full-Stack Systems",
-    description: "Expanded into full-stack systems, databases, and deployment.",
+    title: "Full-Stack Development",
+    description: "Built full-stack applications with React, Node.js, databases, and deployment workflows.",
   },
   {
     year: "2025",
-    title: "AI & Data Platforms",
-    description: "Built AI-powered applications and data-driven platforms.",
+    title: "AI & Production Systems",
+    description: "Integrated AI APIs, built real-time systems, and deployed production applications serving users.",
   },
   {
     year: "2026",
     title: "Scalable Products",
-    description: "Building scalable software products and intelligent systems.",
+    description: "Building scalable software products with focus on architecture, security, and system design.",
   },
 ];
 

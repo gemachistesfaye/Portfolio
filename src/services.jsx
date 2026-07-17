@@ -5,12 +5,12 @@ import { services, skills } from "./data";
 import SectionHeading from "./components/SectionHeading";
 
 const serviceIcons = {
-  "Full-Stack Web Apps": <Globe size={22} />,
-  "AI Integration": <Brain size={22} />,
-  "Database Design": <Database size={22} />,
+  "Business Platforms": <Globe size={22} />,
+  "AI-Powered Applications": <Brain size={22} />,
+  "Data-Driven Systems": <BarChart3 size={22} />,
   "API Development": <Code size={22} />,
-  "Data Analytics": <BarChart3 size={22} />,
-  "UI/UX Implementation": <Layers size={22} />,
+  "Database Architecture": <Database size={22} />,
+  "Digital Transformation": <Layers size={22} />,
 };
 
 const skillIcons = {

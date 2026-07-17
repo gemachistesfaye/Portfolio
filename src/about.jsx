@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Download, Code2, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight, ExternalLink, Github } from "lucide-react";
+import { Download, TrendingUp, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight, Github } from "lucide-react";
 import config from "./config";
 import SectionHeading from "./components/SectionHeading";
 import TermsModal from "./components/TermsModal";
@@ -14,10 +14,10 @@ const highlights = [
 ];
 
 const steps = [
-  { icon: <MessageSquare size={20} />, title: "Discovery & Planning", desc: "We discuss your goals, requirements, and timeline. We analyze the technical needs and create a clear project roadmap.", color: "from-blue-500 to-indigo-600" },
-  { icon: <Palette size={20} />, title: "Design & Architecture", desc: "We design the system architecture, database schema, and user flows. You review and approve before development begins.", color: "from-violet-500 to-purple-600" },
+  { icon: <MessageSquare size={20} />, title: "Discovery & Planning", desc: "We discuss your goals, requirements, and timeline. I analyze the technical needs and create a clear project roadmap.", color: "from-blue-500 to-indigo-600" },
+  { icon: <Palette size={20} />, title: "Design & Architecture", desc: "I design the system architecture, database schema, and user flows. You review and approve before development begins.", color: "from-violet-500 to-purple-600" },
   { icon: <Rocket size={20} />, title: "Development & Testing", desc: "Agile development with regular demos. You see progress every week and can provide feedback in real-time.", color: "from-emerald-500 to-teal-600" },
-  { icon: <Headphones size={20} />, title: "Launch & Support", desc: "Deployment, documentation, and 6 months of free post-launch support. We are always a message away.", color: "from-amber-500 to-orange-600" },
+  { icon: <Headphones size={20} />, title: "Launch & Support", desc: "Deployment, documentation, and 6 months of free post-launch support. I am always a message away.", color: "from-amber-500 to-orange-600" },
 ];
 
 const About = () => {
@@ -176,7 +176,7 @@ const About = () => {
                     {step.title}
                   </h3>
                   <p className="text-[12px] sm:text-[13px] text-stone-500">
-                    {i === steps.length - 1 ? "We deploy your product and fix any issues for 6 months at no extra cost." : step.desc}
+                    {i === steps.length - 1 ? "I deploy your product and fix any issues for 6 months at no extra cost." : step.desc}
                   </p>
                 </div>
               </div>

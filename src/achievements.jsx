@@ -51,12 +51,12 @@ const Achievements = () => {
                     <Award size={16} />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{item.title}</h4>
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white">{item.title}</h4>
                     <p className="text-[11px] text-slate-500 dark:text-slate-400">{item.year} &bull; {item.org}</p>
                   </div>
                 </div>
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-3">
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-3">
                 {item.description}
               </p>
               {item.proofFile && (

@@ -30,7 +30,7 @@ const FAQItem = ({ faq, isOpen, onClick, index }) => (
       aria-labelledby={`faq-question-${index}`}
       className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
     >
-      <p className="px-5 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+      <p className="px-5 pb-5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
         {faq.a}
       </p>
     </div>
@@ -87,7 +87,7 @@ const Experience = () => {
 
                       <ul className="space-y-2 mb-3">
                         {exp.points.map((p, j) => (
-                          <li key={j} className="text-sm text-slate-600 dark:text-slate-400 flex items-start gap-2 leading-relaxed">
+                          <li key={j} className="text-sm text-slate-500 dark:text-slate-400 flex items-start gap-2 leading-relaxed">
                             <span className="mt-1.5 w-1 h-1 rounded-full bg-accent/60 flex-shrink-0" />
                             {p}
                           </li>

@@ -49,7 +49,7 @@ const Services = () => {
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-accent transition-colors">
                   {s.title}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-0">
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-0">
                   {s.desc}
                 </p>
               </div>
@@ -97,7 +97,7 @@ const Services = () => {
                   {cat.items.map((s) => (
                     <span
                       key={s}
-                      className="px-3.5 py-2 text-xs sm:text-sm font-bold rounded-xl bg-slate-50 dark:bg-slate-800/40 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 hover:bg-white dark:hover:bg-[#0c1220] hover:border-accent hover:text-accent hover:shadow-md hover:shadow-accent/10 hover:-translate-y-0.5 transition-all duration-300 cursor-default"
+                      className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-lg bg-slate-50 dark:bg-slate-800/40 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/50 hover:bg-white dark:hover:bg-[#0c1220] hover:border-accent hover:text-accent hover:shadow-md hover:shadow-accent/10 hover:-translate-y-0.5 transition-all duration-300 cursor-default"
                     >
                       {s}
                     </span>

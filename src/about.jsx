@@ -62,7 +62,7 @@ const About = () => {
                 <span className="text-gradient">and AI-powered systems</span>
               </h2>
 
-              <div className="space-y-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+              <div className="space-y-3 text-base text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
                 <p>
                   I am a Software Engineer focused on building scalable digital products and
                   AI-powered systems that solve real-world problems.

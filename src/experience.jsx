@@ -1,4 +1,3 @@
-import React from "react";
 import { useInView } from "react-intersection-observer";
 import { GraduationCap, Briefcase, Calendar } from "lucide-react";
 import { experience } from "./data";

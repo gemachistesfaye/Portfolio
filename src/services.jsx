@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Globe, Brain, Database, Code, Layers, Server, Sparkles, Palette } from "lucide-react";
+import { Globe, Brain, Database, Code, Layers, Server, Palette } from "lucide-react";
 import { services, skills } from "./data";
 import SectionHeading from "./components/SectionHeading";
 

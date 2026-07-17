@@ -1,6 +1,6 @@
-const SectionHeading = ({ label, title, highlight, description, id }) => {
+const SectionHeading = ({ label, title, highlight, description }) => {
   return (
-    <div id={id} className="text-center mb-16">
+    <div className="text-center mb-16">
       <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">
         {label}
       </p>

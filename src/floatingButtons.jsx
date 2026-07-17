@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { MessageCircle, X, Mail, ChevronDown } from "lucide-react";
 import config from "./config";
+import { scrollToTop } from "./utils/scrollTo";
 
 const PROJECT_TYPES = ["Frontend", "Backend / API", "Database", "Web App", "AI Integration", "Other"];
 const BUDGETS = ["1,000 - 3,000 ETB", "3,000 - 5,000 ETB", "5,000 - 10,000 ETB", "10,000 - 20,000 ETB", "20,000 - 50,000 ETB", "50,000+ ETB"];
@@ -136,10 +137,6 @@ const FloatingButtons = () => {
     handleScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, [handleScroll]);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const HOLD_DURATION = 1500;
 

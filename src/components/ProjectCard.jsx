@@ -1,5 +1,4 @@
 import { ExternalLink, Github } from "lucide-react";
-import { scrollToSection } from "../utils/scrollTo";
 
 const ProjectCard = ({ project, onSelect, showCaseStudyLink = true }) => {
   return (

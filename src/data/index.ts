@@ -12,6 +12,7 @@ export const projects: Project[] = [
     demo: "https://sheger-health-connect.vercel.app",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
     featured: true,
+    slug: "sheger-health-connect",
   },
   {
     name: "Ethio-Brew",
@@ -23,6 +24,7 @@ export const projects: Project[] = [
     github: "https://github.com/gemachistesfaye/Ethio-Brew",
     demo: "https://ethio-brew.vercel.app",
     image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=500&fit=crop",
+    slug: "ethio-brew",
   },
   {
     name: "AeroDemand-AI",
@@ -34,6 +36,7 @@ export const projects: Project[] = [
     github: "https://github.com/gemachistesfaye/AeroDemand-AI",
     demo: "https://aerodemand-ai.onrender.com",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+    slug: "aerodemand-ai",
   },
   {
     name: "TracePoint",
@@ -45,6 +48,7 @@ export const projects: Project[] = [
     github: "https://github.com/gemachistesfaye/tracepoint-system",
     demo: "https://tracepoint-system.web.app",
     image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=500&fit=crop",
+    slug: "tracepoint",
   },
   {
     name: "SmartQuiz AI",
@@ -56,6 +60,7 @@ export const projects: Project[] = [
     github: "https://github.com/gemachistesfaye/SmartQuiz-AI-Platform",
     demo: "https://smart-quiz-ai-platform.vercel.app",
     image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&h=500&fit=crop",
+    slug: "smartquiz-ai",
   },
 ];
 

@@ -14,11 +14,19 @@ import FloatingButtons from "./floatingButtons";
 const BlogLayout = lazy(() => import("./pages/BlogLayout"));
 const BlogList = lazy(() => import("./pages/BlogList"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const CaseStudy = lazy(() => import("./pages/CaseStudy"));
 
 const BlogFallback = () => (
   <div className="min-h-screen flex flex-col items-center justify-center bg-[#f7f3ee] gap-4">
     <div className="w-10 h-10 border-[3px] border-[#5a9a7a] border-t-transparent rounded-full animate-spin" />
     <p className="text-sm text-[#a09890]">Loading blog...</p>
+  </div>
+);
+
+const CaseStudyFallback = () => (
+  <div className="min-h-screen flex flex-col items-center justify-center bg-[#020617] gap-4">
+    <div className="w-10 h-10 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
+    <p className="text-sm text-slate-400">Loading case study...</p>
   </div>
 );
 
@@ -80,6 +88,7 @@ function App() {
           <Route index element={<Suspense fallback={<BlogFallback />}><BlogList /></Suspense>} />
           <Route path=":slug" element={<Suspense fallback={<BlogFallback />}><BlogPost /></Suspense>} />
         </Route>
+        <Route path="/project/:slug" element={<Suspense fallback={<CaseStudyFallback />}><CaseStudy /></Suspense>} />
         <Route path="*" element={<Portfolio />} />
       </Routes>
     </ErrorBoundary>

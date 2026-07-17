@@ -1,6 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import { Github, ExternalLink, GitCommit, BookOpen, GraduationCap, Users } from "lucide-react";
 import config from "./config";
+import SectionHeading from "./components/SectionHeading";
 
 const devStats = [
   { icon: <GitCommit size={16} />, label: "Regular commits" },
@@ -35,13 +36,12 @@ const DeveloperActivity = () => {
     <section id="developer" className="py-28 px-6">
       <div ref={ref} className="max-w-5xl mx-auto">
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
-          <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">Activity</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Developer <span className="text-gradient">Activity</span>
-          </h2>
-          <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
-            Building, sharing, and collaborating through software projects, technical communities, and continuous learning.
-          </p>
+          <SectionHeading
+            label="Activity"
+            title="Developer"
+            highlight="Activity"
+            description="Building, sharing, and collaborating through software projects, technical communities, and continuous learning."
+          />
         </div>
 
         <div className={`mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.15s' }}>

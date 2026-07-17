@@ -113,7 +113,7 @@ export interface Achievement {
   year: string;
   description: string;
   category: "achievement" | "credential";
-  proofUrl?: string;
+  proofFile?: string;
 }
 
 export const achievements: Achievement[] = [
@@ -123,7 +123,7 @@ export const achievements: Achievement[] = [
     year: "2025",
     description: "Intensive 2-month program covering HTML5, CSS3, JavaScript ES6+, responsive design, and UI architecture. Built and deployed 5 live projects.",
     category: "achievement",
-    proofUrl: "#",
+    proofFile: "Frontend-Dev-certificate.jpeg",
   },
   {
     title: "GeezX AI Bootcamp",
@@ -131,7 +131,7 @@ export const achievements: Achievement[] = [
     year: "2025",
     description: "Hands-on training in AI integration, prompt engineering, and building real-world AI-powered applications.",
     category: "achievement",
-    proofUrl: "#",
+    proofFile: "AI-bootcamp-certificate.jpeg",
   },
   {
     title: "ALX Ventures Founder Academy",
@@ -139,7 +139,7 @@ export const achievements: Achievement[] = [
     year: "2025",
     description: "Program focused on product thinking, venture building, and technology-driven entrepreneurship fundamentals.",
     category: "achievement",
-    proofUrl: "#",
+    proofFile: "alx-certificate.jpeg",
   },
   {
     title: "Software Frameworks Training",
@@ -147,7 +147,7 @@ export const achievements: Achievement[] = [
     year: "2024",
     description: "Technical training on software frameworks, design patterns, and modern development practices.",
     category: "achievement",
-    proofUrl: "#",
+    proofFile: "Software-Frameworks-certificate.jpeg",
   },
   {
     title: "EthioDigizens Digital Literacy",
@@ -155,7 +155,7 @@ export const achievements: Achievement[] = [
     year: "2024",
     description: "Digital literacy and online wellbeing training covering cybersecurity awareness and responsible technology use.",
     category: "credential",
-    proofUrl: "#",
+    proofFile: "ethidigizens.jpg",
   },
 ];
 

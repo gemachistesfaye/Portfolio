@@ -5,40 +5,36 @@ import SectionHeading from "./components/SectionHeading";
 const layers = [
   {
     icon: <Monitor size={20} />,
-    label: "Frontend",
-    tech: "React + TypeScript + Tailwind CSS",
-    desc: "Component architecture, state management, responsive UI",
+    label: "Frontend Architecture",
+    practices: ["Component-based design", "State management", "Responsive layouts", "Clean UI structure"],
     color: "from-blue-500 to-indigo-600",
   },
   {
     icon: <Server size={20} />,
-    label: "Backend API",
-    tech: "Node.js / Express / Flask",
-    desc: "REST API design, authentication, business logic",
+    label: "Backend Engineering",
+    practices: ["REST API design", "Authentication & authorization", "Business logic organization", "Server-side validation"],
     color: "from-cyan-500 to-blue-600",
   },
   {
     icon: <Database size={20} />,
-    label: "Database",
-    tech: "PostgreSQL / MySQL / Firebase",
-    desc: "Schema design, normalization, query optimization",
+    label: "Database Design",
+    practices: ["Data modeling", "Schema design", "Query optimization", "Data relationships"],
     color: "from-amber-500 to-orange-600",
   },
   {
     icon: <Cloud size={20} />,
-    label: "Cloud Deployment",
-    tech: "Vercel / Render / Firebase Hosting",
-    desc: "CI/CD, environment management, performance monitoring",
+    label: "Deployment & Operations",
+    practices: ["Cloud deployment", "Environment management", "Version control", "Continuous improvement"],
     color: "from-emerald-500 to-teal-600",
   },
 ];
 
 const securityPractices = [
-  "Authentication & Authorization",
-  "Input Validation & Sanitization",
-  "API Security Basics",
-  "Environment Variable Security",
-  "Database Optimization",
+  "Secure authentication",
+  "Input validation",
+  "Environment variable protection",
+  "Database security",
+  "API security basics",
 ];
 
 const ArchitectureSection = () => {
@@ -52,13 +48,13 @@ const ArchitectureSection = () => {
             label="Engineering"
             title="How I Build"
             highlight="Systems"
-            description="A structured approach to building scalable, secure, and maintainable software."
+            description="I focus on building software that is maintainable, secure, and scalable through structured development practices."
           />
         </div>
 
         <div className={`mt-12 opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.15s' }}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {/* Stack Flow */}
+            {/* Engineering Practices */}
             <div className="space-y-0">
               {layers.map((layer, i) => (
                 <div key={layer.label}>
@@ -70,8 +66,14 @@ const ArchitectureSection = () => {
                       <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors">
                         {layer.label}
                       </h3>
-                      <p className="text-xs font-semibold text-accent mt-0.5">{layer.tech}</p>
-                      <p className="text-[12px] text-slate-500 dark:text-slate-400 mt-1">{layer.desc}</p>
+                      <ul className="mt-1.5 space-y-0.5">
+                        {layer.practices.map((p) => (
+                          <li key={p} className="text-[12px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                            <span className="w-1 h-1 rounded-full bg-accent/60 flex-shrink-0" />
+                            {p}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                   {i < layers.length - 1 && (
@@ -107,7 +109,7 @@ const ArchitectureSection = () => {
 
               <div className="p-5 rounded-2xl bg-gradient-to-br from-accent/10 to-emerald-500/5 border border-accent/20">
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  <span className="font-bold text-accent">Every project</span> follows this architecture pattern — from simple landing pages to complex full-stack systems with AI integration.
+                  <span className="font-bold text-accent">Every project</span> follows this engineering approach — from simple landing pages to complex full-stack systems.
                 </p>
               </div>
             </div>

@@ -9,8 +9,7 @@ import CurrentlyBuilding from "./currentlyBuilding";
 import Achievements from "./achievements";
 import ArchitectureSection from "./architectureSection";
 import EngineeringJourney from "./engineeringJourney";
-import GitHubActivity from "./githubActivity";
-import Organizations from "./organizations";
+import DeveloperActivity from "./developerActivity";
 import Experience from "./experience";
 import Contact from "./contact";
 import Footer from "./footer";
@@ -87,8 +86,7 @@ function Portfolio() {
           </div>
         </section>
         <ArchitectureSection />
-        <GitHubActivity />
-        <Organizations />
+        <DeveloperActivity />
         <Experience />
         <Contact />
         <Footer />

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Organizations from "../organizations";
+import DeveloperActivity from "../developerActivity";
 
 vi.mock("react-intersection-observer", () => {
   const mockRef = { current: null };
@@ -13,21 +13,20 @@ vi.mock("react-intersection-observer", () => {
   };
 });
 
-describe("Organizations", () => {
+describe("DeveloperActivity", () => {
   it("renders the section heading", () => {
-    render(<Organizations />);
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(/Organizations &/);
+    render(<DeveloperActivity />);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(/Developer/);
   });
 
-  it("renders organization names", () => {
-    render(<Organizations />);
+  it("renders community names", () => {
+    render(<DeveloperActivity />);
     expect(screen.getByText("ISHub AAU")).toBeInTheDocument();
     expect(screen.getByText("INFOSA")).toBeInTheDocument();
   });
 
-  it("renders roles", () => {
-    render(<Organizations />);
-    expect(screen.getByText("Frontend Development Community")).toBeInTheDocument();
-    expect(screen.getByText("Information Science Community")).toBeInTheDocument();
+  it("renders GitHub profile link", () => {
+    render(<DeveloperActivity />);
+    expect(screen.getByText("View GitHub Profile")).toBeInTheDocument();
   });
 });

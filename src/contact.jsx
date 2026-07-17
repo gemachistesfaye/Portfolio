@@ -75,9 +75,9 @@ const Contact = () => {
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <SectionHeading
               label="Contact"
-              title="Have a Project in Mind?"
-              highlight="Let's Build It"
-              description="I'll turn your idea into a real product. I usually respond within 24 hours."
+              title="Let's Discuss Your"
+              highlight="Project"
+              description="Share your project details and I will review your requirements and respond within 24 hours."
             />
         </div>
 
@@ -120,6 +120,9 @@ const Contact = () => {
           </div>
 
           <div className={`lg:col-span-3 opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
+            <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
+              For a quick inquiry, use the floating button above. This form is for detailed project requirements.
+            </p>
             <form
               onSubmit={handleSubmit}
               className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm relative overflow-hidden"
@@ -295,7 +298,7 @@ const Contact = () => {
               {status === "sent" && (
                 <div className="flex items-center gap-2 p-3 mb-4 rounded-xl bg-accent/10 border border-accent/20">
                   <div className="w-2 h-2 rounded-full bg-accent" />
-                  <p className="text-sm text-accent font-medium">Inquiry received! I'll review your project details and get back to you within 24 hours.</p>
+                  <p className="text-sm text-accent font-medium">Thanks! I received your project details and will get back to you within 24 hours.</p>
                 </div>
               )}
               {status === "error" && (
@@ -310,11 +313,11 @@ const Contact = () => {
                 disabled={status === "sending"}
                 className="group w-full py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-sm disabled:opacity-50 shadow-lg shadow-accent/20 hover:shadow-accent/40 flex items-center justify-center gap-2"
               >
-                {status === "sending" ? (
+                  {status === "sending" ? (
                   "Sending..."
                 ) : (
                   <>
-                    Send Message
+                    Send Project Brief
                     <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
                   </>
                 )}

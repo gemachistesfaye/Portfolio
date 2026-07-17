@@ -88,28 +88,12 @@ const Contact = () => {
               label="Contact"
               title="Let's Build"
               highlight="Something Together"
-              description="Tell me about your idea, requirements, and goals. I'll review your project details and respond within 24 hours."
+              description="Have a project idea or want to collaborate? Send me a message and I'll get back to you."
             />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className={`lg:col-span-2 space-y-4 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              For quick questions → use the Hire Me button. For detailed projects → complete this form.
-            </p>
-
-            <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220]">
-              <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-2">Typical projects</p>
-              <ul className="space-y-1">
-                {["Business websites", "Full-stack applications", "AI-enhanced systems", "Dashboards and automation tools"].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                    <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {[
               { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-blue-500 to-indigo-500" },
               { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-emerald-500 to-teal-500" },

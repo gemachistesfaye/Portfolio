@@ -1,18 +1,16 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import { GraduationCap, Code, Briefcase, Calendar } from "lucide-react";
+import { GraduationCap, Briefcase, Calendar } from "lucide-react";
 import { experience } from "./data";
 
 const icons = {
   Internship: <Briefcase size={14} />,
-  Training: <Code size={14} />,
   Degree: <GraduationCap size={14} />,
 };
 
 const sectionLabels = {
   Internship: "Professional Experience",
   Degree: "Education",
-  Training: "Professional Training",
 };
 
 const Experience = () => {
@@ -24,7 +22,7 @@ const Experience = () => {
     return acc;
   }, {});
 
-  const sectionOrder = ["Internship", "Training", "Degree"];
+  const sectionOrder = ["Internship", "Degree"];
 
   return (
     <section id="experience" className="py-28 px-6 bg-[#060a13] relative z-10">
@@ -35,7 +33,7 @@ const Experience = () => {
             Experience & <span className="text-gradient">Education</span>
           </h2>
           <p className="text-base text-slate-500 dark:text-slate-400 mt-3 max-w-lg mx-auto">
-            My professional experience, academic background, and training in software engineering.
+            My professional experience, academic background, and software engineering growth.
           </p>
         </div>
 

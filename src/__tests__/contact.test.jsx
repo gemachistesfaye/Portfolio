@@ -37,8 +37,4 @@ describe("Contact", () => {
     expect(screen.getByText("Within 24 hours")).toBeInTheDocument();
   });
 
-  it("renders helper text about quick inquiry", () => {
-    render(<Contact />);
-    expect(screen.getByText(/quick questions/i)).toBeInTheDocument();
-  });
 });

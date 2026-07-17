@@ -23,6 +23,5 @@ describe("Experience", () => {
     render(<Experience />);
     expect(screen.getByText("Software Engineering Intern")).toBeInTheDocument();
     expect(screen.getByText("BSc Information Science")).toBeInTheDocument();
-    expect(screen.getByText("Frontend Development Trainee")).toBeInTheDocument();
   });
 });

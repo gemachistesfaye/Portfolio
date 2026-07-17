@@ -141,17 +141,13 @@ const About = () => {
                     <div className={`w-11 h-11 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}>
                       {step.icon}
                     </div>
-                    {i === steps.length - 1 ? (
-                      <h3 className="text-[11px] sm:text-xs font-bold text-amber-700 uppercase tracking-widest mb-3">Deployment & Improvement</h3>
-                    ) : (
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Step {i + 1}</span>
-                    )}
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Step {i + 1}</span>
                   </div>
                   <h3 className="text-lg sm:text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
                     {step.title}
                   </h3>
                   <p className="text-[12px] sm:text-[13px] text-stone-500">
-                    {i === steps.length - 1 ? "I deploy your application to cloud platforms and provide ongoing improvements, monitoring, and bug fixes." : step.desc}
+                    {step.desc}
                   </p>
                 </div>
               </div>

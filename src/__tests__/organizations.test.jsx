@@ -16,18 +16,18 @@ vi.mock("react-intersection-observer", () => {
 describe("Organizations", () => {
   it("renders the section heading", () => {
     render(<Organizations />);
-    expect(screen.getByText(/Organizations &/)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(/Organizations &/);
   });
 
   it("renders organization names", () => {
     render(<Organizations />);
-    expect(screen.getByText("ISHub - AAU")).toBeInTheDocument();
-    expect(screen.getByText("INFOSA-2016")).toBeInTheDocument();
+    expect(screen.getByText("ISHub AAU")).toBeInTheDocument();
+    expect(screen.getByText("INFOSA")).toBeInTheDocument();
   });
 
   it("renders roles", () => {
     render(<Organizations />);
-    expect(screen.getByText("Participant / Member")).toBeInTheDocument();
-    expect(screen.getByText("Member")).toBeInTheDocument();
+    expect(screen.getByText("Frontend Development Community")).toBeInTheDocument();
+    expect(screen.getByText("Information Science Community")).toBeInTheDocument();
   });
 });

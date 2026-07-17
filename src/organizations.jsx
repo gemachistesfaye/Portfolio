@@ -1,26 +1,23 @@
 import { useInView } from "react-intersection-observer";
 import { Users, GraduationCap, ExternalLink } from "lucide-react";
+import SectionHeading from "./components/SectionHeading";
 
 const organizations = [
   {
     icon: <GraduationCap size={20} />,
-    name: "ISHub - AAU",
-    org: "ISHub Team, School of Information Science",
-    institution: "Addis Ababa University",
-    role: "Participant / Member",
-    year: "2025",
-    description: "Technical learning community focused on frontend development, software engineering practices, collaboration, and building practical technology projects.",
+    name: "ISHub AAU",
+    role: "Frontend Development Community",
+    year: "2025 – Present",
+    description: "Frontend development community focused on practical software engineering, collaboration, mentorship, and building real-world technology projects.",
     link: "https://aauishub.com",
     color: "from-blue-500 to-indigo-600",
   },
   {
     icon: <Users size={20} />,
-    name: "INFOSA-2016",
-    org: "Information Science Community",
-    institution: "Addis Ababa University",
-    role: "Member",
-    year: "Current",
-    description: "Information Science community focused on technology collaboration, knowledge sharing, and academic networking.",
+    name: "INFOSA",
+    role: "Information Science Community",
+    year: "Current Member",
+    description: "Information Science student community focused on technical collaboration, knowledge sharing, software development, innovation, and academic growth.",
     link: null,
     color: "from-violet-500 to-purple-600",
   },
@@ -33,14 +30,12 @@ const Organizations = () => {
     <section className="py-28 px-6">
       <div ref={ref} className="max-w-5xl mx-auto">
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
-          <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4 text-center">Community</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight text-center">
-            Organizations &{' '}
-            <span className="text-gradient">Communities</span>
-          </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-            Active member of technical communities driving innovation, collaboration, and professional growth.
-          </p>
+          <SectionHeading
+            label="Community"
+            title="Organizations &"
+            highlight="Communities"
+            description="Communities where I learn, collaborate, contribute, and continue growing as a software engineer."
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -61,10 +56,9 @@ const Organizations = () => {
                     </h3>
                     <span className="text-[10px] text-slate-400 font-semibold">{org.year}</span>
                   </div>
-                  <p className="text-[11px] text-accent font-semibold uppercase tracking-wider mb-0.5">
+                  <p className="text-[11px] text-accent font-semibold uppercase tracking-wider mb-2">
                     {org.role}
                   </p>
-                  <p className="text-[11px] text-slate-400 mb-2">{org.org}</p>
                   <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                     {org.description}
                   </p>
@@ -75,7 +69,7 @@ const Organizations = () => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 mt-3 text-xs font-medium text-accent hover:text-accent-hover transition-colors"
                     >
-                      Visit website <ExternalLink size={12} />
+                      Visit Community <ExternalLink size={12} />
                     </a>
                   )}
                 </div>

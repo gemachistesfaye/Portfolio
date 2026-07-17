@@ -3,24 +3,24 @@ import SectionHeading from "./components/SectionHeading";
 
 const milestones = [
   {
-    year: "2023",
-    title: "Software Fundamentals",
-    description: "Started with programming fundamentals, HTML, CSS, JavaScript, and version control with Git.",
-  },
-  {
     year: "2024",
-    title: "Full-Stack Development",
-    description: "Built full-stack applications with React, Node.js, databases, and deployment workflows.",
+    title: "Started My Tech Journey",
+    description: "Began exploring software development and computer science fundamentals. Learned HTML, CSS, Git, and the foundations of web development while building my first websites and strengthening problem-solving skills.",
   },
   {
     year: "2025",
-    title: "AI & Production Systems",
-    description: "Integrated AI APIs, built real-time systems, and deployed production applications serving users.",
+    title: "Frontend Development",
+    description: "Focused on modern frontend engineering through intensive training and practical projects. Built responsive web applications using JavaScript, React, Tailwind CSS, and modern development workflows while completing professional bootcamps.",
   },
   {
     year: "2026",
-    title: "Scalable Products",
-    description: "Building scalable software products with focus on architecture, security, and system design.",
+    title: "Full-Stack & AI Engineering",
+    description: "Expanded into backend development, databases, cloud deployment, software architecture, and AI integration. Built production-ready full-stack applications using React, Node.js, Express, MySQL, Firebase, Supabase, and AI APIs to solve real business and organizational challenges.",
+  },
+  {
+    year: "2027",
+    title: "Building Technology Products",
+    description: "Focused on creating scalable software products, collaborating with organizations, and growing an independent software studio dedicated to delivering intelligent digital solutions for businesses, education, healthcare, and public services.",
   },
 ];
 
@@ -35,6 +35,7 @@ const EngineeringJourney = () => {
             label="Journey"
             title="My Engineering"
             highlight="Journey"
+            description="A continuous path of learning, building, and solving real-world problems through software engineering."
           />
         </div>
 

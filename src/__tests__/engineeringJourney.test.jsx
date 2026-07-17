@@ -16,22 +16,22 @@ vi.mock("react-intersection-observer", () => {
 describe("EngineeringJourney", () => {
   it("renders the section heading", () => {
     render(<EngineeringJourney />);
-    expect(screen.getByText(/Engineering/)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(/Engineering/);
   });
 
   it("renders all milestones", () => {
     render(<EngineeringJourney />);
-    expect(screen.getByText("2023")).toBeInTheDocument();
     expect(screen.getByText("2024")).toBeInTheDocument();
     expect(screen.getByText("2025")).toBeInTheDocument();
     expect(screen.getByText("2026")).toBeInTheDocument();
+    expect(screen.getByText("2027")).toBeInTheDocument();
   });
 
   it("renders milestone titles", () => {
     render(<EngineeringJourney />);
-    expect(screen.getByText("Software Fundamentals")).toBeInTheDocument();
-    expect(screen.getByText("Full-Stack Development")).toBeInTheDocument();
-    expect(screen.getByText("AI & Production Systems")).toBeInTheDocument();
-    expect(screen.getByText("Scalable Products")).toBeInTheDocument();
+    expect(screen.getByText("Started My Tech Journey")).toBeInTheDocument();
+    expect(screen.getByText("Frontend Development")).toBeInTheDocument();
+    expect(screen.getByText("Full-Stack & AI Engineering")).toBeInTheDocument();
+    expect(screen.getByText("Building Technology Products")).toBeInTheDocument();
   });
 });

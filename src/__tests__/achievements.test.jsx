@@ -16,23 +16,21 @@ vi.mock("react-intersection-observer", () => {
 describe("Achievements", () => {
   it("renders the section heading", () => {
     render(<Achievements />);
-    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(/Achievements/);
+    expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(/Credentials/);
   });
 
-  it("renders achievement items", () => {
+  it("renders all credentials", () => {
     render(<Achievements />);
     expect(screen.getByText("ISHub AAU Frontend Development Bootcamp")).toBeInTheDocument();
     expect(screen.getByText("GeezX AI Bootcamp")).toBeInTheDocument();
-  });
-
-  it("renders credential items", () => {
-    render(<Achievements />);
+    expect(screen.getByText("ALX Ventures Founder Academy")).toBeInTheDocument();
+    expect(screen.getByText("Software Development Frameworks Training")).toBeInTheDocument();
     expect(screen.getByText("EthioDigizens Digital Literacy")).toBeInTheDocument();
   });
 
-  it("renders View Proof buttons", () => {
+  it("renders View Certificate buttons", () => {
     render(<Achievements />);
-    const proofButtons = screen.getAllByText("View Proof");
-    expect(proofButtons.length).toBeGreaterThan(0);
+    const buttons = screen.getAllByText("View Certificate");
+    expect(buttons.length).toBe(5);
   });
 });

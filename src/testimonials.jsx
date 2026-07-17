@@ -23,7 +23,7 @@ const Testimonials = () => {
             {testimonials.map((t, i) => (
               <div
                 key={t.name}
-                className={`group relative p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-lg hover:border-accent/30 transition-all duration-500 hover:shadow-accent/5 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
+                className={`group relative p-6 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm hover:shadow-lg hover:border-accent/40 transition-all duration-500 hover:shadow-accent/5 opacity-0 ${inView ? 'animate-slide-up' : ''}`}
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="absolute -top-3 -left-3 w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">

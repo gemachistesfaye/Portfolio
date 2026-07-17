@@ -139,14 +139,14 @@ const Project = () => {
 
           <button
             onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-11 h-11 rounded-full bg-white dark:bg-[#0c1220] border border-slate-200 dark:border-slate-700/60 shadow-xl flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/30 hover:shadow-accent/10 transition-all duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-[#0c1220] border border-slate-200 dark:border-slate-700/60 shadow-xl flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/30 hover:shadow-accent/10 transition-all duration-300"
             aria-label="Previous project"
           >
             <ChevronLeft size={18} />
           </button>
           <button
             onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-11 h-11 rounded-full bg-white dark:bg-[#0c1220] border border-slate-200 dark:border-slate-700/60 shadow-xl flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/30 hover:shadow-accent/10 transition-all duration-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-[#0c1220] border border-slate-200 dark:border-slate-700/60 shadow-xl flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/30 hover:shadow-accent/10 transition-all duration-300"
             aria-label="Next project"
           >
             <ChevronRight size={18} />

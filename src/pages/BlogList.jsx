@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { getAllPosts, urlForPreview, urlForBlur } from "../lib/sanity";
 
 const BlogList = () => {
@@ -74,6 +75,14 @@ const BlogList = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Blog | Gemachis Tesfaye</title>
+        <meta name="description" content="Thoughts on web development, AI, and building scalable applications by Gemachis Tesfaye." />
+        <meta property="og:title" content="Blog | Gemachis Tesfaye" />
+        <meta property="og:description" content="Thoughts on web development, AI, and building scalable applications." />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
       <div className="mb-12">
         <h1 className="text-4xl font-bold text-[#3d3833] mb-3 tracking-tight">
           Blog

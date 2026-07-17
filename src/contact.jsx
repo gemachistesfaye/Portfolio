@@ -87,7 +87,7 @@ const Contact = () => {
             ].map((c, i) => (
               <div
                 key={i}
-                className="group flex items-center gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500"
+                className="group flex items-center gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/40 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500"
               >
                 <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   {c.icon}
@@ -105,7 +105,7 @@ const Contact = () => {
               </div>
             ))}
 
-            <div className="flex flex-col gap-3 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220]">
+            <div className="flex flex-col gap-3 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/40 transition-all duration-500">
               <div className="flex items-center gap-3">
                 <Clock size={16} className="text-accent flex-shrink-0" />
                 <div>
@@ -170,11 +170,11 @@ const Contact = () => {
                   required
                   onFocus={() => setFocused("subject")}
                   onBlur={() => setFocused(null)}
-                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
+                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
                     focused === "subject"
                       ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
                       : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
-                    }`}
+                  }`}
                 />
               </div>
 
@@ -184,15 +184,16 @@ const Contact = () => {
                   id="message"
                   name="message"
                   rows="5"
+                  maxLength={2000}
                   placeholder="Tell me about your project..."
                   required
                   onFocus={() => setFocused("message")}
                   onBlur={() => setFocused(null)}
-                className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 resize-none ${
+                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 resize-none ${
                     focused === "message"
                       ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
                       : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
-                    }`}
+                  }`}
                 />
               </div>
 
@@ -212,7 +213,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                    className="group w-full py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-sm disabled:opacity-50 shadow-lg shadow-accent/20 hover:shadow-accent/40 flex items-center justify-center gap-2"
+                className="group w-full py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-sm disabled:opacity-50 shadow-lg shadow-accent/20 hover:shadow-accent/40 flex items-center justify-center gap-2"
               >
                 {status === "sending" ? (
                   "Sending..."

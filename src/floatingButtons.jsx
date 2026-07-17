@@ -9,12 +9,14 @@ const BUDGETS = ["1,000 - 3,000 ETB", "3,000 - 5,000 ETB", "5,000 - 10,000 ETB",
 
 const CustomSelect = ({ value, options, placeholder, onChange, disabled, isOpen, onToggle }) => (
   <div className="relative">
-    <button
-      type="button"
-      onClick={(e) => { e.stopPropagation(); onToggle(); }}
-      disabled={disabled}
-      className={`w-full px-4 py-3 text-left rounded-xl border ${isOpen ? 'border-indigo-500/50 ring-4 ring-indigo-500/10' : 'border-slate-200 dark:border-slate-700/60'} bg-slate-50/80 dark:bg-white/[0.03] text-sm ${value ? 'text-slate-900 dark:text-white' : 'text-slate-400'} transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-between`}
-    >
+               <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); onToggle(); }}
+                disabled={disabled}
+                aria-haspopup="listbox"
+                aria-expanded={isOpen}
+                className={`w-full px-4 py-3 text-left rounded-xl border ${isOpen ? 'border-indigo-500/50 ring-4 ring-indigo-500/10' : 'border-slate-200 dark:border-slate-700/60'} bg-slate-50/80 dark:bg-white/[0.03] text-sm ${value ? 'text-slate-900 dark:text-white' : 'text-slate-400'} transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-between`}
+              >
       <span className="truncate">{value || placeholder}</span>
       <ChevronDown size={14} className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
     </button>
@@ -204,6 +206,7 @@ const FloatingButtons = () => {
           aria-label="Project inquiry form"
         >
           <div
+            id="hire-me-modal"
             className="w-full max-w-lg max-h-[80vh] overflow-y-auto p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
             onClick={(e) => e.stopPropagation()}
           >
@@ -312,7 +315,9 @@ const FloatingButtons = () => {
         onTouchEnd={cancelHold}
         onTouchCancel={cancelHold}
         className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold rounded-full shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 border border-white/10 transition-all duration-300 group sm:bottom-20 select-none ${nearFooter ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-        aria-label={showCard ? "Close" : "Hold to scroll to top, click to contact"}
+        aria-label={showCard ? "Close project inquiry form" : "Open project inquiry form"}
+        aria-expanded={showCard}
+        aria-controls="hire-me-modal"
       >
         {showCard ? (
           <>

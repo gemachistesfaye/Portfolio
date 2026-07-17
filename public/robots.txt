@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gemachistesfaye.github.io/Portfolio/sitemap.xml
+Sitemap: https://gemachisdev.vercel.app/sitemap.xml

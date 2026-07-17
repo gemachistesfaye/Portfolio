@@ -4,12 +4,12 @@ const milestones = [
   {
     year: "2024",
     title: "Started My Tech Journey",
-    description: "Learned web development foundations, programming basics, Git, and computer science fundamentals while building my first projects.",
+    description: "Learned web development foundations, programming basics, and computer science fundamentals while building my first projects.",
   },
   {
     year: "2025",
     title: "Frontend Development",
-    description: "Focused on modern frontend engineering with React, JavaScript, Tailwind CSS, responsive design, and professional development workflows.",
+    description: "Focused on modern frontend engineering with React, JavaScript, Tailwind CSS, Git, responsive design, and professional development workflows.",
   },
   {
     year: "2026",
@@ -51,9 +51,9 @@ const EngineeringJourney = () => {
               <div className="absolute left-[-17px] top-1.5 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-[#020617] z-10" />
 
               <div className="pl-2">
-                <span className="text-[10px] font-bold text-accent uppercase tracking-widest">{m.year}</span>
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">{m.title}</h3>
-                <p className="text-[13px] text-slate-500 dark:text-slate-400 mt-0.5 leading-relaxed">{m.description}</p>
+                <span className="text-xs font-bold text-accent uppercase tracking-widest">{m.year}</span>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mt-0.5">{m.title}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">{m.description}</p>
               </div>
             </div>
           ))}

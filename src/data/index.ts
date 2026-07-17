@@ -132,9 +132,18 @@ export const achievements: Achievement[] = [
     proofFile: "AI-bootcamp-certificate.jpeg",
   },
   {
+    title: "EthioDigizens Digital Literacy",
+    org: "EthioDigizens",
+    year: "2025",
+    description: "Digital literacy and online safety training covering cybersecurity awareness and responsible technology use.",
+    tags: ["Digital Skills", "Cybersecurity Awareness"],
+    category: "credential",
+    proofFile: "ethidigizens.jpg",
+  },
+  {
     title: "ALX Ventures Founder Academy",
     org: "ALX Ventures",
-    year: "2025",
+    year: "2024",
     description: "Entrepreneurship and product development training focused on technology-driven innovation.",
     tags: ["Product Development", "Entrepreneurship", "Customer Discovery"],
     category: "credential",
@@ -148,15 +157,6 @@ export const achievements: Achievement[] = [
     tags: ["Software Architecture", "Design Patterns", "Development Practices"],
     category: "credential",
     proofFile: "Software-Frameworks-certificate.jpeg",
-  },
-  {
-    title: "EthioDigizens Digital Literacy",
-    org: "EthioDigizens",
-    year: "2024",
-    description: "Digital literacy and online safety training covering cybersecurity awareness and responsible technology use.",
-    tags: ["Digital Skills", "Cybersecurity Awareness"],
-    category: "credential",
-    proofFile: "ethidigizens.jpg",
   },
 ];
 

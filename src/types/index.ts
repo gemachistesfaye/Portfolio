@@ -122,7 +122,7 @@ export interface Experience {
   role: string;
   org: string;
   date: string;
-  type: "Internship" | "Training" | "Degree";
+  type: "Experience" | "Internship" | "Training" | "Degree";
   color: string;
   points: string[];
   tags: string[];

@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Helmet } from "react-helmet-async";
+import { ArrowLeft, Eye, Heart, Share2, Check } from "lucide-react";
 import {
   getPostBySlug,
   urlFor,
@@ -11,29 +12,6 @@ import {
   incrementLikes,
   incrementShares,
 } from "../lib/sanity";
-
-const HeartIcon = ({ filled }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill={filled ? "#ef4444" : "none"} stroke={filled ? "#ef4444" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-  </svg>
-);
-
-const ShareIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="18" cy="5" r="3" />
-    <circle cx="6" cy="12" r="3" />
-    <circle cx="18" cy="19" r="3" />
-    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-  </svg>
-);
-
-const EyeIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -70,21 +48,15 @@ const BlogPost = () => {
 
   const handleLike = () => {
     if (!post) return;
-    
-    // Optimistically update so it feels instant
     setLikeCount((c) => c + 1);
-    
     incrementLikes(post._id).catch(() => {
-      // Revert if API fails
       setLikeCount((c) => c - 1);
     });
   };
 
   const handleShare = async () => {
     if (!post) return;
-    
     try {
-      // Use Native Web Share API if supported (mobile devices love this)
       if (navigator.share) {
         await navigator.share({
           title: post.title,
@@ -92,52 +64,39 @@ const BlogPost = () => {
           url: window.location.href,
         });
       } else {
-        // Fallback to clipboard if not supported (e.g. some desktop browsers)
         await navigator.clipboard.writeText(window.location.href);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       }
-      
-      // Increment share count after successful share action
       incrementShares(post._id)
         .then(() => setShareCount((c) => c + 1))
         .catch(() => {});
     } catch (error) {
-      console.log("Share failed or was cancelled", error);
+      console.log("Share cancelled", error);
     }
   };
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-32 gap-4">
-        <div className="w-10 h-10 border-[3px] border-[#5a9a7a] border-t-transparent rounded-full animate-spin" />
-        <p className="text-sm text-[#a09890]">Loading post...</p>
+        <div className="w-10 h-10 border-[3px] border-indigo-600 border-t-transparent rounded-full animate-spin" />
+        <p className="text-sm text-slate-500 dark:text-zinc-400">Loading article...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 gap-6">
-        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#f0ebe4] to-[#ebe5dc] flex items-center justify-center shadow-sm border border-[#e0d9cf]">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5a9a7a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 20h9"/>
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-        </div>
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-[#3d3833] mb-2">Post Not Found</h2>
-          <p className="text-[#8a837d] text-base">
-            This article doesn't exist yet or has been moved.
-          </p>
-        </div>
+      <div className="flex flex-col items-center justify-center py-20 gap-6 text-center">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Post Not Found</h2>
+        <p className="text-slate-600 dark:text-zinc-400 text-sm">
+          This article doesn't exist yet or has been moved.
+        </p>
         <Link
           to="/blog"
-          className="mt-4 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#5a9a7a] to-[#3d7a5a] rounded-full shadow-lg shadow-[#5a9a7a]/20 hover:shadow-[#5a9a7a]/40 hover:scale-105 transition-all duration-300 no-underline"
+          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/20 transition-all duration-300"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-          </svg>
+          <ArrowLeft size={16} />
           Browse All Posts
         </Link>
       </div>
@@ -156,53 +115,54 @@ const BlogPost = () => {
         )}
       </Helmet>
 
-      <article>
+      <article className="max-w-3xl mx-auto">
         <Link
           to="/blog"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-[#8a837d] hover:text-[#5a9a7a] mb-8 no-underline transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 mb-8 transition-colors"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
-          </svg>
+          <ArrowLeft size={14} />
           All Posts
         </Link>
 
         <header className="mb-10">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <time className="text-sm font-semibold text-[#5a9a7a] uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-zinc-500 mb-4">
+            <time className="font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
               {new Date(post.publishedAt).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
             </time>
-            <span className="text-[#d4c9ba]">·</span>
-            <span className="flex items-center gap-1.5 text-sm text-[#a09890]">
-              <EyeIcon /> {viewCount} views
+            <span>•</span>
+            <span className="flex items-center gap-1">
+              <Eye size={13} /> {viewCount} views
             </span>
-            <span className="text-[#d4c9ba]">·</span>
-            <span className="flex items-center gap-1.5 text-sm text-[#a09890]">
-              <HeartIcon filled={false} /> {likeCount} likes
+            <span>•</span>
+            <span className="flex items-center gap-1">
+              <Heart size={13} /> {likeCount} likes
             </span>
-            <span className="text-[#d4c9ba]">·</span>
-            <span className="flex items-center gap-1.5 text-sm text-[#a09890]">
-              <ShareIcon /> {shareCount} shares
+            <span>•</span>
+            <span className="flex items-center gap-1">
+              <Share2 size={13} /> {shareCount} shares
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#3d3833] mb-5 leading-tight tracking-tight">
+
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white mb-6 leading-tight tracking-tight">
             {post.title}
           </h1>
+
           {post.excerpt && (
-            <p className="text-lg text-[#8a837d] leading-relaxed border-l-4 border-[#5a9a7a]/30 pl-5">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-300 leading-relaxed border-l-4 border-indigo-500 pl-4 py-1 mb-6">
               {post.excerpt}
             </p>
           )}
+
           {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-6">
+            <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-xs font-medium bg-[#f0ebe4] text-[#6b8a74] rounded-full border border-[#e0d9cf]"
+                  className="px-3 py-1 text-xs font-medium bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 rounded-full border border-slate-200 dark:border-zinc-700"
                 >
                   {tag}
                 </span>
@@ -212,7 +172,7 @@ const BlogPost = () => {
         </header>
 
         {post.coverImage && (
-          <div className="rounded-2xl overflow-hidden mb-12 border border-[#e8e2da] shadow-sm">
+          <div className="rounded-2xl overflow-hidden mb-12 border border-slate-200 dark:border-zinc-800 shadow-md">
             <img
               src={urlForPreview(post.coverImage, 1200)}
               alt={post.title}
@@ -222,47 +182,35 @@ const BlogPost = () => {
           </div>
         )}
 
-        <div className="blog-prose">
+        <div className="prose prose-slate dark:prose-invert max-w-none text-slate-800 dark:text-zinc-200 leading-relaxed space-y-4">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {post.content}
           </ReactMarkdown>
         </div>
 
-        <div className="mt-12 flex items-center gap-4">
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-zinc-800 flex items-center gap-4">
           <button
             onClick={handleLike}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border bg-white text-[#3d3833] border-[#e8e2da] hover:border-red-300 hover:text-red-500 hover:bg-red-50 cursor-pointer active:scale-95"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 border bg-white dark:bg-zinc-900 text-slate-800 dark:text-zinc-200 border-slate-200 dark:border-zinc-800 hover:border-rose-400 hover:text-rose-500 shadow-sm"
           >
-            <HeartIcon filled={false} />
+            <Heart size={14} className="text-rose-500" />
             Like ({likeCount})
           </button>
 
           <div className="relative">
             <button
               onClick={handleShare}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-[#3d3833] border border-[#e8e2da] hover:border-[#5a9a7a] hover:text-[#5a9a7a] hover:bg-[#5a9a7a]/5 transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-white dark:bg-zinc-900 text-slate-800 dark:text-zinc-200 border border-slate-200 dark:border-zinc-800 hover:border-indigo-500 hover:text-indigo-500 transition-all duration-200 shadow-sm"
             >
-              <ShareIcon />
+              <Share2 size={14} />
               Share ({shareCount})
             </button>
             {copied && (
-              <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#3d3833] text-white text-xs rounded-lg whitespace-nowrap">
-                Copied!
+              <span className="absolute -top-9 left-1/2 -translate-x-1/2 px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[11px] font-medium rounded-md shadow-md whitespace-nowrap flex items-center gap-1">
+                <Check size={12} /> Copied!
               </span>
             )}
           </div>
-        </div>
-
-        <div className="mt-16 pt-8 border-t border-[#e8e2da]">
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 text-[#5a9a7a] font-semibold hover:underline no-underline text-base"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-            Read more posts
-          </Link>
         </div>
       </article>
     </>

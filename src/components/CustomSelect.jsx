@@ -1,18 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Check } from "lucide-react";
 
 const CustomSelect = ({ name, options, value, onChange, placeholder, required }) => {
   const [open, setOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const ref = useRef(null);
-
-  useEffect(() => {
-    const check = () => setIsDark(document.documentElement.classList.contains("dark"));
-    check();
-    const obs = new MutationObserver(check);
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    return () => obs.disconnect();
-  }, []);
 
   useEffect(() => {
     const handler = (e) => {
@@ -24,82 +15,74 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
 
   const selected = options.find((o) => o.value === value);
 
-  const btnStyle = {
-    width: "100%",
-    padding: "14px 16px",
-    borderRadius: "12px",
-    border: "1px solid",
-    borderColor: isDark ? "#334155" : "#e2e8f0",
-    backgroundColor: isDark ? "rgba(255,255,255,0.03)" : "#f8fafc",
-    color: isDark ? "#f1f5f9" : "#0f172a",
-    fontSize: "14px",
-    textAlign: "left",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    outline: "none",
-  };
-
-  const menuStyle = {
-    position: "absolute",
-    top: "100%",
-    left: 0,
-    right: 0,
-    marginTop: "6px",
-    zIndex: 9999,
-    borderRadius: "12px",
-    border: "1px solid",
-    borderColor: isDark ? "#334155" : "#e2e8f0",
-    backgroundColor: isDark ? "#0f172a" : "#ffffff",
-    boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
-    overflow: "hidden",
-    padding: "4px 0",
-  };
-
   return (
     <div ref={ref} className="relative w-full">
       <input type="hidden" name={name} value={value} />
       {required && !value && (
-        <input type="text" required className="absolute opacity-0 pointer-events-none w-0 h-0" tabIndex={-1} />
+        <input
+          type="text"
+          required
+          className="absolute opacity-0 pointer-events-none w-0 h-0"
+          tabIndex={-1}
+          aria-hidden="true"
+        />
       )}
 
-      <button type="button" onClick={() => setOpen(!open)} style={btnStyle}>
-        <span style={{ color: selected ? (isDark ? "#f1f5f9" : "#0f172a") : "#94a3b8" }}>
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className={`w-full px-4 py-3 rounded-xl border text-sm text-left flex items-center justify-between transition-all duration-200 focus:outline-none ${
+          open
+            ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+            : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 hover:border-slate-300 dark:hover:border-zinc-700"
+        }`}
+      >
+        <span
+          className={`truncate ${
+            selected
+              ? "text-slate-900 dark:text-zinc-100 font-medium"
+              : "text-slate-400 dark:text-zinc-500"
+          }`}
+        >
           {selected ? selected.label : placeholder}
         </span>
-        <ChevronDown size={16} style={{ color: "#94a3b8", flexShrink: 0, transform: open ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s" }} />
+        <ChevronDown
+          size={16}
+          className={`text-slate-400 dark:text-zinc-500 transition-transform duration-200 flex-shrink-0 ${
+            open ? "rotate-180 text-indigo-500 dark:text-indigo-400" : ""
+          }`}
+        />
       </button>
 
       {open && (
-        <div style={menuStyle}>
+        <div
+          role="listbox"
+          className="absolute left-0 right-0 top-full mt-1.5 z-50 py-1.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xl max-h-56 overflow-y-auto"
+        >
           {options.map((opt) => {
             const isSelected = value === opt.value;
             return (
               <button
                 key={opt.value}
                 type="button"
-                onClick={() => { onChange(opt.value); setOpen(false); }}
-                style={{
-                  display: "block",
-                  width: "100%",
-                  padding: "10px 16px",
-                  fontSize: "14px",
-                  textAlign: "left",
-                  border: "none",
-                  cursor: "pointer",
-                  backgroundColor: isSelected ? (isDark ? "rgba(16,185,129,0.15)" : "rgba(16,185,129,0.1)") : "transparent",
-                  color: isSelected ? "#10b981" : (isDark ? "#cbd5e1" : "#334155"),
-                  fontWeight: isSelected ? 500 : 400,
+                role="option"
+                aria-selected={isSelected}
+                onClick={() => {
+                  onChange(opt.value);
+                  setOpen(false);
                 }}
-                onMouseEnter={(e) => {
-                  if (!isSelected) e.currentTarget.style.backgroundColor = isDark ? "rgba(255,255,255,0.06)" : "#f1f5f9";
-                }}
-                onMouseLeave={(e) => {
-                  if (!isSelected) e.currentTarget.style.backgroundColor = "transparent";
-                }}
+                className={`w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors ${
+                  isSelected
+                    ? "bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-300 font-semibold"
+                    : "text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800/80"
+                }`}
               >
-                {opt.label}
+                <span>{opt.label}</span>
+                {isSelected && (
+                  <Check size={14} className="text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
+                )}
               </button>
             );
           })}

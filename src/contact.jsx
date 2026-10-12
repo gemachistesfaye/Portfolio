@@ -5,32 +5,6 @@ import config from "./config";
 import SectionHeading from "./components/SectionHeading";
 import CustomSelect from "./components/CustomSelect";
 
-const XIcon = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
-
-const FacebookIcon = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-  </svg>
-);
-
-const socials = [
-  { icon: <Linkedin size={17} />, href: config.socials.linkedin, label: "LinkedIn" },
-  { icon: <XIcon />, href: config.socials.twitter, label: "X" },
-  { icon: <InstagramIcon />, href: config.socials.instagram, label: "Instagram" },
-  { icon: <FacebookIcon />, href: config.socials.facebook, label: "Facebook" },
-  { icon: <Send size={17} />, href: config.socials.telegram, label: "Telegram" },
-];
-
 const Contact = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [status, setStatus] = useState("idle");
@@ -81,50 +55,50 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="pt-28 pb-16 px-6">
+    <section id="contact" className="pt-24 sm:pt-28 pb-16 px-6 relative z-10 border-t border-slate-200/80 dark:border-zinc-800/80">
       <div ref={ref} className="max-w-6xl mx-auto">
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
-            <SectionHeading
-              label="Contact"
-              title="Let's Build"
-              highlight="Something Together"
-              description="Have a project idea or want to collaborate? Send me a message and I'll get back to you."
-            />
+          <SectionHeading
+            label="Contact"
+            title="Let's Build"
+            highlight="Something Great"
+            description="Have a project idea, question, or want to collaborate? Send me a message and I'll get back to you promptly."
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-          <div className={`lg:col-span-2 space-y-4 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
+          <div className={`lg:col-span-2 space-y-3.5 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
             {[
-              { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-blue-500 to-indigo-500" },
-              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-emerald-500 to-teal-500" },
-              { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null, color: "from-violet-500 to-purple-500" },
+              { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-indigo-500 to-indigo-700" },
+              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-blue-500 to-blue-700" },
+              { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null, color: "from-indigo-600 to-violet-700" },
             ].map((c, i) => (
               <div
                 key={i}
-                className="group flex items-center gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/40 hover:shadow-lg hover:shadow-accent/5 transition-all duration-500"
+                className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-indigo-500/40 hover:bg-slate-50 dark:hover:bg-zinc-900/90 shadow-sm transition-all duration-300"
               >
-                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${c.color} flex items-center justify-center text-white flex-shrink-0 shadow-md group-hover:scale-105 transition-transform duration-300`}>
                   {c.icon}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">{c.label}</p>
+                  <p className="text-[10px] text-slate-500 dark:text-zinc-500 uppercase tracking-wider font-semibold mb-0.5">{c.label}</p>
                   {c.href ? (
-                    <a href={c.href} className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-accent transition-colors truncate block">
+                    <a href={c.href} className="text-sm font-semibold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors truncate block">
                       {c.value}
                     </a>
                   ) : (
-                    <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 truncate">{c.value}</p>
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">{c.value}</p>
                   )}
                 </div>
               </div>
             ))}
 
-            <div className="flex flex-col gap-3 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] hover:border-accent/40 transition-all duration-500">
+            <div className="flex flex-col gap-3 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-indigo-500/40 shadow-sm transition-all duration-300">
               <div className="flex items-center gap-3">
-                <Clock size={16} className="text-accent flex-shrink-0" />
+                <Clock size={16} className="text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
                 <div>
-                  <p className="text-[10px] text-slate-400 uppercase tracking-[0.15em] font-semibold mb-0.5">Response Time</p>
-                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Within 24 hours</p>
+                  <p className="text-[10px] text-slate-500 dark:text-zinc-500 uppercase tracking-wider font-semibold mb-0.5">Response Time</p>
+                  <p className="text-sm font-semibold text-slate-900 dark:text-white">Within 24 hours</p>
                 </div>
               </div>
             </div>
@@ -133,9 +107,9 @@ const Contact = () => {
           <div className={`lg:col-span-3 opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
             <form
               onSubmit={handleSubmit}
-              className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-sm relative"
+              className="p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md shadow-sm dark:shadow-2xl relative"
             >
-              <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 relative z-10">
                 <div className="relative">
@@ -148,10 +122,10 @@ const Contact = () => {
                     required
                     onFocus={() => setFocused("name")}
                     onBlur={() => setFocused(null)}
-                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
+                    className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 ${
                       focused === "name"
-                        ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                        ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+                        : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                     }`}
                   />
                 </div>
@@ -165,16 +139,16 @@ const Contact = () => {
                     required
                     onFocus={() => setFocused("email")}
                     onBlur={() => setFocused(null)}
-                    className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 ${
+                    className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 ${
                       focused === "email"
-                        ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                        : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                        ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+                        : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                     }`}
                   />
                 </div>
               </div>
 
-              <div className="mb-5 relative z-10">
+              <div className="mb-4 relative z-10">
                 <CustomSelect
                   name="projectType"
                   value={projectType}
@@ -182,16 +156,16 @@ const Contact = () => {
                   placeholder="Project Type"
                   required
                   options={[
-                    { value: "website", label: "Website" },
-                    { value: "webapp", label: "Business Application" },
-                    { value: "ai", label: "AI System" },
-                    { value: "dashboard", label: "Dashboard" },
+                    { value: "webapp", label: "Full-Stack Application / PWA" },
+                    { value: "ai", label: "AI Integration / Agent System" },
+                    { value: "website", label: "Web Platform / Modern UI" },
+                    { value: "api", label: "Backend API & Database Architecture" },
                     { value: "other", label: "Other" },
                   ]}
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 relative z-10">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 relative z-10">
                 <CustomSelect
                   name="budget"
                   value={budget}
@@ -221,28 +195,28 @@ const Contact = () => {
                   onChange={setSize}
                   placeholder="Size (Optional)"
                   options={[
-                    { value: "small", label: "Small" },
-                    { value: "medium", label: "Medium" },
-                    { value: "large", label: "Large" },
+                    { value: "small", label: "Small / MVP" },
+                    { value: "medium", label: "Medium Scope" },
+                    { value: "large", label: "Large Enterprise" },
                   ]}
                 />
               </div>
 
-              <div className="mb-5 relative z-10">
+              <div className="mb-4 relative z-10">
                 <label htmlFor="message" className="sr-only">Your message</label>
                 <textarea
                   id="message"
                   name="message"
-                  rows="5"
+                  rows="4"
                   maxLength={2000}
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about your project goals and scope..."
                   required
                   onFocus={() => setFocused("message")}
                   onBlur={() => setFocused(null)}
-                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-300 resize-none ${
+                  className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 resize-none ${
                     focused === "message"
-                      ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                      : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                      ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+                      : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                   }`}
                 />
               </div>
@@ -254,25 +228,25 @@ const Contact = () => {
                   type="file"
                   name="attachment"
                   accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
-                  className={`w-full px-4 py-3.5 rounded-xl border text-sm text-slate-900 dark:text-white file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 focus:outline-none transition-all duration-300 ${
+                  className={`w-full px-4 py-2.5 rounded-xl border text-xs text-slate-700 dark:text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 dark:file:bg-indigo-500/10 file:text-indigo-600 dark:file:text-indigo-400 hover:file:bg-indigo-100 dark:hover:file:bg-indigo-500/20 focus:outline-none transition-all duration-200 ${
                     focused === "attachment"
-                      ? "border-accent/50 ring-4 ring-accent/10 bg-accent/[0.02]"
-                      : "border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03]"
+                      ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+                      : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                   }`}
                   onFocus={() => setFocused("attachment")}
                   onBlur={() => setFocused(null)}
                 />
-                <p className="text-[10px] text-slate-400 mt-1">Optional — PDF, DOC, or image (max 5MB)</p>
+                <p className="text-[10px] text-slate-500 dark:text-zinc-500 mt-1">Optional — PDF, DOC, or image (max 5MB)</p>
               </div>
 
-              <p className="text-[11px] text-slate-400 mb-5 relative z-10">
+              <p className="text-[11px] text-slate-500 dark:text-zinc-500 mb-5 relative z-10">
                 Your information is kept private and never shared. I'll only use it to respond to your inquiry.
               </p>
 
               {status === "sent" && (
-                <div className="flex items-center gap-2 p-3 mb-4 rounded-xl bg-accent/10 border border-accent/20">
-                  <div className="w-2 h-2 rounded-full bg-accent" />
-                  <p className="text-sm text-accent font-medium">Thanks! I received your project details and will get back to you within 24 hours.</p>
+                <div className="flex items-center gap-2 p-3 mb-4 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20">
+                  <div className="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400" />
+                  <p className="text-sm text-indigo-700 dark:text-indigo-300 font-medium">Thanks! I received your project details and will get back to you within 24 hours.</p>
                 </div>
               )}
               {status === "error" && (
@@ -285,9 +259,9 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="group w-full py-3.5 bg-accent hover:bg-accent-hover text-white font-semibold rounded-xl transition-all duration-300 text-sm disabled:opacity-50 shadow-lg shadow-accent/20 hover:shadow-accent/40 flex items-center justify-center gap-2"
+                className="group w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all duration-300 text-sm disabled:opacity-50 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 flex items-center justify-center gap-2"
               >
-                  {status === "sending" ? (
+                {status === "sending" ? (
                   "Sending..."
                 ) : (
                   <>

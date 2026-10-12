@@ -2,6 +2,203 @@ import { CaseStudy } from "../types";
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "smartbiz-erp",
+    name: "SmartBiz ERP Lite",
+    category: "Full-Stack ERP & POS",
+    tags: ["React 19", "NestJS 10", "PostgreSQL 15", "Prisma 5", "TanStack Router", "TanStack Query", "Zustand", "PWA", "IndexedDB", "Tailwind CSS"],
+    tagline: "Offline-first Progressive Web App & retail ERP for Ethiopian SMEs",
+    description: "An offline-first retail ERP and Point-of-Sale platform engineered for Ethiopian small and medium businesses. Features real-time inventory decrementing, customer credit tracking, cash shifts, low-stock alerts, pricing engine with VAT/margins, and automatic IndexedDB-to-NestJS synchronization when connectivity returns.",
+    heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
+    github: "",
+    demo: "",
+    featured: true,
+
+    overview: {
+      problem: "Ethiopian small and medium retailers experience frequent electrical and internet outages, rendering cloud-only POS systems unusable and forcing shops to revert to manual paper logs that cause inventory leakage, untracked customer debt, and calculation errors.",
+      users: "Business owners, store managers, cashiers, and inventory clerks in Ethiopian retail, wholesale, and supermarket businesses.",
+      role: "Full-Stack Software Engineer — Architected offline sync engine, built core domain modules across inventory, pricing, POS, customer credit, and NestJS REST endpoints.",
+      timeline: "2026",
+      status: "Production-ready codebase with Dockerized PostgreSQL & NestJS backend and PWA frontend"
+    },
+
+    motivation: {
+      problem: "Traditional cloud ERPs freeze when the internet cuts out. Paper registers cause stock discrepancies, lost credit records for regular buyers, and uncollected debts. No affordable local system accommodated multi-language needs or Ethiopian tax (VAT) / credit customs.",
+      whoAffected: "Shop owners struggling with accurate cash-shift reconciliation, inventory managers facing stock shrinkage, and cashiers needing fast checkout even during network blackouts.",
+      whyExistingInsufficient: "International software (Odoo, SAP, QuickBooks) is expensive, complex, English-only, and fails completely without constant high-speed internet. Basic POS apps lack credit ledgers and multi-tier role permissions.",
+      whyMatters: "Retail and commerce are the backbone of local Ethiopian urban economies. Giving merchants an offline-resilient tool prevents financial loss and digitizes small business operations securely."
+    },
+
+    solution: {
+      approach: "Built an offline-first TypeScript monorepo with React 19, TanStack Router, TanStack Query, and an IndexedDB cache on the frontend, paired with a NestJS 10 REST API, Prisma 5 ORM, and PostgreSQL 15 on the backend. An automated background sync engine queues offline sales and posts them sequentially upon network reconnection with duplicate-sale conflict resolution.",
+      keyWorkflows: [
+        "Offline POS Checkout: Cashier adds products → calculates discounts & VAT → confirms payment (Cash/Mobile/Credit) → sale recorded in IndexedDB pending queue → receipt generated.",
+        "Auto-Sync Engine: Frontend event listener detects network recovery → runs startAutoSync() → sends queued sales in order → reconciles stock with backend PostgreSQL → clears pending queue.",
+        "Pricing & Margin Engine: Manager enters buying cost → sets desired profit margin & VAT rate → system calculates recommended selling price automatically.",
+        "Customer Credit Management: Cashier records sale on credit → updates customer ledger balance → triggers overdue payment notices when payment threshold is breached.",
+        "Cashier Shift Balancing: Cashier opens shift with starting float → records cash in/out → closes shift with automated reconciliation vs actual drawer cash."
+      ],
+      features: [
+        { name: "Offline-First Sync Engine", why: "IndexedDB stores catalogs and queues offline sales; syncs automatically to NestJS when connectivity returns without data loss or duplicates." },
+        { name: "Dynamic Pricing Engine", why: "Calculates cost, VAT, profit margin, and recommended selling prices systematically rather than relying on manual guesses." },
+        { name: "Customer Credit & Overdue Tracking", why: "Ethiopian merchants rely heavily on trust-based credit; digitizing ledgers stops forgotten balances and improves cash recovery." },
+        { name: "Real-Time Inventory & Stock Adjustments", why: "Automatically decrements stock on checkout, handles stock receiving batches, and flags low-stock thresholds." },
+        { name: "Role-Based Access Control (RBAC)", why: "Strict separation between Super Admin, Business Owner, Store Manager, and Cashier to protect financials and prevent unauthorized voids." },
+        { name: "Trilingual Support (EN, AM, OM)", why: "Fully localized in English, Amharic, and Afaan Oromoo so non-English-speaking shop staff can operate effortlessly." }
+      ]
+    },
+
+    architecture: {
+      layers: [
+        { name: "Frontend Client", tech: "React 19 + Vite + Tailwind CSS + Radix UI" },
+        { name: "Routing & State", tech: "TanStack Router + TanStack Query + Zustand" },
+        { name: "Offline Storage", tech: "idb (IndexedDB) + Service Worker (PWA)" },
+        { name: "Backend API", tech: "NestJS 10 + Node.js (REST, DTOs, Passport)" },
+        { name: "Database ORM", tech: "Prisma 5 (PostgreSQL 15)" },
+        { name: "Security & Auth", tech: "JWT Access/Refresh Tokens + bcrypt + Helmet + RBAC" },
+        { name: "Containerization", tech: "Docker Compose + GitHub Actions CI" }
+      ],
+      diagram: `React 19 Frontend (PWA)
+  ├── TanStack Router / Zustand (UI & State)
+  ├── idb / IndexedDB (Local Cache: Products, Inventory, Customers)
+  └── Sync Engine (startAutoSync: Queued Sales -> Retry -> Conflict Resolution)
+          │ (Network Reconnection via Axios)
+          ▼
+NestJS 10 REST API (/api)
+  ├── JWT Auth & Role Guards (Owner, Manager, Cashier, Admin)
+  ├── ValidationPipe (Class-Validator DTOs)
+  ├── Feature Modules (Sales, Stock, Pricing, Customers, Reports)
+  └── Audit & Shift Logging
+          │
+          ▼
+PostgreSQL 15 Database (Prisma ORM)
+  └── ACID Transactions: Decrement Stock -> Record Sale -> Update Credit Ledger`
+    },
+
+    database: {
+      overview: "Relational PostgreSQL database managed via Prisma 5 with strict transactional guarantees for inventory deduction, financial ledgers, and audit trails.",
+      entities: [
+        { name: "Product & Pricing", description: "SKU, barcode, category, unit of measure, buying cost, VAT percentage, margin, and selling price." },
+        { name: "Inventory & StockMovement", description: "Current quantity, reorder level, warehouse location, adjustments, and supplier receiving batches." },
+        { name: "Sale & SaleItem", description: "Transaction timestamp, cashier ID, payment method, tax, total amount, discount, and sync UUID." },
+        { name: "Customer & CreditLedger", description: "Customer contact info, credit limit, current outstanding balance, payment logs, and overdue tracking." },
+        { name: "CashierShift", description: "Opening balance, cash receipts, cash drops, closing declared balance, and discrepancy calculation." },
+        { name: "AuditLog", description: "Immutable record of sensitive operations including stock voids, manual adjustments, and price overrides." }
+      ],
+      relationships: "Business has many Products, Users, and Customers. Product has many StockMovements and SaleItems. Sale belongs to CashierShift and Customer. Customer has many CreditTransactions.",
+      rationale: "PostgreSQL with ACID transaction boundaries ensures that even when hundreds of offline sales sync simultaneously, inventory quantities and financial totals remain 100% consistent."
+    },
+
+    implementation: {
+      frontend: [
+        "Architected TanStack Router route tree with nested layouts and authenticated role guards.",
+        "Built offline queue and sync engine in frontend/src/lib/offline/sync/sync-engine.ts using IndexedDB.",
+        "Constructed responsive POS terminal with barcode scanning, quick category filters, and modal payment options.",
+        "Integrated i18n support for English, Amharic, and Afaan Oromoo."
+      ],
+      backend: [
+        "Implemented NestJS feature modules for sales, products, pricing, inventory, stock adjustments, and customers.",
+        "Applied transactional Prisma operations ($transaction) for checkout to ensure atomic stock decrement and ledger updates.",
+        "Created JWT access and refresh token authentication with Passport and role decorators (@Roles).",
+        "Configured Swagger documentation under /docs and global class-validator DTO validation pipes."
+      ],
+      database: [
+        "Engineered schema with Prisma 5 supporting multi-currency, tax calculation, and credit tracking.",
+        "Designed database migrations and seed scripts for rapid developer onboarding."
+      ],
+      deployment: [
+        "Configured Docker Compose for one-command PostgreSQL, backend, and frontend startup.",
+        "Set up GitHub Actions CI workflow for automated linting, type-checking, and build verification."
+      ]
+    },
+
+    security: {
+      measures: [
+        { name: "Role-Based Access Control", implementation: "Strict backend guards ensuring cashiers cannot void sales, view super-admin logs, or alter product costs." },
+        { name: "JWT Token Rotation", implementation: "Short-lived access tokens with secure refresh token rotation to prevent session hijacking." },
+        { name: "Input Validation & Sanitization", implementation: "Global ValidationPipe using class-validator DTOs and Prisma parameterized queries preventing SQL injection." },
+        { name: "HTTP Protection", implementation: "Helmet headers, CORS origin restrictions, and rate limiting against brute-force attacks." }
+      ]
+    },
+
+    ux: {
+      userFlows: [
+        {
+          role: "Cashier",
+          steps: ["Open shift & input initial float", "Scan items or pick from visual grid", "Select payment type (Cash / Telebirr / Credit)", "Print receipt (works offline)", "Close shift with cash drawer count"]
+        },
+        {
+          role: "Store Manager",
+          steps: ["Receive new stock shipment with supplier details", "Adjust prices using profit-margin engine", "Inspect overdue customer credit list", "Review daily sales and shift reports"]
+        }
+      ],
+      keyScreens: [
+        "Fast POS checkout screen with numeric keypad, product search, and offline banner",
+        "Real-time Inventory table with low-stock badges and quick receive-stock modal",
+        "Customer Credit Ledger with payment history and overdue reminder triggers",
+        "Executive Dashboard with Recharts visual graphs, revenue metrics, and top-selling SKUs"
+      ],
+      decisions: [
+        "Prioritized zero-latency offline interaction over blocking network requests.",
+        "Designed high-contrast typography so screens are readable under bright retail store lighting.",
+        "Implemented trilingual toggle right in the header for smooth handoffs between multilingual store clerks."
+      ]
+    },
+
+    challenges: [
+      {
+        challenge: "Offline Duplicate-Sale Prevention",
+        difficulty: "Hard",
+        solution: "Generated client-side UUIDs for every sale created offline. Backend checks UUID uniqueness idempotently so if a network drops mid-sync and retries, no duplicate sale is recorded."
+      },
+      {
+        challenge: "Inventory Sync Race Conditions",
+        difficulty: "Hard",
+        solution: "Used Prisma atomic decrements and database-level locking during batch synchronization to prevent negative inventory when two cashiers sell the same product offline."
+      },
+      {
+        challenge: "Multilingual Layouts & Font Rendering",
+        difficulty: "Medium",
+        solution: "Ensured Amharic and Afaan Oromoo Unicode scripts render crisply across both desktop and mobile screens with consistent line heights in Tailwind CSS."
+      }
+    ],
+
+    performance: {
+      optimizations: [
+        "Vite bundle optimization and route-based code splitting with TanStack Router",
+        "IndexedDB indexed queries for instant sub-millisecond product lookups in POS",
+        "Prisma connection pooling with PostgreSQL",
+        "TanStack Query cache invalidation strategy to minimize redundant REST API calls"
+      ],
+      errorHandling: [
+        "Global NestJS ExceptionFilter returning standardized JSON error payloads",
+        "Sync engine exponential backoff retry loop for intermittent mobile data connections",
+        "Zod / Class-Validator schema validation on all incoming payload bodies"
+      ],
+      testing: "Automated test suites with Jest and Supertest for auth, user flows, and sales transactions."
+    },
+
+    roadmap: [
+      "Direct Telebirr and CBE Birr automated USSD / QR-code payment webhook integration",
+      "Multi-store branch synchronization with centralized warehouse transfers",
+      "AI-driven sales demand forecasting based on historical weekly sales patterns"
+    ],
+
+    media: {
+      screenshots: [
+        {
+          src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+          alt: "SmartBiz ERP Lite Dashboard",
+          caption: "Real-time retail executive dashboard showing KPIs, sales graphs, and inventory health."
+        },
+        {
+          src: "https://images.unsplash.com/photo-1556742049-0a67e557224e?w=800&h=500&fit=crop",
+          alt: "SmartBiz POS Checkout Screen",
+          caption: "Fast, offline-resilient Point of Sale interface with multi-payment and credit support."
+        }
+      ]
+    }
+  },
+  {
     slug: "sheger-health-connect",
     name: "Sheger Health Connect",
     category: "Healthcare",

@@ -1,176 +1,105 @@
-import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Download, Users, FolderOpen, MessageSquare, Palette, Rocket, Headphones, ArrowRight, Github } from "lucide-react";
-import config from "./config";
-import SectionHeading from "./components/SectionHeading";
-import TermsModal from "./components/TermsModal";
+import { Users, FolderOpen, Rocket, ArrowRight, Code2 } from "lucide-react";
+import { scrollToSection } from "./utils/scrollTo";
 
 const highlights = [
-  { icon: <FolderOpen size={18} />, label: "10+", desc: "Projects Built" },
-  { icon: <Users size={18} />, label: "5+", desc: "Full-Stack Applications" },
-  { icon: <Rocket size={18} />, label: "15+", desc: "Technologies Used" },
-  { icon: <Github size={18} />, label: "2+", desc: "Years Learning & Building" },
-];
-
-const steps = [
-  { icon: <MessageSquare size={20} />, title: "Discovery & Planning", desc: "I learn about your goals, define the scope, and deliver a clear project roadmap — free of charge.", color: "from-blue-500 to-indigo-600" },
-  { icon: <Palette size={20} />, title: "Design & Architecture", desc: "I design the system architecture, database schema, and user flows. You review and approve before development begins.", color: "from-violet-500 to-purple-600" },
-  { icon: <Rocket size={20} />, title: "Development & Testing", desc: "Agile development with regular demos. You see progress every week and can provide feedback in real-time.", color: "from-emerald-500 to-teal-600" },
-  { icon: <Headphones size={20} />, title: "Deployment & Improvement", desc: "I deploy your application to cloud platforms and provide ongoing improvements, monitoring, and bug fixes.", color: "from-amber-500 to-orange-600" },
+  { icon: <FolderOpen size={20} />, label: "10+", desc: "Projects Built" },
+  { icon: <Users size={20} />, label: "5+", desc: "Full-Stack Apps" },
+  { icon: <Rocket size={20} />, label: "15+", desc: "Tech Stack" },
+  { icon: <Code2 size={20} />, label: "2+", desc: "Years Building" },
 ];
 
 const About = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
-  const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   return (
-    <>
-      <section id="about" className="py-28 px-6">
-        <div ref={ref} className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
-            <div className={`lg:col-span-2 max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-right' : ''}`}>
-              <div className="relative group">
-                <div className="absolute -inset-3 bg-gradient-to-br from-accent/20 via-teal-400/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 hidden sm:block blur-2xl" />
-                <div className="relative rounded-2xl overflow-hidden bg-[#0c1220]">
-                  <img
-                    src="/Profile.jpg"
-                    alt="Gemachis Tesfaye - Full-Stack Developer"
-                    className="w-full object-cover aspect-[3/4] group-hover:scale-[1.03] transition-transform duration-700"
-                    loading="lazy"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
-                  {/* Fallback avatar if image fails */}
-                  <div
-                    className="hidden w-full aspect-[3/4] items-center justify-center bg-gradient-to-br from-accent/20 to-emerald-600/20"
-                    aria-hidden="true"
-                  >
-                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-accent to-emerald-600 flex items-center justify-center text-white text-5xl font-black shadow-2xl shadow-accent/30">
-                      GT
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              </div>
-            </div>
-
-            <div className={`lg:col-span-3 max-sm:opacity-100 sm:opacity-0 sm:transform-gpu ${inView ? 'sm:animate-slide-up sm:delay-300' : ''}`} style={{ animationDelay: '0.15s' }}>
-              <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-4">About</p>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">
-                Building scalable digital products{' '}
-                <span className="text-gradient">and AI-enhanced systems</span>
-              </h2>
-
-              <div className="space-y-3 text-base text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
-                <p>
-                  I am a Full-Stack Developer and aspiring Software & AI Engineer focused on building scalable digital products that solve real-world problems.
-                </p>
-                <p>
-                  I specialize in creating modern web applications, backend systems, and AI-enhanced solutions using technologies like
-                  React, Node.js, Python, and modern cloud platforms. I have built and deployed multiple systems
-                  including healthcare platforms, business applications, dashboards, and AI-enhanced solutions.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-                {highlights.map((h, i) => (
-                  <div
-                    key={h.label}
-                    className="group p-4 rounded-xl bg-white dark:bg-[#0c1220] transition-all duration-300"
-                    style={{ animationDelay: `${i * 0.05}s` }}
-                  >
-                    <div className="text-accent mb-2 group-hover:scale-110 transition-transform duration-300">
-                      {h.icon}
-                    </div>
-                    <div className="text-2xl font-black text-slate-900 dark:text-white group-hover:text-accent transition-colors">
-                      {h.label}
-                    </div>
-                    <div className="text-[11px] text-slate-400 uppercase tracking-[0.12em] font-semibold mt-0.5">
-                      {h.desc}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-row items-center gap-3 justify-center sm:justify-start">
-                <a
-                  href={config.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-3.5 bg-accent hover:bg-accent-hover text-white font-bold rounded-xl transition-all duration-300 text-sm sm:text-base whitespace-nowrap shadow-lg shadow-accent/20 hover:shadow-accent/40 min-h-[46px] sm:min-h-[50px]"
+    <section id="about" className="py-24 sm:py-28 px-6 relative z-10">
+      <div ref={ref} className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14 items-center">
+          {/* Photo & Glow */}
+          <div className={`lg:col-span-2 ${inView ? 'animate-slide-right' : 'opacity-0'}`}>
+            <div className="relative group max-w-sm mx-auto lg:max-w-none">
+              <div className="absolute -inset-2 bg-gradient-to-br from-indigo-500/20 via-blue-500/15 to-transparent rounded-3xl opacity-75 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
+              <div className="relative rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] shadow-2xl">
+                <img
+                  src="/Profile.jpg"
+                  alt="Gemachis Tesfaye - Full-Stack Developer"
+                  className="w-full object-cover aspect-[3/4] group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                {/* Fallback avatar if image fails */}
+                <div
+                  className="hidden w-full aspect-[3/4] items-center justify-center bg-slate-100 dark:bg-zinc-900"
+                  aria-hidden="true"
                 >
-                  <Github size={15} />
-                  Let's Collaborate
-                </a>
-                <div className="relative inline-flex flex-col items-start">
-                  <a
-                    href={config.cvView}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-3.5 glass hover:border-accent/30 text-slate-600 dark:text-slate-300 hover:text-accent font-bold rounded-xl transition-all duration-300 text-sm sm:text-base whitespace-nowrap min-h-[46px] sm:min-h-[50px]"
-                  >
-                    <Download size={15} />
-                    Download CV
-                  </a>
+                  <div className="w-28 h-28 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white text-4xl font-black shadow-2xl shadow-indigo-500/30">
+                    GT
+                  </div>
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 dark:from-[#09090b]/80 via-transparent to-transparent opacity-60" />
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="process" className="py-28 px-6 bg-[#060a13]">
-        <div className="max-w-5xl mx-auto">
-          <SectionHeading
-            label="How I Work"
-            title="From Idea to"
-            highlight="Launch"
-            description="A structured process designed to keep development clear and organized."
-          />
+          {/* Text & Metrics */}
+          <div className={`lg:col-span-3 ${inView ? 'animate-slide-up' : 'opacity-0'}`} style={{ animationDelay: '0.15s' }}>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-xs font-semibold tracking-wider uppercase mb-4">
+              <span>About Me</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight leading-tight">
+              Building scalable digital products{' '}
+              <span className="text-gradient">and AI-enhanced systems</span>
+            </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            {steps.map((step, i) => (
-              <div key={step.title} className="relative">
-                {i < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 left-full w-full h-px bg-gradient-to-r from-slate-300 dark:from-slate-700 to-transparent z-0" />
-                )}
-                <div key={i} className="group relative p-6 rounded-2xl bg-white dark:bg-[#0c1220] transition-all duration-300 overflow-hidden text-center sm:text-left">
-                  <div className="flex items-center justify-center sm:justify-start gap-3 mb-4">
-                    <div className={`w-11 h-11 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}>
-                      {step.icon}
-                    </div>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Step {i + 1}</span>
-                  </div>
-                  <h3 className="text-lg sm:text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-accent transition-colors">
-                    {step.title}
-                  </h3>
-                  <p className="text-[12px] sm:text-[13px] text-stone-500">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+            <div className="space-y-4 text-base text-slate-600 dark:text-zinc-400 leading-relaxed mb-8">
+              <p>
+                I am a Full-Stack Developer and aspiring Software & AI Engineer passionate about building software solutions that solve real-world operational challenges.
+              </p>
+              <p>
+                I specialize in creating modern web applications, backend architectures, and AI-integrated products using React, Node.js, Python, and relational/cloud databases.
+              </p>
+            </div>
 
-           <div className="mt-12 text-center">
-            <p className="text-sm text-slate-500 dark:text-slate-400 mb-5">
-              Ready to start? It all begins with a free 15-minute discovery call.
-            </p>
-                <button
-                  onClick={() => setIsTermsOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-slate-300 dark:border-slate-700 hover:border-accent/50 text-slate-600 dark:text-slate-300 hover:text-accent font-semibold rounded-xl transition-all duration-300 text-sm"
+            {/* 4 Metric Cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
+              {highlights.map((h, i) => (
+                <div
+                  key={h.label}
+                  className="group p-4 rounded-xl bg-white dark:bg-zinc-900/60 border border-slate-200/80 dark:border-zinc-800/80 backdrop-blur-sm hover:border-indigo-500/40 hover:bg-slate-50 dark:hover:bg-zinc-900/90 transition-all duration-300 shadow-sm hover:shadow-md"
+                  style={{ animationDelay: `${i * 0.05}s` }}
                 >
-                  How I Work
-                  <ArrowRight size={14} />
-                </button>
+                  <div className="text-indigo-600 dark:text-indigo-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {h.icon}
+                  </div>
+                  <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
+                    {h.label}
+                  </div>
+                  <div className="text-[11px] text-slate-500 dark:text-zinc-400 uppercase tracking-wider font-semibold mt-1">
+                    {h.desc}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Contextual Action */}
+            <div>
+              <a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:scale-105"
+              >
+                Get In Touch
+                <ArrowRight size={16} />
+              </a>
+            </div>
           </div>
         </div>
-      </section>
-
-      <TermsModal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} />
-    </>
+      </div>
+    </section>
   );
 };
 

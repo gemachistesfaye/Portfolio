@@ -209,27 +209,27 @@ const FloatingButtons = () => {
         >
           <div
             id="hire-me-modal"
-            className="w-full max-w-lg max-h-[80vh] overflow-y-auto p-6 rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-[#0c1220] shadow-2xl shadow-slate-200/80 dark:shadow-black/30"
+            className="w-full max-w-lg max-h-[80vh] overflow-y-auto p-6 rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl transition-colors duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-accent to-emerald-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-accent/20">GT</div>
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-indigo-500/20">GT</div>
                 <div>
                   <p className="text-sm font-bold text-slate-900 dark:text-white">Quick Project Inquiry</p>
-                  <p className="text-[11px] text-slate-400">I'll get back to you within 24 hours</p>
+                  <p className="text-[11px] text-slate-500 dark:text-zinc-400">I'll get back to you within 24 hours</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowCard(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-accent hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all"
                 aria-label="Close"
               >
                 <X size={16} />
               </button>
             </div>
 
-            <p className="text-[11px] text-slate-400 mb-4 leading-relaxed">
+            <p className="text-[11px] text-slate-600 dark:text-zinc-400 mb-4 leading-relaxed">
               Tell me briefly about your project. For detailed requirements, use the full project form at the bottom of the page.
             </p>
 
@@ -241,7 +241,7 @@ const FloatingButtons = () => {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-indigo-500/80 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
                 />
                 <input
                   type="email"
@@ -249,7 +249,7 @@ const FloatingButtons = () => {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-indigo-500/80 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
                 />
               </div>
               <CustomSelect
@@ -274,26 +274,26 @@ const FloatingButtons = () => {
                 required
                 value={formData.project}
                 onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700/60 bg-slate-50/80 dark:bg-white/[0.03] text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-accent/50 focus:ring-4 focus:ring-accent/10 transition-all duration-300 resize-none"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-indigo-500/80 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200 resize-none"
               />
 
-              <p className="text-[10px] text-slate-400 leading-relaxed">
+              <p className="text-[10px] text-slate-500 dark:text-zinc-500 leading-relaxed">
                 Your information is only used to respond to your inquiry.
               </p>
 
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-accent hover:bg-accent-hover text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent/20 hover:shadow-accent/40 disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/20 disabled:opacity-50"
               >
                 <Mail size={15} />
                 {status === "sending" ? "Sending..." : status === "sent" ? "Sent!" : "Send Inquiry"}
               </button>
               {status === "sent" && (
-                <p className="text-xs text-accent text-center">Thanks! I received your inquiry and will get back to you within 24 hours.</p>
+                <p className="text-xs text-indigo-300 text-center">Thanks! I received your inquiry and will get back to you within 24 hours.</p>
               )}
               {status === "error" && (
-                <p className="text-xs text-red-500 text-center">Something went wrong. Try again or email me directly.</p>
+                <p className="text-xs text-red-400 text-center">Something went wrong. Try again or email me directly.</p>
               )}
             </form>
           </div>
@@ -314,7 +314,7 @@ const FloatingButtons = () => {
         onTouchStart={startHold}
         onTouchEnd={cancelHold}
         onTouchCancel={cancelHold}
-        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-accent hover:bg-accent-hover text-white font-bold rounded-full shadow-xl shadow-accent/20 hover:shadow-accent/40 border border-white/10 transition-all duration-300 group sm:bottom-20 select-none outline-none focus:outline-none ${(nearFooter || (isMobile && !pastHero)) ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full shadow-xl shadow-indigo-600/25 hover:shadow-indigo-600/40 border border-white/10 transition-all duration-300 group sm:bottom-20 select-none outline-none focus:outline-none ${(nearFooter || (isMobile && !pastHero)) ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         aria-label={showCard ? "Close project inquiry form" : "Open project inquiry form"}
         aria-expanded={showCard}
         aria-controls="hire-me-modal"

@@ -1,44 +1,45 @@
-import { useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { ArrowLeft, Sun, Moon } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 const BlogLayout = () => {
-  useEffect(() => {
-    const html = document.documentElement;
-    const prev = html.className;
-    html.className = "";
-    return () => {
-      html.className = prev;
-    };
-  }, []);
+  const { isDark, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen bg-[#f7f3ee] text-[#3d3833] font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#09090b] text-slate-900 dark:text-zinc-100 font-sans transition-colors duration-300">
       <Helmet>
         <link rel="alternate" type="application/rss+xml" title="Gemachis Tesfaye Blog" href="/rss.xml" />
       </Helmet>
-      <header className="sticky top-0 z-50 bg-[#f7f3ee]/80 backdrop-blur-xl border-b border-[#e8e2da]">
+      <header className="sticky top-0 z-50 bg-white/80 dark:bg-[#09090b]/85 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/[0.08]">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link
             to="/blog"
             className="flex items-center gap-2.5 no-underline"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#5a9a7a] to-[#3d7a5a] flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-[#5a9a7a]/20">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-bold text-xs shadow-md shadow-indigo-500/20">
               GT
             </div>
-            <span className="text-sm font-bold text-[#3d3833] tracking-tight">
+            <span className="text-sm font-bold text-slate-900 dark:text-zinc-100 tracking-tight">
               Gemachis T.
             </span>
           </Link>
-          <a
-            href="/"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#8a837d] hover:text-[#5a9a7a] transition-colors no-underline px-4 py-2 rounded-full hover:bg-[#5a9a7a]/5"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-            Portfolio
-          </a>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-indigo-600" />}
+            </button>
+            <a
+              href="/"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors px-3.5 py-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm"
+            >
+              <ArrowLeft size={13} />
+              Portfolio
+            </a>
+          </div>
         </div>
       </header>
 
@@ -46,16 +47,10 @@ const BlogLayout = () => {
         <Outlet />
       </main>
 
-      <footer className="border-t border-[#e8e2da] bg-[#f0ebe4]">
-        <div className="max-w-4xl mx-auto px-6 py-10 text-center">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#5a9a7a] to-[#3d7a5a] flex items-center justify-center text-white font-bold text-[10px]">
-              GT
-            </div>
-            <span className="text-sm font-semibold text-[#3d3833]">Gemachis Tesfaye</span>
-          </div>
-          <p className="text-sm text-[#a09890]">
-            Built with React & Sanity CMS
+      <footer className="border-t border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-950 py-8">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-xs text-slate-500 dark:text-zinc-500">
+            &copy; {new Date().getFullYear()} Gemachis Tesfaye. Engineering insights, architectures & AI systems.
           </p>
         </div>
       </footer>

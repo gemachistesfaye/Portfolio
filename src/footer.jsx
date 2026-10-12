@@ -1,7 +1,7 @@
 import config from "./config";
 import { scrollToSection } from "./utils/scrollTo";
 
-const navLinks = ["About", "Projects", "Experience", "Contact"];
+const navLinks = ["About", "Skills", "Projects", "Experience", "Contact"];
 
 const socials = [
   { label: "GitHub", href: config.socials.github, icon: (
@@ -16,16 +16,16 @@ const socials = [
 ];
 
 const Footer = () => (
-  <footer className="border-t border-slate-200 dark:border-slate-800/60 bg-[#020617]" role="contentinfo">
+  <footer className="border-t border-slate-200/80 dark:border-zinc-800/80 bg-slate-50 dark:bg-[#09090b] text-slate-700 dark:text-zinc-400 transition-colors duration-300" role="contentinfo">
     <div className="max-w-6xl mx-auto px-6 py-12">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-10">
         {/* Brand */}
         <div>
           <div className="flex items-center mb-3">
-            <span className="text-lg font-extrabold text-white tracking-tight">Gemachis Tesfaye</span>
+            <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Gemachis Tesfaye</span>
           </div>
-          <p className="text-[13px] text-slate-400 leading-relaxed max-w-xs">
-            Full-Stack Developer | Aspiring Software & AI Engineer
+          <p className="text-[13px] text-slate-600 dark:text-zinc-400 leading-relaxed max-w-xs">
+            Full-Stack Developer | Software & AI Systems Engineer
           </p>
           <div className="flex gap-2 mt-4">
             {socials.map((s) => (
@@ -35,7 +35,7 @@ const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-9 h-9 rounded-lg border border-slate-700/60 bg-slate-800/40 flex items-center justify-center text-slate-400 hover:text-accent hover:border-accent/40 hover:bg-accent/5 transition-all duration-300"
+                className="w-9 h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-300 hover:border-indigo-500/40 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all duration-200 shadow-sm"
               >
                 {s.icon}
               </a>
@@ -45,14 +45,14 @@ const Footer = () => (
 
         {/* Quick Links */}
         <div>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.15em] mb-4">Quick Links</p>
+          <p className="text-[10px] font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-wider mb-4">Quick Navigation</p>
           <div className="grid grid-cols-2 gap-x-4 gap-y-2">
             {navLinks.map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
                 onClick={(e) => { e.preventDefault(); scrollToSection(link.toLowerCase()); }}
-                className="text-[13px] text-slate-400 hover:text-accent transition-colors duration-300"
+                className="text-[13px] text-slate-600 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors duration-200"
               >
                 {link}
               </a>
@@ -61,12 +61,12 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
-        <p className="text-[11px] text-slate-500">
+      <div className="pt-6 border-t border-slate-200/80 dark:border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
+        <p className="text-[11px] text-slate-500 dark:text-zinc-500">
           &copy; {new Date().getFullYear()} Gemachis Tesfaye. All rights reserved.
         </p>
-        <p className="text-[11px] text-slate-500">
-          Last updated: July 2026
+        <p className="text-[11px] text-slate-500 dark:text-zinc-500">
+          Crafted with React 18, Vite & Tailwind CSS
         </p>
       </div>
     </div>

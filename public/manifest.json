@@ -1,15 +1,29 @@
 {
-  "short_name": "Gemachis T.",
-  "name": "Gemachis Tesfaye | Full-Stack Developer Portfolio",
-  "icons": [
-    {
-      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135767.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    }
-  ],
-  "start_url": ".",
+  "name": "My Portfolio",
+  "short_name": "Portfolio",
+  "description": "Portfolio of Gemachis Tesfaye",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#10b981",
-  "background_color": "#020617"
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "icons": [
+    { "src": "/icons/icon-144x144.png", "sizes": "144x144", "type": "image/png" },
+    { "src": "/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/home-mobile.png",
+      "sizes": "720x1280",
+      "type": "image/png"
+    }
+  ]
 }

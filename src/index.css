@@ -18,10 +18,10 @@ code {
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-amber-500 to-orange-500 dark:from-orange-400 dark:via-amber-300 dark:to-orange-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-orange-500 dark:from-amber-300 dark:to-orange-300;
   }
   .text-gradient-accent {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500 dark:from-orange-400 dark:via-amber-300 dark:to-orange-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-orange-500 dark:from-amber-300 dark:to-orange-300;
   }
 }
 
@@ -53,7 +53,7 @@ code {
   position: absolute;
   top: -40px;
   left: 0;
-  background: #ea580c;
+  background: #0f172a;
   color: white;
   padding: 8px 16px;
   z-index: 100;

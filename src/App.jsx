@@ -59,17 +59,17 @@ class ErrorBoundary extends React.Component {
 
 function Portfolio() {
   return (
-    <main className="bg-[#fcfaf6] dark:bg-[#09090b] text-slate-800 dark:text-zinc-100 min-h-screen font-sans transition-colors duration-300 relative overflow-x-hidden selection:bg-orange-500/20 selection:text-orange-700 dark:selection:bg-orange-500/30 dark:selection:text-orange-200">
+    <main className="bg-[#fcfcfd] dark:bg-[#09090b] text-slate-800 dark:text-zinc-100 min-h-screen font-sans transition-colors duration-300 relative overflow-x-hidden selection:bg-amber-500/15 selection:text-slate-900 dark:selection:bg-amber-400/20 dark:selection:text-zinc-100">
       {/* Linear Studio Ambient Lighting */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000006_1px,transparent_1px),linear-gradient(to_bottom,#00000006_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
         
-        {/* Ambient glow spots */}
-        <div className="absolute -top-[10%] left-1/3 w-[650px] h-[650px] rounded-full bg-orange-500/08 dark:bg-orange-600/10 blur-[150px]" />
-        <div className="absolute top-[35%] -right-[10%] w-[550px] h-[550px] rounded-full bg-amber-500/06 dark:bg-amber-600/10 blur-[150px]" />
-        <div className="absolute top-[65%] -left-[10%] w-[550px] h-[550px] rounded-full bg-orange-500/06 dark:bg-orange-500/08 blur-[140px]" />
-        <div className="absolute -bottom-[10%] right-1/3 w-[600px] h-[600px] rounded-full bg-amber-500/08 dark:bg-amber-600/10 blur-[160px]" />
+        {/* Soft, calm ambient glow spots */}
+        <div className="absolute -top-[10%] left-1/3 w-[650px] h-[650px] rounded-full bg-slate-200/50 dark:bg-zinc-800/30 blur-[160px]" />
+        <div className="absolute top-[35%] -right-[10%] w-[550px] h-[550px] rounded-full bg-amber-500/[0.03] dark:bg-amber-500/[0.04] blur-[160px]" />
+        <div className="absolute top-[65%] -left-[10%] w-[550px] h-[550px] rounded-full bg-slate-200/40 dark:bg-zinc-800/20 blur-[150px]" />
+        <div className="absolute -bottom-[10%] right-1/3 w-[600px] h-[600px] rounded-full bg-amber-500/[0.03] dark:bg-amber-500/[0.04] blur-[160px]" />
       </div>
 
       <a href="#main-content" className="skip-link">

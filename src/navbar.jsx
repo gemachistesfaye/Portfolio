@@ -82,7 +82,7 @@ const Navbar = () => {
           : 'bg-transparent'
       }`}
     >
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500/25 dark:via-orange-500/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-slate-200 dark:via-zinc-800 to-transparent" />
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a
           href="#home"
@@ -90,7 +90,7 @@ const Navbar = () => {
           className="group flex items-center gap-2.5"
           aria-label="Go to top"
         >
-          <div className="w-8 h-8 rounded-lg bg-slate-900 dark:bg-zinc-800 border border-slate-700/60 dark:border-white/10 flex items-center justify-center text-orange-500 dark:text-orange-400 font-bold text-xs shadow-sm group-hover:border-orange-500/50 dark:group-hover:border-orange-500/50 transition-all duration-300">
+          <div className="w-8 h-8 rounded-lg bg-slate-900 dark:bg-zinc-800 border border-slate-800 dark:border-white/10 flex items-center justify-center text-amber-500 dark:text-amber-400 font-bold text-xs shadow-sm group-hover:border-amber-500/50 dark:group-hover:border-amber-400/50 transition-all duration-300">
             GT
           </div>
           <span className="text-sm font-bold text-slate-900 dark:text-zinc-100 tracking-tight">
@@ -99,16 +99,16 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-1 bg-stone-100/90 dark:bg-zinc-900/60 p-1 rounded-full border border-orange-200/50 dark:border-white/[0.06] backdrop-blur-md">
+        <div className="hidden md:flex items-center gap-1 bg-slate-100/80 dark:bg-zinc-900/60 p-1 rounded-full border border-slate-200/80 dark:border-white/[0.06] backdrop-blur-md">
           {links.map((l) => (
             <a
               key={l}
               href={`#${l.toLowerCase()}`}
               onClick={(e) => go(e, l)}
-              className={`relative px-4 py-1.5 text-[13px] font-medium rounded-full transition-all duration-200 ${
+              className={`relative px-4 py-1.5 text-[13px] rounded-full transition-all duration-200 ${
                 active === l.toLowerCase()
-                  ? 'text-orange-700 dark:text-orange-300 bg-orange-500/15 dark:bg-orange-500/20 font-semibold'
-                  : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-stone-200/60 dark:hover:bg-white/[0.05]'
+                  ? 'text-slate-900 dark:text-white bg-white dark:bg-zinc-800/90 font-semibold shadow-sm'
+                  : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-200/60 dark:hover:bg-white/[0.05]'
               }`}
               aria-current={active === l.toLowerCase() ? 'page' : undefined}
             >
@@ -121,19 +121,19 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white bg-stone-100/90 dark:bg-zinc-800/80 border border-orange-200/50 dark:border-white/[0.08] hover:border-orange-500/30 dark:hover:border-orange-500/30 transition-all duration-200"
+            className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700/80 hover:border-slate-300 dark:hover:border-zinc-600 transition-all duration-200 shadow-sm"
             aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
             title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
           >
-            {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-slate-600 dark:text-zinc-400 hover:text-orange-500" />}
+            {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-slate-600 dark:text-zinc-400 hover:text-amber-500" />}
           </button>
 
           <a
             href="/blog"
             onClick={(e) => { e.preventDefault(); window.open("/blog", "_blank", "noopener,noreferrer"); }}
-            className="relative px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-700 dark:text-zinc-300 hover:text-orange-600 dark:hover:text-orange-400 bg-white/80 dark:bg-zinc-900/80 border border-slate-200/80 dark:border-white/[0.08] hover:border-orange-500/30 dark:hover:border-orange-500/30 shadow-sm transition-all duration-200"
+            className="relative px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-700/80 hover:border-slate-300 dark:hover:border-zinc-600 shadow-sm transition-all duration-200"
           >
-            <PenLine size={13} className="inline -mt-0.5 mr-1.5 text-orange-600 dark:text-orange-400" /> Blog
+            <PenLine size={13} className="inline -mt-0.5 mr-1.5 text-amber-600 dark:text-amber-400" /> Blog
           </a>
         </div>
 

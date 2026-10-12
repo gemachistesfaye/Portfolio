@@ -20,9 +20,9 @@ const About = () => {
           <div className={`lg:col-span-2 ${inView ? 'animate-slide-right' : 'opacity-0'} flex justify-center`}>
             <div className="relative group w-full max-w-sm mx-auto lg:max-w-none animate-float">
               {/* Dynamic Animated Pulse Glow */}
-              <div className="absolute -inset-3 bg-gradient-to-br from-orange-500/25 via-amber-500/20 to-orange-600/10 dark:from-orange-500/25 dark:via-amber-500/20 dark:to-orange-600/10 rounded-3xl opacity-75 group-hover:opacity-100 transition-opacity duration-700 blur-2xl animate-pulse" />
+              <div className="absolute -inset-3 bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-transparent rounded-3xl opacity-75 group-hover:opacity-100 transition-opacity duration-700 blur-2xl" />
               
-              <div className="relative rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-orange-200/60 dark:border-white/[0.1] shadow-2xl transition-all duration-500 group-hover:shadow-orange-500/15 dark:group-hover:shadow-orange-500/15 group-hover:border-orange-500/40 dark:group-hover:border-orange-500/40">
+              <div className="relative rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-white/[0.1] shadow-xl transition-all duration-500 group-hover:border-slate-300 dark:group-hover:border-zinc-700">
                 <img
                   src="/Profile.jpg"
                   alt="Gemachis Tesfaye - Full-Stack Developer"
@@ -38,7 +38,7 @@ const About = () => {
                   className="hidden w-full aspect-[4/5] items-center justify-center bg-stone-100 dark:bg-zinc-900"
                   aria-hidden="true"
                 >
-                  <div className="w-28 h-28 rounded-full bg-gradient-to-br from-orange-500 to-amber-700 dark:from-orange-500 dark:to-amber-700 flex items-center justify-center text-white text-4xl font-black shadow-2xl shadow-orange-500/30 dark:shadow-orange-500/30">
+                  <div className="w-28 h-28 rounded-full bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center text-white text-4xl font-black shadow-xl">
                     GT
                   </div>
                 </div>
@@ -48,8 +48,8 @@ const About = () => {
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
                   <div className="px-3 py-1.5 rounded-xl bg-slate-900/80 dark:bg-zinc-950/80 backdrop-blur-md border border-white/10 text-white shadow-lg flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 dark:bg-orange-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500 dark:bg-orange-500" />
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
                     </span>
                     <span className="text-[11px] font-semibold tracking-wide text-zinc-200">
                       Shipping Production Code
@@ -81,13 +81,13 @@ const About = () => {
               {highlights.map((h, i) => (
                 <div
                   key={h.label}
-                  className="group p-4 rounded-xl bg-white dark:bg-zinc-900/60 border border-orange-200/60 dark:border-zinc-800/80 backdrop-blur-sm hover:border-orange-500/40 dark:hover:border-orange-500/40 hover:bg-orange-50/40 dark:hover:bg-zinc-900/90 transition-all duration-300 shadow-sm hover:shadow-md"
+                  className="group p-4 rounded-xl bg-white dark:bg-zinc-900/60 border border-slate-200/80 dark:border-zinc-800/80 backdrop-blur-sm hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50/50 dark:hover:bg-zinc-900/90 transition-all duration-200 shadow-sm hover:shadow-md"
                   style={{ animationDelay: `${i * 0.05}s` }}
                 >
-                  <div className="text-orange-600 dark:text-orange-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-amber-600 dark:text-amber-400 mb-2 group-hover:scale-105 transition-transform duration-200">
                     {h.icon}
                   </div>
-                  <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-300 transition-colors">
+                  <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white transition-colors">
                     {h.label}
                   </div>
                   <div className="text-[11px] text-slate-500 dark:text-zinc-400 uppercase tracking-wider font-semibold mt-1">
@@ -102,7 +102,7 @@ const About = () => {
               <a
                 href="#contact"
                 onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-orange-600 hover:bg-orange-500 dark:bg-orange-600 dark:hover:bg-orange-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-orange-600/25 dark:shadow-orange-600/25 hover:shadow-orange-600/40 dark:hover:shadow-orange-600/40 hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white font-semibold rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md"
               >
                 Let's Collaborate
                 <ArrowRight size={16} />

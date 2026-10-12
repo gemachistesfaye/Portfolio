@@ -68,21 +68,21 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className={`lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
             {[
-              { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-orange-500 to-amber-600 dark:from-orange-500 dark:to-amber-600" },
-              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-amber-500 to-orange-600 dark:from-amber-500 dark:to-orange-600" },
-              { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null, color: "from-orange-600 to-amber-700 dark:from-orange-600 dark:to-amber-700" },
+              { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}` },
+              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}` },
+              { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null },
             ].map((c, i) => (
               <div
                 key={i}
-                className="group flex items-center gap-4 p-4 rounded-xl border border-orange-200/60 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-orange-500/40 dark:hover:border-orange-500/40 hover:bg-orange-50/20 dark:hover:bg-zinc-900/90 shadow-sm transition-all duration-300"
+                className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50/20 dark:hover:bg-zinc-900/90 shadow-sm transition-all duration-300"
               >
-                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${c.color} flex items-center justify-center text-white flex-shrink-0 shadow-md group-hover:scale-105 transition-transform duration-300`}>
+                <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-zinc-800 border border-slate-200/80 dark:border-zinc-700/80 flex items-center justify-center text-amber-600 dark:text-amber-400 flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform duration-300">
                   {c.icon}
                 </div>
                 <div className="min-w-0">
                   <p className="text-[10px] text-slate-500 dark:text-zinc-500 uppercase tracking-wider font-semibold mb-0.5">{c.label}</p>
                   {c.href ? (
-                    <a href={c.href} className="text-sm font-semibold text-slate-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors truncate block">
+                    <a href={c.href} className="text-sm font-semibold text-slate-900 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition-colors truncate block">
                       {c.value}
                     </a>
                   ) : (
@@ -92,9 +92,9 @@ const Contact = () => {
               </div>
             ))}
 
-            <div className="flex flex-col gap-3 p-4 rounded-xl border border-orange-200/60 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-orange-500/40 dark:hover:border-orange-500/40 shadow-sm transition-all duration-300">
+            <div className="flex flex-col gap-3 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-slate-300 dark:hover:border-zinc-700 shadow-sm transition-all duration-300">
               <div className="flex items-center gap-3">
-                <Clock size={16} className="text-orange-600 dark:text-orange-400 flex-shrink-0" />
+                <Clock size={16} className="text-amber-600 dark:text-amber-400 flex-shrink-0" />
                 <div>
                   <p className="text-[10px] text-slate-500 dark:text-zinc-500 uppercase tracking-wider font-semibold mb-0.5">Response Time</p>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white">Within 24 hours</p>
@@ -106,9 +106,9 @@ const Contact = () => {
           <div className={`lg:col-span-3 opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
             <form
               onSubmit={handleSubmit}
-              className="p-6 sm:p-8 rounded-2xl border border-orange-200/60 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md shadow-sm dark:shadow-2xl relative"
+              className="p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md shadow-sm dark:shadow-2xl relative"
             >
-              <div className="absolute -top-20 -right-20 w-40 h-40 bg-orange-500/5 dark:bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 relative z-10">
                 <div className="relative">
@@ -123,8 +123,8 @@ const Contact = () => {
                     onBlur={() => setFocused(null)}
                     className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 ${
                       focused === "name"
-                        ? "border-orange-500 ring-2 ring-orange-500/20 bg-white dark:bg-zinc-950 dark:border-orange-500 dark:ring-orange-500/20"
-                        : "border-orange-200/60 dark:border-zinc-800 bg-stone-50/80 dark:bg-zinc-950/80"
+                        ? "border-amber-500/70 ring-2 ring-amber-500/15 bg-white dark:bg-zinc-950"
+                        : "border-slate-200/80 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                     }`}
                   />
                 </div>
@@ -140,8 +140,8 @@ const Contact = () => {
                     onBlur={() => setFocused(null)}
                     className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 ${
                       focused === "email"
-                        ? "border-orange-500 ring-2 ring-orange-500/20 bg-white dark:bg-zinc-950 dark:border-orange-500 dark:ring-orange-500/20"
-                        : "border-orange-200/60 dark:border-zinc-800 bg-stone-50/80 dark:bg-zinc-950/80"
+                        ? "border-amber-500/70 ring-2 ring-amber-500/15 bg-white dark:bg-zinc-950"
+                        : "border-slate-200/80 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                     }`}
                   />
                 </div>
@@ -214,8 +214,8 @@ const Contact = () => {
                   onBlur={() => setFocused(null)}
                   className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 resize-none ${
                     focused === "message"
-                      ? "border-orange-500 ring-2 ring-orange-500/20 bg-white dark:bg-zinc-950 dark:border-orange-500 dark:ring-orange-500/20"
-                      : "border-orange-200/60 dark:border-zinc-800 bg-stone-50/80 dark:bg-zinc-950/80"
+                      ? "border-amber-500/70 ring-2 ring-amber-500/15 bg-white dark:bg-zinc-950"
+                      : "border-slate-200/80 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                   }`}
                 />
               </div>
@@ -227,10 +227,10 @@ const Contact = () => {
                   type="file"
                   name="attachment"
                   accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
-                  className={`w-full px-4 py-2.5 rounded-xl border text-xs text-slate-700 dark:text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-orange-50 dark:file:bg-orange-500/10 file:text-orange-600 dark:file:text-orange-400 hover:file:bg-orange-100 dark:hover:file:bg-orange-500/20 focus:outline-none transition-all duration-200 ${
+                  className={`w-full px-4 py-2.5 rounded-xl border text-xs text-slate-700 dark:text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-100 dark:file:bg-zinc-800 file:text-slate-800 dark:file:text-zinc-200 hover:file:bg-slate-200 dark:hover:file:bg-zinc-700 focus:outline-none transition-all duration-200 ${
                     focused === "attachment"
-                      ? "border-orange-500 ring-2 ring-orange-500/20 bg-white dark:bg-zinc-950 dark:border-orange-500 dark:ring-orange-500/20"
-                      : "border-orange-200/60 dark:border-zinc-800 bg-stone-50/80 dark:bg-zinc-950/80"
+                      ? "border-amber-500/70 ring-2 ring-amber-500/15 bg-white dark:bg-zinc-950"
+                      : "border-slate-200/80 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                   }`}
                   onFocus={() => setFocused("attachment")}
                   onBlur={() => setFocused(null)}
@@ -243,9 +243,9 @@ const Contact = () => {
               </p>
 
               {status === "sent" && (
-                <div className="flex items-center gap-2 p-3 mb-4 rounded-xl bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20">
-                  <div className="w-2 h-2 rounded-full bg-orange-600 dark:bg-orange-400" />
-                  <p className="text-sm text-orange-700 dark:text-orange-300 font-medium">Thanks! I received your project details and will get back to you within 24 hours.</p>
+                <div className="flex items-center gap-2 p-3 mb-4 rounded-xl bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <p className="text-sm text-slate-800 dark:text-zinc-200 font-medium">Thanks! I received your project details and will get back to you within 24 hours.</p>
                 </div>
               )}
               {status === "error" && (
@@ -258,7 +258,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="group w-full py-3.5 bg-orange-600 hover:bg-orange-500 dark:bg-orange-600 dark:hover:bg-orange-500 text-white font-bold rounded-xl transition-all duration-300 text-sm disabled:opacity-50 shadow-lg shadow-orange-600/20 dark:shadow-orange-600/20 hover:shadow-orange-600/40 dark:hover:shadow-orange-600/40 flex items-center justify-center gap-2"
+                className="group w-full py-3.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white font-semibold rounded-xl transition-all duration-200 text-sm disabled:opacity-50 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
               >
                 {status === "sending" ? (
                   "Sending..."

@@ -25,7 +25,7 @@ const BlogList = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-32 gap-4">
-        <div className="w-10 h-10 border-[3px] border-orange-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-10 h-10 border-[3px] border-slate-900 dark:border-zinc-100 border-t-transparent rounded-full animate-spin" />
         <p className="text-sm text-slate-500 dark:text-zinc-400">Loading articles...</p>
       </div>
     );
@@ -34,7 +34,7 @@ const BlogList = () => {
   if (showEmpty) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-6 text-center">
-        <div className="w-20 h-20 rounded-2xl bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400 shadow-sm">
+        <div className="w-20 h-20 rounded-2xl bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700/80 flex items-center justify-center text-amber-600 dark:text-amber-400 shadow-sm">
           <PenLine size={32} />
         </div>
         <div>
@@ -47,7 +47,7 @@ const BlogList = () => {
         </div>
         <a
           href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-xl shadow-lg shadow-orange-600/20 transition-all duration-300"
+          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white rounded-xl shadow-sm transition-all duration-200"
         >
           <ArrowLeft size={16} />
           Return to Portfolio

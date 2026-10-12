@@ -35,8 +35,8 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
         aria-expanded={open}
         className={`w-full px-4 py-3 rounded-xl border text-sm text-left flex items-center justify-between transition-all duration-200 focus:outline-none ${
           open
-            ? "border-orange-500 ring-2 ring-orange-500/20 bg-white dark:bg-zinc-950 dark:border-orange-500 dark:ring-orange-500/20"
-            : "border-orange-200/60 dark:border-zinc-800 bg-stone-50/80 dark:bg-zinc-950/80 hover:border-orange-300 dark:hover:border-zinc-700"
+            ? "border-amber-500/70 ring-2 ring-amber-500/15 bg-white dark:bg-zinc-950"
+            : "border-slate-200/80 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 hover:border-slate-300 dark:hover:border-zinc-700"
         }`}
       >
         <span
@@ -51,7 +51,7 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
         <ChevronDown
           size={16}
           className={`text-slate-400 dark:text-zinc-500 transition-transform duration-200 flex-shrink-0 ${
-            open ? "rotate-180 text-orange-500 dark:text-orange-400" : ""
+            open ? "rotate-180 text-amber-500 dark:text-amber-400" : ""
           }`}
         />
       </button>
@@ -59,7 +59,7 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
       {open && (
         <div
           role="listbox"
-          className="absolute left-0 right-0 top-full mt-1.5 z-50 py-1.5 rounded-xl border border-orange-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xl max-h-56 overflow-y-auto"
+          className="absolute left-0 right-0 top-full mt-1.5 z-50 py-1.5 rounded-xl border border-slate-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xl max-h-56 overflow-y-auto"
         >
           {options.map((opt) => {
             const isSelected = value === opt.value;
@@ -75,13 +75,13 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
                 }}
                 className={`w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors ${
                   isSelected
-                    ? "bg-orange-50 dark:bg-orange-500/15 text-orange-600 dark:text-orange-300 font-semibold"
-                    : "text-slate-700 dark:text-zinc-300 hover:bg-orange-50/50 dark:hover:bg-zinc-800/80"
+                    ? "bg-slate-100 dark:bg-zinc-800 text-slate-900 dark:text-white font-medium"
+                    : "text-slate-700 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800/60"
                 }`}
               >
                 <span>{opt.label}</span>
                 {isSelected && (
-                  <Check size={14} className="text-orange-600 dark:text-orange-400 flex-shrink-0" />
+                  <Check size={14} className="text-amber-500 dark:text-amber-400 flex-shrink-0" />
                 )}
               </button>
             );

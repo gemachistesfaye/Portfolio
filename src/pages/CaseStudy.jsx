@@ -25,7 +25,7 @@ const CaseStudy = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-[#09090b] gap-4">
-        <div className="w-10 h-10 border-[3px] border-orange-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-10 h-10 border-[3px] border-slate-900 dark:border-zinc-100 border-t-transparent rounded-full animate-spin" />
         <p className="text-sm text-slate-500 dark:text-zinc-400">Loading case study...</p>
       </div>
     );
@@ -34,8 +34,8 @@ const CaseStudy = () => {
   if (!study) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-[#09090b] p-6 gap-6">
-        <div className="w-20 h-20 rounded-2xl bg-orange-500/10 flex items-center justify-center">
-          <AlertCircle size={36} className="text-orange-600 dark:text-orange-400" />
+        <div className="w-20 h-20 rounded-2xl bg-amber-500/10 flex items-center justify-center">
+          <AlertCircle size={36} className="text-amber-600 dark:text-amber-400" />
         </div>
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Case Study Not Found</h2>
@@ -44,7 +44,7 @@ const CaseStudy = () => {
         <Link
           to="/"
           onClick={(e) => { e.preventDefault(); navigate("/"); setTimeout(() => { document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }, 100); }}
-          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-xl transition-all duration-300 shadow-lg shadow-orange-600/20"
+          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white rounded-xl transition-all duration-200 shadow-sm"
         >
           <ArrowLeft size={16} />
           Back to Projects
@@ -90,7 +90,7 @@ const CaseStudy = () => {
             <Link
               to="/"
               onClick={(e) => { e.preventDefault(); navigate("/"); setTimeout(() => { document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }, 100); }}
-              className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors font-medium"
+              className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium"
             >
               <ArrowLeft size={16} />
               Back to Projects
@@ -101,14 +101,14 @@ const CaseStudy = () => {
                 className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700"
                 aria-label="Toggle theme"
               >
-                {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-slate-600 dark:text-zinc-400 hover:text-orange-500" />}
+                {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-slate-600 dark:text-zinc-400 hover:text-amber-500" />}
               </button>
               {study.demo && (
                 <a
                   href={study.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 bg-orange-600 hover:bg-orange-700 text-white text-xs font-medium rounded-lg transition-colors shadow-sm"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white text-xs font-medium rounded-lg transition-colors shadow-sm"
                 >
                   <ExternalLink size={13} />
                   Live Demo
@@ -119,7 +119,7 @@ const CaseStudy = () => {
                   href={study.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 border border-slate-200 dark:border-zinc-700/80 text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:border-orange-500/30 text-xs font-medium rounded-lg transition-colors bg-white dark:bg-zinc-900 shadow-sm"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 border border-slate-200 dark:border-zinc-700/80 text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 text-xs font-medium rounded-lg transition-colors bg-white dark:bg-zinc-900 shadow-sm"
                 >
                   <Github size={13} />
                   Code
@@ -314,7 +314,7 @@ const CaseStudy = () => {
               {prevStudy ? (
                 <Link
                   to={`/project/${prevStudy.slug}`}
-                  className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors font-medium"
+                  className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium"
                 >
                   <ChevronLeft size={16} />
                   <span className="hidden sm:inline">{prevStudy.name}</span>
@@ -324,7 +324,7 @@ const CaseStudy = () => {
               {nextStudy ? (
                 <Link
                   to={`/project/${nextStudy.slug}`}
-                  className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors font-medium"
+                  className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium"
                 >
                   <span className="hidden sm:inline">{nextStudy.name}</span>
                   <span className="sm:hidden">Next</span>

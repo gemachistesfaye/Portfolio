@@ -586,7 +586,7 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     description: "A production-grade machine learning platform that forecasts airline passenger demand using Linear Regression with time-series cross-validation. Features a live REST API, interactive analytics dashboard, and Excel export — fully deployed on Render.",
     heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/AeroDemand-AI",
-    demo: "https://aerodemand-ai.onrender.com",
+    demo: "https://aerodemand-ai.onrender.com/",
     featured: true,
 
     overview: {
@@ -937,7 +937,7 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     description: "A production-grade Laravel 9 web application for orchestrating the complete lifecycle of university research projects—from proposal submission and departmental screening through double-blind peer review, institutional ethics clearance, ETB 500k dual-threshold budget approval, contract generation, 30%/40%/30% phased disbursements, milestone tracking, and completion certificate issuance. Engineered for 11 distinct university stakeholder roles.",
     heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/research-project-management-system",
-    demo: "https://research-project-management-system.onrender.com",
+    demo: "https://research-project-management-system-goif.onrender.com",
     featured: true,
 
     overview: {
@@ -1280,7 +1280,7 @@ Supabase Cloud (PostgreSQL 15 + PL/pgSQL)
     description: "A full-stack academic performance tracking platform engineered for students—specifically tailored for Ethiopian university grading scales. Combines persistent course records, credit-hour-weighted SGPA/CGPA calculation with failing grade safeguards, interactive Chart.js score distributions, exportable PDF/CSV academic transcripts, and an intelligent Google Gemini–powered GradeBot for study coaching and semester performance reviews.",
     heroImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/GradeEvaluator-AI",
-    demo: "https://gradeevaluator-ai.onrender.com",
+    demo: "https://gradeevaluator-ai.onrender.com/",
     featured: true,
 
     overview: {
@@ -1622,7 +1622,7 @@ Flask Application Controller (app.py)
     description: "A modern developer studio for creating, editing, and previewing production-ready GitHub documentation. Integrates GitHub OAuth to import repository metadata, provides rich markdown templates and live split-screen preview, and generates custom SVG badges and project headers.",
     heroImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/readme-studio",
-    demo: "https://gemachisdev.vercel.app",
+    demo: "https://readme-studio-2026.vercel.app/",
     featured: false,
 
     overview: {
@@ -1706,7 +1706,7 @@ Flask Application Controller (app.py)
     description: "A responsive CV and resume builder designed to help job seekers generate clean, ATS-compliant resumes. Offers 5 customizable design templates, drag-and-drop section reordering, real-time typography preview, and instant client-side PDF export without hidden paywalls.",
     heroImage: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/riqicha-ai",
-    demo: "https://gemachisdev.vercel.app",
+    demo: "https://riqicha-ai.vercel.app",
     featured: false,
 
     overview: {
@@ -1789,7 +1789,7 @@ Flask Application Controller (app.py)
     description: "An end-to-end machine learning system for predicting customer turnover in subscription businesses. Trained on IBM Telco and KKBox datasets, featuring feature engineering, class imbalance mitigation, probability calibration, and SHAP interpretability to guide proactive customer retention campaigns.",
     heroImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/churn-Prediction",
-    demo: "https://gemachisdev.vercel.app",
+    demo: "",
     featured: false,
 
     overview: {
@@ -1847,7 +1847,7 @@ Flask Application Controller (app.py)
       {
         challenge: "Handling severe class imbalance where only 20% of users churned",
         difficulty: "Medium",
-        solution: "Applied SMOTE oversampling and evaluated via PR-AUC and ROC-AUC rather than raw accuracy."
+        solution: "Applied SMOTE oversharing and evaluated via PR-AUC and ROC-AUC rather than raw accuracy."
       }
     ],
 
@@ -1861,90 +1861,6 @@ Flask Application Controller (app.py)
     media: {
       screenshots: [
         { src: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=500&fit=crop", alt: "Analytics", caption: "Model evaluation curves and SHAP explainability plots" }
-      ]
-    }
-  },
-  {
-    slug: "course-recommendation-system",
-    name: "Course Recommendation System",
-    category: "AI / ML",
-    tags: ["Python", "Scikit-Learn", "TF-IDF", "Streamlit", "Pandas", "Cosine Similarity"],
-    tagline: "Content-based course discovery & text vectorization recommendation model",
-    description: "A machine learning course recommendation engine analyzing catalog metadata across 3,000+ course offerings. Employs weighted TF-IDF vectorization and cosine similarity to deliver tailored learning paths with Precision@5 validation and an interactive Streamlit discovery dashboard.",
-    heroImage: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&h=600&fit=crop",
-    github: "https://github.com/gemachistesfaye/course-recommendation-system",
-    demo: "https://gemachisdev.vercel.app",
-    featured: false,
-
-    overview: {
-      problem: "Learners face choice paralysis when navigating thousands of online courses without personalized recommendations based on existing skills.",
-      users: "Online learners, academic advisors, and e-learning platforms.",
-      role: "Machine Learning Engineer — Engineered TF-IDF metadata pipeline, designed similarity scoring, and built evaluation test suites.",
-      timeline: "2025",
-      status: "Validated ML model with 9 passing test suites and interactive Streamlit UI."
-    },
-
-    motivation: {
-      problem: "Massive open online courses (MOOCs) have low completion rates partly because students enroll in courses poorly matched to their current background.",
-      whoAffected: "Self-directed learners seeking structured computer science and data science curriculums.",
-      whyExistingInsufficient: "Keyword search fails to understand semantic relationships between prerequisite topics and related course descriptions.",
-      whyMatters: "Accurate course discovery increases learner engagement, course completion rates, and learning efficiency."
-    },
-
-    solution: {
-      approach: "Engineered a content-based recommendation model combining title, syllabus, difficulty level, and subject metadata into weighted feature matrices scored via cosine similarity.",
-      keyWorkflows: [
-        "Text Preprocessing: Tokenize, clean, and vectorize course descriptions using TF-IDF with custom n-grams.",
-        "Similarity Scoring: Compute cosine distance between candidate courses across multi-dimensional embedding space.",
-        "Recommendation Ranking: Rank top 5 closest matches and filter by difficulty tier.",
-        "Streamlit Interface: Interactive search bar with instant recommendations and syllabus breakdowns."
-      ],
-      features: [
-        { name: "TF-IDF Weighted Embeddings", why: "Captures semantic importance of technical keywords while downweighting common terms." },
-        { name: "Top-N Cosine Ranking", why: "Delivers sub-millisecond similarity lookups across 3,000+ course records." },
-        { name: "Precision@5 Evaluation", why: "Quantitatively validates recommendation quality against benchmark test sets." }
-      ]
-    },
-
-    architecture: {
-      layers: [
-        { name: "Data Processing", tech: "Pandas + NLTK text normalization" },
-        { name: "Vectorization", tech: "Scikit-Learn TfidfVectorizer" },
-        { name: "Discovery UI", tech: "Streamlit responsive dashboard" }
-      ],
-      diagram: `Course Catalog ──► TF-IDF Vectorizer ──► Cosine Similarity Matrix ──► Top-5 Recommended Courses`
-    },
-
-    implementation: {
-      frontend: ["Streamlit web interface with interactive filtering"],
-      backend: ["Python 3.11 + Scikit-Learn + NumPy"],
-      deployment: ["Streamlit Community Cloud / Vercel"]
-    },
-
-    ux: {
-      userFlows: [{ role: "Student", steps: ["Select course title or interest", "Filter by level", "View top 5 recommendations", "Access syllabus links"] }],
-      keyScreens: ["Course Search", "Recommendation Results", "Evaluation Metrics"],
-      decisions: ["Fast similarity queries allowing instantaneous recommendation responses"]
-    },
-
-    challenges: [
-      {
-        challenge: "Balancing general subject terms with specific framework tags in recommendations",
-        difficulty: "Medium",
-        solution: "Applied custom term weighting to give higher significance to specialized technical tags over generic course titles."
-      }
-    ],
-
-    performance: {
-      optimizations: ["Pre-computed similarity matrices for zero-latency queries"],
-      errorHandling: ["Fallback to top-rated courses when input course is out-of-vocabulary"],
-      testing: "9 automated test suites verifying matrix symmetry and ranking sanity."
-    },
-
-    roadmap: ["Collaborative filtering integration with student review data", "Prerequisite path visualizer"],
-    media: {
-      screenshots: [
-        { src: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=500&fit=crop", alt: "Recommendations", caption: "Interactive course discovery dashboard with similarity rankings" }
       ]
     }
   }

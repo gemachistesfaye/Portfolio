@@ -16,10 +16,10 @@ const Home = () => {
           {/* Left Column: Core Value Proposition */}
           <div className={`lg:col-span-7 ${inView ? 'animate-slide-up' : 'opacity-0'}`}>
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 text-orange-700 dark:text-orange-300 text-xs font-semibold tracking-wide mb-6">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-100/90 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700/80 text-slate-700 dark:text-zinc-300 text-xs font-semibold tracking-wide mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 dark:bg-orange-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500 dark:bg-orange-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
               </span>
               Available for Software Engineering & AI Roles
             </div>
@@ -32,7 +32,7 @@ const Home = () => {
 
             {/* Title / Role */}
             <div className="flex items-center gap-2 mb-6">
-              <Sparkles size={18} className="text-orange-600 dark:text-orange-400 flex-shrink-0" />
+              <Sparkles size={18} className="text-amber-500 dark:text-amber-400 flex-shrink-0" />
               <p className="text-lg sm:text-2xl font-bold text-slate-700 dark:text-zinc-200 tracking-tight">
                 Full-Stack Developer & AI Systems Engineer
               </p>
@@ -48,7 +48,7 @@ const Home = () => {
               <a
                 href="#projects"
                 onClick={(e) => { e.preventDefault(); scrollToSection("projects"); }}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-orange-600 hover:bg-orange-500 dark:bg-orange-600 dark:hover:bg-orange-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-orange-600/25 dark:shadow-orange-600/25 hover:shadow-orange-600/40 dark:hover:shadow-orange-600/40 hover:scale-105"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white font-semibold rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md"
               >
                 Explore Projects
                 <ArrowRight size={16} />
@@ -58,7 +58,7 @@ const Home = () => {
                 href={config.cvView}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3.5 bg-white dark:bg-zinc-900/80 hover:bg-stone-50 dark:hover:bg-zinc-800 border border-orange-200/60 dark:border-zinc-700/60 hover:border-orange-500/40 dark:hover:border-orange-500/40 text-slate-700 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-white font-semibold rounded-xl transition-all duration-300 text-sm shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-3.5 bg-white dark:bg-zinc-900/80 hover:bg-slate-50 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-white font-semibold rounded-xl transition-all duration-200 text-sm shadow-sm"
               >
                 <Download size={15} />
                 Resume / CV
@@ -83,7 +83,7 @@ const Home = () => {
                       key={tab}
                       onClick={() => setActiveTab(tab)}
                       className={`px-2.5 py-1 text-[10px] font-mono rounded-md transition-colors ${
-                        activeTab === tab ? "bg-orange-500/20 text-orange-300 font-bold border border-orange-500/30" : "text-zinc-400 hover:text-zinc-200"
+                        activeTab === tab ? "bg-zinc-800 text-zinc-100 font-medium border border-zinc-700" : "text-zinc-400 hover:text-zinc-200"
                       }`}
                     >
                       {tab}

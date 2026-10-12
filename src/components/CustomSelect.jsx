@@ -16,7 +16,7 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
   const selected = options.find((o) => o.value === value);
 
   return (
-    <div ref={ref} className="relative w-full">
+    <div ref={ref} className={`relative w-full ${open ? "z-50" : "z-0"}`}>
       <input type="hidden" name={name} value={value} />
       {required && !value && (
         <input

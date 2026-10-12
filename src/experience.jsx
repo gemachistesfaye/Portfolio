@@ -44,9 +44,9 @@ const Experience = () => {
           {/* Left Column: Work Experience Timeline */}
           <div className={`lg:col-span-7 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
             <div className="relative">
-              <div className="absolute left-6 top-0 w-px h-full bg-gradient-to-b from-emerald-500/40 via-slate-300 dark:via-zinc-800 to-transparent" />
+              <div className="absolute left-4 sm:left-6 top-0 w-px h-full bg-gradient-to-b from-emerald-500/40 via-slate-300 dark:via-zinc-800 to-transparent" />
 
-              <div className="flex items-center gap-2.5 mb-4 ml-16">
+              <div className="flex items-center gap-2.5 mb-4 ml-11 sm:ml-16">
                 <div className="w-1.5 h-3.5 bg-emerald-500 rounded-full" />
                 <h3 className="text-xs font-bold text-slate-800 dark:text-zinc-300 uppercase tracking-wider">
                   Work Experience & Initiatives
@@ -55,8 +55,8 @@ const Experience = () => {
 
               <div className="space-y-4">
                 {workItems.map((exp, i) => (
-                  <div key={i} className="relative pl-16">
-                    <div className="absolute left-3 top-1 flex items-center justify-center">
+                  <div key={i} className="relative pl-11 sm:pl-16">
+                    <div className="absolute left-1 sm:left-3 top-1 flex items-center justify-center">
                       <div className="w-[26px] h-[26px] rounded-full bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white ring-4 ring-slate-100 dark:ring-[#09090b] shadow-md shadow-emerald-500/20 z-10">
                         <Briefcase size={14} />
                       </div>

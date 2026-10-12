@@ -66,7 +66,7 @@ const Contact = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-          <div className={`lg:col-span-2 space-y-3.5 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
+          <div className={`lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
             {[
               { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-emerald-500 to-teal-600" },
               { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-teal-500 to-emerald-600" },
@@ -147,7 +147,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="mb-4 relative z-10">
+              <div className="mb-4 relative z-30">
                 <CustomSelect
                   name="projectType"
                   value={projectType}
@@ -164,7 +164,7 @@ const Contact = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 relative z-10">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 relative z-20">
                 <CustomSelect
                   name="budget"
                   value={budget}

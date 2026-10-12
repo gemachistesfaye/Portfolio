@@ -66,8 +66,8 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right Column: Interactive Developer Terminal / Code Card */}
-          <div className={`lg:col-span-5 ${inView ? 'animate-slide-left' : 'opacity-0'}`} style={{ animationDelay: '0.15s' }}>
+          {/* Right Column: Interactive Developer Terminal / Code Card (Desktop only) */}
+          <div className={`hidden lg:block lg:col-span-5 ${inView ? 'animate-slide-left' : 'opacity-0'}`} style={{ animationDelay: '0.15s' }}>
             <div className="rounded-2xl border border-slate-200/80 dark:border-white/[0.08] bg-slate-900 dark:bg-zinc-900/90 backdrop-blur-xl shadow-2xl overflow-hidden relative group hover:border-emerald-500/40 transition-all duration-300">
               {/* Top Window Bar */}
               <div className="px-5 py-3.5 bg-slate-950 dark:bg-zinc-950/80 border-b border-white/[0.08] flex items-center justify-between">

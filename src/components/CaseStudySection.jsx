@@ -1,17 +1,17 @@
 const CaseStudySection = ({ title, icon, children, id }) => {
   return (
-    <section id={id} className="py-10">
-      <div className="flex items-center gap-3 mb-6">
+    <section id={id} className="py-8">
+      <div className="flex items-center gap-3 mb-5">
         {icon && (
-          <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 flex-shrink-0">
             {icon}
           </div>
         )}
-        <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
           {title}
         </h2>
       </div>
-      <div className="text-slate-600 dark:text-slate-400 leading-relaxed">
+      <div className="text-slate-600 dark:text-zinc-400 leading-relaxed">
         {children}
       </div>
     </section>

@@ -82,7 +82,7 @@ const Navbar = () => {
           : 'bg-transparent'
       }`}
     >
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a
           href="#home"
@@ -90,7 +90,7 @@ const Navbar = () => {
           className="group flex items-center gap-2.5"
           aria-label="Go to top"
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-bold text-xs shadow-md shadow-indigo-500/20 group-hover:shadow-indigo-500/40 group-hover:scale-105 transition-all duration-300">
+          <div className="w-8 h-8 rounded-lg bg-slate-900 dark:bg-zinc-800 border border-slate-700/60 dark:border-white/10 flex items-center justify-center text-emerald-500 dark:text-emerald-400 font-bold text-xs shadow-sm group-hover:border-emerald-500/50 transition-all duration-300">
             GT
           </div>
           <span className="text-sm font-bold text-slate-900 dark:text-zinc-100 tracking-tight">
@@ -107,7 +107,7 @@ const Navbar = () => {
               onClick={(e) => go(e, l)}
               className={`relative px-4 py-1.5 text-[13px] font-medium rounded-full transition-all duration-200 ${
                 active === l.toLowerCase()
-                  ? 'text-white bg-indigo-600 shadow-sm shadow-indigo-500/30 font-semibold'
+                  ? 'text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 dark:bg-emerald-500/20 font-semibold'
                   : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-200/50 dark:hover:bg-white/[0.05]'
               }`}
               aria-current={active === l.toLowerCase() ? 'page' : undefined}
@@ -121,19 +121,19 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white bg-slate-100/80 dark:bg-zinc-800/80 border border-slate-200/60 dark:border-white/[0.08] hover:border-indigo-500/40 transition-all duration-200"
+            className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white bg-slate-100/80 dark:bg-zinc-800/80 border border-slate-200/60 dark:border-white/[0.08] hover:border-emerald-500/30 transition-all duration-200"
             aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
             title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
           >
-            {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-indigo-600" />}
+            {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-slate-600 dark:text-zinc-400 hover:text-emerald-500" />}
           </button>
 
           <a
             href="/blog"
             onClick={(e) => { e.preventDefault(); window.open("/blog", "_blank", "noopener,noreferrer"); }}
-            className="relative px-4 py-2 text-[13px] font-semibold rounded-lg text-slate-700 dark:text-zinc-200 bg-slate-100 dark:bg-zinc-800/80 hover:bg-slate-200 dark:hover:bg-zinc-700 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/[0.08] transition-all duration-200"
+            className="relative px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-700 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 bg-white/80 dark:bg-zinc-900/80 border border-slate-200/80 dark:border-white/[0.08] hover:border-emerald-500/30 shadow-sm transition-all duration-200"
           >
-            <PenLine size={13} className="inline -mt-0.5 mr-1.5 text-indigo-600 dark:text-indigo-400" /> Blog
+            <PenLine size={13} className="inline -mt-0.5 mr-1.5 text-emerald-600 dark:text-emerald-400" /> Blog
           </a>
         </div>
 
@@ -144,7 +144,7 @@ const Navbar = () => {
             className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700"
             aria-label="Toggle theme"
           >
-            {isDark ? <Sun size={16} className="text-amber-400" /> : <Moon size={16} className="text-indigo-600" />}
+            {isDark ? <Sun size={16} className="text-amber-400" /> : <Moon size={16} className="text-emerald-500" />}
           </button>
 
           <button
@@ -175,7 +175,7 @@ const Navbar = () => {
                 onClick={(e) => go(e, l)}
                 className={`block py-3 px-4 rounded-xl text-base font-medium transition-colors ${
                   active === l.toLowerCase()
-                    ? 'text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-600/20 font-semibold border border-indigo-200 dark:border-indigo-500/30'
+                    ? 'text-emerald-600 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-600/20 font-semibold border border-emerald-200 dark:border-emerald-500/30'
                     : 'text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800/60'
                 }`}
               >
@@ -188,9 +188,9 @@ const Navbar = () => {
             <a
               href="/blog"
               onClick={(e) => { e.preventDefault(); setOpen(false); window.open("/blog", "_blank", "noopener,noreferrer"); }}
-              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/20"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-200 bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-white/[0.08] hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
             >
-              <PenLine size={16} /> Read Blog
+              <PenLine size={15} className="text-emerald-600 dark:text-emerald-400" /> Read Blog
             </a>
           </div>
         </div>

@@ -206,8 +206,8 @@ PostgreSQL 15 Database (Prisma ORM)
     tagline: "Full-stack telemedicine platform for Ethiopian clinics with role-based portals and AI triage",
     description: "A production-grade telemedicine platform for Ethiopian clinics featuring role-specific portals (Patient, Doctor, Admin), authenticated Socket.IO messaging, medical record vaults, payment tracking, multilingual support (EN/AM/OM), and GPT symptom triage with offline fallbacks.",
     heroImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=600&fit=crop",
-    github: "https://github.com/gemachistesfaye/Sheger-Health-Connect",
-    demo: "https://sheger-health-connect.vercel.app",
+    github: "",
+    demo: "",
     featured: true,
 
     overview: {
@@ -758,8 +758,8 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     tagline: "Smart lost-and-found platform for Haramaya University with AI matching",
     description: "A production-grade campus lost-and-found ecosystem connecting students, staff, and administrators in real time. Features AI-powered item matching, interactive campus maps, and offline PWA support.",
     heroImage: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=600&fit=crop",
-    github: "https://github.com/gemachistesfaye/tracepoint-system",
-    demo: "https://tracepoint-system.web.app",
+    github: "",
+    demo: "",
     featured: false,
 
     overview: {
@@ -929,180 +929,145 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
   },
 
   {
-    slug: "smartquiz-ai",
-    name: "SmartQuiz AI",
-    category: "EdTech",
-    tags: ["React 19", "Firebase", "Gemini AI", "Vite", "Recharts", "Framer Motion"],
-    tagline: "Gamified JavaScript learning platform with AI tutor and code labs",
-    description: "A production-grade educational SaaS platform featuring adaptive quizzes, interactive code labs, AI tutoring via Gemini, and gamified progression — designed to transform students into JavaScript masters.",
-    heroImage: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200&h=600&fit=crop",
-    github: "https://github.com/gemachistesfaye/SmartQuiz-AI-Platform",
-    demo: "https://smart-quiz-ai-platform.vercel.app",
-    featured: false,
+    slug: "research-project-management-system",
+    name: "Research Project Management System",
+    category: "Full-Stack & Governance",
+    tags: ["Laravel 9", "PHP 8.2", "PostgreSQL", "Blade", "Docker", "Dompdf", "RBAC", "Bootstrap 5.3", "Chart.js"],
+    tagline: "Institutional research lifecycle management, blind peer review & phased grant disbursement platform",
+    description: "A production-grade Laravel 9 web application for orchestrating the complete lifecycle of university research projects—from proposal submission and departmental screening through double-blind peer review, institutional ethics clearance, ETB 500k dual-threshold budget approval, contract generation, 30%/40%/30% phased disbursements, milestone tracking, and completion certificate issuance. Engineered for 11 distinct university stakeholder roles.",
+    heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&h=600&fit=crop",
+    github: "https://github.com/gemachistesfaye/research-project-management-system",
+    demo: "https://research-project-management-system.onrender.com",
+    featured: true,
 
     overview: {
-      problem: "Students learning JavaScript struggle with fragmented resources — tutorials don't provide practice, quizzes lack explanations, and there's no personalized guidance. Completion rates for online coding courses average 25%.",
-      users: "JavaScript learners, from beginners to advanced developers preparing for interviews.",
-      role: "Full-Stack Developer — built entire platform including AI integration, gamification system, and admin dashboard.",
-      timeline: "2 months (Apr – May 2026)",
-      status: "Live on Vercel with 100+ active users"
+      problem: "Academic institutions struggled to oversee multi-tier research proposal lifecycles, suffering from opaque screening, reviewer identity bias, delayed ethics clearances, and untracked grant disbursements without milestone verification.",
+      users: "Principal Investigators (PIs), Department Review Committees (DRC), Deans, Research & Community Service Committee (RCSC), Ethics Review Board (IRB), Blind Reviewers, Finance Officers, University Executives (VP/President), and System Administrators.",
+      role: "Full-Stack Software Engineer — Architected backend models, services, migrations, and controllers in Laravel 9 (PHP 8.2), structured the 11-role RBAC security engine, implemented double-blind review routing with author anonymization, designed dual-threshold budget governance (ETB 500k approval matrix), and automated Dompdf contract/certificate generation.",
+      timeline: "2025 – 2026",
+      status: "Production-ready monolithic architecture deployed via Docker (PHP-FPM + Nginx) with SQLite/PostgreSQL persistence, automated database seeding, and complete workflow test suites."
     },
 
     motivation: {
-      problem: "JavaScript education is fragmented across YouTube, documentation, and paid courses. Students lack a single platform that combines learning, practice, assessment, and AI guidance.",
-      whoAffected: "Self-taught developers, bootcamp students, and university students learning web development.",
-      whyExistingInsufficient: "Existing platforms (freeCodeCamp, Codecademy) are either too basic, lack AI assistance, or don't provide real-time feedback. None combine quizzes, code labs, and AI tutoring in one platform.",
-      whyMatters: "JavaScript is the most popular programming language. A platform that improves completion rates from 25% to 85% can accelerate thousands of developer careers."
+      problem: "Managing academic research proposals manually leads to lost paperwork, unverified ethics protocols, bias in peer reviews, and uncontrolled budget disbursements without verified project deliverables.",
+      whoAffected: "Principal investigators waiting months for proposal feedback, ethics committees unable to track animal/human protocols, finance departments releasing funds without milestone sign-offs, and university leadership lacking visibility into institutional grant ROI.",
+      whyExistingInsufficient: "Generic project management tools (Jira, Trello, Asana) lack university governance hierarchies, blind evaluation scoring rubrics, institutional ethics clearance workflows, and academic grant tranche disbursement controls.",
+      whyMatters: "University research funding directly impacts institutional accreditation, scientific integrity, and community advancement; governance software ensures transparent, merit-based, and auditable resource allocation."
     },
 
     solution: {
-      approach: "Built an all-in-one learning ecosystem: adaptive quizzes pull from Firestore with dynamic difficulty, interactive code labs provide hands-on practice, AI tutor (Gemini) offers personalized guidance, and gamification (XP, streaks, leaderboard) keeps students engaged.",
+      approach: "Engineered a comprehensive Laravel 9 platform organized into dedicated modular domains (App/Http/Controllers, App/Services, App/Models) using Blade and Bootstrap 5.3 for responsive interfaces. Integrated an 11-role permission matrix, double-blind evaluation pipelines, automatic budget threshold routing, and contract/certificate PDF rendering.",
       keyWorkflows: [
-        "Student logs in → Takes adaptive quiz → Gets instant feedback → Learns from explanation → Earns XP → Climbs leaderboard",
-        "Student opens Code Lab → Selects difficulty → Writes code in sandbox → Gets instant validation → Marks concept as mastered",
-        "Student asks AI tutor → Receives personalized explanation → Gets code examples → Saves to learning history"
+        "Proposal Submission & DRC Screening: PIs submit research proposals with budgets and team members; Department Heads review and screen proposals against institutional priority thematic areas.",
+        "Double-Blind Peer Review: Coordinators assign external/internal reviewers; system strips all author identity metadata; reviewers submit standardized scoring rubrics with accept/revise/reject verdicts.",
+        "Institutional Ethics Board Review: Human/animal subject research undergoes IRB evaluation; generates formal approval numbers or conditional revision notices.",
+        "Dual-Threshold Financial Governance: Proposals under ETB 500,000 route to Dean & RCSC; grants exceeding ETB 500k automatically escalate to Vice President / University Executive council.",
+        "Tranche Disbursements & Milestone Verifications: Phased grant releases (30% mobilization, 40% interim progress, 30% final deliverable); finance officers release vouchers only after DRC and coordinator progress sign-offs.",
+        "Contract & Certificate Generation: Dompdf automatically compiles bilingual grant agreements upon approval, and digitally stamps institutional completion certificates upon final project closeout."
       ],
       features: [
-        { name: "Adaptive Quiz Engine", why: "Static quizzes bore advanced students and overwhelm beginners. Dynamic difficulty scaling meets each student at their level." },
-        { name: "Interactive Code Lab", why: "Reading about code isn't enough. Hands-on practice with instant validation builds muscle memory." },
-        { name: "AI Tutor (Gemini)", why: "Students get stuck at 2am with no teacher available. AI provides 24/7 personalized explanations and code examples." },
-        { name: "Gamified Progression", why: "XP, streaks, and leaderboards tap into intrinsic motivation. Students compete with themselves and peers." },
-        { name: "Theory Vault", why: "15+ advanced JS concepts (Event Loop, Closures, Prototypes) explained with interactive examples." },
-        { name: "Admin Command Center", why: "Platform health metrics, user moderation, and question management for ongoing operations." }
+        { name: "11-Role RBAC Security Matrix", why: "Strict separation of duties between PIs, DRC reviewers, deans, ethics boards, finance officers, and executives." },
+        { name: "Anonymized Blind Peer Review", why: "Eliminates academic bias and conflicts of interest through automatic author identity stripping during review rounds." },
+        { name: "Dual-Threshold Budget Routing", why: "Ensures institutional compliance by automatically escalating budgets > ETB 500k to executive leadership." },
+        { name: "Phased 30/40/30 Grant Disbursement", why: "Ties capital releases directly to verified milestone deliverables and department approvals." },
+        { name: "Automated PDF Contracts & Certificates", why: "Barryvdh/Dompdf integration generates formal legal agreements and institutional completion credentials." },
+        { name: "Audit Logging & Lifecycle State Machine", why: "Every status transition, score submission, and budget voucher is permanently logged with timestamped user attribution." }
       ]
     },
 
     architecture: {
       layers: [
-        { name: "Frontend", tech: "React 19 + Vite + Tailwind CSS" },
-        { name: "Backend/Auth", tech: "Firebase (Auth + Firestore)" },
-        { name: "AI Engine", tech: "Google Gemini 1.5 + OpenAI GPT-4o-mini" },
-        { name: "Animations", tech: "Framer Motion" },
-        { name: "Charts", tech: "Recharts" }
+        { name: "Presentation Layer", tech: "Blade Templates, Bootstrap 5.3, Bootstrap Icons, Chart.js" },
+        { name: "Application & Business Logic", tech: "Laravel 9, PHP 8.2 (Controllers, Services, Policies, FormRequests)" },
+        { name: "Persistence & Data Layer", tech: "Eloquent ORM, PostgreSQL & SQLite compatibility, Database Seeders" },
+        { name: "Document Generation", tech: "barryvdh/laravel-dompdf for legal contracts & completion certificates" },
+        { name: "Containerization & Runtime", tech: "Docker (PHP-FPM 8.2 + Nginx reverse proxy), SQLite on /data mount" }
       ],
-      diagram: `React 19/Vite ──► Firebase Firestore (real-time)
-         │
-    Firebase Auth (JWT)
-         │
-    Gemini 1.5 / GPT-4o-mini (AI)
-         │
-    Recharts (analytics)`
+      diagram: `PI Proposal Submission ──► Department Screening (DRC)
+          │
+     Blind Peer Review (Double-Blind Scoring Rubric)
+          │
+     Institutional Ethics Committee Clearance (IRB)
+          │
+     Budget Threshold Engine (<= 500k ETB: Dean/RCSC | > 500k ETB: VP/Exec)
+          │
+     Contract Generation (Dompdf) ──► Phased Tranches (30% / 40% / 30%)
+          │
+     Milestone Verification ──► Final Completion Certificate`
     },
 
     database: {
-      overview: "Firebase Firestore — NoSQL document database for real-time quiz data, user progress, and AI conversation history.",
+      overview: "Relational schema designed with Eloquent ORM supporting SQLite and PostgreSQL, with foreign key integrity and audit logs for every workflow transition.",
       entities: [
-        { name: "users", description: "Student and admin accounts with XP, streaks, and role" },
-        { name: "questions", description: "Quiz questions with difficulty levels, categories, and explanations" },
-        { name: "quizResults", description: "Quiz attempt history with scores and timing" },
-        { name: "codeSnippets", description: "Code lab exercises with validation rules" },
-        { name: "leaderboard", description: "Aggregated XP and ranking data" },
-        { name: "aiConversations", description: "AI tutor chat history per user" }
+        { name: "projects", description: "Core proposal records, thematic areas, status states, milestones, and principal investigators" },
+        { name: "evaluations", description: "Blind peer review evaluations, criteria scores, feedback comments, and recommendation verdicts" },
+        { name: "budgets & tranches", description: "Line-item project budgets, payment vouchers, and phased tranche disbursement states" },
+        { name: "ethics_clearances", description: "IRB review protocols, committee decisions, clearance certificates, and condition tracking" },
+        { name: "contracts & certificates", description: "Digitally signed institutional contracts, milestone completion certificates, and PDF logs" },
+        { name: "audit_logs", description: "Immutable chronological trail of every workflow status mutation and financial release" }
       ],
-      relationships: "users 1:N quizResults · users 1:N aiConversations · questions N:N quizResults",
-      rationale: "Firestore chosen for real-time quiz updates, offline practice capability, and seamless AI integration. Document model fits the flexible quiz question structure."
+      relationships: "projects 1:N evaluations · projects 1:N budgets · projects 1:N progress_reports · users N:M roles",
+      rationale: "Structured relational model enforces referential integrity across complex multi-step university approvals, preventing disbursement without prior phase sign-offs."
     },
 
     implementation: {
       frontend: [
-        "React 19 with latest concurrent features",
-        "Vite for fast development and optimized builds",
-        "Tailwind CSS for consistent styling",
-        "Framer Motion for smooth page transitions",
-        "Recharts for progress analytics",
-        "React Router v6 for navigation"
+        "Blade templating engine with responsive layout inheritance",
+        "Bootstrap 5.3 with Bootstrap Icons for accessible, clean institutional styling",
+        "Chart.js for visual budget utilization and thematic research distribution dashboards",
+        "Dynamic JavaScript helpers for interactive line-item budget calculations"
       ],
       backend: [
-        "Firebase Authentication with role-based access",
-        "Firestore Security Rules for data protection",
-        "Cloud Functions for server-side logic (planned)",
-        "Real-time listeners for live leaderboard updates"
+        "Laravel 9 MVC architecture on PHP 8.2",
+        "Custom middleware for role-based route protection and permission checks",
+        "Dedicated service layer isolating business logic (BlindReviewService, BudgetRoutingService, CertificateService)",
+        "Laravel Sanctum session-based authentication and secure CSRF protection"
       ],
       deployment: [
-        "Vercel for frontend hosting",
-        "Firebase for backend services",
-        "Automatic deployments on push",
-        "Environment variables for API keys"
+        "Dockerized runtime pairing PHP-FPM with Nginx",
+        "Automated entrypoint script running migrations, seeders, and view/route caching",
+        "Persistent storage volume configured at /data for SQLite database and uploaded documents",
+        "Render deployment blueprint via render.yaml configuration"
       ]
     },
 
     security: {
       measures: [
-        { name: "RBAC", implementation: "Student and Admin roles with strict namespace separation" },
-        { name: "Firestore Rules", implementation: "Role-based read/write rules on every collection" },
-        { name: "Master Admin Bypass", implementation: "Secure backdoor for administrative continuity" },
-        { name: "BYOK AI Model", implementation: "Bring Your Own Key — users provide their own Gemini API key" }
+        { name: "11-Role RBAC", implementation: "Strict middleware policies guarding routes by user roles and department scope" },
+        { name: "Blind Peer Review Anonymization", implementation: "Server-side masking of PI identity, college, and contact info before reviewer assignment" },
+        { name: "Dual-Threshold Financial Guardrails", implementation: "Automatic state locking requiring Vice President sign-off on grants exceeding ETB 500k" },
+        { name: "Immutable Audit Trails", implementation: "Audit log service records IP, user ID, previous state, and timestamp on all status changes" },
+        { name: "CSRF & SQL Injection Protection", implementation: "Laravel Eloquent parameterized queries and Blade CSRF token verification on all mutation requests" }
       ]
     },
 
-    ai: {
-      purpose: "Provide personalized JavaScript tutoring 24/7. Students get explanations, code examples, and concept breakdowns tailored to their learning level.",
-      architecture: "Student question → Context (quiz history, skill level) → Gemini 1.5 API → Markdown-formatted response → Rendered with code blocks",
-      model: "Google Gemini 1.5 (primary) + OpenAI GPT-4o-mini (fallback)",
-      promptDesign: "System prompt defines AI as a JavaScript/Web Development mentor. Strict scope: only JS and web topics. Responses formatted in Markdown with code blocks.",
-      fallback: "OpenAI GPT-4o-mini as secondary provider. If both unavailable, pre-built FAQ responses for common JS questions.",
-      limitations: "AI scope limited to JavaScript and web development. Cannot assist with other languages or non-technical topics. Requires user's own API key for unlimited usage.",
-      futureImprovements: ["Multi-language support (Python, React)", "Code execution sandbox", "Learning path recommendations", "Peer comparison insights"]
-    },
-
-    ux: {
-      userFlows: [
-        { role: "Student", steps: ["Login/Register", "Take placement quiz", "Get personalized learning path", "Complete quizzes and code labs", "Ask AI tutor for help", "Track progress on dashboard", "Climb leaderboard"] },
-        { role: "Admin", steps: ["Login", "View platform metrics", "Manage questions", "Moderate users", "Review AI usage"] }
-      ],
-      keyScreens: ["Dashboard", "Quiz Arena", "Code Lab", "AI Tutor", "Theory Vault", "Leaderboard", "Admin Panel"],
-      decisions: ["Gamification to drive engagement", "AI tutor accessible from every page", "Mobile-responsive for study anywhere", "Separate admin theme for clarity"]
-    },
-
-    challenges: [
-      {
-        challenge: "Adaptive difficulty scaling",
-        difficulty: "Medium — questions need to match student skill level in real-time",
-        solution: "Implemented ELO-inspired difficulty scoring. Student performance on recent questions adjusts the difficulty of next questions. Tracked via Firestore."
-      },
-      {
-        challenge: "AI tutor scope enforcement",
-        difficulty: "Medium — preventing off-topic conversations while keeping responses natural",
-        solution: "System prompt with strict scope rules. AI refuses non-JS questions politely and redirects to relevant topics. Content filtering on inputs."
-      },
-      {
-        challenge: "Real-time leaderboard accuracy",
-        difficulty: "Low — XP calculations must be consistent across concurrent users",
-        solution: "Firestore atomic increments for XP updates. Leaderboard computed server-side via aggregation query."
-      }
-    ],
-
     performance: {
       optimizations: [
-        "React 19 concurrent features for smooth UI",
-        "Firestore query pagination for large datasets",
-        "Image lazy loading for theory vault illustrations",
-        "Code splitting for route-based loading",
-        "Optimistic UI for quiz submissions"
+        "Route and configuration caching (php artisan config:cache, route:cache) in production container startup",
+        "Eager loading (with()) on project queries to eliminate N+1 database queries across reviews and budgets",
+        "Optimized Blade view compilation caching",
+        "Lightweight in-memory Dompdf generation with tuned font caching"
       ],
       errorHandling: [
-        "AI API failure fallback to cached responses",
-        "Firestore offline persistence for practice without internet",
-        "Quiz auto-save to prevent progress loss",
-        "Graceful degradation for animations"
+        "Database transaction wrapping around multi-table status transitions and financial releases",
+        "Validation rules in custom Laravel FormRequest classes with localized error alerts",
+        "Graceful PDF compilation error handling and fallback alerts"
       ],
-      testing: "Manual testing across devices, quiz logic validation, AI response quality checks, Firestore security rules testing"
+      testing: "PHPUnit test suite covering Unit and Feature tests for RBAC permissions, budget threshold escalation, and evaluation submission flows"
     },
 
     roadmap: [
-      "Code execution sandbox (Browser.js integration)",
-      "Multi-language support (Python, React, TypeScript)",
-      "Peer comparison and study groups",
-      "Certification system for completed tracks",
-      "Mobile app (React Native)",
-      "Integration with job platforms for skill verification"
+      "RESTful API layer (routes/api.php) for third-party institutional portal integrations",
+      "Multi-institution federated consortium support for inter-university collaborative grants",
+      "ORCID and Google Scholar API integration for automatic PI publication verification",
+      "Automated email/SMS notification queues for reviewer deadlines and tranche disbursements"
     ],
 
     media: {
       screenshots: [
-        { src: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&h=500&fit=crop", alt: "Dashboard", caption: "Student progress dashboard with XP and streaks" },
-        { src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop", alt: "Quiz Arena", caption: "Adaptive quiz engine with real-time feedback" },
-        { src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop", alt: "Code Lab", caption: "Interactive code practice sandbox" }
+        { src: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop", alt: "Proposal Dashboard", caption: "Research lifecycle oversight and status tracking dashboard" },
+        { src: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=500&fit=crop", alt: "Budget Approval", caption: "Dual-threshold budget evaluation and tranche disbursement workflow" },
+        { src: "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800&h=500&fit=crop", alt: "Peer Review", caption: "Anonymized double-blind peer review evaluation matrix" }
       ]
     }
   },
@@ -1114,7 +1079,7 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     tagline: "Multi-tenant school management system with role-based portals & Supabase RLS",
     description: "A full-stack academic and school management platform engineered for educational institutions. Organizes core school workflows across 5 distinct role portals (Superadmin, School Director/Admin, Teacher, Student, Parent) for student records, bulk Excel roster imports, daily attendance tracking, exam & grade management, conflict-free timetable scheduling, fee collection, and real-time notifications.",
     heroImage: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&h=600&fit=crop",
-    github: "https://github.com/gemachistesfaye",
+    github: "",
     demo: "",
     featured: true,
 
@@ -1475,6 +1440,511 @@ Flask Application Controller (app.py)
         { src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop", alt: "Grade Dashboard", caption: "Academic performance dashboard with cumulative GPA, credits, and grade breakdown" },
         { src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop", alt: "Chart.js Analytics", caption: "Visual score progression and grade distribution analytics" },
         { src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=500&fit=crop", alt: "GradeBot AI Chat", caption: "Google Gemini–powered GradeBot delivering personalized study advice" }
+      ]
+    }
+  },
+  {
+    slug: "garage-management-system",
+    name: "Garage Management System",
+    category: "Full-Stack ERP & Operations",
+    tags: ["React 19", "Vite", "Node.js", "Express 5", "PostgreSQL", "Prisma 6", "Recharts", "JWT", "RBAC"],
+    tagline: "Automotive repair pipeline, spare parts inventory & vehicle service history ERP",
+    description: "A full-stack garage and workshop operations system for managing customers, vehicles, job cards, mechanics, spare-part inventory, invoices, payments, reports, and audit history. Built with React 19, Vite, Express 5, PostgreSQL, and Prisma 6, with role-based access for Admin, Manager, Receptionist, and Mechanic across the full lifecycle from customer intake to idempotent payment processing.",
+    heroImage: "https://images.unsplash.com/photo-1613214149922-f1809c99b414?w=1200&h=600&fit=crop",
+    github: "",
+    demo: "",
+    featured: false,
+
+    overview: {
+      problem: "Automotive repair shops and service centers struggle with fragmented paper work orders, unmonitored spare-parts inventory, lack of vehicle service tracking, and inaccurate billing.",
+      users: "Garage Administrators, Shop Managers, Service Receptionists, and Workshop Mechanics.",
+      role: "Full-Stack Software Engineer — Designed relational database schema in PostgreSQL via Prisma 6, built Express 5 REST APIs with JWT & RBAC, and engineered the React 19 frontend with Recharts analytics and role-protected workflows.",
+      timeline: "2025 – 2026",
+      status: "Production-ready full-stack application with Express 5 REST API, Prisma 6 ORM, PostgreSQL persistence, and React 19 SPA frontend."
+    },
+
+    motivation: {
+      problem: "Garages rely heavily on physical work order clipboards and memory. Spare parts taken off the shelf often go unbilled, vehicle repair statuses are obscure to customers, and return visits lack historical context on past maintenance or replaced components.",
+      whoAffected: "Shop managers managing multi-bay repair floors, mechanics juggling multiple repairs, receptionists handling customer intake, and vehicle owners needing transparent billing and reliable service records.",
+      whyExistingInsufficient: "Generic retail POS tools don't model two-phase repair states (inspection diagnosis vs customer authorization vs active repair vs billing) or multi-item parts deduction per vehicle job.",
+      whyMatters: "Operational efficiency directly dictates garage profitability. Real-time parts deduction, idempotent payment processing, and transparent service logging prevent revenue loss, build customer trust, and speed up turnaround times."
+    },
+
+    solution: {
+      approach: "Architected a role-protected full-stack system with a React 19 (Vite) SPA frontend and Node.js/Express 5 backend paired with PostgreSQL via Prisma 6. Implements the complete lifecycle: Customer → Vehicle → Job Card → Services/Parts → Invoice → Payment → Audit Log.",
+      keyWorkflows: [
+        "Customer & Vehicle Intake: Receptionists register customers and vehicles with VIN, plate number, make, model, year, and service history.",
+        "Job Card & Work Order Pipeline: Assigns jobs to mechanics with complaints, diagnoses, and statuses (pending, in_progress, completed, cancelled).",
+        "Spare-Parts Inventory & Deduction: Tracks stock quantities, minimum levels, categories, and suppliers; automatically decrements inventory when parts attach to a job card.",
+        "Automated Invoicing & Numbering: Generates sequential invoices (INV-00001) from completed job cards with parts, labor, tax, discounts, and totals.",
+        "Multi-Method Payment & Idempotency: Supports cash, bank, mobile money, and card payments with partial payment tracking and idempotency keys to prevent duplicate charges.",
+        "Audit Logging & Operational Reports: Immutable logs record sensitive actions across invoices, payments, and inventory, backed by Recharts revenue analytics and CSV exports."
+      ],
+      features: [
+        { name: "Customer & Vehicle Intake", why: "Stores contact details, vehicle specs, and prevents deletion when active service records exist." },
+        { name: "Mechanic Job Card Assignment", why: "Restricts mechanics to modifying their assigned jobs while supervisors oversee floor progress." },
+        { name: "Automated Spare-Parts Deduction", why: "Real-time stock deduction, reorder thresholds, and low-stock dashboard alerts prevent inventory shrinkage." },
+        { name: "Sequential Invoicing (INV-00001)", why: "Generates itemized invoices directly from completed job cards with duplicate-prevention safeguards." },
+        { name: "Idempotent Multi-Method Payments", why: "Handles cash, bank, mobile money, and card transactions with idempotency keys and partial payment states." },
+        { name: "Audit Trail & Financial Analytics", why: "Records user actions on invoices, inventory, and payments with Recharts financial dashboard and CSV reports." }
+      ]
+    },
+
+    architecture: {
+      layers: [
+        { name: "Frontend Client", tech: "React 19 + Vite + React Router + Axios + Recharts + Tailwind CSS" },
+        { name: "Authentication & State", tech: "JWT Bearer Token (LocalStorage + Axios interceptors) + Context API" },
+        { name: "Backend REST API", tech: "Node.js + Express 5 (/api routes with modular controllers)" },
+        { name: "ORM & Persistence", tech: "Prisma 6 Client with connection pooling and schema migrations" },
+        { name: "Database Engine", tech: "PostgreSQL with ACID relations, constraints, and audit logging" },
+        { name: "Security & Permissions", tech: "bcrypt password hashing, centralized RBAC matrix (Admin, Manager, Receptionist, Mechanic)" }
+      ],
+      diagram: `Customer Intake ──► Vehicle Registration ──► Job Card Assignment (Mechanic)
+           │
+      Spare-Parts Inventory Deduction (Prisma Transactions)
+           │
+      Sequential Invoice Generation (INV-00001)
+           │
+      Idempotent Payment Processing (Cash, Bank, Mobile Money, Card)
+           │
+      Audit Trail Logging ──► Recharts Analytics & CSV Reports`
+    },
+
+    database: {
+      overview: "Relational PostgreSQL schema managed by Prisma ORM ensuring strict relational integrity between customers, vehicles, work orders, parts inventory, and billing invoices.",
+      entities: [
+        { name: "Customer", description: "Name, phone, email, address, and outstanding balance" },
+        { name: "Vehicle", description: "License plate, VIN, make, model, year, and customer ownership link" },
+        { name: "WorkOrder", description: "Status (Intake, InProgress, QualityCheck, Completed), advisor ID, technician ID, odometer in, and dates" },
+        { name: "JobItem", description: "Description, labor hours, technician assigned, and completion status" },
+        { name: "Part", description: "SKU, part name, category, quantity in stock, minimum threshold, cost price, and selling price" },
+        { name: "Invoice", description: "Work order reference, parts subtotal, labor subtotal, tax amount, total, and payment status" }
+      ],
+      relationships: "Customer 1:N Vehicle · Vehicle 1:N WorkOrder · WorkOrder 1:N JobItem · WorkOrder 1:N Part · WorkOrder 1:1 Invoice",
+      rationale: "Automotive repair involves transactional dependencies (e.g. inventory must not decrement if work order creation fails). PostgreSQL + Prisma transactions guarantee 100% data consistency."
+    },
+
+    implementation: {
+      frontend: [
+        "React (Vite) SPA with rapid client-side routing and optimized bundle size",
+        "Visual Kanban board visualizing real-time repair floor progress across service bays",
+        "Modal dialogs with input masking for vehicle VIN and license plate validation",
+        "Searchable inventory management view with filter by part category and stock health indicators"
+      ],
+      backend: [
+        "Express modular architecture with separated routes, controllers, and Prisma services",
+        "Atomic Prisma $transaction operations ensuring stock decrements, job status updates, and invoice calculations execute together",
+        "JWT authentication with role-based middleware guarding administrative pricing and inventory management"
+      ],
+      deployment: [
+        "Docker Compose configuration orchestrating Node.js backend, PostgreSQL 15 container, and static asset serving",
+        "Configured for internal garage LAN deployment or cloud hosting on Render / Vercel"
+      ]
+    },
+
+    security: {
+      measures: [
+        { name: "Role-Based Access Control", implementation: "Mechanics can update job progress but cannot alter parts purchase costs or modify invoice pricing" },
+        { name: "Transactional Atomicity", implementation: "Prevents orphaned inventory transactions or unsynced billing states" },
+        { name: "Input Validation", implementation: "Server-side validation on odometer readings, VIN numbers, and numeric parts quantities" },
+        { name: "Password Security", implementation: "Salted bcrypt password hashing for all staff accounts" }
+      ]
+    },
+
+    ux: {
+      userFlows: [
+        {
+          role: "Service Advisor",
+          steps: ["Check in vehicle via intake modal", "Enter customer & vehicle details", "Add reported complaints", "Assign to service bay", "Generate repair estimate"]
+        },
+        {
+          role: "Mechanic",
+          steps: ["Open assigned work order", "Perform diagnostics", "Log replacement parts from inventory", "Complete repair tasks", "Flag ready for inspection"]
+        }
+      ],
+      keyScreens: [
+        "Work Order Kanban Floor View",
+        "Vehicle Service History & Customer Profile",
+        "Parts Inventory & Stock Requisition Table",
+        "Itemized Invoice & Payment Receipt Modal"
+      ],
+      decisions: [
+        "Kanban-style visual pipeline gives garage staff immediate clarity on repair stages across all service bays",
+        "Auto-suggesting past vehicle records by license plate accelerates intake time from 5 minutes down to 30 seconds"
+      ]
+    },
+
+    challenges: [
+      {
+        challenge: "Preventing inventory discrepancies when multiple mechanics claim parts for simultaneous work orders",
+        difficulty: "High — Concurrency race conditions could lead to negative stock counts or unbilled inventory.",
+        solution: "Implemented Prisma interactive database transactions ($transaction) with row-level locks on inventory records during parts allocation."
+      },
+      {
+        challenge: "Modeling complex vehicle service histories with recurring customer visits",
+        difficulty: "Medium — Vehicles change owners and have multiple recurring visits with different complaints.",
+        solution: "Separated Customer and Vehicle entities in a Many-to-One ownership relationship with historical ownership logging."
+      }
+    ],
+
+    performance: {
+      optimizations: [
+        "Indexed foreign keys on vehicleId, workOrderId, and partId for instant history queries",
+        "Optimistic UI updates on Kanban stage transitions with rollback on API errors"
+      ],
+      errorHandling: [
+        "Clear validation error messages when attempting to allocate more parts than available in physical stock",
+        "Centralized Express error handler returning structured JSON error payloads"
+      ],
+      testing: "Unit tests for inventory decrement and invoice total calculations."
+    },
+
+    roadmap: [
+      "SMS notification integration for automated customer updates when vehicle is ready for pickup",
+      "Supplier purchase order automation when parts breach minimum threshold levels",
+      "Mobile scanner support for barcode/QR code parts inventory lookups"
+    ],
+
+    media: {
+      screenshots: [
+        { src: "https://images.unsplash.com/photo-1613214149922-f1809c99b414?w=800&h=500&fit=crop", alt: "Garage Pipeline", caption: "Active repair bays and work order Kanban pipeline" },
+        { src: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=800&h=500&fit=crop", alt: "Parts Inventory", caption: "Spare parts inventory and automated stock deduction ledger" },
+        { src: "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=800&h=500&fit=crop", alt: "Vehicle History", caption: "Comprehensive vehicle service records and maintenance history" }
+      ]
+    }
+  },
+  {
+    slug: "readme-studio",
+    name: "README Studio",
+    category: "Developer Tools",
+    tags: ["React", "TypeScript", "Tailwind CSS", "GitHub API", "OAuth", "Markdown"],
+    tagline: "Visual real-time GitHub documentation generator & template studio",
+    description: "A modern developer studio for creating, editing, and previewing production-ready GitHub documentation. Integrates GitHub OAuth to import repository metadata, provides rich markdown templates and live split-screen preview, and generates custom SVG badges and project headers.",
+    heroImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop",
+    github: "https://github.com/gemachistesfaye/readme-studio",
+    demo: "https://gemachisdev.vercel.app",
+    featured: false,
+
+    overview: {
+      problem: "Software developers spend excessive time manually writing and formatting repository READMEs without real-time previews or standardized quality checks.",
+      users: "Open-source contributors, indie hackers, and engineering teams documenting their codebases.",
+      role: "Creator & Lead Developer — Architected the client-side markdown compilation engine, GitHub API OAuth integration, and custom theme presets.",
+      timeline: "2025",
+      status: "Live on Vercel with real-time markdown generation and repository import."
+    },
+
+    motivation: {
+      problem: "A project's README is its storefront. Yet developers frequently skip proper documentation due to tedious syntax formatting and lacking visual previews.",
+      whoAffected: "Software engineers launching projects and recruiters/collaborators assessing codebases.",
+      whyExistingInsufficient: "Basic markdown editors lack GitHub-specific badges, license generators, and automated repository structure scrapers.",
+      whyMatters: "High-quality documentation increases project adoption, open-source contributions, and professional credibility."
+    },
+
+    solution: {
+      approach: "Engineered a React + TypeScript web application with live side-by-side editing, syntax highlighting, customizable badge builders, and one-click clipboard/file export.",
+      keyWorkflows: [
+        "Repository Import: User connects via GitHub OAuth → pulls repository name, description, and topics into pre-formatted sections.",
+        "Section Composer: Toggle and drag-and-drop standard sections (Tech Stack, Quick Start, Contributing, License).",
+        "Live Preview: Real-time markdown parser renders exact GitHub typography and badge styling.",
+        "Export: One-click copy or direct README.md download ready to commit to Git."
+      ],
+      features: [
+        { name: "Live Split-Screen Preview", why: "Eliminates guess-work by rendering live markdown as you type." },
+        { name: "Dynamic Badge Generator", why: "Generates Shields.io badges for tech stacks, licenses, and build statuses." },
+        { name: "Modular Section Blocks", why: "Quickly assemble standard sections without writing boilerplate markdown." }
+      ]
+    },
+
+    architecture: {
+      layers: [
+        { name: "Frontend Client", tech: "React + TypeScript + Vite + Tailwind CSS" },
+        { name: "Markdown Engine", tech: "Remark / Rehype parser pipeline" },
+        { name: "External APIs", tech: "GitHub REST API via OAuth token" }
+      ],
+      diagram: `User Input / GitHub OAuth ──► React Markdown Parser ──► Live Split Preview ──► README.md Export`
+    },
+
+    implementation: {
+      frontend: ["React SPA with Vite", "Tailwind CSS responsive split layout", "Debounced markdown parsing"],
+      backend: ["Client-side architecture using GitHub REST APIs"],
+      deployment: ["Vercel automated CI/CD pipeline"]
+    },
+
+    ux: {
+      userFlows: [{ role: "Developer", steps: ["Import repo", "Choose layout preset", "Customize sections", "Export README.md"] }],
+      keyScreens: ["Editor View", "Template Gallery", "Badge Customizer"],
+      decisions: ["Side-by-side layout prioritizing desktop developer workflows"]
+    },
+
+    challenges: [
+      {
+        challenge: "Real-time rendering of large markdown files without typing lag",
+        difficulty: "Medium",
+        solution: "Implemented debounced parse cycles and virtualized editor previews."
+      }
+    ],
+
+    performance: {
+      optimizations: ["Bundle splitting via Vite", "Memoized parser components"],
+      errorHandling: ["Graceful fallback when GitHub API rate limit is reached"],
+      testing: "Component tests for markdown export fidelity."
+    },
+
+    roadmap: ["Direct commit to GitHub via Octokit", "AI README generation from code analysis"],
+    media: {
+      screenshots: [
+        { src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop", alt: "Editor", caption: "Split-screen markdown editor and live preview" }
+      ]
+    }
+  },
+  {
+    slug: "riqicha-ai",
+    name: "Riqicha AI",
+    category: "Developer Tools",
+    tags: ["React", "TypeScript", "Tailwind CSS", "PDF Export", "ATS-Friendly"],
+    tagline: "Modern ATS-friendly resume builder with real-time preview & instant PDF export",
+    description: "A responsive CV and resume builder designed to help job seekers generate clean, ATS-compliant resumes. Offers 5 customizable design templates, drag-and-drop section reordering, real-time typography preview, and instant client-side PDF export without hidden paywalls.",
+    heroImage: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&h=600&fit=crop",
+    github: "https://github.com/gemachistesfaye/riqicha-ai",
+    demo: "https://gemachisdev.vercel.app",
+    featured: false,
+
+    overview: {
+      problem: "Job applicants struggle with online resume builders that lock downloads behind subscriptions, ruin formatting, or fail ATS parsers.",
+      users: "Students, software developers, and professionals seeking modern job-application materials.",
+      role: "Frontend & UI Engineer — Designed responsive UI layouts, PDF rendering pipeline, and custom templates.",
+      timeline: "2025",
+      status: "Live on Vercel with real-time client-side PDF rendering."
+    },
+
+    motivation: {
+      problem: "Many commercial resume builders trick users into creating a CV and then demand payment to export the file. Formatting also frequently breaks ATS parsers.",
+      whoAffected: "Job applicants worldwide needing clean, accessible CV creation.",
+      whyExistingInsufficient: "Word processors lack structure, while subscription sites hold user data hostage.",
+      whyMatters: "Access to clean, free, professional job application tools levels the playing field for candidates."
+    },
+
+    solution: {
+      approach: "Engineered a client-side React + TypeScript application with live data persistence in local storage, responsive form inputs, and vector PDF compilation.",
+      keyWorkflows: [
+        "Profile & Experience Input: Enter work experience, education, skills, and projects with live validation.",
+        "Template Selection: Choose between 5 ATS-compliant templates (Modern, Minimal, Tech, Executive, Creative).",
+        "Instant Download: Client-side vector PDF generation preserves crisp typography for ATS screening."
+      ],
+      features: [
+        { name: "5 ATS-Friendly Templates", why: "Designed to pass automated applicant tracking systems without parsing glitches." },
+        { name: "Live Side-by-Side Preview", why: "Immediate visual feedback as you fill out experience and education fields." },
+        { name: "100% Free Vector PDF Export", why: "High-resolution output without subscriptions or watermarks." }
+      ]
+    },
+
+    architecture: {
+      layers: [
+        { name: "Frontend Client", tech: "React + TypeScript + Tailwind CSS" },
+        { name: "PDF Rendering Engine", tech: "HTML5 Canvas / jsPDF vector pipeline" },
+        { name: "Persistence", tech: "LocalStorage for browser session auto-save" }
+      ],
+      diagram: `Form Inputs ──► LocalStorage Auto-Save ──► Template Engine ──► Vector PDF Export`
+    },
+
+    implementation: {
+      frontend: ["Modular form components", "Responsive template styling", "Real-time state sync"],
+      backend: ["Zero-backend client-side execution"],
+      deployment: ["Vercel automated deployment"]
+    },
+
+    ux: {
+      userFlows: [{ role: "Job Seeker", steps: ["Fill credentials", "Pick template", "Preview layout", "Download PDF"] }],
+      keyScreens: ["Resume Builder", "Template Switcher", "Preview Canvas"],
+      decisions: ["Auto-save on every keystroke so candidates never lose data"]
+    },
+
+    challenges: [
+      {
+        challenge: "Rendering clean page breaks in client-side PDF generation",
+        difficulty: "Medium",
+        solution: "Engineered page break calculations measuring element heights before rasterization."
+      }
+    ],
+
+    performance: {
+      optimizations: ["Zero backend latency", "Instant local PDF generation"],
+      errorHandling: ["Graceful handling for oversized image avatars"],
+      testing: "Cross-browser validation for PDF layout consistency."
+    },
+
+    roadmap: ["AI resume bullet-point optimizer", "LinkedIn profile data import"],
+    media: {
+      screenshots: [
+        { src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=500&fit=crop", alt: "Builder", caption: "Interactive resume builder with live template preview" }
+      ]
+    }
+  },
+  {
+    slug: "churn-prediction",
+    name: "Churn Prediction",
+    category: "AI / ML",
+    tags: ["Python", "Scikit-Learn", "SHAP", "Jupyter", "Pandas", "Data Science"],
+    tagline: "Calibrated customer churn classification & SHAP explainability pipeline",
+    description: "An end-to-end machine learning system for predicting customer turnover in subscription businesses. Trained on IBM Telco and KKBox datasets, featuring feature engineering, class imbalance mitigation, probability calibration, and SHAP interpretability to guide proactive customer retention campaigns.",
+    heroImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=600&fit=crop",
+    github: "https://github.com/gemachistesfaye/churn-Prediction",
+    demo: "https://gemachisdev.vercel.app",
+    featured: false,
+
+    overview: {
+      problem: "Subscription businesses lose revenue from unexpected customer attrition without early warning signals or interpretable churn drivers.",
+      users: "Customer success managers, data scientists, and growth marketing teams.",
+      role: "Data Scientist & ML Engineer — Built data preprocessing pipelines, trained classification models, and developed SHAP interpretation dashboards.",
+      timeline: "2025",
+      status: "Validated ML pipeline with reproducible Jupyter notebooks and evaluated models."
+    },
+
+    motivation: {
+      problem: "Acquiring new customers is 5-7x more costly than retaining existing accounts. Traditional analytics report churn after customers have already canceled.",
+      whoAffected: "SaaS companies, telecommunications providers, and subscription platforms.",
+      whyExistingInsufficient: "Black-box models predict churn but fail to explain why individual accounts are at risk, preventing targeted interventions.",
+      whyMatters: "Proactive retention targeting based on interpretable risk scores directly protects monthly recurring revenue."
+    },
+
+    solution: {
+      approach: "Engineered a machine learning pipeline comparing Logistic Regression, Random Forest, and Gradient Boosting with stratified k-fold validation and SMOTE balancing, paired with SHAP value decomposition.",
+      keyWorkflows: [
+        "Feature Engineering: Preprocess contract lengths, monthly spend, support tickets, and service add-ons.",
+        "Model Training & Calibration: Train models with hyperparameter tuning and Brier score calibration.",
+        "SHAP Interpretability: Compute global and local feature importance to pinpoint root causes for churn risk.",
+        "Decision Targeting: Assign customer risk tiers (Low, Medium, High) to guide intervention offers."
+      ],
+      features: [
+        { name: "Calibrated Probability Scoring", why: "Ensures model confidence matches real-world likelihood of cancellation." },
+        { name: "SHAP Explainability Insights", why: "Explains exactly why a customer is flagged (e.g. high monthly bill, month-to-month contract)." },
+        { name: "ROI-Focused Thresholding", why: "Optimizes decision thresholds to maximize return on retention discounts." }
+      ]
+    },
+
+    architecture: {
+      layers: [
+        { name: "Data Processing", tech: "Pandas + NumPy + Scikit-Learn Pipelines" },
+        { name: "Model Layer", tech: "Random Forest + XGBoost / Gradient Boosting" },
+        { name: "Explainability", tech: "SHAP (SHapley Additive exPlanations) values" }
+      ],
+      diagram: `Customer Telemetry ──► Feature Pipeline ──► Calibrated Classifier ──► SHAP Drivers ──► Retention Action`
+    },
+
+    implementation: {
+      frontend: ["Streamlit analytics dashboard & notebook visualizations"],
+      backend: ["Python 3.11 + Scikit-Learn + SHAP"],
+      deployment: ["Jupyter Notebooks + standalone Python inference scripts"]
+    },
+
+    ux: {
+      userFlows: [{ role: "Retention Specialist", steps: ["Upload customer batch", "Review high-risk accounts", "Inspect SHAP drivers", "Trigger retention offer"] }],
+      keyScreens: ["Model ROC-AUC Curve", "SHAP Feature Summary", "Risk Tier Table"],
+      decisions: ["Prioritized recall over precision to catch at-risk accounts before cancellation"]
+    },
+
+    challenges: [
+      {
+        challenge: "Handling severe class imbalance where only 20% of users churned",
+        difficulty: "Medium",
+        solution: "Applied SMOTE oversampling and evaluated via PR-AUC and ROC-AUC rather than raw accuracy."
+      }
+    ],
+
+    performance: {
+      optimizations: ["Vectorized Pandas transforms", "Tree-based SHAP approximations"],
+      errorHandling: ["Missing data imputation pipelines with SimpleImputer"],
+      testing: "5-fold StratifiedKFold cross-validation suites."
+    },
+
+    roadmap: ["REST API serving real-time predictions", "Automated email trigger integration"],
+    media: {
+      screenshots: [
+        { src: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=500&fit=crop", alt: "Analytics", caption: "Model evaluation curves and SHAP explainability plots" }
+      ]
+    }
+  },
+  {
+    slug: "course-recommendation-system",
+    name: "Course Recommendation System",
+    category: "AI / ML",
+    tags: ["Python", "Scikit-Learn", "TF-IDF", "Streamlit", "Pandas", "Cosine Similarity"],
+    tagline: "Content-based course discovery & text vectorization recommendation model",
+    description: "A machine learning course recommendation engine analyzing catalog metadata across 3,000+ course offerings. Employs weighted TF-IDF vectorization and cosine similarity to deliver tailored learning paths with Precision@5 validation and an interactive Streamlit discovery dashboard.",
+    heroImage: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&h=600&fit=crop",
+    github: "https://github.com/gemachistesfaye/course-recommendation-system",
+    demo: "https://gemachisdev.vercel.app",
+    featured: false,
+
+    overview: {
+      problem: "Learners face choice paralysis when navigating thousands of online courses without personalized recommendations based on existing skills.",
+      users: "Online learners, academic advisors, and e-learning platforms.",
+      role: "Machine Learning Engineer — Engineered TF-IDF metadata pipeline, designed similarity scoring, and built evaluation test suites.",
+      timeline: "2025",
+      status: "Validated ML model with 9 passing test suites and interactive Streamlit UI."
+    },
+
+    motivation: {
+      problem: "Massive open online courses (MOOCs) have low completion rates partly because students enroll in courses poorly matched to their current background.",
+      whoAffected: "Self-directed learners seeking structured computer science and data science curriculums.",
+      whyExistingInsufficient: "Keyword search fails to understand semantic relationships between prerequisite topics and related course descriptions.",
+      whyMatters: "Accurate course discovery increases learner engagement, course completion rates, and learning efficiency."
+    },
+
+    solution: {
+      approach: "Engineered a content-based recommendation model combining title, syllabus, difficulty level, and subject metadata into weighted feature matrices scored via cosine similarity.",
+      keyWorkflows: [
+        "Text Preprocessing: Tokenize, clean, and vectorize course descriptions using TF-IDF with custom n-grams.",
+        "Similarity Scoring: Compute cosine distance between candidate courses across multi-dimensional embedding space.",
+        "Recommendation Ranking: Rank top 5 closest matches and filter by difficulty tier.",
+        "Streamlit Interface: Interactive search bar with instant recommendations and syllabus breakdowns."
+      ],
+      features: [
+        { name: "TF-IDF Weighted Embeddings", why: "Captures semantic importance of technical keywords while downweighting common terms." },
+        { name: "Top-N Cosine Ranking", why: "Delivers sub-millisecond similarity lookups across 3,000+ course records." },
+        { name: "Precision@5 Evaluation", why: "Quantitatively validates recommendation quality against benchmark test sets." }
+      ]
+    },
+
+    architecture: {
+      layers: [
+        { name: "Data Processing", tech: "Pandas + NLTK text normalization" },
+        { name: "Vectorization", tech: "Scikit-Learn TfidfVectorizer" },
+        { name: "Discovery UI", tech: "Streamlit responsive dashboard" }
+      ],
+      diagram: `Course Catalog ──► TF-IDF Vectorizer ──► Cosine Similarity Matrix ──► Top-5 Recommended Courses`
+    },
+
+    implementation: {
+      frontend: ["Streamlit web interface with interactive filtering"],
+      backend: ["Python 3.11 + Scikit-Learn + NumPy"],
+      deployment: ["Streamlit Community Cloud / Vercel"]
+    },
+
+    ux: {
+      userFlows: [{ role: "Student", steps: ["Select course title or interest", "Filter by level", "View top 5 recommendations", "Access syllabus links"] }],
+      keyScreens: ["Course Search", "Recommendation Results", "Evaluation Metrics"],
+      decisions: ["Fast similarity queries allowing instantaneous recommendation responses"]
+    },
+
+    challenges: [
+      {
+        challenge: "Balancing general subject terms with specific framework tags in recommendations",
+        difficulty: "Medium",
+        solution: "Applied custom term weighting to give higher significance to specialized technical tags over generic course titles."
+      }
+    ],
+
+    performance: {
+      optimizations: ["Pre-computed similarity matrices for zero-latency queries"],
+      errorHandling: ["Fallback to top-rated courses when input course is out-of-vocabulary"],
+      testing: "9 automated test suites verifying matrix symmetry and ranking sanity."
+    },
+
+    roadmap: ["Collaborative filtering integration with student review data", "Prerequisite path visualizer"],
+    media: {
+      screenshots: [
+        { src: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=500&fit=crop", alt: "Recommendations", caption: "Interactive course discovery dashboard with similarity rankings" }
       ]
     }
   }

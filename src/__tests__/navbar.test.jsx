@@ -11,7 +11,7 @@ describe("Navbar", () => {
   it("renders navigation links", () => {
     render(<Navbar />);
     expect(screen.getAllByText("About").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("Services").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("Skills").length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText("Projects").length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText("Contact").length).toBeGreaterThanOrEqual(1);
   });

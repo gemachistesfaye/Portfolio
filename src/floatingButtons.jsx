@@ -1,349 +1,262 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { MessageCircle, X, Mail, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { MessageSquare, X, Send, Sparkles, RotateCcw, Bot } from "lucide-react";
 import config from "./config";
-import { scrollToTop } from "./utils/scrollTo";
+import { scrollToSection } from "./utils/scrollTo";
 
-const PROJECT_TYPES = ["Frontend", "Backend / API", "Database", "Web App", "AI Integration", "Other"];
-const BUDGETS = ["1,000 - 3,000 ETB", "3,000 - 5,000 ETB", "5,000 - 10,000 ETB", "10,000 - 20,000 ETB", "20,000 - 50,000 ETB", "50,000+ ETB"];
+const SUGGESTED_QUESTIONS = [
+  "What is your tech stack?",
+  "Tell me about SmartBiz ERP & RPMS",
+  "Are you open to hire?",
+  "How can I contact Gemachis?",
+];
 
-const CustomSelect = ({ value, options, placeholder, onChange, disabled, isOpen, onToggle }) => (
-  <div className="relative">
-    <button
-      type="button"
-      onClick={(e) => { e.stopPropagation(); onToggle(); }}
-      disabled={disabled}
-      aria-haspopup="listbox"
-      aria-expanded={isOpen}
-      className={`w-full px-4 py-3 text-left rounded-xl border ${isOpen ? 'border-accent/50 ring-4 ring-accent/10' : 'border-slate-200 dark:border-slate-700/60'} bg-slate-50/80 dark:bg-white/[0.03] text-sm ${value ? 'text-slate-900 dark:text-white' : 'text-slate-400'} transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-between`}
-    >
-      <span className="truncate">{value || placeholder}</span>
-      <ChevronDown size={14} className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-    </button>
+function getBotReply(query) {
+  const q = query.toLowerCase().trim();
 
-    {isOpen && !disabled && (
-      <div className="absolute z-50 w-full mt-2 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl max-h-48 overflow-y-auto">
-        {options.map((opt) => (
-          <button
-            key={opt}
-            type="button"
-            onClick={(e) => { e.stopPropagation(); onChange(opt); onToggle(); }}
-            className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${value === opt ? 'bg-accent/10 text-accent font-medium' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50'}`}
-          >
-            {opt}
-          </button>
-        ))}
-      </div>
-    )}
-  </div>
-);
+  if (q.includes("stack") || q.includes("tech") || q.includes("skill") || q.includes("language") || q.includes("framework")) {
+    return "Gemachis builds modern applications with React 19, TypeScript, Tailwind CSS, NestJS, Node.js/Express, and Python (Flask). For storage, he leverages PostgreSQL, Prisma ORM, MySQL, and Supabase, plus AI workflows with Gemini & OpenAI APIs and Scikit-Learn!";
+  }
+
+  if (q.includes("smartbiz") || q.includes("erp")) {
+    return "SmartBiz ERP Lite is an offline-first Progressive Web App (PWA) Gemachis engineered during his remote internship at Sofomar Technologies. Built with React 19, NestJS, Prisma, and PostgreSQL, it features local offline caching, automatic background sync, and inventory tracking for SMEs.";
+  }
+
+  if (q.includes("rpms") || q.includes("research") || q.includes("astu")) {
+    return "At Adama Science and Technology University (ASTU), Gemachis completed an on-site full-stack engineering internship where he built the institutional Research Project Management System (RPMS) — orchestrating proposal governance, blind peer reviews, milestone tracking, and grant disbursements.";
+  }
+
+  if (q.includes("project") || q.includes("work") || q.includes("portfolio") || q.includes("built")) {
+    return "Featured projects include:\n• SmartBiz ERP Lite — Offline-first PWA (React 19 & NestJS)\n• RPMS — Research Governance Platform (ASTU)\n• Sheger Health Connect — Telemedicine & Clinical Triage\n• EduFlow — Multi-portal School Management\n• AeroDemand-AI — ML Time-Series Demand Forecasting\nExplore the Projects section for live demos and case studies!";
+  }
+
+  if (q.includes("intern") || q.includes("experience") || q.includes("job") || q.includes("company")) {
+    return "Gemachis's experience includes:\n• Full-Stack Engineer Intern at Sofomar Technologies (Remote, 2026)\n• Full-Stack Engineering Intern at ASTU (On-site, 2026 — RPMS Platform)\n• Frontend Development Trainee at ISHub, Addis Ababa University (2025)\n• BSc in Information Science at Haramaya University (2024–2027)";
+  }
+
+  if (q.includes("education") || q.includes("university") || q.includes("degree") || q.includes("study") || q.includes("haramaya")) {
+    return "Gemachis is completing his BSc in Information Science at Haramaya University (2024 – 2027, Expected), with core coursework in Database Systems, Data Structures, Web Development, AI, and Systems Analysis.";
+  }
+
+  if (q.includes("hire") || q.includes("availab") || q.includes("role") || q.includes("opportunity") || q.includes("job")) {
+    return "Yes! Gemachis is actively open to Full-Stack Developer roles, Software Engineering internships, and high-impact contract opportunities in web development and AI systems.";
+  }
+
+  if (q.includes("contact") || q.includes("email") || q.includes("phone") || q.includes("reach") || q.includes("message")) {
+    return `You can reach Gemachis directly:\n• Email: ${config.email}\n• Phone: ${config.phone}\n• Telegram: @gemachis_t\nOr scroll to the Contact section below to send a message!`;
+  }
+
+  if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
+    return "Hello! 👋 I'm Gemachis's AI assistant. Ask me anything about his technical stack, full-stack projects, or work experience!";
+  }
+
+  return "Thanks for asking! Gemachis specializes in full-stack web applications, backend APIs, and AI systems (React 19, NestJS, Python, PostgreSQL). Feel free to ask about his projects (SmartBiz ERP, RPMS, Sheger Health), experience, or reach him directly at gemachistesfaye1@gmail.com!";
+}
+
+const INITIAL_MESSAGES = [
+  {
+    sender: "bot",
+    text: "Hi there! 👋 I'm Gemachis's AI portfolio assistant. Ask me anything about his software engineering projects, technical stack, or background!",
+  },
+];
 
 const FloatingButtons = () => {
-  const [showCard, setShowCard] = useState(false);
-  const [nearFooter, setNearFooter] = useState(false);
-  const [pastHero, setPastHero] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", projectType: "", budget: "", project: "" });
-  const [holdProgress, setHoldProgress] = useState(0);
-  const [isHolding, setIsHolding] = useState(false);
-  const holdIntervalRef = useRef(null);
-  const holdCompletedRef = useRef(false);
-  const formLoadTime = useRef(Date.now());
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState(INITIAL_MESSAGES);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
 
-  const [status, setStatus] = useState("idle");
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
-    const handleClickOutside = () => setOpenDropdown(null);
-    if (openDropdown) {
-      document.addEventListener('click', handleClickOutside);
+    if (isOpen) {
+      scrollToBottom();
     }
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [openDropdown]);
+  }, [messages, isOpen]);
 
-  const handleSend = async (e) => {
-    e.preventDefault();
-    setStatus("sending");
+  const handleSend = async (textToSend) => {
+    const text = textToSend || input;
+    if (!text.trim()) return;
+
+    const userMsg = { sender: "user", text: text.trim() };
+    setMessages((prev) => [...prev, userMsg]);
+    if (!textToSend) setInput("");
+    setIsTyping(true);
+
     try {
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        projectType: formData.projectType,
-        budget: formData.budget || "",
-        project: formData.project,
-        _fb_hp: "",
-        _fb_js: formLoadTime.current.toString(),
-        _subject: "New Quick Inquiry from Portfolio"
-      };
-
-      const res = await fetch(config.formbladeHireMe, {
+      const response = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(payload)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text.trim() }),
       });
 
-      if (res.ok) {
-        setStatus("sent");
-        setFormData({ name: "", email: "", projectType: "", budget: "", project: "" });
-      } else {
-        const responseText = await res.text().catch(() => "");
-        let errorData;
-        try {
-          errorData = JSON.parse(responseText);
-        } catch {
-          errorData = responseText || "Unknown error";
+      if (response.ok) {
+        const data = await response.json();
+        if (data.reply) {
+          setMessages((prev) => [...prev, { sender: "bot", text: data.reply }]);
+          setIsTyping(false);
+          return;
         }
-        console.error("Formblade validation error:", res.status, errorData);
-        setStatus("error");
       }
-    } catch (err) {
-      console.error("Submission error:", err);
-      setStatus("error");
+    } catch {
+      // If endpoint is offline, fall through to client-side engine
+    }
+
+    // Resilient client-side fallback
+    setTimeout(() => {
+      const reply = getBotReply(text);
+      setMessages((prev) => [...prev, { sender: "bot", text: reply }]);
+      setIsTyping(false);
+    }, 400);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
     }
   };
 
-  const handleScroll = useCallback(() => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight;
-    const winHeight = window.innerHeight;
-    const fromBottom = docHeight - winHeight - scrollTop;
-    setNearFooter(fromBottom < 200);
-    setPastHero(scrollTop > 300);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mq = window.matchMedia("(max-width: 639px)");
-    setIsMobile(mq.matches);
-    const handler = (e) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [handleScroll]);
-
-  const HOLD_DURATION = 1500;
-
-  const startHold = () => {
-    if (showCard) return;
-    holdCompletedRef.current = false;
-    setIsHolding(true);
-    setHoldProgress(0);
-    const startTime = Date.now();
-    holdIntervalRef.current = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / HOLD_DURATION, 1);
-      setHoldProgress(progress);
-      if (progress >= 1) {
-        clearInterval(holdIntervalRef.current);
-        holdCompletedRef.current = true;
-        scrollToTop();
-        setIsHolding(false);
-        setHoldProgress(0);
-      }
-    }, 16);
+  const handleReset = () => {
+    setMessages(INITIAL_MESSAGES);
   };
-
-  const cancelHold = () => {
-    clearInterval(holdIntervalRef.current);
-    if (!holdCompletedRef.current) {
-      setIsHolding(false);
-      setHoldProgress(0);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      clearInterval(holdIntervalRef.current);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (showCard) {
-      document.body.classList.add("overflow-hidden");
-      document.documentElement.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-      document.documentElement.classList.remove("overflow-hidden");
-    }
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-      document.documentElement.classList.remove("overflow-hidden");
-    };
-  }, [showCard]);
-
-  useEffect(() => {
-    if (!showCard) return;
-    const handleEscape = (e) => {
-      if (e.key === "Escape") setShowCard(false);
-    };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [showCard]);
 
   return (
     <>
-      {showCard && (
+      {/* Chat Window Panel */}
+      {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50"
-          onClick={() => setShowCard(false)}
           role="dialog"
-          aria-modal="true"
-          aria-label="Quick project inquiry form"
+          aria-label="Ask Gemachis Chat"
+          className="fixed bottom-20 right-4 sm:right-6 z-50 w-[92vw] sm:w-[380px] max-h-[520px] h-[500px] flex flex-col rounded-2xl border border-slate-200/90 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl overflow-hidden animate-slide-up"
         >
-          <div
-            id="hire-me-modal"
-            className="w-full max-w-lg max-h-[80vh] overflow-y-auto p-6 rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl transition-colors duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-indigo-500/20">GT</div>
-                <div>
-                  <p className="text-sm font-bold text-slate-900 dark:text-white">Quick Project Inquiry</p>
-                  <p className="text-[11px] text-slate-500 dark:text-zinc-400">I'll get back to you within 24 hours</p>
-                </div>
+          {/* Header */}
+          <div className="px-4 py-3 bg-slate-900 dark:bg-zinc-950 border-b border-white/[0.08] flex items-center justify-between text-white">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-500/30">
+                <Bot size={18} />
               </div>
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <h3 className="text-xs font-bold text-white tracking-wide">Ask Gemachis</h3>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                </div>
+                <p className="text-[10px] text-zinc-400">AI Portfolio Copilot</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1">
               <button
-                onClick={() => setShowCard(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all"
-                aria-label="Close"
+                onClick={handleReset}
+                title="Reset conversation"
+                aria-label="Reset conversation"
+                className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+              >
+                <RotateCcw size={14} />
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                title="Close chat"
+                aria-label="Close chat"
+                className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
               >
                 <X size={16} />
               </button>
             </div>
+          </div>
 
-            <p className="text-[11px] text-slate-600 dark:text-zinc-400 mb-4 leading-relaxed">
-              Tell me briefly about your project. For detailed requirements, use the full project form at the bottom of the page.
-            </p>
-
-            <form onSubmit={handleSend} className="space-y-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-indigo-500/80 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
-                />
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-indigo-500/80 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
-                />
-              </div>
-              <CustomSelect
-                value={formData.projectType}
-                options={PROJECT_TYPES}
-                placeholder="Project type"
-                isOpen={openDropdown === 'type'}
-                onToggle={() => setOpenDropdown(openDropdown === 'type' ? null : 'type')}
-                onChange={(val) => setFormData({ ...formData, projectType: val, budget: "" })}
-              />
-              <CustomSelect
-                value={formData.budget}
-                options={BUDGETS}
-                placeholder="Budget (optional)"
-                isOpen={openDropdown === 'budget'}
-                onToggle={() => setOpenDropdown(openDropdown === 'budget' ? null : 'budget')}
-                onChange={(val) => setFormData({ ...formData, budget: val })}
-              />
-              <textarea
-                rows="3"
-                placeholder="Brief project description..."
-                required
-                value={formData.project}
-                onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-indigo-500/80 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200 resize-none"
-              />
-
-              <p className="text-[10px] text-slate-500 dark:text-zinc-500 leading-relaxed">
-                Your information is only used to respond to your inquiry.
-              </p>
-
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-indigo-600/20 disabled:opacity-50"
+          {/* Messages Area */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 text-xs leading-relaxed">
+            {messages.map((m, i) => (
+              <div
+                key={i}
+                className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}
               >
-                <Mail size={15} />
-                {status === "sending" ? "Sending..." : status === "sent" ? "Sent!" : "Send Inquiry"}
-              </button>
-              {status === "sent" && (
-                <p className="text-xs text-indigo-300 text-center">Thanks! I received your inquiry and will get back to you within 24 hours.</p>
-              )}
-              {status === "error" && (
-                <p className="text-xs text-red-400 text-center">Something went wrong. Try again or email me directly.</p>
-              )}
-            </form>
+                <div
+                  className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl whitespace-pre-line ${
+                    m.sender === "user"
+                      ? "bg-emerald-600 text-white rounded-br-xs shadow-md shadow-emerald-600/20"
+                      : "bg-slate-100 dark:bg-zinc-800/90 text-slate-800 dark:text-zinc-200 border border-slate-200/80 dark:border-zinc-700/60 rounded-bl-xs"
+                  }`}
+                >
+                  {m.text}
+                </div>
+              </div>
+            ))}
+
+            {isTyping && (
+              <div className="flex justify-start">
+                <div className="px-3.5 py-2 rounded-2xl bg-slate-100 dark:bg-zinc-800/90 text-slate-500 dark:text-zinc-400 border border-slate-200/80 dark:border-zinc-700/60 text-xs flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.15s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.3s]" />
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Suggestion Chips */}
+          {messages.length <= 2 && (
+            <div className="px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border-t border-slate-200/70 dark:border-zinc-800/70 flex flex-wrap gap-1.5">
+              {SUGGESTED_QUESTIONS.map((q) => (
+                <button
+                  key={q}
+                  onClick={() => handleSend(q)}
+                  className="px-2.5 py-1 text-[11px] rounded-lg bg-white dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700/80 hover:border-emerald-500/40 hover:text-emerald-600 dark:hover:text-emerald-300 transition-all text-left truncate max-w-full"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Input Bar */}
+          <div className="p-3 bg-white dark:bg-zinc-950 border-t border-slate-200/80 dark:border-zinc-800/80 flex items-center gap-2">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Ask about stack, projects, experience..."
+              className="flex-1 px-3 py-2 text-xs rounded-xl bg-slate-100 dark:bg-zinc-900 text-slate-900 dark:text-white border border-slate-200 dark:border-zinc-800 focus:outline-none focus:border-emerald-500/50"
+            />
+            <button
+              onClick={() => handleSend()}
+              disabled={!input.trim()}
+              aria-label="Send message"
+              className="p-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white transition-all shadow-md shadow-emerald-600/20"
+            >
+              <Send size={14} />
+            </button>
           </div>
         </div>
       )}
 
+      {/* Floating Trigger Button */}
       <button
-        onClick={() => {
-          if (holdCompletedRef.current) {
-            holdCompletedRef.current = false;
-            return;
-          }
-          setShowCard(!showCard);
-        }}
-        onMouseDown={startHold}
-        onMouseUp={cancelHold}
-        onMouseLeave={cancelHold}
-        onTouchStart={startHold}
-        onTouchEnd={cancelHold}
-        onTouchCancel={cancelHold}
-        className={`fixed bottom-4 right-6 z-40 flex items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full shadow-xl shadow-indigo-600/25 hover:shadow-indigo-600/40 border border-white/10 transition-all duration-300 group sm:bottom-20 select-none outline-none focus:outline-none ${(nearFooter || (isMobile && !pastHero)) ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-        aria-label={showCard ? "Close project inquiry form" : "Open project inquiry form"}
-        aria-expanded={showCard}
-        aria-controls="hire-me-modal"
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 flex items-center gap-2 px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full shadow-xl shadow-emerald-600/25 hover:shadow-emerald-600/40 border border-white/10 transition-all duration-300 group select-none outline-none focus:outline-none hover:scale-105"
+        aria-label={isOpen ? "Close Ask Gemachis" : "Open Ask Gemachis"}
+        aria-expanded={isOpen}
       >
-        {showCard ? (
+        {isOpen ? (
           <>
             <X size={16} className="group-hover:rotate-90 transition-transform" />
-            <span className="text-sm">Cancel</span>
+            <span className="text-xs font-semibold">Close</span>
           </>
         ) : (
           <>
-            {isHolding ? (
-              <svg className="w-4 h-4 -rotate-90" viewBox="0 0 36 36" aria-hidden="true">
-                <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
-                <circle
-                  cx="18" cy="18" r="15" fill="none" stroke="white" strokeWidth="3"
-                  strokeDasharray={`${holdProgress * 94.25} 94.25`}
-                  strokeLinecap="round"
-                />
-              </svg>
-            ) : (
-              <MessageCircle size={16} className="group-hover:rotate-12 transition-transform" />
-            )}
-
-            <span className="text-sm">{isHolding ? 'Hold...' : 'Hire Me'}</span>
+            <Sparkles size={16} className="group-hover:rotate-12 transition-transform text-emerald-200" />
+            <span className="text-xs font-semibold">Ask Gemachis</span>
           </>
         )}
       </button>
-
     </>
   );
 };

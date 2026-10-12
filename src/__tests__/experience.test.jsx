@@ -16,12 +16,12 @@ vi.mock("react-intersection-observer", () => {
 describe("Experience", () => {
   it("renders the experience heading", () => {
     render(<Experience />);
-    expect(screen.getByText(/Experience &/)).toBeInTheDocument();
+    expect(screen.getByText(/Professional/)).toBeInTheDocument();
   });
 
   it("renders experience entries", () => {
     render(<Experience />);
-    expect(screen.getByText("Software Engineering Intern")).toBeInTheDocument();
-    expect(screen.getByText("BSc Information Science")).toBeInTheDocument();
+    expect(screen.getByText("Full-Stack Engineering Intern (On-site)")).toBeInTheDocument();
+    expect(screen.getByText(/BSc in Information Science/)).toBeInTheDocument();
   });
 });

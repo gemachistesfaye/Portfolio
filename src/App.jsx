@@ -6,7 +6,6 @@ import About from "./about";
 import Skills from "./skills";
 import Project from "./project";
 import Experience from "./experience";
-import FAQ from "./faq";
 import Contact from "./contact";
 import Footer from "./footer";
 import FloatingButtons from "./floatingButtons";
@@ -83,7 +82,6 @@ function Portfolio() {
         <Skills />
         <Project />
         <Experience />
-        <FAQ />
         <Contact />
         <Footer />
       </div>

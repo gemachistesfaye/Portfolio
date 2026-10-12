@@ -35,7 +35,7 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
         aria-expanded={open}
         className={`w-full px-4 py-3 rounded-xl border text-sm text-left flex items-center justify-between transition-all duration-200 focus:outline-none ${
           open
-            ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+            ? "border-emerald-500 ring-2 ring-emerald-500/20 bg-white dark:bg-zinc-950"
             : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80 hover:border-slate-300 dark:hover:border-zinc-700"
         }`}
       >
@@ -51,7 +51,7 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
         <ChevronDown
           size={16}
           className={`text-slate-400 dark:text-zinc-500 transition-transform duration-200 flex-shrink-0 ${
-            open ? "rotate-180 text-indigo-500 dark:text-indigo-400" : ""
+            open ? "rotate-180 text-emerald-500 dark:text-emerald-400" : ""
           }`}
         />
       </button>
@@ -75,13 +75,13 @@ const CustomSelect = ({ name, options, value, onChange, placeholder, required })
                 }}
                 className={`w-full px-4 py-2.5 text-sm text-left flex items-center justify-between transition-colors ${
                   isSelected
-                    ? "bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-300 font-semibold"
+                    ? "bg-emerald-50 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 font-semibold"
                     : "text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800/80"
                 }`}
               >
                 <span>{opt.label}</span>
                 {isSelected && (
-                  <Check size={14} className="text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
+                  <Check size={14} className="text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                 )}
               </button>
             );

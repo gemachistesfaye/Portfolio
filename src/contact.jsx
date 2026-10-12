@@ -55,11 +55,10 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="pt-24 sm:pt-28 pb-16 px-6 relative z-10 border-t border-slate-200/80 dark:border-zinc-800/80">
+    <section id="contact" className="pt-20 sm:pt-24 pb-16 px-6 relative z-10 border-t border-slate-200/80 dark:border-zinc-800/80">
       <div ref={ref} className="max-w-6xl mx-auto">
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
           <SectionHeading
-            label="Contact"
             title="Let's Build"
             highlight="Something Great"
             description="Have a project idea, question, or want to collaborate? Send me a message and I'll get back to you promptly."
@@ -69,13 +68,13 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className={`lg:col-span-2 space-y-3.5 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
             {[
-              { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-indigo-500 to-indigo-700" },
-              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-blue-500 to-blue-700" },
-              { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null, color: "from-indigo-600 to-violet-700" },
+              { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}`, color: "from-emerald-500 to-teal-600" },
+              { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}`, color: "from-teal-500 to-emerald-600" },
+              { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null, color: "from-emerald-600 to-teal-700" },
             ].map((c, i) => (
               <div
                 key={i}
-                className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-indigo-500/40 hover:bg-slate-50 dark:hover:bg-zinc-900/90 shadow-sm transition-all duration-300"
+                className="group flex items-center gap-4 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-emerald-500/40 hover:bg-slate-50 dark:hover:bg-zinc-900/90 shadow-sm transition-all duration-300"
               >
                 <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${c.color} flex items-center justify-center text-white flex-shrink-0 shadow-md group-hover:scale-105 transition-transform duration-300`}>
                   {c.icon}
@@ -83,7 +82,7 @@ const Contact = () => {
                 <div className="min-w-0">
                   <p className="text-[10px] text-slate-500 dark:text-zinc-500 uppercase tracking-wider font-semibold mb-0.5">{c.label}</p>
                   {c.href ? (
-                    <a href={c.href} className="text-sm font-semibold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors truncate block">
+                    <a href={c.href} className="text-sm font-semibold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors truncate block">
                       {c.value}
                     </a>
                   ) : (
@@ -93,9 +92,9 @@ const Contact = () => {
               </div>
             ))}
 
-            <div className="flex flex-col gap-3 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-indigo-500/40 shadow-sm transition-all duration-300">
+            <div className="flex flex-col gap-3 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md hover:border-emerald-500/40 shadow-sm transition-all duration-300">
               <div className="flex items-center gap-3">
-                <Clock size={16} className="text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
+                <Clock size={16} className="text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                 <div>
                   <p className="text-[10px] text-slate-500 dark:text-zinc-500 uppercase tracking-wider font-semibold mb-0.5">Response Time</p>
                   <p className="text-sm font-semibold text-slate-900 dark:text-white">Within 24 hours</p>
@@ -109,7 +108,7 @@ const Contact = () => {
               onSubmit={handleSubmit}
               className="p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md shadow-sm dark:shadow-2xl relative"
             >
-              <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 relative z-10">
                 <div className="relative">
@@ -124,7 +123,7 @@ const Contact = () => {
                     onBlur={() => setFocused(null)}
                     className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 ${
                       focused === "name"
-                        ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+                        ? "border-emerald-500 ring-2 ring-emerald-500/20 bg-white dark:bg-zinc-950"
                         : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                     }`}
                   />
@@ -141,7 +140,7 @@ const Contact = () => {
                     onBlur={() => setFocused(null)}
                     className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 ${
                       focused === "email"
-                        ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+                        ? "border-emerald-500 ring-2 ring-emerald-500/20 bg-white dark:bg-zinc-950"
                         : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                     }`}
                   />
@@ -215,7 +214,7 @@ const Contact = () => {
                   onBlur={() => setFocused(null)}
                   className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none transition-all duration-200 resize-none ${
                     focused === "message"
-                      ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+                      ? "border-emerald-500 ring-2 ring-emerald-500/20 bg-white dark:bg-zinc-950"
                       : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                   }`}
                 />
@@ -228,9 +227,9 @@ const Contact = () => {
                   type="file"
                   name="attachment"
                   accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
-                  className={`w-full px-4 py-2.5 rounded-xl border text-xs text-slate-700 dark:text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 dark:file:bg-indigo-500/10 file:text-indigo-600 dark:file:text-indigo-400 hover:file:bg-indigo-100 dark:hover:file:bg-indigo-500/20 focus:outline-none transition-all duration-200 ${
+                  className={`w-full px-4 py-2.5 rounded-xl border text-xs text-slate-700 dark:text-zinc-300 file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 dark:file:bg-emerald-500/10 file:text-emerald-600 dark:file:text-emerald-400 hover:file:bg-emerald-100 dark:hover:file:bg-emerald-500/20 focus:outline-none transition-all duration-200 ${
                     focused === "attachment"
-                      ? "border-indigo-500 ring-2 ring-indigo-500/20 bg-white dark:bg-zinc-950"
+                      ? "border-emerald-500 ring-2 ring-emerald-500/20 bg-white dark:bg-zinc-950"
                       : "border-slate-200 dark:border-zinc-800 bg-slate-50/80 dark:bg-zinc-950/80"
                   }`}
                   onFocus={() => setFocused("attachment")}
@@ -244,9 +243,9 @@ const Contact = () => {
               </p>
 
               {status === "sent" && (
-                <div className="flex items-center gap-2 p-3 mb-4 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20">
-                  <div className="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400" />
-                  <p className="text-sm text-indigo-700 dark:text-indigo-300 font-medium">Thanks! I received your project details and will get back to you within 24 hours.</p>
+                <div className="flex items-center gap-2 p-3 mb-4 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20">
+                  <div className="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400" />
+                  <p className="text-sm text-emerald-700 dark:text-emerald-300 font-medium">Thanks! I received your project details and will get back to you within 24 hours.</p>
                 </div>
               )}
               {status === "error" && (
@@ -259,7 +258,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="group w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all duration-300 text-sm disabled:opacity-50 shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 flex items-center justify-center gap-2"
+                className="group w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all duration-300 text-sm disabled:opacity-50 shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 flex items-center justify-center gap-2"
               >
                 {status === "sending" ? (
                   "Sending..."

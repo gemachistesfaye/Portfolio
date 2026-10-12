@@ -1,78 +1,57 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "./data";
 import SectionHeading from "./components/SectionHeading";
 import ProjectCard from "./components/ProjectCard";
 import { scrollToSection } from "./utils/scrollTo";
 
-const categories = ["All", "Full-Stack", "Developer Tools", "AI / ML", "Healthcare", "EdTech", "E-Commerce", "PWA / Maps"];
 const INITIAL_PROJECTS_COUNT = 6;
 
 const Project = () => {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const [showAll, setShowAll] = useState(false);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
-
-  const handleCategoryChange = (cat) => {
-    setSelectedCategory(cat);
-    setShowAll(false);
-  };
+  const carouselRef = useRef(null);
 
   const handleCaseStudy = useCallback((slug) => {
     navigate(`/project/${slug}`);
   }, [navigate]);
 
-  const filteredProjects = useMemo(() => {
-    if (selectedCategory === "All") return projects;
-    return projects.filter(
-      (p) => p.category.toLowerCase() === selectedCategory.toLowerCase() || p.tags.some(t => t.toLowerCase() === selectedCategory.toLowerCase())
-    );
-  }, [selectedCategory]);
+  const scrollCarousel = (direction) => {
+    if (carouselRef.current) {
+      const scrollAmount = 320;
+      carouselRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
-  const displayedProjects = useMemo(() => {
-    if (showAll) return filteredProjects;
-    return filteredProjects.slice(0, INITIAL_PROJECTS_COUNT);
-  }, [filteredProjects, showAll]);
+  const featuredProjects = useMemo(() => {
+    return projects.slice(0, INITIAL_PROJECTS_COUNT);
+  }, []);
+
+  const additionalProjects = useMemo(() => {
+    return projects.slice(INITIAL_PROJECTS_COUNT);
+  }, []);
 
   return (
-    <section id="projects" className="py-24 sm:py-28 px-6 relative z-10 border-t border-slate-200/80 dark:border-zinc-800/80">
+    <section id="projects" className="py-20 sm:py-24 px-6 relative z-10 border-t border-slate-200/80 dark:border-zinc-800/80">
       <div ref={ref} className="max-w-6xl mx-auto">
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
           <SectionHeading
-            label="Portfolio"
             title="Featured"
             highlight="Work"
             description="Production-grade applications built to solve practical challenges across offline-first PWAs, AI systems, and healthcare."
           />
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className={`flex flex-wrap items-center justify-center gap-2 mb-12 opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.1s' }}>
-          {categories.map((cat) => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => handleCategoryChange(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border ${
-                  isActive
-                    ? "bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/25"
-                    : "bg-white dark:bg-zinc-900/80 text-slate-600 dark:text-zinc-400 border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 hover:text-slate-900 dark:hover:text-zinc-200 shadow-sm"
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Project Cards Grid */}
+        {/* Featured Projects Grid */}
         <div className={`opacity-0 ${inView ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.15s' }}>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {displayedProjects.map((p) => (
+            {featuredProjects.map((p) => (
               <ProjectCard
                 key={p.name}
                 project={p}
@@ -82,12 +61,74 @@ const Project = () => {
             ))}
           </div>
 
+          {/* Horizontal Shelf for Additional Projects (View More) */}
+          {showAll && additionalProjects.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-slate-200/80 dark:border-zinc-800/80 animate-fade-in">
+              <div className="flex items-center justify-between mb-5">
+                <div>
+                  <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                    Extended Portfolio
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                    Additional Projects & Tools ({additionalProjects.length})
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => scrollCarousel("left")}
+                    className="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
+                    aria-label="Scroll left"
+                    title="Scroll left"
+                  >
+                    <ChevronLeft size={16} />
+                  </button>
+                  <button
+                    onClick={() => scrollCarousel("right")}
+                    className="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
+                    aria-label="Scroll right"
+                    title="Scroll right"
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Horizontal Scroll Track */}
+              <div
+                ref={carouselRef}
+                className="flex gap-5 overflow-x-auto pb-4 pt-1 scroll-smooth snap-x snap-mandatory"
+              >
+                {additionalProjects.map((p) => (
+                  <div
+                    key={p.name}
+                    className="w-[270px] sm:w-[310px] shrink-0 snap-start flex flex-col"
+                  >
+                    <ProjectCard
+                      project={p}
+                      onSelect={handleCaseStudy}
+                      showCaseStudyLink={!!p.slug}
+                      compact={true}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* View More / Show Less Button */}
-          {filteredProjects.length > INITIAL_PROJECTS_COUNT && (
-            <div className="mt-12 flex justify-center">
+          {additionalProjects.length > 0 && (
+            <div className="mt-8 flex justify-center">
               <button
-                onClick={() => setShowAll((prev) => !prev)}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-semibold bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 text-slate-700 dark:text-zinc-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 shadow-sm hover:scale-[1.02]"
+                onClick={() => {
+                  setShowAll((prev) => !prev);
+                  if (!showAll) {
+                    setTimeout(() => {
+                      carouselRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    }, 100);
+                  }
+                }}
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-semibold bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-200 shadow-sm hover:scale-[1.02]"
               >
                 {showAll ? (
                   <>
@@ -96,7 +137,7 @@ const Project = () => {
                   </>
                 ) : (
                   <>
-                    <span>View More Projects ({filteredProjects.length - INITIAL_PROJECTS_COUNT} more)</span>
+                    <span>View More Projects ({additionalProjects.length} more)</span>
                     <ChevronDown size={14} />
                   </>
                 )}
@@ -110,7 +151,7 @@ const Project = () => {
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:scale-105"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:scale-105"
           >
             Let's Build Together
           </a>

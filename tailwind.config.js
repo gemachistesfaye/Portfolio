@@ -7,15 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: '#6366f1',
-        'accent-hover': '#4f46e5',
-        'accent-light': '#818cf8',
+        accent: '#10b981',
+        'accent-hover': '#059669',
+        'accent-light': '#34d399',
         brand: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          400: '#34d399',
+          500: '#10b981',
+          600: '#059669',
         },
       },
       keyframes: {
@@ -43,6 +43,10 @@ module.exports = {
           '0%': { opacity: '0', transform: 'scale(0.95)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-6px)' },
+        },
       },
       animation: {
         'slide-up': 'slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
@@ -51,6 +55,7 @@ module.exports = {
         'slide-right': 'slide-right 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'fade-in': 'fade-in 0.6s ease-out forwards',
         'scale-in': 'scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'float': 'float 5s ease-in-out infinite',
       },
     },
   },

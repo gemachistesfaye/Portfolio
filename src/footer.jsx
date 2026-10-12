@@ -17,7 +17,7 @@ const socials = [
 ];
 
 const Footer = () => (
-  <footer className="border-t border-slate-200/80 dark:border-zinc-800/80 bg-slate-50 dark:bg-[#09090b] text-slate-700 dark:text-zinc-400 transition-colors duration-300" role="contentinfo">
+  <footer className="border-t border-orange-200/50 dark:border-zinc-800/80 bg-[#f7f4ee] dark:bg-[#09090b] text-slate-700 dark:text-zinc-400 transition-colors duration-300" role="contentinfo">
     <div className="max-w-6xl mx-auto px-6 py-12">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-10">
         {/* Brand */}
@@ -36,7 +36,7 @@ const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-9 h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:border-emerald-500/40 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all duration-200 shadow-sm"
+                className="w-9 h-9 rounded-lg border border-orange-200/50 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-emerald-400 hover:border-orange-500/40 dark:hover:border-emerald-500/40 hover:bg-orange-50/50 dark:hover:bg-zinc-800 transition-all duration-200 shadow-sm"
               >
                 {s.icon}
               </a>
@@ -53,7 +53,7 @@ const Footer = () => (
                 key={link}
                 href={`#${link.toLowerCase()}`}
                 onClick={(e) => { e.preventDefault(); scrollToSection(link.toLowerCase()); }}
-                className="text-[13px] text-slate-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
+                className="text-[13px] text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-emerald-400 transition-colors duration-200"
               >
                 {link}
               </a>
@@ -62,13 +62,13 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="pt-6 border-t border-slate-200/80 dark:border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+      <div className="pt-6 border-t border-orange-200/50 dark:border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
         <p className="text-[11px] text-slate-500 dark:text-zinc-500">
           &copy; {new Date().getFullYear()} Gemachis Tesfaye. All rights reserved.
         </p>
         <button
           onClick={scrollToTop}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-zinc-800/80 border border-slate-200/60 dark:border-zinc-800/80 hover:border-emerald-500/30 transition-all duration-200 shadow-sm"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-emerald-400 hover:bg-orange-50/50 dark:hover:bg-zinc-800/80 border border-orange-200/50 dark:border-zinc-800/80 hover:border-orange-500/30 dark:hover:border-emerald-500/30 transition-all duration-200 shadow-sm"
           aria-label="Back to top"
         >
           <span>Back to top</span>

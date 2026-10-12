@@ -16,10 +16,10 @@ const Home = () => {
           {/* Left Column: Core Value Proposition */}
           <div className={`lg:col-span-7 ${inView ? 'animate-slide-up' : 'opacity-0'}`}>
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-semibold tracking-wide mb-6">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-orange-50 dark:bg-emerald-500/10 border border-orange-200 dark:border-emerald-500/20 text-orange-700 dark:text-emerald-300 text-xs font-semibold tracking-wide mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 dark:bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500 dark:bg-emerald-500" />
               </span>
               Available for Software Engineering & AI Roles
             </div>
@@ -32,7 +32,7 @@ const Home = () => {
 
             {/* Title / Role */}
             <div className="flex items-center gap-2 mb-6">
-              <Sparkles size={18} className="text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+              <Sparkles size={18} className="text-orange-600 dark:text-emerald-400 flex-shrink-0" />
               <p className="text-lg sm:text-2xl font-bold text-slate-700 dark:text-zinc-200 tracking-tight">
                 Full-Stack Developer & AI Systems Engineer
               </p>
@@ -48,7 +48,7 @@ const Home = () => {
               <a
                 href="#projects"
                 onClick={(e) => { e.preventDefault(); scrollToSection("projects"); }}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:scale-105"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-orange-600 hover:bg-orange-500 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-orange-600/25 dark:shadow-emerald-600/25 hover:shadow-orange-600/40 dark:hover:shadow-emerald-600/40 hover:scale-105"
               >
                 Explore Projects
                 <ArrowRight size={16} />
@@ -58,7 +58,7 @@ const Home = () => {
                 href={config.cvView}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3.5 bg-white dark:bg-zinc-900/80 hover:bg-slate-50 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-700/60 hover:border-emerald-500/40 text-slate-700 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-white font-semibold rounded-xl transition-all duration-300 text-sm shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-3.5 bg-white dark:bg-zinc-900/80 hover:bg-stone-50 dark:hover:bg-zinc-800 border border-orange-200/60 dark:border-zinc-700/60 hover:border-orange-500/40 dark:hover:border-emerald-500/40 text-slate-700 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-white font-semibold rounded-xl transition-all duration-300 text-sm shadow-sm"
               >
                 <Download size={15} />
                 Resume / CV

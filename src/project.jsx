@@ -38,7 +38,7 @@ const Project = () => {
   }, []);
 
   return (
-    <section id="projects" className="py-20 sm:py-24 px-6 relative z-10 border-t border-slate-200/80 dark:border-zinc-800/80">
+    <section id="projects" className="py-20 sm:py-24 px-6 relative z-10 border-t border-orange-200/50 dark:border-zinc-800/80">
       <div ref={ref} className="max-w-6xl mx-auto">
         <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
           <SectionHeading
@@ -63,10 +63,10 @@ const Project = () => {
 
           {/* Horizontal Shelf for Additional Projects (View More) */}
           {showAll && additionalProjects.length > 0 && (
-            <div className="mt-12 pt-8 border-t border-slate-200/80 dark:border-zinc-800/80 animate-fade-in">
+            <div className="mt-12 pt-8 border-t border-orange-200/50 dark:border-zinc-800/80 animate-fade-in">
               <div className="flex items-center justify-between mb-5">
                 <div>
-                  <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                  <span className="text-[11px] font-semibold text-orange-600 dark:text-emerald-400 uppercase tracking-wider">
                     Extended Portfolio
                   </span>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
@@ -77,7 +77,7 @@ const Project = () => {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => scrollCarousel("left")}
-                    className="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
+                    className="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-orange-200/60 dark:border-zinc-800 hover:border-orange-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-300 hover:text-orange-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
                     aria-label="Scroll left"
                     title="Scroll left"
                   >
@@ -85,7 +85,7 @@ const Project = () => {
                   </button>
                   <button
                     onClick={() => scrollCarousel("right")}
-                    className="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
+                    className="p-2 rounded-xl bg-white dark:bg-zinc-900 border border-orange-200/60 dark:border-zinc-800 hover:border-orange-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-300 hover:text-orange-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
                     aria-label="Scroll right"
                     title="Scroll right"
                   >
@@ -128,7 +128,7 @@ const Project = () => {
                     }, 100);
                   }
                 }}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-semibold bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-200 shadow-sm hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-semibold bg-white dark:bg-zinc-900 border border-orange-200/60 dark:border-zinc-800 hover:border-orange-500/50 dark:hover:border-emerald-500/50 text-slate-700 dark:text-zinc-200 hover:text-orange-600 dark:hover:text-emerald-400 transition-all duration-200 shadow-sm hover:scale-[1.02]"
               >
                 {showAll ? (
                   <>
@@ -151,7 +151,7 @@ const Project = () => {
           <a
             href="#contact"
             onClick={(e) => { e.preventDefault(); scrollToSection("contact"); }}
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:scale-105"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-orange-600 hover:bg-orange-500 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold rounded-xl transition-all duration-300 text-sm shadow-lg shadow-orange-600/20 dark:shadow-emerald-600/20 hover:shadow-orange-600/40 dark:hover:shadow-emerald-600/40 hover:scale-105"
           >
             Let's Build Together
           </a>

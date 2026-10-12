@@ -64,7 +64,35 @@ const FloatingButtons = () => {
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [bottomOffset, setBottomOffset] = useState(24);
   const messagesEndRef = useRef(null);
+
+  // Position dynamically above the footer so it never covers footer content or "Back to top"
+  useEffect(() => {
+    const updatePosition = () => {
+      const footer = document.getElementById("footer") || document.querySelector("footer");
+      const defaultBottom = window.innerWidth >= 640 ? 24 : 16;
+
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          const visibleFooterHeight = window.innerHeight - rect.top;
+          setBottomOffset(visibleFooterHeight + defaultBottom);
+          return;
+        }
+      }
+      setBottomOffset(defaultBottom);
+    };
+
+    window.addEventListener("scroll", updatePosition, { passive: true });
+    window.addEventListener("resize", updatePosition);
+    updatePosition();
+
+    return () => {
+      window.removeEventListener("scroll", updatePosition);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -130,7 +158,8 @@ const FloatingButtons = () => {
         <div
           role="dialog"
           aria-label="Ask Gemachis Chat"
-          className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[420px] max-h-[80vh] h-[490px] flex flex-col rounded-2xl border border-slate-200/90 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl overflow-hidden animate-slide-up"
+          style={{ bottom: `${bottomOffset + 56}px` }}
+          className="fixed right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[420px] max-h-[75vh] h-[480px] flex flex-col rounded-2xl border border-slate-200/90 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl overflow-hidden animate-slide-up"
         >
           {/* Header */}
           <div className="px-4 py-3 bg-slate-900 dark:bg-zinc-950 border-b border-white/[0.08] flex items-center justify-between text-white">
@@ -241,7 +270,8 @@ const FloatingButtons = () => {
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 flex items-center gap-2 px-4 py-3 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white font-semibold rounded-full shadow-lg border border-slate-800 dark:border-zinc-200 transition-all duration-200 group select-none outline-none focus:outline-none hover:scale-105"
+        style={{ bottom: `${bottomOffset}px` }}
+        className="fixed right-4 sm:right-6 z-40 flex items-center gap-2 px-4 py-3 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white font-semibold rounded-full shadow-lg border border-slate-800 dark:border-zinc-200 transition-[transform,background-color,border-color] duration-200 group select-none outline-none focus:outline-none hover:scale-105"
         aria-label={isOpen ? "Close Ask Gemachis" : "Open Ask Gemachis"}
         aria-expanded={isOpen}
       >

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./navbar";
 import Home from "./home";
@@ -58,6 +58,37 @@ class ErrorBoundary extends React.Component {
 }
 
 function Portfolio() {
+  useEffect(() => {
+    const savedPos = sessionStorage.getItem("portfolio_scroll_pos");
+    if (savedPos !== null) {
+      sessionStorage.removeItem("portfolio_scroll_pos");
+      sessionStorage.removeItem("portfolio_last_project");
+      const targetY = parseInt(savedPos, 10);
+
+      window.scrollTo({ top: targetY, behavior: "instant" });
+
+      const t1 = setTimeout(() => {
+        window.scrollTo({ top: targetY, behavior: "instant" });
+      }, 50);
+
+      const t2 = setTimeout(() => {
+        window.scrollTo({ top: targetY, behavior: "instant" });
+      }, 150);
+
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
+    } else if (window.location.hash) {
+      const id = window.location.hash.replace("#", "");
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <main className="bg-[#fcfcfd] dark:bg-[#09090b] text-slate-800 dark:text-zinc-100 min-h-screen font-sans transition-colors duration-300 relative overflow-x-hidden selection:bg-amber-500/15 selection:text-slate-900 dark:selection:bg-amber-400/20 dark:selection:text-zinc-100">
       {/* Linear Studio Ambient Lighting */}

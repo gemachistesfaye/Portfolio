@@ -41,14 +41,13 @@ const CaseStudy = () => {
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Case Study Not Found</h2>
           <p className="text-slate-600 dark:text-zinc-400">This project case study doesn't exist yet.</p>
         </div>
-        <Link
-          to="/"
-          onClick={(e) => { e.preventDefault(); navigate("/"); setTimeout(() => { document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }, 100); }}
+        <button
+          onClick={() => navigate("/")}
           className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white rounded-xl transition-all duration-200 shadow-sm"
         >
           <ArrowLeft size={16} />
           Back to Projects
-        </Link>
+        </button>
       </div>
     );
   }
@@ -92,15 +91,14 @@ const CaseStudy = () => {
         {/* Top Nav */}
         <nav className="sticky top-0 z-50 bg-white/80 dark:bg-[#09090b]/85 backdrop-blur-md border-b border-slate-200/80 dark:border-white/[0.08]">
           <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-            <Link
-              to="/"
-              onClick={(e) => { e.preventDefault(); navigate("/"); setTimeout(() => { document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" }); }, 100); }}
+            <button
+              onClick={() => navigate("/")}
               className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium"
             >
               <ArrowLeft size={16} />
               <span className="hidden sm:inline">Back to Projects</span>
               <span className="sm:hidden">Back</span>
-            </Link>
+            </button>
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={toggleTheme}
@@ -316,7 +314,7 @@ const CaseStudy = () => {
 
           {/* Navigation */}
           <div className="mt-16 pt-8 border-t border-slate-200 dark:border-zinc-800/80">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               {prevStudy ? (
                 <Link
                   to={`/project/${prevStudy.slug}`}
@@ -327,6 +325,15 @@ const CaseStudy = () => {
                   <span className="sm:hidden">Previous</span>
                 </Link>
               ) : <div />}
+
+              <button
+                onClick={() => navigate("/")}
+                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 text-xs font-semibold rounded-xl bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-white shadow-sm transition-colors"
+              >
+                <ArrowLeft size={14} />
+                <span>All Projects</span>
+              </button>
+
               {nextStudy ? (
                 <Link
                   to={`/project/${nextStudy.slug}`}

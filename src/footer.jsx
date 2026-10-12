@@ -17,7 +17,7 @@ const socials = [
 ];
 
 const Footer = () => (
-  <footer className="border-t border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-950 text-slate-700 dark:text-zinc-300 transition-colors duration-300" role="contentinfo">
+  <footer id="footer" className="border-t border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-950 text-slate-700 dark:text-zinc-300 transition-colors duration-300" role="contentinfo">
     <div className="max-w-6xl mx-auto px-6 py-7 sm:py-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10 mb-6">
         {/* Brand */}

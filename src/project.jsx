@@ -16,6 +16,8 @@ const Project = () => {
   const carouselRef = useRef(null);
 
   const handleCaseStudy = useCallback((slug) => {
+    sessionStorage.setItem("portfolio_scroll_pos", window.scrollY.toString());
+    sessionStorage.setItem("portfolio_last_project", slug);
     navigate(`/project/${slug}`);
   }, [navigate]);
 

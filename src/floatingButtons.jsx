@@ -130,7 +130,7 @@ const FloatingButtons = () => {
         <div
           role="dialog"
           aria-label="Ask Gemachis Chat"
-          className="fixed bottom-20 right-4 sm:right-6 z-50 w-[92vw] sm:w-[380px] max-h-[520px] h-[500px] flex flex-col rounded-2xl border border-slate-200/90 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl overflow-hidden animate-slide-up"
+          className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[420px] max-h-[80vh] h-[490px] flex flex-col rounded-2xl border border-slate-200/90 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl overflow-hidden animate-slide-up"
         >
           {/* Header */}
           <div className="px-4 py-3 bg-slate-900 dark:bg-zinc-950 border-b border-white/[0.08] flex items-center justify-between text-white">

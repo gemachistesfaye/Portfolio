@@ -98,7 +98,8 @@ const CaseStudy = () => {
               className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors font-medium"
             >
               <ArrowLeft size={16} />
-              Back to Projects
+              <span className="hidden sm:inline">Back to Projects</span>
+              <span className="sm:hidden">Back</span>
             </Link>
             <div className="flex items-center gap-2 sm:gap-3">
               <button

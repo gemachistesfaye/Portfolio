@@ -141,16 +141,16 @@ const Navbar = () => {
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 bg-stone-100 dark:bg-zinc-800 border border-orange-200/50 dark:border-zinc-700"
+            className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 shadow-sm"
             aria-label="Toggle theme"
           >
-            {isDark ? <Sun size={16} className="text-amber-400" /> : <Moon size={16} className="text-orange-500" />}
+            {isDark ? <Sun size={16} className="text-amber-400" /> : <Moon size={16} className="text-slate-600 hover:text-amber-500" />}
           </button>
 
           <button
             ref={hamburgerRef}
             onClick={() => setOpen(!open)}
-            className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-stone-100 dark:hover:bg-zinc-800 transition-colors"
+            className="p-2 rounded-lg text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls={open ? "mobile-menu" : undefined}
@@ -165,7 +165,7 @@ const Navbar = () => {
         <div
           id="mobile-menu"
           ref={menuRef}
-          className="md:hidden fixed inset-0 top-16 bg-[#fcfaf6]/98 dark:bg-[#09090b]/98 backdrop-blur-2xl z-40 px-6 py-8 flex flex-col justify-between border-t border-orange-200/50 dark:border-white/[0.08]"
+          className="md:hidden fixed inset-0 top-16 bg-white/98 dark:bg-[#09090b]/98 backdrop-blur-2xl z-40 px-6 py-8 flex flex-col justify-between border-t border-slate-200/80 dark:border-white/[0.08]"
         >
           <div className="space-y-2">
             {links.map((l) => (
@@ -175,8 +175,8 @@ const Navbar = () => {
                 onClick={(e) => go(e, l)}
                 className={`block py-3 px-4 rounded-xl text-base font-medium transition-colors ${
                   active === l.toLowerCase()
-                    ? 'text-orange-600 dark:text-orange-300 bg-orange-50 dark:bg-orange-600/20 font-semibold border border-orange-200 dark:border-orange-500/30'
-                    : 'text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-zinc-800/60'
+                    ? 'text-slate-900 dark:text-white bg-slate-100 dark:bg-zinc-800 font-semibold border border-slate-200 dark:border-zinc-700'
+                    : 'text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-zinc-800/60'
                 }`}
               >
                 {l}
@@ -184,13 +184,13 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="pt-6 border-t border-orange-200/50 dark:border-zinc-800 space-y-3">
+          <div className="pt-6 border-t border-slate-200/80 dark:border-zinc-800 space-y-3">
             <a
               href="/blog"
               onClick={(e) => { e.preventDefault(); setOpen(false); window.open("/blog", "_blank", "noopener,noreferrer"); }}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-200 bg-stone-100 dark:bg-zinc-800/80 border border-orange-200/50 dark:border-white/[0.08] hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-200 bg-slate-50 dark:bg-zinc-800/80 border border-slate-200/80 dark:border-white/[0.08] hover:text-slate-900 dark:hover:text-white transition-colors shadow-sm"
             >
-              <PenLine size={15} className="text-orange-600 dark:text-orange-400" /> Read Blog
+              <PenLine size={15} className="text-amber-500 dark:text-amber-400" /> Read Blog
             </a>
           </div>
         </div>

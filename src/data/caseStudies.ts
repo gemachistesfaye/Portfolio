@@ -202,9 +202,9 @@ PostgreSQL 15 Database (Prisma ORM)
     slug: "sheger-health-connect",
     name: "Sheger Health Connect",
     category: "Healthcare",
-    tags: ["React", "Node.js", "MySQL", "Socket.io", "GPT-4", "Sequelize"],
-    tagline: "AI-powered healthcare platform connecting patients and doctors across Ethiopia",
-    description: "A full-stack health-tech platform featuring appointment management, real-time messaging, AI symptom triage, and multilingual support — built for Ethiopian clinics transitioning from paper-based to digital operations.",
+    tags: ["React 18", "Node.js 20", "Express 5", "TypeScript", "Sequelize", "PostgreSQL", "Socket.IO", "OpenAI SDK", "Docker", "Nginx"],
+    tagline: "Full-stack telemedicine platform for Ethiopian clinics with role-based portals and AI triage",
+    description: "A production-grade telemedicine platform for Ethiopian clinics featuring role-specific portals (Patient, Doctor, Admin), authenticated Socket.IO messaging, medical record vaults, payment tracking, multilingual support (EN/AM/OM), and GPT symptom triage with offline fallbacks.",
     heroImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/Sheger-Health-Connect",
     demo: "https://sheger-health-connect.vercel.app",
@@ -213,9 +213,9 @@ PostgreSQL 15 Database (Prisma ORM)
     overview: {
       problem: "Healthcare access in Ethiopia is fragmented between patients, doctors, and clinics. Most clinics still rely on paper records, manual appointment scheduling, and phone-based communication — leading to long wait times, lost records, and misrouted patients.",
       users: "Patients seeking specialists, doctors managing appointments, and clinic administrators overseeing operations.",
-      role: "Full-Stack Developer — designed architecture, built frontend and backend, integrated AI, deployed to production.",
-      timeline: "3 months (Jan – Mar 2026)",
-      status: "Live in production on Vercel + Render"
+      role: "Full-Stack Software Engineer — Designed end-to-end architecture across React 18 SPA, Node 20 / Express 5 TypeScript API, Sequelize ORM, Socket.IO messaging, and GPT symptom triage.",
+      timeline: "2026",
+      status: "Production deployment with Docker Compose, Nginx reverse proxy, PostgreSQL, Vercel frontend, and Render backend"
     },
 
     motivation: {
@@ -234,79 +234,86 @@ PostgreSQL 15 Database (Prisma ORM)
       ],
       features: [
         { name: "Three Role-Based Portals", why: "Different users need different interfaces — patients book, doctors consult, admins oversee. Single-UI approaches create confusion." },
-        { name: "AI Symptom Checker (GPT-4)", why: "Patients often don't know which specialist to visit. AI triage routes them correctly, reducing misbookings by 40%." },
-        { name: "Isolated Direct Messaging", why: "Doctor-patient communication must be private. Built isolated channels with authentication checks on every socket event." },
-        { name: "Multilingual Support (EN/AM/OM)", why: "Ethiopia has 80+ languages. Supporting English, Amharic, and Afaan Oromoo covers the primary user base." },
-        { name: "Medical Vault", why: "Patients need persistent access to their health records. Centralized storage with role-based access." },
-        { name: "System Analytics", why: "Admins need visibility into appointment trends, patient counts, and revenue for operational decisions." }
+        { name: "AI Symptom Checker & Triage", why: "Patients often don't know which specialist to visit. AI triage routes them correctly, reducing misbookings by 40%." },
+        { name: "Authenticated Clinical Messaging", why: "Doctor-patient communication must be private. Built isolated Socket.IO channels plus doctor-only staff group chats." },
+        { name: "Multilingual Support (EN/AM/OM)", why: "Ethiopia has 80+ languages. Supporting English, Amharic, and Afaan Oromoo via i18next covers the primary user base." },
+        { name: "Patient Medical Vault", why: "Patients need persistent access to their health records, visit notes, prescriptions, and attachments." },
+        { name: "Payment & Transaction Tracking", why: "Monitors appointment billing, consultation fees, and transaction history for clinic administrators." }
       ]
     },
 
     architecture: {
       layers: [
-        { name: "Frontend", tech: "React 18 + Vite + Tailwind CSS" },
-        { name: "Real-time", tech: "Socket.io Client" },
-        { name: "Backend", tech: "Express.js REST API (MVC)" },
-        { name: "ORM", tech: "Sequelize (parameterized queries)" },
-        { name: "Database", tech: "MySQL (with SQLite fallback)" },
-        { name: "AI", tech: "OpenAI GPT-4 API" },
-        { name: "Auth", tech: "JWT + bcrypt" }
+        { name: "Frontend SPA", tech: "React 18 + Vite + Tailwind CSS + Framer Motion" },
+        { name: "Routing & State", tech: "React Router v6 + TanStack React Query + i18next" },
+        { name: "Real-time Messaging", tech: "Socket.IO (Authenticated websocketService.ts)" },
+        { name: "Backend REST API", tech: "Node.js 20 + Express 5 (TypeScript, MVC)" },
+        { name: "Database ORM", tech: "Sequelize ORM (PostgreSQL/MySQL with SQLite fallback)" },
+        { name: "AI Engine", tech: "OpenAI SDK (GPT-4 with smart clinical fallback)" },
+        { name: "Infrastructure & Proxy", tech: "Docker Compose + Nginx Reverse Proxy + Render + Vercel" }
       ],
-      diagram: `React/Vite ──► REST API ──► Express/Node.js ──► MySQL (Sequelize)
-    │                              │
-    └── Socket.io Client ◄──────► Socket.io Server
-                                        │
-                                   OpenAI GPT-4`
+      diagram: `React 18 SPA (Vite + TanStack Query + i18next)
+  ├── Public Pages & Role-Protected Shell (ProtectedRoute.jsx)
+  ├── Three Portals: Patient, Doctor, Admin
+  └── Socket.IO Client (Real-Time Clinical Chat)
+          │ (Nginx Reverse Proxy / HTTPS)
+          ▼
+Node.js 20 + Express 5 TypeScript REST API
+  ├── JWT Auth & RBAC Middleware (Rate Limiting, Helmet, Auditing)
+  ├── websocketService.ts (Private Consultations & Staff Group Chat)
+  ├── Controllers: Auth, Appointments, Records, AI, Payments, Admin
+  └── Health Checks (/api/health) & Metrics (/api/metrics)
+          │
+          ▼
+PostgreSQL / MySQL (Sequelize ORM + SQLite fallback)
+  └── User, Appointment, MedicalRecord, Message, Payment Models
+          │
+          ▼
+External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     },
 
     database: {
-      overview: "Relational database with strict role-based access control. MySQL chosen for ACID compliance in healthcare data. Automatic SQLite fallback for development and demo environments.",
+      overview: "Relational database managed via Sequelize ORM supporting PostgreSQL and MySQL for production, with automatic SQLite fallback for local development and demos.",
       entities: [
-        { name: "Users", description: "Admin, Doctor, Patient roles with profile data, credentials, and status" },
-        { name: "Appointments", description: "Scheduling with status tracking (pending, confirmed, completed, cancelled)" },
-        { name: "Messages", description: "Isolated doctor-patient messaging channels with timestamps" },
-        { name: "MedicalRecords", description: "Patient health vault with visit history and notes" },
-        { name: "SystemLogs", description: "Audit trail for admin monitoring and compliance" }
+        { name: "Users", description: "Admin, Doctor, Patient roles with credentials, profile data, and account lock status" },
+        { name: "Appointments", description: "Scheduling with doctor availability and status tracking (pending, confirmed, completed, cancelled)" },
+        { name: "MedicalRecords", description: "Patient health vault with visit notes, prescriptions, and attachments" },
+        { name: "Messages", description: "Authenticated Socket.IO messages for private doctor-patient chats and doctor staff group" },
+        { name: "Payments", description: "Transaction tracking and billing history" },
+        { name: "SystemLogs", description: "Audit logs and request metrics for administrative compliance" }
       ],
-      relationships: "Users 1:N Appointments · Users 1:N Messages · Patients 1:N MedicalRecords · Admin 1:N SystemLogs",
-      rationale: "MySQL chosen for ACID compliance critical in healthcare. Sequelize ORM prevents SQL injection through parameterized queries. SQLite fallback ensures 100% platform availability for demos."
+      relationships: "Users 1:N Appointments · Users 1:N Messages · Patients 1:N MedicalRecords · Appointments 1:1 Payments · Admin 1:N SystemLogs",
+      rationale: "PostgreSQL provides ACID transactional guarantees essential for medical records and payments. Sequelize ORM enforces parameterized queries preventing SQL injection, while SQLite fallback guarantees 100% demo uptime."
     },
 
     implementation: {
       frontend: [
-        "React 18 + Vite for fast SPA with code splitting",
-        "Tailwind CSS for consistent, utility-first styling",
-        "Framer Motion for smooth page transitions and micro-interactions",
-        "i18next for seamless English/Amharic/Afaan Oromoo switching",
-        "React Router v6 with protected role-based routes",
-        "Recharts for admin analytics dashboards"
+        "React 18 + Vite SPA with route hierarchy and role-protected application shell in App.jsx",
+        "Three distinct portals: Patient (booking, records, AI triage), Doctor (queue, medical vault, chat), and Admin (onboarding, metrics, logs)",
+        "Multilingual localization (English, Amharic, Afaan Oromoo) powered by i18next",
+        "Interactive clinical dashboards with Recharts and animated transitions using Framer Motion"
       ],
       backend: [
-        "Express.js MVC architecture for clean separation of concerns",
-        "Sequelize ORM with parameterized queries (no raw SQL)",
-        "JWT authentication with 24h token expiry",
-        "bcrypt salted hashing for password storage",
-        "Socket.io for bidirectional real-time messaging",
-        "Multer for file upload handling",
-        "Nodemailer for email notifications"
+        "TypeScript REST API on Node.js 20 and Express 5 with modular controllers, services, and routes",
+        "Authenticated Socket.IO service (websocketService.ts) managing private consultations and doctor staff group chat",
+        "Sequelize models with PostgreSQL / MySQL support and automatic SQLite fallback",
+        "Security middleware: JWT + RBAC protection, login attempt tracking, account locking, and rate limiting"
       ],
       deployment: [
-        "Vercel for frontend hosting (automatic deployments)",
-        "Render for backend API hosting",
-        "Aiven MySQL for cloud database (with local SQLite fallback)",
-        "GitHub Actions for CI/CD"
+        "Docker Compose orchestrating Nginx reverse proxy, backend API, PostgreSQL, and persistent volumes",
+        "Automated testing pipeline with Playwright end-to-end and Vitest unit suites",
+        "Health checks (/api/health) and runtime metrics endpoint (/api/metrics)",
+        "Production hosting: Frontend on Vercel, Backend on Render (render.yaml)"
       ]
     },
 
     security: {
       measures: [
-        { name: "Authentication", implementation: "JWT tokens with 24h expiry, username-based login" },
-        { name: "Authorization", implementation: "RBAC enforced on every route — strict role separation" },
-        { name: "Password Storage", implementation: "bcrypt salted hashing — no plaintext ever stored" },
-        { name: "SQL Safety", implementation: "Sequelize ORM with parameterized queries, no raw SQL" },
-        { name: "CORS", implementation: "Restricted to authorized frontend origins only" },
-        { name: "Registration Control", implementation: "Public registration disabled — admin-controlled onboarding" },
-        { name: "Input Validation", implementation: "Server-side validation on all form submissions" }
+        { name: "Role-Based Access Control", implementation: "Strict RBAC enforced across Admin, Doctor, and Patient portals" },
+        { name: "Brute-Force Defense", implementation: "Login attempt tracking, account locking, and IP rate limiting" },
+        { name: "Password Security", implementation: "Salted bcrypt hashing with password reset and email verification flows" },
+        { name: "Network & HTTP Protection", implementation: "Nginx reverse proxy with CORS restrictions, Helmet headers, and request auditing" },
+        { name: "SQL Safety", implementation: "Sequelize ORM with parameterized queries, preventing SQL injection" }
       ]
     },
 

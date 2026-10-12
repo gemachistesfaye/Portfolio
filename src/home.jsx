@@ -44,24 +44,24 @@ const Home = () => {
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-4 sm:flex sm:flex-wrap sm:items-center mb-10 max-w-sm sm:max-w-none">
               <a
                 href="#projects"
                 onClick={(e) => { e.preventDefault(); scrollToSection("projects"); }}
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white font-semibold rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md"
+                className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-3 sm:py-3.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white font-semibold rounded-xl transition-all duration-200 text-xs sm:text-sm shadow-sm hover:shadow-md whitespace-nowrap text-center"
               >
-                Explore Projects
-                <ArrowRight size={16} />
+                <span>Explore Projects</span>
+                <ArrowRight size={15} className="shrink-0" />
               </a>
 
               <a
                 href={config.cvView}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3.5 bg-white dark:bg-zinc-900/80 hover:bg-slate-50 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-white font-semibold rounded-xl transition-all duration-200 text-sm shadow-sm"
+                className="flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-3 sm:py-3.5 bg-white dark:bg-zinc-900/80 hover:bg-slate-50 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-white font-semibold rounded-xl transition-all duration-200 text-xs sm:text-sm shadow-sm whitespace-nowrap text-center"
               >
-                <Download size={15} />
-                Resume / CV
+                <Download size={15} className="shrink-0 text-amber-500" />
+                <span>Resume / CV</span>
               </a>
             </div>
           </div>

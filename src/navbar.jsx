@@ -31,14 +31,11 @@ const Navbar = () => {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
     };
   }, [open]);
 
@@ -77,13 +74,19 @@ const Navbar = () => {
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/80 dark:bg-[#09090b]/85 border-b border-slate-200/80 dark:border-white/[0.08] shadow-lg shadow-black/5 dark:shadow-black/40 backdrop-blur-xl'
-          : 'bg-transparent'
-      }`}
+      className="fixed w-full top-0 z-50 transition-colors duration-200"
     >
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-slate-200 dark:via-zinc-800 to-transparent" />
+      {/* Background layer - isolated so backdrop-filter does NOT trap fixed children in CSS */}
+      <div
+        className={`absolute inset-0 -z-10 transition-all duration-300 pointer-events-none ${
+          open
+            ? 'bg-white/98 dark:bg-[#09090b]/98 border-b border-slate-200/80 dark:border-white/[0.08]'
+            : scrolled
+              ? 'bg-white/80 dark:bg-[#09090b]/85 border-b border-slate-200/80 dark:border-white/[0.08] shadow-lg shadow-black/5 dark:shadow-black/40 backdrop-blur-xl'
+              : 'bg-transparent'
+        }`}
+      />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-slate-200 dark:via-zinc-800 to-transparent pointer-events-none" />
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a
           href="#home"
@@ -166,7 +169,7 @@ const Navbar = () => {
         <div
           id="mobile-menu"
           ref={menuRef}
-          className="md:hidden fixed inset-0 top-16 bg-white/98 dark:bg-[#09090b]/98 backdrop-blur-2xl z-40 px-6 py-6 flex flex-col justify-between border-t border-slate-200/80 dark:border-white/[0.08] animate-in fade-in duration-200 overflow-y-auto"
+          className="md:hidden fixed inset-x-0 top-16 h-[calc(100vh-4rem)] h-[calc(100dvh-4rem)] bg-white/98 dark:bg-[#09090b]/98 backdrop-blur-2xl z-50 px-6 py-6 flex flex-col justify-between border-t border-slate-200/80 dark:border-white/[0.08] animate-in fade-in duration-200 overflow-y-auto"
         >
           <div className="space-y-1.5">
             <p className="px-3 pb-1 text-[11px] font-mono uppercase tracking-wider text-slate-400 dark:text-zinc-500 font-semibold">

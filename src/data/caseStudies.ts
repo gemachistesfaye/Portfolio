@@ -1105,6 +1105,378 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
         { src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop", alt: "Code Lab", caption: "Interactive code practice sandbox" }
       ]
     }
+  },
+  {
+    slug: "eduflow",
+    name: "EduFlow",
+    category: "Full-Stack EdTech & School ERP",
+    tags: ["Python", "Flask", "SQLAlchemy", "PostgreSQL", "Supabase RLS", "Vite", "Chart.js", "Tailwind CSS", "Pandas", "ReportLab"],
+    tagline: "Multi-tenant school management system with role-based portals & Supabase RLS",
+    description: "A full-stack academic and school management platform engineered for educational institutions. Organizes core school workflows across 5 distinct role portals (Superadmin, School Director/Admin, Teacher, Student, Parent) for student records, bulk Excel roster imports, daily attendance tracking, exam & grade management, conflict-free timetable scheduling, fee collection, and real-time notifications.",
+    heroImage: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&h=600&fit=crop",
+    github: "https://github.com/gemachistesfaye",
+    demo: "",
+    featured: true,
+
+    overview: {
+      problem: "Academic institutions and schools struggle with disconnected paper logs and manual spreadsheets for student enrollments, exam grading, attendance registers, and tuition fees, resulting in administrative overload and communication gaps between educators, administrators, and parents.",
+      users: "Platform superadmins, school directors, administrators, teachers, students, and parents.",
+      role: "Full-Stack Software Engineer — Architected backend REST APIs in Flask with SQLAlchemy, multi-tenant Supabase schema with Row-Level Security, 5 role-based portal interfaces in Vite/HTML, and bulk Excel data processing with pandas.",
+      timeline: "2025 – 2026",
+      status: "Full-stack application with Flask REST API, SQLite development fallback, PostgreSQL/Supabase multi-tenant schema with RLS, and responsive frontend dashboards."
+    },
+
+    motivation: {
+      problem: "Schools frequently operate with fragmented, manual processes: teachers spend hours writing attendance on paper sheets, grades are stored in ad-hoc Excel spreadsheets prone to calculation mistakes and accidental loss, and parents have zero visibility into their child's academic standing or fee payment statuses.",
+      whoAffected: "School directors lacking high-level enrollment/fee metrics, teachers overwhelmed by repetitive administrative paperwork, and parents unable to monitor student attendance and marks in real time.",
+      whyExistingInsufficient: "Commercial enterprise school ERPs are cost-prohibitive for local institutions, overly rigid, or lack localized academic workflows (such as natural vs social stream classification and multi-branch school isolation).",
+      whyMatters: "Digitizing academic workflows eliminates lost student records, ensures transparent grade calculation, improves tuition collection rates, and keeps parents actively engaged in student success."
+    },
+
+    solution: {
+      approach: "Engineered a dual-backend architecture: a Python Flask REST API with SQLAlchemy for school CRUD operations, JWT auth, and pandas/ReportLab report exports, complemented by a PostgreSQL Supabase schema providing Row-Level Security (RLS) policies for multi-school tenant isolation, realtime notifications, and audit logging.",
+      keyWorkflows: [
+        "Multi-Portal Access Control: Single authentication entry point (/api/auth/login) verifying JWTs and dispatching users to Superadmin, Admin, Teacher, Student, or Parent dashboards with strict RBAC enforcement.",
+        "Bulk Student & Teacher Onboarding: Administrators upload standardized Excel rosters; pandas processes and validates rows, automatically generating student/teacher accounts and class enrollments.",
+        "Daily Bulk Attendance: Teachers open daily class rosters, toggle attendance statuses (Present, Absent, Late, Excused) with single-click bulk actions, updating parent dashboards and analytical summaries instantly.",
+        "Examination & Grade Calculation: Teachers enter Quiz, Mid, and Final marks; system calculates weighted totals, computes letter grades, and prevents grade tampering once locked by administration.",
+        "Parent Fee & Academic Oversight: Parents log into their dedicated portal to inspect linked children's real-time attendance percentages, exam report cards, and outstanding fee invoices."
+      ],
+      features: [
+        { name: "Multi-Tenant Branch Management", why: "Superadmins create and isolate school branches, assign directors, and monitor multi-institution analytics from one command center." },
+        { name: "5 Role-Based Portals", why: "Dedicated responsive environments tailored specifically for Superadmins, School Admins, Teachers, Students, and Parents." },
+        { name: "Bulk Excel Import & CSV Exports", why: "Automated spreadsheet ingestion using pandas to onboard hundreds of students and teachers in seconds." },
+        { name: "Comprehensive Grade & Exam Engine", why: "Supports Quiz, Mid, and Final exams with automatic weighted totals and letter-grade assignments." },
+        { name: "Conflict-Free Timetable & Academic Streams", why: "Handles room, teacher, and section schedules with natural and social academic stream allocations." },
+        { name: "Fee Tracking & Financial Reports", why: "Tracks tuition amounts, payment status, due dates, and produces exportable financial statements." },
+        { name: "Realtime Notifications & Supabase RLS", why: "PostgreSQL Row-Level Security policies ensuring strict multi-tenant school isolation and live parent alerts." }
+      ]
+    },
+
+    architecture: {
+      layers: [
+        { name: "Frontend Client", tech: "Vite + Static HTML5 + Vanilla JavaScript + Tailwind CSS" },
+        { name: "UI Components & Charts", tech: "Responsive Sidebar + Dark Mode + Chart.js + Modal Engine" },
+        { name: "Backend REST API", tech: "Python 3.11 + Flask + Flask-CORS + PyJWT + bcrypt" },
+        { name: "Data Processing & Reports", tech: "pandas (Excel bulk import) + ReportLab (PDF generation)" },
+        { name: "Primary ORM & Dev DB", tech: "SQLAlchemy + SQLite (instance/school.db) / MySQL" },
+        { name: "Cloud Multi-Tenant DB", tech: "Supabase (PostgreSQL 15 + PL/pgSQL + Row-Level Security)" },
+        { name: "Realtime & Storage", tech: "Supabase JS Client (Realtime Subscriptions + Storage Buckets)" }
+      ],
+      diagram: `Browser Client (Vite + HTML5 / Vanilla JS / Tailwind CSS)
+  ├── 5 Role Portals: Superadmin • Admin • Teacher • Student • Parent
+  └── Responsive UI: Chart.js Analytics • Modals • Dark Mode Engine
+          │
+          ├── [REST APIs / JWT Bearer]
+          ▼
+Flask REST API (Python 3.11)
+  ├── Middleware: PyJWT Auth & Role-Based Access Control (RBAC)
+  ├── Routes: /api/auth • /admin • /teacher • /student • /parent • /superadmin
+  ├── Data Services: pandas (Bulk Excel Imports) • ReportLab (PDFs)
+  └── SQLAlchemy ORM ──▶ Development DB (SQLite / MySQL)
+          │
+          ├── [Multi-Tenant Cloud Sync / Direct Client APIs]
+          ▼
+Supabase Cloud (PostgreSQL 15 + PL/pgSQL)
+  ├── Row-Level Security (RLS): Multi-School Tenant Isolation
+  ├── Realtime Engine: Live Notifications & Attendance Events
+  └── Core Tables: schools, users, students, teachers, classes, grades, fees, audit_logs`
+    },
+
+    database: {
+      overview: "Relational database architecture featuring SQLAlchemy models for local execution and a multi-tenant PostgreSQL schema in Supabase enforced with Row-Level Security (RLS) policies for complete school data isolation.",
+      entities: [
+        { name: "Users", description: "Credentials, role hierarchy (superadmin, admin, teacher, student, parent), branch ID, and account status" },
+        { name: "Schools", description: "Multi-tenant institution records, directors, addresses, and branch capacity" },
+        { name: "Students", description: "Enrollment details, class/section allocation, date of birth, contact, and parent linkage" },
+        { name: "Teachers", description: "Subject assignments, qualifications, contact info, and hire dates" },
+        { name: "Classes & Subjects", description: "Grade levels, sections, academic years, and stream allocations (natural/social)" },
+        { name: "Attendance", description: "Daily presence records (present, absent, late, excused) linked to class and date" },
+        { name: "Grades & Exams", description: "Assessment records (Quiz, Mid, Final) with scores, weights, and automated letter grades" },
+        { name: "Fees", description: "Tuition invoices, payment logs, due dates, and collection statuses" },
+        { name: "AuditLogs", description: "Platform-wide operational logging for administrative compliance and security tracking" }
+      ],
+      relationships: "Schools 1:N Users · Schools 1:N Classes · Classes 1:N Students · Classes 1:N Subjects · Teachers 1:N Subjects · Parents 1:N Students · Students 1:N Attendance · Students 1:N Grades · Students 1:N Fees",
+      rationale: "Multi-tenant education data requires strict isolation between separate schools. Supabase RLS enforces data boundaries at the database engine level, while SQLAlchemy gives Flask high developer velocity for local execution."
+    },
+
+    implementation: {
+      frontend: [
+        "Vite-powered frontend with modular HTML pages separated into role hierarchies (pages/admin, pages/teacher, pages/student, pages/parent, pages/superadmin)",
+        "Responsive layouts with mobile drawer navigation, dark/light theme switching, and accessible modal confirmation dialogs",
+        "Chart.js integration for visual data representation: enrollment trends, attendance distribution, and fee collection summaries",
+        "Supabase JavaScript client integration for realtime event subscriptions and cloud authentication"
+      ],
+      backend: [
+        "Flask modular blueprint architecture separating route domains (auth, admin, teacher, student, parent, superadmin)",
+        "PyJWT and salted bcrypt security middleware enforcing role-level guards and preventing privilege escalation",
+        "High-throughput bulk import pipelines powered by pandas for parsing Excel rosters with validation error reports",
+        "PDF report generation using ReportLab for report cards, attendance certificates, and financial summaries"
+      ],
+      deployment: [
+        "Vite production build bundling static assets for edge distribution on Vercel / Netlify",
+        "Container-ready Python Flask backend deployable on Render or Dockerized Linux VPS",
+        "Managed Supabase PostgreSQL cloud instance with automated migration scripts (supabase-schema.sql)"
+      ]
+    },
+
+    security: {
+      measures: [
+        { name: "Role-Based Access Control (RBAC)", implementation: "Every route is guarded by decorator middleware checking user role against required permission level" },
+        { name: "Supabase Row-Level Security (RLS)", implementation: "Database-level policies guarantee that students, parents, and teachers can only query records belonging to their assigned school branch" },
+        { name: "Password Security", implementation: "Salted bcrypt password hashing with mandatory password change enforcement for newly generated accounts" },
+        { name: "Data Validation & Sanitization", implementation: "Strict payload validation on all CRUD operations preventing SQL injection and malformed inputs" },
+        { name: "Audit Trail Logging", implementation: "Centralized audit_logs table tracking sensitive events such as grade updates, fee payments, and user role modifications" }
+      ]
+    },
+
+    ux: {
+      userFlows: [
+        {
+          role: "School Administrator",
+          steps: ["Log in via /login.html", "View dashboard KPIs (students, teachers, fees)", "Import students via Excel roster", "Assign teachers to subjects & classes", "Monitor fee collection & export reports"]
+        },
+        {
+          role: "Teacher",
+          steps: ["Log in via teacher portal", "Select class and period roster", "Bulk mark daily attendance in 30 seconds", "Enter Quiz, Mid, and Final exam grades", "Review class grade distribution"]
+        },
+        {
+          role: "Parent",
+          steps: ["Log in via /parentlogin.html", "Select child profile", "Review attendance rate and unexcused absences", "Inspect term exam report card", "Check pending tuition fees and payment history"]
+        }
+      ],
+      keyScreens: [
+        "Multi-Tenant Superadmin Command Center",
+        "Admin KPI Dashboard with Enrollment & Attendance Charts",
+        "Teacher Quick-Attendance & Gradebook View",
+        "Parent Child Progress & Tuition Ledger",
+        "Bulk Data Import & Export Utility"
+      ],
+      decisions: [
+        "Role-segmented dashboards prevent clutter and reduce cognitive load for non-technical users",
+        "1-click bulk attendance actions reduce teacher admin time from 15 minutes down to 30 seconds per period",
+        "Toast notifications and loading skeletons provide clear feedback during bulk file uploads"
+      ]
+    },
+
+    challenges: [
+      {
+        challenge: "Handling bulk student and teacher onboarding without server timeouts or malformed record crashes",
+        difficulty: "High — Excel spreadsheets from schools contain inconsistent column names, missing phone numbers, and duplicate entries.",
+        solution: "Built a robust pandas ingestion pipeline with pre-validation schema checks, descriptive error reporting for invalid rows, and atomic database transaction commits."
+      },
+      {
+        challenge: "Guaranteeing multi-tenant data privacy across multiple school branches sharing the same platform",
+        difficulty: "High — Accidental data leakage between different schools would violate privacy regulations.",
+        solution: "Implemented PostgreSQL Row-Level Security (RLS) in Supabase tied to school_id and user authentication claims, ensuring database-level data isolation."
+      },
+      {
+        challenge: "Balancing local Flask/SQLAlchemy development speed with cloud-first Supabase capabilities",
+        difficulty: "Medium — Synchronizing data structures between local SQLite and cloud Supabase tables.",
+        solution: "Unified data contracts through declarative models and created automated seed scripts ensuring parity across development and cloud environments."
+      }
+    ],
+
+    performance: {
+      optimizations: [
+        "Bulk database insertions using SQLAlchemy and Supabase batch operations rather than row-by-row queries",
+        "Optimized Chart.js rendering and lightweight vanilla JavaScript minimizing frontend bundle overhead",
+        "Database indexing on school_id, student_id, class_id, and date for instantaneous attendance and grade queries"
+      ],
+      errorHandling: [
+        "Unified JSON exception responses across all Flask API endpoints",
+        "Pre-upload file validation checking MIME type, file size, and column headers before triggering pandas processing",
+        "Graceful fallback to cached views when network connectivity drops"
+      ],
+      testing: "Unit tests for authentication and role middleware guards, API endpoint integration tests validating CRUD operations across admin and teacher routes, and Excel import test suites verifying edge-case handling on malformed spreadsheets."
+    },
+
+    roadmap: [
+      "Automated SMS/Telegram notifications to parents for unexcused student absences",
+      "Online fee payments integration with local Ethiopian payment gateways (Telebirr, Chapa)",
+      "Progressive Web App (PWA) offline mode for remote school areas with intermittent internet",
+      "AI-assisted student performance forecasting and early risk detection"
+    ],
+
+    media: {
+      screenshots: [
+        { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=500&fit=crop", alt: "Admin Dashboard", caption: "School administrator analytics dashboard with enrollment and attendance metrics" },
+        { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=500&fit=crop", alt: "Attendance Tracker", caption: "Teacher quick-attendance tracking and class roster management" },
+        { src: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=500&fit=crop", alt: "Gradebook & Reports", caption: "Automated exam grading, GPA calculations, and exportable academic reports" }
+      ]
+    }
+  },
+  {
+    slug: "grade-evaluator-ai",
+    name: "GradeEvaluator AI",
+    category: "EdTech & Academic AI",
+    tags: ["Python", "Flask", "SQLite", "Google Gemini AI", "ReportLab", "Chart.js", "Gunicorn", "Render"],
+    tagline: "Intelligent academic performance tracker, weighted SGPA/CGPA engine & Gemini GradeBot",
+    description: "A full-stack academic performance tracking platform engineered for students—specifically tailored for Ethiopian university grading scales. Combines persistent course records, credit-hour-weighted SGPA/CGPA calculation with failing grade safeguards, interactive Chart.js score distributions, exportable PDF/CSV academic transcripts, and an intelligent Google Gemini–powered GradeBot for study coaching and semester performance reviews.",
+    heroImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=600&fit=crop",
+    github: "https://github.com/gemachistesfaye/GradeEvaluator-AI",
+    demo: "https://gradeevaluator-ai.onrender.com",
+    featured: true,
+
+    overview: {
+      problem: "University students, particularly in Ethiopian higher education, lack an automated, transparent system to record course scores, calculate credit-weighted SGPA and CGPA, forecast required GPA targets, and receive contextual academic coaching.",
+      users: "University students, academic advisors, and undergraduate cohorts managing credit loads and GPA milestones.",
+      role: "Full-Stack Software Engineer & AI Developer — Architected Flask controllers, credit-weighted GPA algorithms, SQLite schema, Chart.js visual analytics, ReportLab PDF transcript generator, and Gemini GradeBot integration.",
+      timeline: "2025 – 2026",
+      status: "Live on Render with Gunicorn, persistent SQLite database, and Google GenAI SDK integration."
+    },
+
+    motivation: {
+      problem: "Manual GPA calculation using spreadsheets is prone to weighted credit errors. Students often miscalculate whether an 'F' results in an 'NG' (No Grade) and struggle to estimate what grades they need in future semesters to meet graduation honors or scholarship criteria.",
+      whoAffected: "Undergraduate students tracking semester GPA thresholds, academic probation risks, or graduation honors criteria.",
+      whyExistingInsufficient: "Generic online GPA calculators do not persist course records across semesters, lack credit-hour weighting nuances, have no transcript export capabilities, and provide no actionable feedback when grades slip.",
+      whyMatters: "Transparent, accessible academic tracking reduces grade anxiety, gives students actionable roadmap planning, and leverages AI to provide personalized study strategies when performance declines."
+    },
+
+    solution: {
+      approach: "Developed an end-to-end Flask web platform utilizing SQLite for persistent student accounts and grade records, combining algorithmic credit-weighted GPA logic with Chart.js analytics, ReportLab PDF transcripts, and a Google Gemini conversational agent (GradeBot) delivering tailored academic feedback.",
+      keyWorkflows: [
+        "Score-to-Grade Evaluation: Student inputs course name, raw score (0–100), credit hours, and semester → system maps score to letter grade (A+, A, B, C, D, F) and grade points.",
+        "Weighted SGPA/CGPA Calculation: System multiplies grade points by credit hours, divides by total credits, and applies strict academic safeguards (flagging 'NG' if any failure exists).",
+        "Interactive Performance Analytics: Chart.js visualizes score progression over semesters and grade distribution breakdowns.",
+        "Gemini GradeBot Coaching: Student engages with GradeBot to ask for study plans, subject improvement strategies, or AI-generated semester performance reviews grounded in their actual course marks.",
+        "Transcript Export: One-click export generates a styled printable academic transcript via ReportLab (PDF) or raw data via CSV."
+      ],
+      features: [
+        { name: "Credit-Weighted GPA/CGPA Engine", why: "Calculates true credit-hour-weighted SGPA per semester and cumulative CGPA across all academic terms." },
+        { name: "Ethiopian University Grade Scale", why: "Accurately maps 0–100 numerical scores to institutional letter grades (A+ to F/NG) with credit hour weighting." },
+        { name: "Google Gemini GradeBot", why: "AI-powered academic mentor delivering contextual study plans, grade breakdowns, and motivation based on logged course performance." },
+        { name: "AI Semester Performance Reports", why: "Automatically synthesizes overall strengths, weak subjects, and targeted action items into executive academic reviews." },
+        { name: "PDF & CSV Transcript Generation", why: "Formatted, print-ready PDF academic transcripts built with ReportLab, plus downloadable CSV records." },
+        { name: "Quick GPA Target Calculator", why: "Forward-looking simulator estimating the exact GPA required in remaining courses to achieve target graduation honors." }
+      ]
+    },
+
+    architecture: {
+      layers: [
+        { name: "Frontend Interface", tech: "Jinja2 Templates + Vanilla JavaScript + CSS Design System" },
+        { name: "Visualization & UI", tech: "Chart.js + Responsive Theme Engine (Dark/Light Mode)" },
+        { name: "Application Controller", tech: "Python 3.11 + Flask (app.py) + Werkzeug Auth" },
+        { name: "AI & GenAI Integration", tech: "Google GenAI SDK (ai_feedback.py) + Gemini Flash" },
+        { name: "Data Persistence", tech: "SQLite (database.py) + Python sqlite3" },
+        { name: "Document Generation", tech: "ReportLab (PDF Transcripts) + export.py (CSV)" },
+        { name: "Deployment", tech: "Render + Gunicorn WSGI (Procfile)" }
+      ],
+      diagram: `Browser Client (Jinja2 Templates + Chart.js + Vanilla JS)
+  ├── Pages: Dashboard • Grade History • Transcript View • GradeBot Panel
+  └── Interactive UI: Theme Engine (Dark/Light) • Chart Analytics
+          │
+          ├── [HTTP / Session Auth]
+          ▼
+Flask Application Controller (app.py)
+  ├── Route Handlers: /dashboard • /history • /export/pdf • /api/chat
+  ├── Business Logic: get_grade_info() • calculate_cumulative_gpa()
+  ├── Security: Werkzeug salted hashing • Session guards
+          │
+          ├── [Internal Modules]
+          ├──▶ database.py ──▶ SQLite Database (users, grades)
+          ├──▶ export.py ──▶ ReportLab PDF & CSV Generator
+          └──▶ ai_feedback.py ──▶ Google Gemini API (GradeBot & AI Reports)`
+    },
+
+    database: {
+      overview: "Lightweight relational SQLite database accessed via Python's built-in sqlite3 module with parameterized queries, storing user credentials and normalized grade history.",
+      entities: [
+        { name: "Users", description: "Student accounts with username, email, university details, and salted password hashes" },
+        { name: "Grades", description: "Normalized course records with user ID, subject name, raw score, credit hours, letter grade, grade points, semester, and timestamp" }
+      ],
+      relationships: "Users 1:N Grades",
+      rationale: "SQLite provides zero-configuration local persistence that seamlessly deploys with Gunicorn, maintaining high read/write speeds for single-user student academic sessions without database connection latency."
+    },
+
+    implementation: {
+      frontend: [
+        "Jinja2 template hierarchy with base.html providing consistent navigation, modal dialogs, and dark/light mode toggles",
+        "Dynamic client-side interactivity in dashboard.js and charts.js using Chart.js to render score trajectories and grade distributions",
+        "Responsive floating chatbot panel (chatbot.css) for seamless interactions with GradeBot without leaving the grade entry screen",
+        "Print-friendly transcript view styled to match official university grade transcripts"
+      ],
+      backend: [
+        "Modular Python architecture separating core routing (app.py), database queries (database.py), Gemini AI orchestration (ai_feedback.py), and document generation (export.py)",
+        "Algorithmic evaluation engine implementing weighted credit arithmetic and failure status detection (NG)",
+        "ReportLab PDF generator styling academic transcripts with university-standard formatting, tables, and signature blocks",
+        "Session authentication and profile management protected with salted password hashing"
+      ],
+      deployment: [
+        "Render cloud hosting with Gunicorn WSGI entry point (gunicorn app:app via Procfile)",
+        "Environment variable management using python-dotenv for FLASK_SECRET_KEY and GEMINI_API_KEY",
+        "Zero-dependency persistence using file-based SQLite database with automatic table initialization"
+      ]
+    },
+
+    security: {
+      measures: [
+        { name: "Password Protection", implementation: "Passwords hashed with Werkzeug secure PBKDF2/SHA-256 salted hashing" },
+        { name: "Session Isolation", implementation: "Authenticated Flask session cookies ensuring students can only view, edit, or delete their own academic history" },
+        { name: "Parameterized Queries", implementation: "All SQLite transactions use parameterized SQL queries, eliminating SQL injection vectors" },
+        { name: "Input Sanitization", implementation: "Strict boundary validation on raw scores (0–100) and credit hours" }
+      ]
+    },
+
+    ux: {
+      userFlows: [
+        {
+          role: "University Student",
+          steps: ["Register/Login via /login", "Enter course, raw score, and credit hours", "View instant SGPA calculation and updated charts", "Open GradeBot panel for targeted study advice", "Export formatted PDF transcript"]
+        }
+      ],
+      keyScreens: [
+        "Academic Performance Dashboard with SGPA/CGPA cards",
+        "Interactive Score Progression & Distribution Charts",
+        "Floating GradeBot AI Study Advisor",
+        "Searchable & Printable Grade History Transcript"
+      ],
+      decisions: [
+        "Automatic instant grade computation on form submission gives immediate validation without page reloads",
+        "Transcript print-friendly CSS allows direct browser printing of clean, official-looking grade reports",
+        "Floating GradeBot allows asking for advice while reviewing current semester grades"
+      ]
+    },
+
+    challenges: [
+      {
+        challenge: "Accurately modeling credit-weighted GPA calculations with edge cases such as failing grades and incomplete course credits",
+        difficulty: "Medium — A simple arithmetic average skews GPA significantly if credit hours vary between 2-credit labs and 4-credit lectures.",
+        solution: "Built a robust weighted formula summing (grade_points * credit_hours) divided by total credits, returning a strict 'NG' if an 'F' is present to mirror academic institution rules."
+      },
+      {
+        challenge: "Grounding GradeBot AI responses in actual student marks without hallucination or generic advice",
+        difficulty: "Medium — Standard LLM prompts give generic advice unless fed structured academic context.",
+        solution: "Structured prompt payloads in ai_feedback.py injecting current semester marks, weakest subjects, and CGPA trends, prompting Gemini to act as a supportive academic mentor with concrete study plans."
+      }
+    ],
+
+    performance: {
+      optimizations: [
+        "Lightweight SQLite queries with indexed foreign keys for instant grade history retrieval",
+        "In-memory PDF transcript generation using ReportLab buffers, avoiding disk I/O bottlenecks",
+        "CDN delivery for Chart.js and static asset compression"
+      ],
+      errorHandling: [
+        "Graceful fallback when Gemini API reaches quota limits or network errors occur, providing standard fallback tips",
+        "Input bounds validation preventing invalid scores (<0 or >100) or non-numeric credit hours"
+      ],
+      testing: "Manual and automated test cases covering edge-case GPA computations (all A+, mixed grades, failing grade NG flags, zero credit hours)."
+    },
+
+    roadmap: [
+      "Multi-university grading scale selector (customizable score-to-grade ranges)",
+      "Degree audit and course prerequisite tracking",
+      "Peer study group matching based on shared challenging subjects"
+    ],
+
+    media: {
+      screenshots: [
+        { src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop", alt: "Grade Dashboard", caption: "Academic performance dashboard with cumulative GPA, credits, and grade breakdown" },
+        { src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop", alt: "Chart.js Analytics", caption: "Visual score progression and grade distribution analytics" },
+        { src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=500&fit=crop", alt: "GradeBot AI Chat", caption: "Google Gemini–powered GradeBot delivering personalized study advice" }
+      ]
+    }
   }
 ];
 

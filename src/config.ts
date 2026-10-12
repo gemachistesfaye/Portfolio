@@ -25,7 +25,7 @@ const config: Config = {
   phoneHref: import.meta.env.VITE_PHONEHref || "tel:+251976601074",
   email: import.meta.env.VITE_EMAIL || "gemachis.tesfaye.dev@gmail.com",
   socials: {
-    linkedin: "https://www.linkedin.com/in/gemachis-tesfaye-137196318",
+    linkedin: "https://www.linkedin.com/in/gemachis-tesfaye/",
     twitter: "https://x.com/GemachisTesfaye",
     instagram: "https://www.instagram.com/gemachistesfaye1",
     facebook: "https://www.facebook.com/urjiiko1",

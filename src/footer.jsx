@@ -17,18 +17,18 @@ const socials = [
 ];
 
 const Footer = () => (
-  <footer className="border-t border-orange-200/50 dark:border-zinc-800/80 bg-[#f7f4ee] dark:bg-[#09090b] text-slate-700 dark:text-zinc-400 transition-colors duration-300" role="contentinfo">
-    <div className="max-w-6xl mx-auto px-6 py-12">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-10">
+  <footer className="border-t border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-950 text-slate-700 dark:text-zinc-300 transition-colors duration-300" role="contentinfo">
+    <div className="max-w-6xl mx-auto px-6 py-7 sm:py-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10 mb-6">
         {/* Brand */}
         <div>
-          <div className="flex items-center mb-3">
-            <span className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Gemachis Tesfaye</span>
+          <div className="flex items-center mb-1.5">
+            <span className="text-base font-bold text-slate-900 dark:text-white tracking-tight">Gemachis Tesfaye</span>
           </div>
-          <p className="text-[13px] text-slate-600 dark:text-zinc-400 leading-relaxed max-w-xs">
+          <p className="text-xs text-slate-600 dark:text-zinc-400 leading-relaxed max-w-xs font-medium">
             Full-Stack Developer | Software & AI Systems Engineer
           </p>
-          <div className="flex gap-2 mt-4">
+          <div className="flex gap-2 mt-3.5">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -36,7 +36,7 @@ const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-9 h-9 rounded-lg border border-orange-200/50 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 hover:border-orange-500/40 dark:hover:border-orange-500/40 hover:bg-orange-50/50 dark:hover:bg-zinc-800 transition-all duration-200 shadow-sm"
+                className="w-8 h-8 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900/80 flex items-center justify-center text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all duration-200 shadow-sm"
               >
                 {s.icon}
               </a>
@@ -46,14 +46,14 @@ const Footer = () => (
 
         {/* Quick Links */}
         <div>
-          <p className="text-[10px] font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-wider mb-4">Quick Navigation</p>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+          <p className="text-[11px] font-bold text-slate-900 dark:text-zinc-300 uppercase tracking-wider mb-2.5">Quick Navigation</p>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
             {navLinks.map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
                 onClick={(e) => { e.preventDefault(); scrollToSection(link.toLowerCase()); }}
-                className="text-[13px] text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200"
+                className="text-xs font-medium text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200"
               >
                 {link}
               </a>
@@ -62,19 +62,19 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="pt-6 border-t border-orange-200/50 dark:border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
-        <p className="text-[11px] text-slate-500 dark:text-zinc-500">
+      <div className="pt-5 border-t border-slate-200/80 dark:border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
+        <p className="text-xs text-slate-600 dark:text-zinc-400 font-medium">
           &copy; {new Date().getFullYear()} Gemachis Tesfaye. All rights reserved.
         </p>
         <button
           onClick={scrollToTop}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 hover:bg-orange-50/50 dark:hover:bg-zinc-800/80 border border-orange-200/50 dark:border-zinc-800/80 hover:border-orange-500/30 dark:hover:border-orange-500/30 transition-all duration-200 shadow-sm"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 transition-all duration-200 shadow-sm"
           aria-label="Back to top"
         >
           <span>Back to top</span>
           <ArrowUp size={13} />
         </button>
-        <p className="text-[11px] text-slate-500 dark:text-zinc-500">
+        <p className="text-xs text-slate-600 dark:text-zinc-400 font-medium">
           Crafted with React 19, Vite & Tailwind CSS
         </p>
       </div>

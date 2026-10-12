@@ -1084,7 +1084,7 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     featured: true,
 
     overview: {
-      problem: "Academic institutions and schools struggle with disconnected paper logs and manual spreadsheets for student enrollments, exam grading, attendance registers, and tuition fees, resulting in administrative overload and communication gaps between educators, administrators, and parents.",
+      problem: "Academic institutions face administrative overload and record loss using fragmented paper logs and spreadsheets.",
       users: "Platform superadmins, school directors, administrators, teachers, students, and parents.",
       role: "Full-Stack Software Engineer — Architected backend REST APIs in Flask with SQLAlchemy, multi-tenant Supabase schema with Row-Level Security, 5 role-based portal interfaces in Vite/HTML, and bulk Excel data processing with pandas.",
       timeline: "2025 – 2026",
@@ -1092,29 +1092,29 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     },
 
     motivation: {
-      problem: "Schools frequently operate with fragmented, manual processes: teachers spend hours writing attendance on paper sheets, grades are stored in ad-hoc Excel spreadsheets prone to calculation mistakes and accidental loss, and parents have zero visibility into their child's academic standing or fee payment statuses.",
-      whoAffected: "School directors lacking high-level enrollment/fee metrics, teachers overwhelmed by repetitive administrative paperwork, and parents unable to monitor student attendance and marks in real time.",
-      whyExistingInsufficient: "Commercial enterprise school ERPs are cost-prohibitive for local institutions, overly rigid, or lack localized academic workflows (such as natural vs social stream classification and multi-branch school isolation).",
-      whyMatters: "Digitizing academic workflows eliminates lost student records, ensures transparent grade calculation, improves tuition collection rates, and keeps parents actively engaged in student success."
+      problem: "Manual attendance sheets, ad-hoc Excel gradebooks, and lack of parent visibility cause administrative strain and errors.",
+      whoAffected: "School directors lacking unified metrics, teachers bogged down in paperwork, and parents with no real-time academic visibility.",
+      whyExistingInsufficient: "Enterprise ERPs are expensive and rigid; basic spreadsheets lack role-based security, multi-branch support, and parent portals.",
+      whyMatters: "Digitizing core workflows prevents record loss, automates grading, accelerates fee reconciliation, and engages parents."
     },
 
     solution: {
-      approach: "Engineered a dual-backend architecture: a Python Flask REST API with SQLAlchemy for school CRUD operations, JWT auth, and pandas/ReportLab report exports, complemented by a PostgreSQL Supabase schema providing Row-Level Security (RLS) policies for multi-school tenant isolation, realtime notifications, and audit logging.",
+      approach: "Built a dual-backend architecture: Flask REST API with SQLAlchemy for CRUD and Excel processing, paired with Supabase PostgreSQL RLS for multi-tenant isolation and live notifications.",
       keyWorkflows: [
-        "Multi-Portal Access Control: Single authentication entry point (/api/auth/login) verifying JWTs and dispatching users to Superadmin, Admin, Teacher, Student, or Parent dashboards with strict RBAC enforcement.",
-        "Bulk Student & Teacher Onboarding: Administrators upload standardized Excel rosters; pandas processes and validates rows, automatically generating student/teacher accounts and class enrollments.",
-        "Daily Bulk Attendance: Teachers open daily class rosters, toggle attendance statuses (Present, Absent, Late, Excused) with single-click bulk actions, updating parent dashboards and analytical summaries instantly.",
-        "Examination & Grade Calculation: Teachers enter Quiz, Mid, and Final marks; system calculates weighted totals, computes letter grades, and prevents grade tampering once locked by administration.",
-        "Parent Fee & Academic Oversight: Parents log into their dedicated portal to inspect linked children's real-time attendance percentages, exam report cards, and outstanding fee invoices."
+        "Multi-Portal Access: Single login routing users to Superadmin, Admin, Teacher, Student, or Parent dashboards with RBAC.",
+        "Bulk Onboarding: Automated spreadsheet parsing via pandas to onboard student and teacher rosters in seconds.",
+        "Quick Attendance: 1-click bulk attendance per class period with real-time parent notification triggers.",
+        "Gradebook Engine: Weighted mark calculations (Quiz, Mid, Final) with tamper-resistant letter-grade locking.",
+        "Parent Oversight: Live visibility into attendance percentages, report cards, and tuition fee ledgers."
       ],
       features: [
-        { name: "Multi-Tenant Branch Management", why: "Superadmins create and isolate school branches, assign directors, and monitor multi-institution analytics from one command center." },
-        { name: "5 Role-Based Portals", why: "Dedicated responsive environments tailored specifically for Superadmins, School Admins, Teachers, Students, and Parents." },
-        { name: "Bulk Excel Import & CSV Exports", why: "Automated spreadsheet ingestion using pandas to onboard hundreds of students and teachers in seconds." },
-        { name: "Comprehensive Grade & Exam Engine", why: "Supports Quiz, Mid, and Final exams with automatic weighted totals and letter-grade assignments." },
-        { name: "Conflict-Free Timetable & Academic Streams", why: "Handles room, teacher, and section schedules with natural and social academic stream allocations." },
-        { name: "Fee Tracking & Financial Reports", why: "Tracks tuition amounts, payment status, due dates, and produces exportable financial statements." },
-        { name: "Realtime Notifications & Supabase RLS", why: "PostgreSQL Row-Level Security policies ensuring strict multi-tenant school isolation and live parent alerts." }
+        { name: "Multi-Tenant Branch Management", why: "Centralized administration for multiple school branches with isolated datasets." },
+        { name: "5 Role-Based Portals", why: "Tailored dashboards for Superadmins, Admins, Teachers, Students, and Parents." },
+        { name: "Bulk Excel Ingestion", why: "Rapid roster onboarding and automated data validation with pandas." },
+        { name: "Automated Grade Engine", why: "Weighted assessment calculations and tamper-proof grade locks." },
+        { name: "Timetable & Stream Allocation", why: "Conflict-free room, teacher, and natural/social stream scheduling." },
+        { name: "Tuition & Fee Ledger", why: "Track payments, due dates, outstanding balances, and export financial summaries." },
+        { name: "Supabase RLS Security", why: "Database-level policy enforcement ensuring total data isolation between schools." }
       ]
     },
 
@@ -1149,49 +1149,49 @@ Supabase Cloud (PostgreSQL 15 + PL/pgSQL)
     },
 
     database: {
-      overview: "Relational database architecture featuring SQLAlchemy models for local execution and a multi-tenant PostgreSQL schema in Supabase enforced with Row-Level Security (RLS) policies for complete school data isolation.",
+      overview: "Relational architecture with SQLAlchemy models locally and a multi-tenant PostgreSQL schema in Supabase enforced with Row-Level Security.",
       entities: [
-        { name: "Users", description: "Credentials, role hierarchy (superadmin, admin, teacher, student, parent), branch ID, and account status" },
-        { name: "Schools", description: "Multi-tenant institution records, directors, addresses, and branch capacity" },
-        { name: "Students", description: "Enrollment details, class/section allocation, date of birth, contact, and parent linkage" },
-        { name: "Teachers", description: "Subject assignments, qualifications, contact info, and hire dates" },
-        { name: "Classes & Subjects", description: "Grade levels, sections, academic years, and stream allocations (natural/social)" },
-        { name: "Attendance", description: "Daily presence records (present, absent, late, excused) linked to class and date" },
-        { name: "Grades & Exams", description: "Assessment records (Quiz, Mid, Final) with scores, weights, and automated letter grades" },
-        { name: "Fees", description: "Tuition invoices, payment logs, due dates, and collection statuses" },
-        { name: "AuditLogs", description: "Platform-wide operational logging for administrative compliance and security tracking" }
+        { name: "Users", description: "Credentials, roles (superadmin, admin, teacher, student, parent), branch ID" },
+        { name: "Schools", description: "Multi-tenant institution profiles, branch metadata, and active capacity" },
+        { name: "Students", description: "Enrollments, class/section allocations, and parent linkages" },
+        { name: "Teachers", description: "Subject assignments, credentials, and hire logs" },
+        { name: "Classes & Subjects", description: "Grade levels, sections, and stream tracks (natural/social)" },
+        { name: "Attendance", description: "Daily records (present, absent, late, excused) per student/class" },
+        { name: "Grades & Exams", description: "Quiz, Mid, and Final scores with automated weighted totals" },
+        { name: "Fees", description: "Invoices, payment logs, due dates, and settlement status" },
+        { name: "AuditLogs", description: "Security audit trail for grade edits and administrative actions" }
       ],
-      relationships: "Schools 1:N Users · Schools 1:N Classes · Classes 1:N Students · Classes 1:N Subjects · Teachers 1:N Subjects · Parents 1:N Students · Students 1:N Attendance · Students 1:N Grades · Students 1:N Fees",
-      rationale: "Multi-tenant education data requires strict isolation between separate schools. Supabase RLS enforces data boundaries at the database engine level, while SQLAlchemy gives Flask high developer velocity for local execution."
+      relationships: "Schools 1:N Users · Schools 1:N Classes · Classes 1:N Students · Classes 1:N Subjects · Parents 1:N Students · Students 1:N Attendance · Students 1:N Grades · Students 1:N Fees",
+      rationale: "Multi-tenant school data requires strict separation. Supabase RLS enforces boundaries at the database engine level, while SQLAlchemy provides high developer velocity locally."
     },
 
     implementation: {
       frontend: [
-        "Vite-powered frontend with modular HTML pages separated into role hierarchies (pages/admin, pages/teacher, pages/student, pages/parent, pages/superadmin)",
-        "Responsive layouts with mobile drawer navigation, dark/light theme switching, and accessible modal confirmation dialogs",
-        "Chart.js integration for visual data representation: enrollment trends, attendance distribution, and fee collection summaries",
-        "Supabase JavaScript client integration for realtime event subscriptions and cloud authentication"
+        "Vite-bundled modular HTML pages cleanly organized by role hierarchy",
+        "Responsive layouts with mobile drawers, dark/light themes, and accessible modals",
+        "Chart.js visual dashboards for enrollment trends, attendance, and fee collections",
+        "Supabase JS client for realtime notifications and cloud state"
       ],
       backend: [
-        "Flask modular blueprint architecture separating route domains (auth, admin, teacher, student, parent, superadmin)",
-        "PyJWT and salted bcrypt security middleware enforcing role-level guards and preventing privilege escalation",
-        "High-throughput bulk import pipelines powered by pandas for parsing Excel rosters with validation error reports",
-        "PDF report generation using ReportLab for report cards, attendance certificates, and financial summaries"
+        "Flask blueprint architecture separating auth, admin, teacher, student, parent, and superadmin domains",
+        "PyJWT and salted bcrypt security middleware preventing privilege escalation",
+        "High-throughput pandas import pipelines for Excel rosters with schema validation",
+        "ReportLab PDF engine generating student report cards and financial summaries"
       ],
       deployment: [
-        "Vite production build bundling static assets for edge distribution on Vercel / Netlify",
-        "Container-ready Python Flask backend deployable on Render or Dockerized Linux VPS",
-        "Managed Supabase PostgreSQL cloud instance with automated migration scripts (supabase-schema.sql)"
+        "Static frontend assets optimized for edge hosting on Vercel / Netlify",
+        "Containerized Python Flask backend deployable on Render or Linux VPS",
+        "Managed Supabase PostgreSQL cloud database with automated migration scripts"
       ]
     },
 
     security: {
       measures: [
-        { name: "Role-Based Access Control (RBAC)", implementation: "Every route is guarded by decorator middleware checking user role against required permission level" },
-        { name: "Supabase Row-Level Security (RLS)", implementation: "Database-level policies guarantee that students, parents, and teachers can only query records belonging to their assigned school branch" },
-        { name: "Password Security", implementation: "Salted bcrypt password hashing with mandatory password change enforcement for newly generated accounts" },
-        { name: "Data Validation & Sanitization", implementation: "Strict payload validation on all CRUD operations preventing SQL injection and malformed inputs" },
-        { name: "Audit Trail Logging", implementation: "Centralized audit_logs table tracking sensitive events such as grade updates, fee payments, and user role modifications" }
+        { name: "Role-Based Access Control", implementation: "Strict decorator middleware enforcing permissions on every endpoint" },
+        { name: "Supabase Row-Level Security", implementation: "PostgreSQL RLS guaranteeing users only access their assigned school branch" },
+        { name: "Password Security", implementation: "Salted bcrypt hashing with forced resets for newly provisioned accounts" },
+        { name: "Input Validation", implementation: "Payload sanitization on all CRUD actions preventing injection and malformed inputs" },
+        { name: "Audit Logging", implementation: "Centralized logging tracking grade edits, fee receipts, and permission changes" }
       ]
     },
 
@@ -1199,61 +1199,61 @@ Supabase Cloud (PostgreSQL 15 + PL/pgSQL)
       userFlows: [
         {
           role: "School Administrator",
-          steps: ["Log in via /login.html", "View dashboard KPIs (students, teachers, fees)", "Import students via Excel roster", "Assign teachers to subjects & classes", "Monitor fee collection & export reports"]
+          steps: ["Log in", "Inspect enrollment & fee KPIs", "Import Excel rosters", "Assign teachers to subjects", "Export financial summaries"]
         },
         {
           role: "Teacher",
-          steps: ["Log in via teacher portal", "Select class and period roster", "Bulk mark daily attendance in 30 seconds", "Enter Quiz, Mid, and Final exam grades", "Review class grade distribution"]
+          steps: ["Log in", "Open class roster", "Record bulk attendance in 30 seconds", "Enter Quiz, Mid & Final grades", "Review distribution curves"]
         },
         {
           role: "Parent",
-          steps: ["Log in via /parentlogin.html", "Select child profile", "Review attendance rate and unexcused absences", "Inspect term exam report card", "Check pending tuition fees and payment history"]
+          steps: ["Log in", "Select child profile", "Review attendance percentages", "View exam report cards", "Check tuition invoice status"]
         }
       ],
       keyScreens: [
         "Multi-Tenant Superadmin Command Center",
-        "Admin KPI Dashboard with Enrollment & Attendance Charts",
-        "Teacher Quick-Attendance & Gradebook View",
-        "Parent Child Progress & Tuition Ledger",
-        "Bulk Data Import & Export Utility"
+        "Admin KPI Dashboard with Charts",
+        "Teacher 1-Click Attendance & Gradebook",
+        "Parent Child Progress & Fee Ledger",
+        "Bulk Data Import & Validation Utility"
       ],
       decisions: [
-        "Role-segmented dashboards prevent clutter and reduce cognitive load for non-technical users",
-        "1-click bulk attendance actions reduce teacher admin time from 15 minutes down to 30 seconds per period",
-        "Toast notifications and loading skeletons provide clear feedback during bulk file uploads"
+        "Role-segmented portals eliminate menu clutter for non-technical users",
+        "1-click bulk attendance reduces teacher admin time from 15 min to 30 sec per period",
+        "Live toast feedback and validation summaries prevent corrupt spreadsheet imports"
       ]
     },
 
     challenges: [
       {
-        challenge: "Handling bulk student and teacher onboarding without server timeouts or malformed record crashes",
-        difficulty: "High — Excel spreadsheets from schools contain inconsistent column names, missing phone numbers, and duplicate entries.",
-        solution: "Built a robust pandas ingestion pipeline with pre-validation schema checks, descriptive error reporting for invalid rows, and atomic database transaction commits."
+        challenge: "Bulk Roster Ingestion with Dirty Data",
+        difficulty: "High",
+        solution: "Built a pandas validation pipeline with schema checking, row-level error reporting, and atomic database commits."
       },
       {
-        challenge: "Guaranteeing multi-tenant data privacy across multiple school branches sharing the same platform",
-        difficulty: "High — Accidental data leakage between different schools would violate privacy regulations.",
-        solution: "Implemented PostgreSQL Row-Level Security (RLS) in Supabase tied to school_id and user authentication claims, ensuring database-level data isolation."
+        challenge: "Multi-Tenant School Data Isolation",
+        difficulty: "High",
+        solution: "Implemented PostgreSQL Row-Level Security (RLS) policies in Supabase, enforcing strict boundaries at the database engine level."
       },
       {
-        challenge: "Balancing local Flask/SQLAlchemy development speed with cloud-first Supabase capabilities",
-        difficulty: "Medium — Synchronizing data structures between local SQLite and cloud Supabase tables.",
-        solution: "Unified data contracts through declarative models and created automated seed scripts ensuring parity across development and cloud environments."
+        challenge: "Hybrid Local & Cloud Database Parity",
+        difficulty: "Medium",
+        solution: "Unified data models across local SQLite/MySQL and cloud Supabase with declarative schemas and automated migration scripts."
       }
     ],
 
     performance: {
       optimizations: [
-        "Bulk database insertions using SQLAlchemy and Supabase batch operations rather than row-by-row queries",
-        "Optimized Chart.js rendering and lightweight vanilla JavaScript minimizing frontend bundle overhead",
-        "Database indexing on school_id, student_id, class_id, and date for instantaneous attendance and grade queries"
+        "Batch database insertions via SQLAlchemy/Supabase avoiding row-by-row bottlenecks",
+        "Lightweight vanilla JavaScript and Chart.js minimizing frontend bundle size",
+        "Indexed queries on school_id, student_id, and class_id for instant lookups"
       ],
       errorHandling: [
-        "Unified JSON exception responses across all Flask API endpoints",
-        "Pre-upload file validation checking MIME type, file size, and column headers before triggering pandas processing",
-        "Graceful fallback to cached views when network connectivity drops"
+        "Standardized JSON error responses across all Flask API endpoints",
+        "Pre-upload file validation for MIME type, size, and header formatting",
+        "Graceful fallback state handling when offline or on unstable networks"
       ],
-      testing: "Unit tests for authentication and role middleware guards, API endpoint integration tests validating CRUD operations across admin and teacher routes, and Excel import test suites verifying edge-case handling on malformed spreadsheets."
+      testing: "Comprehensive unit and integration tests covering JWT auth guards, API endpoints, and pandas Excel parser edge cases."
     },
 
     roadmap: [

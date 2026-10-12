@@ -70,7 +70,7 @@ const Contact = () => {
             {[
               { icon: <Mail size={18} />, label: "Email", value: config.email, href: `mailto:${config.email}` },
               { icon: <Phone size={18} />, label: "Phone", value: config.phone, href: `tel:${config.phone}` },
-              { icon: <MapPin size={18} />, label: "Location", value: "Adama, Ethiopia", href: null },
+              { icon: <MapPin size={18} />, label: "Location", value: "Harar, Ethiopia", href: null },
             ].map((c, i) => (
               <div
                 key={i}

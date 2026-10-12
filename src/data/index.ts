@@ -237,22 +237,22 @@ export const skills: { categories: SkillCategory[] } = {
   categories: [
     {
       label: "Full-Stack Development",
-      color: "from-emerald-500 to-teal-600",
+      color: "from-orange-500 to-amber-600",
       items: ["React 19", "TypeScript", "JavaScript (ES6+)", "Node.js", "NestJS", "Python", "Express.js", "Tailwind CSS", "REST APIs"],
     },
     {
       label: "Database & Backend Systems",
-      color: "from-teal-500 to-emerald-600",
+      color: "from-amber-500 to-orange-600",
       items: ["PostgreSQL", "MySQL", "Prisma ORM", "Supabase", "Firebase", "Schema Architecture", "SQL Optimization"],
     },
     {
       label: "AI Integration & Data Science",
-      color: "from-emerald-500 to-teal-600",
+      color: "from-orange-500 to-amber-600",
       items: ["Gemini API", "OpenAI API", "Scikit-Learn", "SHAP Values", "TF-IDF", "Recommendation Systems", "Prompt Engineering"],
     },
     {
       label: "Cloud, DevOps & Workflows",
-      color: "from-teal-500 to-emerald-600",
+      color: "from-amber-500 to-orange-600",
       items: ["Git & GitHub", "Docker", "Vercel", "Render", "CI/CD Pipelines", "Agile / Scrum", "Postman"],
     },
   ],
@@ -264,7 +264,7 @@ export const experience: Experience[] = [
     org: "Sofomar Technologies (Remote)",
     date: "2026",
     type: "Experience",
-    color: "from-emerald-500 to-teal-500",
+    color: "from-orange-500 to-amber-500",
     points: [
       "Engineered SmartBiz ERP Lite, an offline-first PWA for Ethiopian SMEs using React 19, NestJS, Prisma, and PostgreSQL.",
       "Implemented local offline caching, automatic background synchronization, and inventory tracking modules.",
@@ -273,10 +273,10 @@ export const experience: Experience[] = [
   },
   {
     role: "Full-Stack Engineering Intern (On-site)",
-    org: "Adama Science and Technology University (ASTU)",
+    org: "ASTU (Adama Science and Technology University)",
     date: "2026 – Present",
     type: "Experience",
-    color: "from-emerald-500 to-teal-500",
+    color: "from-orange-500 to-amber-500",
     points: [
       "Engineered the institutional Research Project Management System (RPMS) on-site with full-stack architecture.",
       "Developed end-to-end research proposal governance, milestone tracking, and grant review workflows.",
@@ -288,7 +288,7 @@ export const experience: Experience[] = [
     org: "ISHub, Addis Ababa University",
     date: "July 2025 – Sept 2025",
     type: "Experience",
-    color: "from-teal-500 to-emerald-500",
+    color: "from-amber-500 to-orange-500",
     points: [
       "Built and deployed five functional web applications using modern JavaScript ES6+, React, and Tailwind CSS.",
     ],
@@ -299,7 +299,7 @@ export const experience: Experience[] = [
     org: "Haramaya University",
     date: "2024 – 2027 (Expected)",
     type: "Degree",
-    color: "from-emerald-500 to-teal-600",
+    color: "from-orange-500 to-amber-600",
     points: [
       "Entering final year with strong academic standing.",
       "Coursework: Database Systems, Data Structures, Web Development, AI, and Systems Analysis.",

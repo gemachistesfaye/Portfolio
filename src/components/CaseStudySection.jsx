@@ -3,7 +3,7 @@ const CaseStudySection = ({ title, icon, children, id }) => {
     <section id={id} className="py-8">
       <div className="flex items-center gap-3 mb-5">
         {icon && (
-          <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700/60 flex items-center justify-center text-emerald-600 dark:text-emerald-400 flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700/60 flex items-center justify-center text-orange-600 dark:text-orange-400 flex-shrink-0">
             {icon}
           </div>
         )}

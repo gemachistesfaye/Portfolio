@@ -135,15 +135,15 @@ const FloatingButtons = () => {
           {/* Header */}
           <div className="px-4 py-3 bg-slate-900 dark:bg-zinc-950 border-b border-white/[0.08] flex items-center justify-between text-white">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-amber-600 dark:from-emerald-500 dark:to-teal-700 flex items-center justify-center text-white shadow-md shadow-orange-500/30 dark:shadow-emerald-500/30">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-amber-600 dark:from-orange-500 dark:to-amber-700 flex items-center justify-center text-white shadow-md shadow-orange-500/30 dark:shadow-orange-500/30">
                 <Bot size={18} />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
                   <h3 className="text-xs font-bold text-white tracking-wide">Ask Gemachis</h3>
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 dark:bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500 dark:bg-emerald-500" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 dark:bg-orange-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500 dark:bg-orange-500" />
                   </span>
                 </div>
                 <p className="text-[10px] text-zinc-400">AI Portfolio Copilot</p>
@@ -180,7 +180,7 @@ const FloatingButtons = () => {
                 <div
                   className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl whitespace-pre-line ${
                     m.sender === "user"
-                      ? "bg-orange-600 dark:bg-emerald-600 text-white rounded-br-xs shadow-md shadow-orange-600/20 dark:shadow-emerald-600/20"
+                      ? "bg-orange-600 dark:bg-orange-600 text-white rounded-br-xs shadow-md shadow-orange-600/20 dark:shadow-orange-600/20"
                       : "bg-stone-100 dark:bg-zinc-800/90 text-slate-800 dark:text-zinc-200 border border-orange-200/50 dark:border-zinc-700/60 rounded-bl-xs"
                   }`}
                 >
@@ -192,9 +192,9 @@ const FloatingButtons = () => {
             {isTyping && (
               <div className="flex justify-start">
                 <div className="px-3.5 py-2 rounded-2xl bg-stone-100 dark:bg-zinc-800/90 text-slate-500 dark:text-zinc-400 border border-orange-200/50 dark:border-zinc-700/60 text-xs flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-emerald-500 animate-bounce" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-emerald-500 animate-bounce [animation-delay:0.15s]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-emerald-500 animate-bounce [animation-delay:0.3s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-500 animate-bounce" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-500 animate-bounce [animation-delay:0.15s]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-500 animate-bounce [animation-delay:0.3s]" />
                 </div>
               </div>
             )}
@@ -208,7 +208,7 @@ const FloatingButtons = () => {
                 <button
                   key={q}
                   onClick={() => handleSend(q)}
-                  className="px-2.5 py-1 text-[11px] rounded-lg bg-white dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 border border-orange-200/60 dark:border-zinc-700/80 hover:border-orange-500/40 hover:text-orange-600 dark:hover:text-emerald-300 transition-all text-left truncate max-w-full"
+                  className="px-2.5 py-1 text-[11px] rounded-lg bg-white dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 border border-orange-200/60 dark:border-zinc-700/80 hover:border-orange-500/40 hover:text-orange-600 dark:hover:text-orange-300 transition-all text-left truncate max-w-full"
                 >
                   {q}
                 </button>
@@ -224,13 +224,13 @@ const FloatingButtons = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask about stack, projects, experience..."
-              className="flex-1 px-3 py-2 text-xs rounded-xl bg-stone-100 dark:bg-zinc-900 text-slate-900 dark:text-white border border-orange-200/50 dark:border-zinc-800 focus:outline-none focus:border-orange-500/50 dark:focus:border-emerald-500/50"
+              className="flex-1 px-3 py-2 text-xs rounded-xl bg-stone-100 dark:bg-zinc-900 text-slate-900 dark:text-white border border-orange-200/50 dark:border-zinc-800 focus:outline-none focus:border-orange-500/50 dark:focus:border-orange-500/50"
             />
             <button
               onClick={() => handleSend()}
               disabled={!input.trim()}
               aria-label="Send message"
-              className="p-2 rounded-xl bg-orange-600 hover:bg-orange-500 dark:bg-emerald-600 dark:hover:bg-emerald-500 disabled:opacity-40 text-white transition-all shadow-md shadow-orange-600/20 dark:shadow-emerald-600/20"
+              className="p-2 rounded-xl bg-orange-600 hover:bg-orange-500 dark:bg-orange-600 dark:hover:bg-orange-500 disabled:opacity-40 text-white transition-all shadow-md shadow-orange-600/20 dark:shadow-orange-600/20"
             >
               <Send size={14} />
             </button>
@@ -241,7 +241,7 @@ const FloatingButtons = () => {
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 flex items-center gap-2 px-4 py-3 bg-orange-600 hover:bg-orange-500 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold rounded-full shadow-xl shadow-orange-600/25 dark:shadow-emerald-600/25 hover:shadow-orange-600/40 dark:hover:shadow-emerald-600/40 border border-white/10 transition-all duration-300 group select-none outline-none focus:outline-none hover:scale-105"
+        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40 flex items-center gap-2 px-4 py-3 bg-orange-600 hover:bg-orange-500 dark:bg-orange-600 dark:hover:bg-orange-500 text-white font-bold rounded-full shadow-xl shadow-orange-600/25 dark:shadow-orange-600/25 hover:shadow-orange-600/40 dark:hover:shadow-orange-600/40 border border-white/10 transition-all duration-300 group select-none outline-none focus:outline-none hover:scale-105"
         aria-label={isOpen ? "Close Ask Gemachis" : "Open Ask Gemachis"}
         aria-expanded={isOpen}
       >
@@ -252,7 +252,7 @@ const FloatingButtons = () => {
           </>
         ) : (
           <>
-            <Sparkles size={16} className="group-hover:rotate-12 transition-transform text-orange-200 dark:text-emerald-200" />
+            <Sparkles size={16} className="group-hover:rotate-12 transition-transform text-orange-200 dark:text-orange-200" />
             <span className="text-xs font-semibold">Ask Gemachis</span>
           </>
         )}

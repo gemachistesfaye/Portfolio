@@ -25,7 +25,7 @@ const BlogList = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-32 gap-4">
-        <div className="w-10 h-10 border-[3px] border-emerald-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-10 h-10 border-[3px] border-orange-500 border-t-transparent rounded-full animate-spin" />
         <p className="text-sm text-slate-500 dark:text-zinc-400">Loading articles...</p>
       </div>
     );
@@ -34,7 +34,7 @@ const BlogList = () => {
   if (showEmpty) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-6 text-center">
-        <div className="w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-sm">
+        <div className="w-20 h-20 rounded-2xl bg-orange-50 dark:bg-orange-500/10 border border-orange-200 dark:border-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400 shadow-sm">
           <PenLine size={32} />
         </div>
         <div>
@@ -47,7 +47,7 @@ const BlogList = () => {
         </div>
         <a
           href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-600/20 transition-all duration-300"
+          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-500 rounded-xl shadow-lg shadow-orange-600/20 transition-all duration-300"
         >
           <ArrowLeft size={16} />
           Return to Portfolio
@@ -80,7 +80,7 @@ const BlogList = () => {
           <Link
             key={post._id}
             to={`/blog/${post.slug.current}`}
-            className="group block bg-white dark:bg-zinc-900/60 rounded-2xl overflow-hidden border border-slate-200 dark:border-zinc-800 hover:border-emerald-500/40 shadow-sm hover:shadow-xl transition-all duration-300 no-underline hover:-translate-y-1"
+            className="group block bg-white dark:bg-zinc-900/60 rounded-2xl overflow-hidden border border-slate-200 dark:border-zinc-800 hover:border-orange-500/40 shadow-sm hover:shadow-xl transition-all duration-300 no-underline hover:-translate-y-1"
           >
             {post.coverImage && (
               <div className="aspect-video overflow-hidden bg-slate-100 dark:bg-zinc-950 relative">
@@ -99,14 +99,14 @@ const BlogList = () => {
               </div>
             )}
             <div className="p-6">
-              <time className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-2">
+              <time className="text-xs font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-wider block mb-2">
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
                 })}
               </time>
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200 leading-snug">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-200 leading-snug">
                 {post.title}
               </h2>
               <p className="text-sm text-slate-600 dark:text-zinc-400 line-clamp-2 mb-4 leading-relaxed">

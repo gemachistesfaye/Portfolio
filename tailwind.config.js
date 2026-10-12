@@ -7,15 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: '#10b981',
-        'accent-hover': '#059669',
-        'accent-light': '#34d399',
+        accent: '#f97316',
+        'accent-hover': '#ea580c',
+        'accent-light': '#fb923c',
         brand: {
-          50: '#ecfdf5',
-          100: '#d1fae5',
-          400: '#34d399',
-          500: '#10b981',
-          600: '#059669',
+          50: '#fff7ed',
+          100: '#ffedd5',
+          400: '#fb923c',
+          500: '#f97316',
+          600: '#ea580c',
         },
       },
       keyframes: {

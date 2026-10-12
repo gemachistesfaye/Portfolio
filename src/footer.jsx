@@ -36,7 +36,7 @@ const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-9 h-9 rounded-lg border border-orange-200/50 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-emerald-400 hover:border-orange-500/40 dark:hover:border-emerald-500/40 hover:bg-orange-50/50 dark:hover:bg-zinc-800 transition-all duration-200 shadow-sm"
+                className="w-9 h-9 rounded-lg border border-orange-200/50 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 flex items-center justify-center text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 hover:border-orange-500/40 dark:hover:border-orange-500/40 hover:bg-orange-50/50 dark:hover:bg-zinc-800 transition-all duration-200 shadow-sm"
               >
                 {s.icon}
               </a>
@@ -53,7 +53,7 @@ const Footer = () => (
                 key={link}
                 href={`#${link.toLowerCase()}`}
                 onClick={(e) => { e.preventDefault(); scrollToSection(link.toLowerCase()); }}
-                className="text-[13px] text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-emerald-400 transition-colors duration-200"
+                className="text-[13px] text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200"
               >
                 {link}
               </a>
@@ -68,7 +68,7 @@ const Footer = () => (
         </p>
         <button
           onClick={scrollToTop}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-emerald-400 hover:bg-orange-50/50 dark:hover:bg-zinc-800/80 border border-orange-200/50 dark:border-zinc-800/80 hover:border-orange-500/30 dark:hover:border-emerald-500/30 transition-all duration-200 shadow-sm"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 hover:bg-orange-50/50 dark:hover:bg-zinc-800/80 border border-orange-200/50 dark:border-zinc-800/80 hover:border-orange-500/30 dark:hover:border-orange-500/30 transition-all duration-200 shadow-sm"
           aria-label="Back to top"
         >
           <span>Back to top</span>

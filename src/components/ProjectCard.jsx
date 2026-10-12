@@ -2,9 +2,9 @@ import { ExternalLink, Github, FileText } from "lucide-react";
 
 const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = false }) => {
   return (
-    <div className="group relative rounded-2xl border border-orange-200/60 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl hover:border-orange-500/40 dark:hover:border-emerald-500/40 hover:bg-orange-50/20 dark:hover:bg-zinc-900/90 text-slate-900 dark:text-white flex flex-col justify-between h-full">
+    <div className="group relative rounded-2xl border border-orange-200/60 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-md overflow-hidden transition-all duration-300 shadow-sm hover:shadow-xl hover:border-orange-500/40 dark:hover:border-orange-500/40 hover:bg-orange-50/20 dark:hover:bg-zinc-900/90 text-slate-900 dark:text-white flex flex-col justify-between h-full">
       {/* Subtle Ambient Hover Glow */}
-      <div className="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 dark:bg-emerald-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 dark:bg-orange-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       <div>
         <div className={`relative ${compact ? 'h-32 sm:h-36' : 'h-40 sm:h-44'} bg-stone-100 dark:bg-zinc-950 overflow-hidden`}>
@@ -28,7 +28,7 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = fa
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pointer-events-auto p-1.5 rounded-full bg-white/90 dark:bg-zinc-950/80 backdrop-blur-md border border-orange-200/50 dark:border-white/[0.08] text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:border-orange-500/40 dark:hover:border-emerald-500/40 shadow-sm transition-all duration-200 hover:scale-110"
+                className="pointer-events-auto p-1.5 rounded-full bg-white/90 dark:bg-zinc-950/80 backdrop-blur-md border border-orange-200/50 dark:border-white/[0.08] text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:border-orange-500/40 dark:hover:border-orange-500/40 shadow-sm transition-all duration-200 hover:scale-110"
                 aria-label={`View ${project.name} source code on GitHub`}
                 title="View Source Code on GitHub"
               >
@@ -39,7 +39,7 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = fa
         </div>
 
         <div className={compact ? "p-3.5" : "p-4"}>
-          <h3 className={`${compact ? 'text-sm' : 'text-sm sm:text-base'} font-bold text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-1 mb-1.5`}>
+          <h3 className={`${compact ? 'text-sm' : 'text-sm sm:text-base'} font-bold text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-1 mb-1.5`}>
             {project.name}
           </h3>
 
@@ -67,7 +67,7 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = fa
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex-1 flex items-center justify-center gap-1.5 ${compact ? 'px-2.5 py-1.5' : 'px-3 py-2'} text-xs font-medium rounded-lg border transition-all duration-200 bg-stone-100/90 dark:bg-zinc-800/80 hover:bg-stone-200/80 dark:hover:bg-zinc-700/80 border-orange-200/60 dark:border-zinc-700/60 hover:border-orange-500/40 dark:hover:border-emerald-500/40 text-slate-700 dark:text-zinc-200 hover:text-orange-700 dark:hover:text-white shadow-sm`}
+              className={`flex-1 flex items-center justify-center gap-1.5 ${compact ? 'px-2.5 py-1.5' : 'px-3 py-2'} text-xs font-medium rounded-lg border transition-all duration-200 bg-stone-100/90 dark:bg-zinc-800/80 hover:bg-stone-200/80 dark:hover:bg-zinc-700/80 border-orange-200/60 dark:border-zinc-700/60 hover:border-orange-500/40 dark:hover:border-orange-500/40 text-slate-700 dark:text-zinc-200 hover:text-orange-700 dark:hover:text-orange-300 shadow-sm`}
             >
               <ExternalLink size={12} className="text-slate-500 dark:text-zinc-400" />
               Live Demo
@@ -77,7 +77,7 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = fa
           {showCaseStudyLink && project.slug ? (
             <button
               onClick={() => onSelect?.(project.slug)}
-              className={`flex-1 flex items-center justify-center gap-1.5 ${compact ? 'px-2.5 py-1.5' : 'px-3 py-2'} text-xs font-medium rounded-lg border transition-all duration-200 bg-stone-100/90 dark:bg-zinc-800/80 hover:bg-stone-200/80 dark:hover:bg-zinc-700/80 border-orange-200/60 dark:border-zinc-700/60 hover:border-orange-500/40 dark:hover:border-emerald-500/40 text-slate-700 dark:text-zinc-200 hover:text-orange-700 dark:hover:text-white shadow-sm`}
+              className={`flex-1 flex items-center justify-center gap-1.5 ${compact ? 'px-2.5 py-1.5' : 'px-3 py-2'} text-xs font-medium rounded-lg border transition-all duration-200 bg-stone-100/90 dark:bg-zinc-800/80 hover:bg-stone-200/80 dark:hover:bg-zinc-700/80 border-orange-200/60 dark:border-zinc-700/60 hover:border-orange-500/40 dark:hover:border-orange-500/40 text-slate-700 dark:text-zinc-200 hover:text-orange-700 dark:hover:text-orange-300 shadow-sm`}
             >
               <FileText size={12} className="text-slate-500 dark:text-zinc-400" />
               Case Study
@@ -87,7 +87,7 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = fa
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex-1 flex items-center justify-center gap-1.5 ${compact ? 'px-2.5 py-1.5' : 'px-3 py-2'} text-xs font-medium rounded-lg border transition-all duration-200 bg-stone-100/90 dark:bg-zinc-800/80 hover:bg-stone-200/80 dark:hover:bg-zinc-700/80 border-orange-200/60 dark:border-zinc-700/60 hover:border-orange-500/40 dark:hover:border-emerald-500/40 text-slate-700 dark:text-zinc-200 hover:text-orange-700 dark:hover:text-white shadow-sm`}
+              className={`flex-1 flex items-center justify-center gap-1.5 ${compact ? 'px-2.5 py-1.5' : 'px-3 py-2'} text-xs font-medium rounded-lg border transition-all duration-200 bg-stone-100/90 dark:bg-zinc-800/80 hover:bg-stone-200/80 dark:hover:bg-zinc-700/80 border-orange-200/60 dark:border-zinc-700/60 hover:border-orange-500/40 dark:hover:border-orange-500/40 text-slate-700 dark:text-zinc-200 hover:text-orange-700 dark:hover:text-orange-300 shadow-sm`}
             >
               <Github size={12} className="text-slate-500 dark:text-zinc-400" />
               Source Code

@@ -15,6 +15,7 @@ export const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
     featured: true,
     slug: "smartbiz-erp",
+    isPrivate: true,
   },
   {
     name: "Sheger Health Connect",
@@ -29,6 +30,7 @@ export const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
     featured: true,
     slug: "sheger-health-connect",
+    isPrivate: true,
   },
   {
     name: "EduFlow",
@@ -43,6 +45,7 @@ export const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=500&fit=crop",
     featured: true,
     slug: "eduflow",
+    isPrivate: true,
   },
   {
     name: "Research Project Management System",
@@ -100,6 +103,7 @@ export const projects: Project[] = [
     demo: "",
     image: "https://images.unsplash.com/photo-1613214149922-f1809c99b414?w=800&h=500&fit=crop",
     slug: "garage-management-system",
+    isPrivate: true,
   },
   {
     name: "README Studio",
@@ -135,10 +139,11 @@ export const projects: Project[] = [
     approach: "Developed a multilingual coffee marketplace with smart product recommendations and local payment support.",
     outcome: "Complete marketplace platform with product listings, search, and multilingual support.",
     tags: ["Node.js", "MySQL", "Gemini AI", "React"],
-    github: "https://github.com/gemachistesfaye/Ethio-Brew",
-    demo: "https://ethio-brew.vercel.app/",
+    github: "",
+    demo: "",
     image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=500&fit=crop",
     slug: "ethio-brew",
+    isPrivate: true,
   },
   {
     name: "TracePoint",
@@ -152,6 +157,7 @@ export const projects: Project[] = [
     demo: "",
     image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=500&fit=crop",
     slug: "tracepoint",
+    isPrivate: true,
   },
   {
     name: "Churn Prediction",

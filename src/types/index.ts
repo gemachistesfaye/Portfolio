@@ -12,6 +12,7 @@ export interface Project {
   featured?: boolean;
   gradient?: string;
   slug?: string;
+  isPrivate?: boolean;
 }
 
 export interface CaseStudy {
@@ -25,6 +26,7 @@ export interface CaseStudy {
   github: string;
   demo: string;
   featured: boolean;
+  isPrivate?: boolean;
 
   overview: {
     problem: string;

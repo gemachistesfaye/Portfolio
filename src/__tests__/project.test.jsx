@@ -28,8 +28,10 @@ describe("Project", () => {
     expect(screen.getAllByText("Sheger Health Connect").length).toBeGreaterThan(0);
   });
 
-  it("renders project cards with links", () => {
+  it("shows private and public project access appropriately", () => {
     render(<Project />);
-    expect(screen.getAllByText(/Live Demo/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Private project")).toHaveLength(3);
+    expect(screen.getAllByText("Live Demo").length).toBeGreaterThan(0);
+    expect(screen.queryByText("Source Code")).not.toBeInTheDocument();
   });
 });

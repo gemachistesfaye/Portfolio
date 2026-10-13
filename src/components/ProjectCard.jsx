@@ -1,4 +1,4 @@
-import { ExternalLink, Github, FileText } from "lucide-react";
+import { ExternalLink, Github, LockKeyhole, FileText } from "lucide-react";
 
 const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = false }) => {
   return (
@@ -23,18 +23,23 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = fa
               <span className="text-[10px] font-bold text-slate-800 dark:text-zinc-300 tracking-wide">{project.category}</span>
             </div>
 
-            {project.github && (
+            {project.isPrivate ? (
+              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white/90 dark:bg-zinc-950/80 backdrop-blur-md rounded-full border border-slate-200/80 dark:border-white/[0.08] shadow-sm">
+                <LockKeyhole size={11} className="text-amber-600 dark:text-amber-400" />
+                <span className="text-[10px] font-semibold text-slate-700 dark:text-zinc-300">Private project</span>
+              </div>
+            ) : project.github ? (
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="pointer-events-auto p-1.5 rounded-full bg-white/90 dark:bg-zinc-950/80 backdrop-blur-md border border-slate-200/80 dark:border-white/[0.08] text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-zinc-600 shadow-sm transition-all duration-200 hover:scale-110"
                 aria-label={`View ${project.name} source code on GitHub`}
-                title="View Source Code on GitHub"
+                title="View source code on GitHub"
               >
                 <Github size={12} />
               </a>
-            )}
+            ) : null}
           </div>
         </div>
 
@@ -62,7 +67,7 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = fa
 
       <div className={`${compact ? 'px-4 pb-4' : 'px-5 pb-5'} pt-0`}>
         <div className="flex items-center gap-2">
-          {project.demo && (
+          {!project.isPrivate && project.demo && (
             <a
               href={project.demo}
               target="_blank"
@@ -82,17 +87,8 @@ const ProjectCard = ({ project, onSelect, showCaseStudyLink = true, compact = fa
               <FileText size={12} className="text-slate-500 dark:text-zinc-400" />
               Case Study
             </button>
-          ) : !project.demo && project.github ? (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex-1 flex items-center justify-center gap-1.5 ${compact ? 'px-2.5 py-1.5' : 'px-3 py-2'} text-xs font-medium rounded-lg border transition-all duration-200 bg-slate-100/90 dark:bg-zinc-800/80 hover:bg-slate-200/90 dark:hover:bg-zinc-700/80 border-slate-200/80 dark:border-zinc-700/60 hover:border-slate-300 dark:hover:border-zinc-600 text-slate-700 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-white shadow-sm`}
-            >
-              <Github size={12} className="text-slate-500 dark:text-zinc-400" />
-              Source Code
-            </a>
           ) : null}
+
         </div>
       </div>
     </div>

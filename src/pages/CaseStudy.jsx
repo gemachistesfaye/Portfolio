@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight, AlertCircle, Lightbulb, Shield, Brain, Layout, Database, Code, Rocket, Target, Users, Clock, CheckCircle2, XCircle, ArrowRight, Sun, Moon } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, LockKeyhole, ChevronLeft, ChevronRight, AlertCircle, Lightbulb, Shield, Brain, Rocket, Target, Users, Clock, CheckCircle2, XCircle, ArrowRight, Sun, Moon } from "lucide-react";
 import { caseStudies, getCaseStudyBySlug } from "../data/caseStudies";
 import CaseStudySection from "../components/CaseStudySection";
-import ArchitectureDiagram from "../components/ArchitectureDiagram";
 import TechStackBadge from "../components/TechStackBadge";
 import { useTheme } from "../context/ThemeContext";
 
@@ -80,9 +79,7 @@ const CaseStudy = () => {
             "name": "Gemachis Tesfaye",
             "url": "https://gemachisdev.vercel.app"
           },
-          "codeRepository": study.github,
           "programmingLanguage": study.tags,
-          "url": study.demo
         })}
         </script>
       </Helmet>
@@ -107,7 +104,7 @@ const CaseStudy = () => {
               >
                 {isDark ? <Sun size={15} className="text-amber-400" /> : <Moon size={15} className="text-slate-600 dark:text-zinc-400 hover:text-amber-500" />}
               </button>
-              {study.demo && (
+              {!study.isPrivate && study.demo && (
                 <a
                   href={study.demo}
                   target="_blank"
@@ -118,17 +115,24 @@ const CaseStudy = () => {
                   Live Demo
                 </a>
               )}
-              {study.github && (
+              {!study.isPrivate && study.github && (
                 <a
                   href={study.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 border border-slate-200 dark:border-zinc-700/80 text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 text-xs font-medium rounded-lg transition-colors bg-white dark:bg-zinc-900 shadow-sm"
+                  className="p-2 border border-slate-200 dark:border-zinc-700/80 text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 rounded-lg transition-colors bg-white dark:bg-zinc-900 shadow-sm"
+                  aria-label={`View ${study.name} source code on GitHub`}
+                  title="View source code on GitHub"
                 >
-                  <Github size={13} />
-                  Code
+                  <Github size={14} />
                 </a>
               )}
+              {study.isPrivate ? (
+                <span className="flex items-center gap-1.5 px-3.5 py-1.5 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-medium rounded-lg bg-amber-500/10">
+                  <LockKeyhole size={13} />
+                  Private project — detailed demonstration available on request
+                </span>
+              ) : null}
             </div>
           </div>
         </nav>
@@ -152,6 +156,10 @@ const CaseStudy = () => {
             <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-2xl mb-6 leading-relaxed">
               {study.tagline}
             </p>
+            <div className="inline-flex items-center gap-2 px-3 py-2 mb-5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-700 dark:text-amber-400">
+              <LockKeyhole size={14} />
+              Private project — detailed demonstration available on request
+            </div>
             <div className="flex flex-wrap gap-2">
               {study.tags.map((t) => (
                 <TechStackBadge key={t} name={t} size="md" />
@@ -207,7 +215,7 @@ const CaseStudy = () => {
           <div className="border-t border-slate-200 dark:border-zinc-800/80 my-6" />
 
           {/* Solution & Approach */}
-          <CaseStudySection title="Solution & Core Architecture" icon={<Lightbulb size={16} />} id="solution">
+          <CaseStudySection title="Solution & Approach" icon={<Lightbulb size={16} />} id="solution">
             <div className="space-y-6 text-slate-700 dark:text-zinc-300">
               <p className="text-sm sm:text-base leading-relaxed bg-white dark:bg-zinc-900/40 p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800">{study.solution.approach}</p>
 
@@ -233,81 +241,6 @@ const CaseStudy = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </CaseStudySection>
-
-          <div className="border-t border-slate-200 dark:border-zinc-800/80 my-6" />
-
-          {/* System Architecture Layers */}
-          <CaseStudySection title="System Architecture & Stack" icon={<Layout size={16} />} id="architecture">
-            <div className="space-y-4">
-              <ArchitectureDiagram layers={study.architecture.layers} />
-            </div>
-          </CaseStudySection>
-
-          <div className="border-t border-slate-200 dark:border-zinc-800/80 my-6" />
-
-          {/* Database (if applicable) */}
-          {study.database && (
-            <>
-              <CaseStudySection title="Database Design & Data Models" icon={<Database size={16} />} id="database">
-                <div className="space-y-4 text-slate-700 dark:text-zinc-300">
-                  <p className="text-sm leading-relaxed">{study.database.overview}</p>
-                  <div className="grid gap-2.5 sm:grid-cols-2">
-                    {study.database.entities.slice(0, 6).map((e) => (
-                      <div key={e.name} className="flex items-start gap-3 p-3 rounded-xl bg-white dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 shadow-sm">
-                        <div className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 flex items-center justify-center text-slate-500 dark:text-zinc-400 flex-shrink-0 text-xs">
-                          <Database size={13} />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-slate-900 dark:text-white font-mono">{e.name}</p>
-                          <p className="text-xs text-slate-600 dark:text-zinc-400 mt-0.5">{e.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="p-4 rounded-xl bg-white dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 shadow-sm">
-                    <h4 className="text-xs font-semibold text-slate-800 dark:text-zinc-200 uppercase tracking-wider mb-2">Entity Relationships & Strategy</h4>
-                    <p className="text-xs sm:text-sm font-mono text-slate-700 dark:text-zinc-300 leading-relaxed mb-3">{study.database.relationships}</p>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed pt-2 border-t border-slate-100 dark:border-zinc-800">{study.database.rationale}</p>
-                  </div>
-                </div>
-              </CaseStudySection>
-              <div className="border-t border-slate-200 dark:border-zinc-800/80 my-6" />
-            </>
-          )}
-
-          {/* Technical Implementation */}
-          <CaseStudySection title="Technical Implementation Highlights" icon={<Code size={16} />} id="implementation">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="p-5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm">
-                <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">Client Architecture & UX</h4>
-                <ul className="space-y-2">
-                  {study.implementation.frontend.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed">
-                      <CheckCircle2 size={14} className="text-slate-400 dark:text-zinc-500 mt-0.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="p-5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm">
-                <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">Backend, Data & Cloud</h4>
-                <ul className="space-y-2">
-                  {study.implementation.backend.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed">
-                      <CheckCircle2 size={14} className="text-slate-400 dark:text-zinc-500 mt-0.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                  {study.implementation.deployment.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed">
-                      <CheckCircle2 size={14} className="text-slate-400 dark:text-zinc-500 mt-0.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
           </CaseStudySection>

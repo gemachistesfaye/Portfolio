@@ -12,6 +12,7 @@ export const caseStudies: CaseStudy[] = [
     github: "",
     demo: "",
     featured: true,
+    isPrivate: true,
 
     overview: {
       problem: "Ethiopian small and medium retailers experience frequent electrical and internet outages, rendering cloud-only POS systems unusable and forcing shops to revert to manual paper logs that cause inventory leakage, untracked customer debt, and calculation errors.",
@@ -209,6 +210,7 @@ PostgreSQL 15 Database (Prisma ORM)
     github: "",
     demo: "",
     featured: true,
+    isPrivate: true,
 
     overview: {
       problem: "Healthcare access in Ethiopia is fragmented between patients, doctors, and clinics. Most clinics still rely on paper records, manual appointment scheduling, and phone-based communication — leading to long wait times, lost records, and misrouted patients.",
@@ -403,9 +405,10 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     tagline: "AI-powered Ethiopian coffee marketplace with multilingual cultural storytelling",
     description: "A production-grade e-commerce ecosystem connecting Ethiopian coffee producers with global buyers. Features AI-powered recommendations, trilingual support, local payment integration, and cultural heritage storytelling.",
     heroImage: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&h=600&fit=crop",
-    github: "https://github.com/gemachistesfaye/Ethio-Brew",
-    demo: "https://ethio-brew.vercel.app",
+    github: "",
+    demo: "",
     featured: true,
+    isPrivate: true,
 
     overview: {
       problem: "Ethiopian coffee — the birthplace of coffee — lacks a modern digital marketplace. Producers rely on middlemen, have no direct access to international buyers, and their cultural heritage is lost in generic e-commerce platforms.",
@@ -761,6 +764,7 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     github: "",
     demo: "",
     featured: false,
+    isPrivate: true,
 
     overview: {
       problem: "Students at Haramaya University frequently lose personal items (IDs, phones, books) with no efficient way to report or find them. Paper bulletin boards and word-of-mouth have low recovery rates.",
@@ -1082,6 +1086,7 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     github: "",
     demo: "",
     featured: true,
+    isPrivate: true,
 
     overview: {
       problem: "Academic institutions face administrative overload and record loss using fragmented paper logs and spreadsheets.",
@@ -1454,6 +1459,7 @@ Flask Application Controller (app.py)
     github: "",
     demo: "",
     featured: false,
+    isPrivate: true,
 
     overview: {
       problem: "Automotive repair shops and service centers struggle with fragmented paper work orders, unmonitored spare-parts inventory, lack of vehicle service tracking, and inaccurate billing.",

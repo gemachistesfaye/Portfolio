@@ -110,9 +110,12 @@ const BlogPost = () => {
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
-        {post.coverImage && (
-          <meta property="og:image" content={urlFor(post.coverImage)} />
-        )}
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={post.coverImage ? urlFor(post.coverImage) : "https://gemachisdev.vercel.app/social-preview.jpg"} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content={post.coverImage ? urlFor(post.coverImage) : "https://gemachisdev.vercel.app/social-preview.jpg"} />
       </Helmet>
 
       <article className="max-w-3xl mx-auto">

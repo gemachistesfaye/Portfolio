@@ -79,11 +79,11 @@ export default async function middleware(request) {
         ${post.imageUrl ? `<meta property="og:image" content="${post.imageUrl}">` : ''}
 
         <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="${request.url}">
-        <meta property="twitter:title" content="${post.title}">
-        <meta property="twitter:description" content="${post.excerpt || 'Read this post on my portfolio.'}">
-        ${post.imageUrl ? `<meta property="twitter:image" content="${post.imageUrl}">` : ''}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:url" content="${request.url}">
+        <meta name="twitter:title" content="${post.title}">
+        <meta name="twitter:description" content="${post.excerpt || 'Read this post on my portfolio.'}">
+        ${post.imageUrl ? `<meta name="twitter:image" content="${post.imageUrl}">` : '<meta name="twitter:image" content="https://gemachisdev.vercel.app/social-preview.jpg">'}
       </head>
       <body>
         <h1>${post.title}</h1>

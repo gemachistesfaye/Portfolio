@@ -51,7 +51,7 @@ A personal portfolio website built with **React** and **Tailwind CSS**, showcasi
   <a href="https://www.instagram.com/urjiiko1">
     <img src="https://img.shields.io/badge/Instagram-E4405F?logo=instagram&logoColor=white&style=for-the-badge" alt="Instagram" />
   </a>
-  <a href="https://www.linkedin.com/in/gemachis-tesfaye-137196318">
+  <a href="https://www.linkedin.com/in/gemachis-tesfaye/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white&style=for-the-badge" alt="LinkedIn" />
   </a>
   <a href="https://github.com/urjiiko1">

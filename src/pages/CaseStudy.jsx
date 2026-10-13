@@ -67,11 +67,11 @@ const CaseStudy = () => {
         <meta property="og:title" content={`${study.name} — Case Study`} />
         <meta property="og:description" content={study.description} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={study.heroImage || "https://gemachisdev.vercel.app/Profile.jpg"} />
+        <meta property="og:image" content={study.heroImage || "https://gemachisdev.vercel.app/social-preview.jpg"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${study.name} — Case Study`} />
         <meta name="twitter:description" content={study.description} />
-        <meta name="twitter:image" content={study.heroImage || "https://gemachisdev.vercel.app/Profile.jpg"} />
+        <meta name="twitter:image" content={study.heroImage || "https://gemachisdev.vercel.app/social-preview.jpg"} />
         <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",

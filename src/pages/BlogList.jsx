@@ -64,6 +64,13 @@ const BlogList = () => {
         <meta property="og:title" content="Blog | Gemachis Tesfaye" />
         <meta property="og:description" content="Thoughts on software engineering, web architectures, and AI systems." />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://gemachisdev.vercel.app/social-preview.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Blog | Gemachis Tesfaye" />
+        <meta name="twitter:description" content="Thoughts on software engineering, web architectures, and AI systems." />
+        <meta name="twitter:image" content="https://gemachisdev.vercel.app/social-preview.jpg" />
       </Helmet>
 
       <div className="mb-12">

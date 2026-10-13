@@ -93,9 +93,11 @@ const Navbar = () => {
           className="group flex items-center gap-2.5"
           aria-label="Go to top"
         >
-          <div className="w-8 h-8 rounded-lg bg-slate-900 dark:bg-zinc-800 border border-slate-800 dark:border-white/10 flex items-center justify-center text-amber-500 dark:text-amber-400 font-bold text-xs shadow-sm group-hover:border-amber-500/50 dark:group-hover:border-amber-400/50 transition-all duration-300">
-            GT
-          </div>
+          <img
+            src="/brand-icon.svg"
+            alt=""
+            className="w-8 h-8 rounded-lg shadow-sm group-hover:ring-2 group-hover:ring-amber-500/40 transition-all duration-300"
+          />
           <span className="text-sm font-bold text-slate-900 dark:text-zinc-100 tracking-tight">
             Gemachis T.
           </span>

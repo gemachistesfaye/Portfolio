@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ArrowLeft, ExternalLink, Github, LockKeyhole, ChevronLeft, ChevronRight, AlertCircle, Lightbulb, Shield, Brain, Rocket, Target, Users, Clock, CheckCircle2, XCircle, ArrowRight, Sun, Moon } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, LockKeyhole, ChevronLeft, ChevronRight, AlertCircle, Lightbulb, Shield, Brain, Rocket, Target, Users, CheckCircle2, XCircle, ArrowRight, Sun, Moon, WifiOff, Calculator, CreditCard, Boxes, ShieldCheck, Languages, ArrowRightLeft } from "lucide-react";
 import { caseStudies, getCaseStudyBySlug } from "../data/caseStudies";
+import { projects } from "../data";
 import CaseStudySection from "../components/CaseStudySection";
 import TechStackBadge from "../components/TechStackBadge";
 import { useTheme } from "../context/ThemeContext";
@@ -51,9 +52,12 @@ const CaseStudy = () => {
     );
   }
 
-  const currentIndex = caseStudies.findIndex((cs) => cs.slug === slug);
-  const prevStudy = currentIndex > 0 ? caseStudies[currentIndex - 1] : null;
-  const nextStudy = currentIndex < caseStudies.length - 1 ? caseStudies[currentIndex + 1] : null;
+  const orderedCaseStudies = projects
+    .map((project) => caseStudies.find((caseStudy) => caseStudy.slug === project.slug))
+    .filter(Boolean);
+  const currentIndex = orderedCaseStudies.findIndex((cs) => cs.slug === slug);
+  const prevStudy = currentIndex > 0 ? orderedCaseStudies[currentIndex - 1] : null;
+  const nextStudy = currentIndex < orderedCaseStudies.length - 1 ? orderedCaseStudies[currentIndex + 1] : null;
 
   return (
     <>
@@ -128,9 +132,12 @@ const CaseStudy = () => {
                 </a>
               )}
               {study.isPrivate ? (
-                <span className="flex items-center gap-1.5 px-3.5 py-1.5 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs font-medium rounded-lg bg-amber-500/10">
-                  <LockKeyhole size={13} />
-                  Private project — detailed demonstration available on request
+                <span
+                  className="inline-flex items-center justify-center p-2 border border-amber-500/20 text-amber-700 dark:text-amber-400 rounded-lg bg-amber-500/10"
+                  title="Private project"
+                  aria-label="Private project"
+                >
+                  <LockKeyhole size={14} />
                 </span>
               ) : null}
             </div>
@@ -144,11 +151,6 @@ const CaseStudy = () => {
               <span className="px-3 py-1 bg-slate-100 dark:bg-zinc-800/80 text-orange-700 dark:text-orange-300 border border-slate-200 dark:border-zinc-700/60 text-xs font-semibold uppercase tracking-wider rounded-full">
                 {study.category}
               </span>
-              {study.featured && (
-                <span className="px-3 py-1 bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 text-xs font-semibold uppercase tracking-wider rounded-full">
-                  Featured Project
-                </span>
-              )}
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
               {study.name}
@@ -158,7 +160,8 @@ const CaseStudy = () => {
             </p>
             <div className="inline-flex items-center gap-2 px-3 py-2 mb-5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-700 dark:text-amber-400">
               <LockKeyhole size={14} />
-              Private project — detailed demonstration available on request
+              <span>Private project</span>
+              <span className="hidden sm:inline text-amber-700/70 dark:text-amber-400/70">· Detailed demonstration available on request</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {study.tags.map((t) => (
@@ -171,19 +174,20 @@ const CaseStudy = () => {
         {/* Content */}
         <main className="max-w-4xl mx-auto px-6 pb-20">
           {/* Overview Grid - 4 balanced metric cards */}
-          <section className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 my-10">
+          <section aria-label="Case study overview" className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 my-8 sm:my-10">
             {[
               { label: "Role", value: study.overview.role, icon: <Users size={14} /> },
-              { label: "Timeline", value: study.overview.timeline, icon: <Clock size={14} /> },
               { label: "Status", value: study.overview.status, icon: <CheckCircle2 size={14} /> },
               { label: "Target Users", value: study.overview.users, icon: <Target size={14} /> },
             ].map((item) => (
-              <div key={item.label} className="p-4 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm">
-                <div className="flex items-center gap-1.5 text-slate-500 dark:text-zinc-400 mb-2">
-                  {item.icon}
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 dark:text-zinc-400">{item.label}</span>
+              <div key={item.label} className="p-3 sm:p-4 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm">
+                <div className="flex items-center gap-2 text-slate-500 dark:text-zinc-400 mb-2">
+                  <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center flex-shrink-0">
+                    {item.icon}
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest text-slate-500 dark:text-zinc-400">{item.label}</span>
                 </div>
-                <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-zinc-200 leading-snug">{item.value}</p>
+                <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-zinc-200 leading-snug line-clamp-3">{item.value}</p>
               </div>
             ))}
           </section>
@@ -222,24 +226,39 @@ const CaseStudy = () => {
               <div>
                 <h4 className="text-xs font-semibold text-slate-800 dark:text-zinc-200 uppercase tracking-wider mb-3">Key Workflows & User Journeys</h4>
                 <div className="space-y-2">
-                  {study.solution.keyWorkflows.map((wf, i) => (
-                    <div key={i} className="flex items-start gap-2.5 p-3.5 rounded-xl bg-white dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 shadow-sm">
-                      <ArrowRight size={14} className="text-slate-400 dark:text-zinc-500 mt-0.5 flex-shrink-0" />
+                  {study.solution.keyWorkflows.map((wf, i) => {
+                    const workflowIcons = [WifiOff, ArrowRightLeft, Calculator, CreditCard, Boxes];
+                    const WorkflowIcon = workflowIcons[i % workflowIcons.length];
+                    return (
+                    <div key={i} className="flex items-start gap-3 p-3 sm:p-3.5 rounded-xl bg-white dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 shadow-sm">
+                      <span className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-zinc-800 text-orange-600 dark:text-orange-400 flex items-center justify-center flex-shrink-0">
+                        <WorkflowIcon size={14} />
+                      </span>
                       <p className="text-sm text-slate-800 dark:text-zinc-200 leading-relaxed">{wf}</p>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
               <div>
                 <h4 className="text-xs font-semibold text-slate-800 dark:text-zinc-200 uppercase tracking-wider mb-3">Core Features & Engineering Decisions</h4>
                 <div className="grid gap-3 sm:grid-cols-2">
-                  {study.solution.features.map((f) => (
+                  {study.solution.features.map((f, i) => {
+                    const featureIcons = [WifiOff, Calculator, CreditCard, Boxes, ShieldCheck, Languages];
+                    const FeatureIcon = featureIcons[i % featureIcons.length];
+                    return (
                     <div key={f.name} className="p-4 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 shadow-sm">
-                      <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-1.5">{f.name}</h5>
+                      <div className="flex items-start gap-2.5 mb-1.5">
+                        <span className="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-600 dark:text-orange-400 flex items-center justify-center flex-shrink-0">
+                          <FeatureIcon size={14} />
+                        </span>
+                        <h5 className="text-sm font-semibold text-slate-900 dark:text-white leading-snug">{f.name}</h5>
+                      </div>
                       <p className="text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">{f.why}</p>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>

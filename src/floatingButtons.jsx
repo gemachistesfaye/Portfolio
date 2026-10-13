@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { MessageSquare, X, Send, Sparkles, RotateCcw, Bot } from "lucide-react";
+import { MessageSquare, X, Send, RotateCcw, Bot } from "lucide-react";
 import config from "./config";
-import { scrollToSection } from "./utils/scrollTo";
 
 const SUGGESTED_QUESTIONS = [
   "What is your tech stack?",
@@ -18,7 +17,7 @@ function getBotReply(query) {
   }
 
   if (q.includes("smartbiz") || q.includes("erp")) {
-    return "SmartBiz ERP Lite is an offline-first Progressive Web App (PWA) Gemachis engineered during his remote internship at Sofomar Technologies. Built with React 19, NestJS, Prisma, and PostgreSQL, it features local offline caching, automatic background sync, and inventory tracking for SMEs.";
+    return "SmartBiz ERP Lite is an offline-first Progressive Web App (PWA) Gemachis engineered during his online Junior Full-Stack Developer internship at Sof Omar Technologies. Built with React 19, NestJS, Prisma, and PostgreSQL, it features local offline caching, automatic background sync, and inventory tracking for SMEs.";
   }
 
   if (q.includes("rpms") || q.includes("research") || q.includes("astu")) {
@@ -30,7 +29,7 @@ function getBotReply(query) {
   }
 
   if (q.includes("intern") || q.includes("experience") || q.includes("job") || q.includes("company")) {
-    return "Gemachis's experience includes:\n• Full-Stack Engineer Intern at Sofomar Technologies (Remote, 2026)\n• Full-Stack Engineering Intern at ASTU (On-site, 2026 — RPMS Platform)\n• Frontend Development Trainee at ISHub, Addis Ababa University (2025)\n• BSc in Information Science at Haramaya University (2024–2027)";
+    return "Gemachis's experience includes:\n• Junior Full-Stack Developer Intern at Sof Omar Technologies (Online, issued Aug 2026 — SmartBiz ERP Lite)\n• Full-Stack Engineering Intern at ASTU (On-site, June–August 2026 — RPMS Platform)\n• Frontend Development Trainee at ISHub, Addis Ababa University (Online, 2025)\n• BSc in Information Science at Haramaya University (2024–2027)";
   }
 
   if (q.includes("education") || q.includes("university") || q.includes("degree") || q.includes("study") || q.includes("haramaya")) {
@@ -49,7 +48,11 @@ function getBotReply(query) {
     return "Hello! 👋 I'm Gemachis's AI assistant. Ask me anything about his technical stack, full-stack projects, or work experience!";
   }
 
-  return "Thanks for asking! Gemachis specializes in full-stack web applications, backend APIs, and AI systems (React 19, NestJS, Python, PostgreSQL). Feel free to ask about his projects (SmartBiz ERP, RPMS, Sheger Health), experience, or reach him directly at gemachistesfaye1@gmail.com!";
+  return `Thanks for asking! Gemachis specializes in full-stack web applications, backend APIs, and AI systems (React 19, NestJS, Python, PostgreSQL). Feel free to ask about his projects (SmartBiz ERP, RPMS, Sheger Health), experience, or contact him at ${config.email}.`;
+}
+
+function isContactQuery(query) {
+  return /\b(contact|email|phone|reach|message|telegram|linkedin)\b/i.test(query);
 }
 
 const INITIAL_MESSAGES = [
@@ -64,35 +67,7 @@ const FloatingButtons = () => {
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [bottomOffset, setBottomOffset] = useState(24);
   const messagesEndRef = useRef(null);
-
-  // Position dynamically above the footer so it never covers footer content or "Back to top"
-  useEffect(() => {
-    const updatePosition = () => {
-      const footer = document.getElementById("footer") || document.querySelector("footer");
-      const defaultBottom = window.innerWidth >= 640 ? 24 : 16;
-
-      if (footer) {
-        const rect = footer.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-          const visibleFooterHeight = window.innerHeight - rect.top;
-          setBottomOffset(visibleFooterHeight + defaultBottom);
-          return;
-        }
-      }
-      setBottomOffset(defaultBottom);
-    };
-
-    window.addEventListener("scroll", updatePosition, { passive: true });
-    window.addEventListener("resize", updatePosition);
-    updatePosition();
-
-    return () => {
-      window.removeEventListener("scroll", updatePosition);
-      window.removeEventListener("resize", updatePosition);
-    };
-  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -104,6 +79,24 @@ const FloatingButtons = () => {
     }
   }, [messages, isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousBodyTouchAction = document.body.style.touchAction;
+    const previousDocumentOverflow = document.documentElement.style.overflow;
+
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.body.style.touchAction = previousBodyTouchAction;
+      document.documentElement.style.overflow = previousDocumentOverflow;
+    };
+  }, [isOpen]);
+
   const handleSend = async (textToSend) => {
     const text = textToSend || input;
     if (!text.trim()) return;
@@ -112,6 +105,14 @@ const FloatingButtons = () => {
     setMessages((prev) => [...prev, userMsg]);
     if (!textToSend) setInput("");
     setIsTyping(true);
+
+    if (isContactQuery(text)) {
+      setTimeout(() => {
+        setMessages((prev) => [...prev, { sender: "bot", text: getBotReply(text) }]);
+        setIsTyping(false);
+      }, 400);
+      return;
+    }
 
     try {
       const response = await fetch("/api/chat", {
@@ -158,8 +159,7 @@ const FloatingButtons = () => {
         <div
           role="dialog"
           aria-label="Ask Gemachis Chat"
-          style={{ bottom: `${bottomOffset + 56}px` }}
-          className="fixed right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[420px] max-h-[75vh] h-[480px] flex flex-col rounded-2xl border border-slate-200/90 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl overflow-hidden animate-slide-up"
+          className="fixed right-4 sm:right-6 bottom-[72px] z-50 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[420px] max-h-[75vh] h-[480px] flex flex-col rounded-2xl border border-slate-200/90 dark:border-zinc-800 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl shadow-2xl overflow-hidden animate-slide-up"
         >
           {/* Header */}
           <div className="px-4 py-3 bg-slate-900 dark:bg-zinc-950 border-b border-white/[0.08] flex items-center justify-between text-white">
@@ -267,24 +267,17 @@ const FloatingButtons = () => {
         </div>
       )}
 
-      {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        style={{ bottom: `${bottomOffset}px` }}
-        className="fixed right-4 sm:right-6 z-40 flex items-center gap-2 px-4 py-3 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white font-semibold rounded-full shadow-lg border border-slate-800 dark:border-zinc-200 transition-[transform,background-color,border-color] duration-200 group select-none outline-none focus:outline-none hover:scale-105"
-        aria-label={isOpen ? "Close Ask Gemachis" : "Open Ask Gemachis"}
+        className="fixed right-4 bottom-24 sm:right-6 sm:bottom-6 z-40 inline-flex items-center gap-1.5 px-3 py-2 bg-slate-900 hover:bg-slate-800 text-white dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white rounded-full shadow-lg border border-slate-800 dark:border-zinc-200 transition-[transform,background-color,border-color] duration-200 group select-none outline-none focus:outline-none hover:scale-105"
+        aria-label={isOpen ? "Close Ask Gemachis (floating)" : "Open Ask Gemachis (floating)"}
+        title={isOpen ? "Close Ask Gemachis" : "Ask Gemachis"}
         aria-expanded={isOpen}
       >
         {isOpen ? (
-          <>
-            <X size={16} className="group-hover:rotate-90 transition-transform" />
-            <span className="text-xs font-semibold">Close</span>
-          </>
+          <X size={15} className="group-hover:rotate-90 transition-transform" />
         ) : (
-          <>
-            <Sparkles size={16} className="group-hover:rotate-12 transition-transform text-amber-400 dark:text-amber-500" />
-            <span className="text-xs font-semibold">Ask Gemachis</span>
-          </>
+          <span className="text-[11px] font-semibold whitespace-nowrap">Ask Gemachis</span>
         )}
       </button>
     </>

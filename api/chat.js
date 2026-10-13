@@ -50,7 +50,7 @@ const PORTFOLIO_KNOWLEDGE = [
   {
     id: "contact",
     tags: ["contact", "email", "phone", "hire", "collaborate", "telegram", "github", "linkedin", "reach"],
-    text: "Contact & Links:\n• Email: gemachistesfaye1@gmail.com\n• Phone: +251 984 656 444\n• Telegram: @gemachis_t\n• GitHub: https://github.com/gemachistesfaye\n• LinkedIn: https://www.linkedin.com/in/gemachis-tesfaye-a54823337/\n• Location: Adama / Addis Ababa, Ethiopia"
+    text: "Contact & Links:\n• Email: gemachis.tesfaye.dev@gmail.com\n• Phone: +251976601074\n• Telegram: @gemachis_t\n• GitHub: https://github.com/gemachistesfaye\n• LinkedIn: https://www.linkedin.com/in/gemachis-tesfaye/\n• Location: Harar, Ethiopia"
   }
 ];
 
@@ -108,7 +108,7 @@ export default async function handler(req, res) {
       const systemInstruction = `You are "Ask Gemachis", the official AI portfolio assistant for Gemachis Tesfaye, a Full-Stack Software Engineer and AI Systems Developer.
 Answer the visitor's question accurately, concisely (maximum 2-4 sentences), and professionally using ONLY the retrieved portfolio context provided below.
 Do not hallucinate or state experience not in the context.
-If asked about contact or hiring, provide his official email (gemachistesfaye1@gmail.com) and mention his contact section.
+If asked about contact or hiring, provide his official email (gemachis.tesfaye.dev@gmail.com) and mention his contact section.
 
 RETRIEVED PORTFOLIO CONTEXT:
 ${contextText}`;
@@ -160,4 +160,3 @@ ${contextText}`;
     });
   }
 }
-

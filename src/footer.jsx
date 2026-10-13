@@ -62,21 +62,18 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="pt-5 border-t border-slate-200/80 dark:border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
-        <p className="text-xs text-slate-600 dark:text-zinc-400 font-medium">
+      <div className="relative pt-5 border-t border-slate-200/80 dark:border-zinc-800/80 flex flex-col items-center gap-3 min-h-20">
+        <p className="max-w-none text-[11px] sm:text-xs text-slate-600 dark:text-zinc-400 font-medium text-center leading-relaxed">
           &copy; {new Date().getFullYear()} Gemachis Tesfaye. All rights reserved.
         </p>
         <button
           onClick={scrollToTop}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 transition-all duration-200 shadow-sm"
+          className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-medium text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 transition-all duration-200 shadow-sm"
           aria-label="Back to top"
         >
           <span>Back to top</span>
           <ArrowUp size={13} />
         </button>
-        <p className="text-xs text-slate-600 dark:text-zinc-400 font-medium">
-          Crafted with React 19, Vite & Tailwind CSS
-        </p>
       </div>
     </div>
   </footer>

@@ -27,7 +27,7 @@ export const projects: Project[] = [
     tags: ["React 18", "Node.js 20", "Express 5", "TypeScript", "Socket.IO", "PostgreSQL", "Docker"],
     github: "",
     demo: "",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&h=500&fit=crop",
     featured: true,
     slug: "sheger-health-connect",
     isPrivate: true,
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     tags: ["Python", "Flask", "SQLite", "Google Gemini AI", "Chart.js", "ReportLab", "Render"],
     github: "https://github.com/gemachistesfaye/GradeEvaluator-AI",
     demo: "https://gradeevaluator-ai.onrender.com/",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop",
+    image: "/gradeevaluator-dashboard.svg",
     featured: true,
     slug: "grade-evaluator-ai",
   },
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     tags: ["Python 3.11", "Flask 3.1", "scikit-learn", "statsmodels", "Chart.js", "XlsxWriter", "Render"],
     github: "https://github.com/gemachistesfaye/AeroDemand-AI",
     demo: "https://aerodemand-ai.onrender.com/",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=500&fit=crop",
     featured: true,
     slug: "aerodemand-ai",
   },
@@ -128,7 +128,7 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Resume Builder"],
     github: "https://github.com/gemachistesfaye/riqicha-ai",
     demo: "https://riqicha-ai.vercel.app",
-    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=500&fit=crop",
+    image: "/riqicha-resume-preview.svg",
     slug: "riqicha-ai",
   },
   {
@@ -169,60 +169,8 @@ export const projects: Project[] = [
     tags: ["Python", "Scikit-Learn", "SHAP", "Jupyter", "Data Science"],
     github: "https://github.com/gemachistesfaye/churn-Prediction",
     demo: "",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=500&fit=crop",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
     slug: "churn-prediction",
-  },
-];
-
-export interface Achievement {
-  title: string;
-  org: string;
-  year: string;
-  description: string;
-  tags: string[];
-  category: "achievement" | "credential";
-  proofFile?: string;
-}
-
-export const achievements: Achievement[] = [
-  {
-    title: "INSA Cyber Talent Summer Camp 2026",
-    org: "Information Network Security Administration (INSA)",
-    year: "2026",
-    tags: ["Emerging Tech", "AI Engineering", "Big Data"],
-    category: "achievement",
-  },
-  {
-    title: "Frontend Development Bootcamp",
-    org: "ISHub, Addis Ababa University",
-    year: "2025",
-    tags: ["React", "JavaScript", "Tailwind CSS"],
-    category: "credential",
-    proofFile: "Frontend-Dev-certificate.jpeg",
-  },
-  {
-    title: "AI Bootcamp",
-    org: "GeezX",
-    year: "2025",
-    tags: ["AI Integration", "Prompt Engineering", "LLM APIs"],
-    category: "credential",
-    proofFile: "AI-bootcamp-certificate.jpeg",
-  },
-  {
-    title: "Founder Academy — 6-Week Deep Dive",
-    org: "ALX Ventures",
-    year: "2024",
-    tags: ["Product Discovery", "Startup Strategy", "Ventures"],
-    category: "credential",
-    proofFile: "alx-certificate.jpeg",
-  },
-  {
-    title: "Software Development Frameworks Training",
-    org: "Haramaya University",
-    year: "2024",
-    tags: ["Software Architecture", "Design Patterns", "Frameworks"],
-    category: "credential",
-    proofFile: "Software-Frameworks-certificate.jpeg",
   },
 ];
 
@@ -253,21 +201,21 @@ export const skills: { categories: SkillCategory[] } = {
 
 export const experience: Experience[] = [
   {
-    role: "Full-Stack Software Engineer Intern",
-    org: "Sofomar Technologies (Remote)",
-    date: "2026",
+    role: "Junior Full-Stack Developer Intern",
+    org: "Sof Omar Technologies (Online)",
+    date: "Issued Aug 2026",
     type: "Experience",
     color: "from-orange-500 to-amber-500",
     points: [
       "Engineered SmartBiz ERP Lite, an offline-first PWA for Ethiopian SMEs using React 19, NestJS, Prisma, and PostgreSQL.",
       "Implemented local offline caching, automatic background synchronization, and inventory tracking modules.",
     ],
-    tags: ["React 19", "NestJS", "Prisma", "PostgreSQL", "Offline-First PWA", "Remote"],
+    tags: ["React 19", "NestJS", "Prisma", "PostgreSQL", "Offline-First PWA", "Online"],
   },
   {
     role: "Full-Stack Engineering Intern (On-site)",
     org: "ASTU (Adama Science and Technology University)",
-    date: "2026 – Present",
+    date: "June 2026 – Aug 2026",
     type: "Experience",
     color: "from-orange-500 to-amber-500",
     points: [
@@ -278,14 +226,14 @@ export const experience: Experience[] = [
   },
   {
     role: "Frontend Development Trainee",
-    org: "ISHub, Addis Ababa University",
+    org: "ISHub, Addis Ababa University (Online)",
     date: "July 2025 – Sept 2025",
     type: "Experience",
     color: "from-amber-500 to-orange-500",
     points: [
       "Built and deployed five functional web applications using modern JavaScript ES6+, React, and Tailwind CSS.",
     ],
-    tags: ["React", "JavaScript", "Tailwind CSS", "Git"],
+    tags: ["React", "JavaScript", "Tailwind CSS", "Git", "Online"],
   },
   {
     role: "BSc in Information Science",

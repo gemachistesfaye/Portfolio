@@ -206,7 +206,7 @@ PostgreSQL 15 Database (Prisma ORM)
     tags: ["React 18", "Node.js 20", "Express 5", "TypeScript", "Sequelize", "PostgreSQL", "Socket.IO", "OpenAI SDK", "Docker", "Nginx"],
     tagline: "Full-stack telemedicine platform for Ethiopian clinics with role-based portals and AI triage",
     description: "A production-grade telemedicine platform for Ethiopian clinics featuring role-specific portals (Patient, Doctor, Admin), authenticated Socket.IO messaging, medical record vaults, payment tracking, multilingual support (EN/AM/OM), and GPT symptom triage with offline fallbacks.",
-    heroImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=600&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=1200&h=600&fit=crop",
     github: "",
     demo: "",
     featured: true,
@@ -587,7 +587,7 @@ External Services: OpenAI SDK (Triage) • Email SMTP • Render & Vercel`
     tags: ["Python", "Flask", "Scikit-Learn", "Pandas", "Chart.js", "REST API"],
     tagline: "ML-powered airline passenger demand forecasting with interactive analytics",
     description: "A production-grade machine learning platform that forecasts airline passenger demand using Linear Regression with time-series cross-validation. Features a live REST API, interactive analytics dashboard, and Excel export — fully deployed on Render.",
-    heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/AeroDemand-AI",
     demo: "https://aerodemand-ai.onrender.com/",
     featured: true,
@@ -1272,7 +1272,7 @@ Supabase Cloud (PostgreSQL 15 + PL/pgSQL)
       screenshots: [
         { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=500&fit=crop", alt: "Admin Dashboard", caption: "School administrator analytics dashboard with enrollment and attendance metrics" },
         { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&h=500&fit=crop", alt: "Attendance Tracker", caption: "Teacher quick-attendance tracking and class roster management" },
-        { src: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=500&fit=crop", alt: "Gradebook & Reports", caption: "Automated exam grading, GPA calculations, and exportable academic reports" }
+        { src: "/gradeevaluator-dashboard.svg", alt: "GradeEvaluator academic dashboard", caption: "GPA, CGPA, credit progress, grade distribution, and semester analytics" }
       ]
     }
   },
@@ -1283,7 +1283,7 @@ Supabase Cloud (PostgreSQL 15 + PL/pgSQL)
     tags: ["Python", "Flask", "SQLite", "Google Gemini AI", "ReportLab", "Chart.js", "Gunicorn", "Render"],
     tagline: "Intelligent academic performance tracker, weighted SGPA/CGPA engine & Gemini GradeBot",
     description: "A full-stack academic performance tracking platform engineered for students—specifically tailored for Ethiopian university grading scales. Combines persistent course records, credit-hour-weighted SGPA/CGPA calculation with failing grade safeguards, interactive Chart.js score distributions, exportable PDF/CSV academic transcripts, and an intelligent Google Gemini–powered GradeBot for study coaching and semester performance reviews.",
-    heroImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=600&fit=crop",
+    heroImage: "/gradeevaluator-dashboard.svg",
     github: "https://github.com/gemachistesfaye/GradeEvaluator-AI",
     demo: "https://gradeevaluator-ai.onrender.com/",
     featured: true,
@@ -1442,7 +1442,7 @@ Flask Application Controller (app.py)
 
     media: {
       screenshots: [
-        { src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop", alt: "Grade Dashboard", caption: "Academic performance dashboard with cumulative GPA, credits, and grade breakdown" },
+        { src: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=500&fit=crop", alt: "Grade Dashboard", caption: "Academic performance dashboard with cumulative GPA, credits, and grade breakdown" },
         { src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop", alt: "Chart.js Analytics", caption: "Visual score progression and grade distribution analytics" },
         { src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=500&fit=crop", alt: "GradeBot AI Chat", caption: "Google Gemini–powered GradeBot delivering personalized study advice" }
       ]
@@ -1710,7 +1710,7 @@ Flask Application Controller (app.py)
     tags: ["React", "TypeScript", "Tailwind CSS", "PDF Export", "ATS-Friendly"],
     tagline: "Modern ATS-friendly resume builder with real-time preview & instant PDF export",
     description: "A responsive CV and resume builder designed to help job seekers generate clean, ATS-compliant resumes. Offers 5 customizable design templates, drag-and-drop section reordering, real-time typography preview, and instant client-side PDF export without hidden paywalls.",
-    heroImage: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&h=600&fit=crop",
+    heroImage: "/riqicha-resume-preview.svg",
     github: "https://github.com/gemachistesfaye/riqicha-ai",
     demo: "https://riqicha-ai.vercel.app",
     featured: false,
@@ -1782,7 +1782,7 @@ Flask Application Controller (app.py)
     roadmap: ["AI resume bullet-point optimizer", "LinkedIn profile data import"],
     media: {
       screenshots: [
-        { src: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=500&fit=crop", alt: "Builder", caption: "Interactive resume builder with live template preview" }
+        { src: "/riqicha-resume-preview.svg", alt: "Resume builder preview", caption: "Interactive resume builder with live resume preview" }
       ]
     }
   },
@@ -1793,7 +1793,7 @@ Flask Application Controller (app.py)
     tags: ["Python", "Scikit-Learn", "SHAP", "Jupyter", "Pandas", "Data Science"],
     tagline: "Calibrated customer churn classification & SHAP explainability pipeline",
     description: "An end-to-end machine learning system for predicting customer turnover in subscription businesses. Trained on IBM Telco and KKBox datasets, featuring feature engineering, class imbalance mitigation, probability calibration, and SHAP interpretability to guide proactive customer retention campaigns.",
-    heroImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=600&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop",
     github: "https://github.com/gemachistesfaye/churn-Prediction",
     demo: "",
     featured: false,
@@ -1866,7 +1866,7 @@ Flask Application Controller (app.py)
     roadmap: ["REST API serving real-time predictions", "Automated email trigger integration"],
     media: {
       screenshots: [
-        { src: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=500&fit=crop", alt: "Analytics", caption: "Model evaluation curves and SHAP explainability plots" }
+        { src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop", alt: "Analytics", caption: "Model evaluation curves and SHAP explainability plots" }
       ]
     }
   }

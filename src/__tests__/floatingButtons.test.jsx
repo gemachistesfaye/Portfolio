@@ -1,17 +1,17 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import FloatingButtons from "../floatingButtons";
 
 describe("FloatingButtons", () => {
-  it("renders the Ask Gemachis button", () => {
+  it("renders only the floating Ask Gemachis button", async () => {
     render(<FloatingButtons />);
-    expect(screen.getByText("Ask Gemachis")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByRole("button", { name: /open ask gemachis \(floating\)/i })).toBeInTheDocument());
+    expect(screen.queryByRole("button", { name: /back to top/i })).not.toBeInTheDocument();
   });
 
-  it("has accessible aria-label", () => {
+  it("has accessible aria-label", async () => {
     render(<FloatingButtons />);
-    const button = screen.getByRole("button", { name: /open ask gemachis/i });
-    expect(button).toBeInTheDocument();
+    const button = await screen.findByRole("button", { name: /open ask gemachis \(floating\)/i });
     expect(button).toHaveAttribute("aria-expanded", "false");
   });
 });

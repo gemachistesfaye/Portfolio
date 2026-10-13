@@ -1,31 +1,10 @@
-import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { GraduationCap, Briefcase, Calendar, ExternalLink, X, Award } from "lucide-react";
-import { experience, achievements } from "./data";
+import { GraduationCap, Briefcase, Calendar } from "lucide-react";
+import { experience } from "./data";
 import SectionHeading from "./components/SectionHeading";
 
 const Experience = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
-  const [certImage, setCertImage] = useState(null);
-
-  useEffect(() => {
-    if (certImage) {
-      document.body.classList.add("cert-lightbox-open");
-    } else {
-      document.body.classList.remove("cert-lightbox-open");
-    }
-    return () => document.body.classList.remove("cert-lightbox-open");
-  }, [certImage]);
-
-  useEffect(() => {
-    if (!certImage) return;
-    const handleEscape = (e) => {
-      if (e.key === "Escape") setCertImage(null);
-    };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [certImage]);
-
   const workItems = experience.filter((exp) => exp.type !== "Degree");
   const education = experience.find((exp) => exp.type === "Degree");
 
@@ -36,13 +15,13 @@ const Experience = () => {
           <SectionHeading
             title="Professional"
             highlight="Background"
-            description="My engineering experience, academic qualifications, and verified professional credentials."
+            description="My engineering experience and academic qualifications."
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div className="max-w-4xl mx-auto">
           {/* Left Column: Work Experience Timeline */}
-          <div className={`lg:col-span-7 opacity-0 ${inView ? 'animate-slide-right' : ''}`}>
+          <div className={`opacity-0 ${inView ? 'animate-slide-up' : ''}`}>
             <div className="relative">
               <div className="absolute left-4 sm:left-6 top-0 w-px h-full bg-gradient-to-b from-amber-500/40 via-slate-200 dark:via-zinc-800 to-transparent" />
 
@@ -104,61 +83,9 @@ const Experience = () => {
             </div>
           </div>
 
-          {/* Right Column: Professional Credentials / Certifications */}
-          <div className={`lg:col-span-5 opacity-0 ${inView ? 'animate-slide-left' : ''}`} style={{ animationDelay: '0.15s' }}>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-zinc-800/80 border border-slate-200/80 dark:border-zinc-700/80 flex items-center justify-center text-amber-600 dark:text-amber-400">
-                <Award size={18} />
-              </div>
-              <div>
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                  Credentials & Certifications
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-zinc-500">Verified programs, bootcamps & awards</p>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {achievements.map((item) => (
-                <div
-                  key={item.title}
-                  className="group p-4 rounded-xl border border-slate-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 backdrop-blur-sm hover:border-slate-300 dark:hover:border-zinc-700 hover:bg-slate-50/20 dark:hover:bg-zinc-900/90 shadow-sm transition-all duration-300"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <h4 className="text-sm font-semibold text-slate-900 dark:text-white leading-snug group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
-                        {item.title}
-                      </h4>
-                      <p className="text-[11px] text-slate-500 dark:text-zinc-500 mt-0.5">{item.org} • {item.year}</p>
-                    </div>
-                    {item.proofFile && (
-                      <button
-                        onClick={() => setCertImage(item)}
-                        className="flex-shrink-0 p-1.5 rounded-lg text-slate-500 dark:text-zinc-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
-                        aria-label={`View ${item.title} certificate`}
-                        title="View certificate"
-                      >
-                        <ExternalLink size={14} />
-                      </button>
-                    )}
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 mt-2.5">
-                    {item.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 text-[9px] font-medium rounded bg-slate-100 dark:bg-zinc-950/70 text-slate-600 dark:text-zinc-400 border border-slate-200/80 dark:border-zinc-800/80"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
-        {/* Dedicated Education Section ("in one", not side-by-side with achievements) */}
+        {/* Dedicated Education Section */}
         {education && (
           <div className={`mt-8 sm:mt-10 opacity-0 ${inView ? 'animate-slide-up' : ''}`} style={{ animationDelay: '0.2s' }}>
             <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-zinc-900/60 backdrop-blur-sm border border-slate-200/80 dark:border-zinc-800/80 hover:border-slate-300 dark:hover:border-zinc-700 shadow-sm transition-all duration-300">
@@ -206,40 +133,6 @@ const Experience = () => {
           </div>
         )}
 
-        {/* Certificate Lightbox Modal */}
-        {certImage && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/85 backdrop-blur-md"
-            onClick={() => setCertImage(null)}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Certificate image"
-          >
-            <button
-              onClick={() => setCertImage(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-              aria-label="Close"
-            >
-              <X size={20} />
-            </button>
-            <img
-              src={`/Award/${certImage.proofFile}`}
-              alt={certImage.title}
-              className="w-full h-full max-w-4xl max-h-[85vh] rounded-2xl shadow-2xl object-contain"
-              onClick={(e) => e.stopPropagation()}
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.nextSibling.style.display = "flex";
-              }}
-            />
-            <div
-              className="hidden max-w-full max-h-[85vh] rounded-2xl shadow-2xl bg-white dark:bg-zinc-900 items-center justify-center p-12 border border-slate-200 dark:border-zinc-800"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <p className="text-slate-500 dark:text-zinc-500 text-center">Certificate image not available</p>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

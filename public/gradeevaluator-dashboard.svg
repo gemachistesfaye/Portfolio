@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">GradeEvaluator AI academic dashboard</title>
+  <desc id="desc">An academic analytics dashboard showing GPA, credits, grade distribution, and semester progress.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#374151"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#020617" flood-opacity=".3"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="750" fill="url(#background)"/>
+  <rect x="90" y="55" width="1020" height="640" rx="18" fill="#f8fafc" filter="url(#shadow)"/>
+  <rect x="90" y="55" width="225" height="640" rx="18" fill="#1e293b"/>
+  <text x="125" y="125" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#fff">GradeEvaluator</text>
+  <text x="125" y="153" font-family="Arial, sans-serif" font-size="14" fill="#fbbf24">AI Academic Analytics</text>
+  <rect x="120" y="205" width="165" height="42" rx="10" fill="#f59e0b"/>
+  <text x="145" y="232" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#111827">Dashboard</text>
+  <text x="145" y="290" font-family="Arial, sans-serif" font-size="15" fill="#cbd5e1">My Courses</text>
+  <text x="145" y="335" font-family="Arial, sans-serif" font-size="15" fill="#cbd5e1">GradeBot AI</text>
+  <text x="145" y="380" font-family="Arial, sans-serif" font-size="15" fill="#cbd5e1">Transcripts</text>
+  <text x="145" y="425" font-family="Arial, sans-serif" font-size="15" fill="#cbd5e1">Reports</text>
+  <text x="355" y="120" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Academic Overview</text>
+  <text x="355" y="148" font-family="Arial, sans-serif" font-size="15" fill="#64748b">Track performance, credits, and semester progress</text>
+  <rect x="355" y="185" width="210" height="120" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="380" y="220" font-family="Arial, sans-serif" font-size="14" fill="#9a3412">Current GPA</text>
+  <text x="380" y="270" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#c2410c">3.72</text>
+  <text x="475" y="270" font-family="Arial, sans-serif" font-size="14" fill="#16a34a">+0.18</text>
+  <rect x="585" y="185" width="210" height="120" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="610" y="220" font-family="Arial, sans-serif" font-size="14" fill="#1d4ed8">Cumulative CGPA</text>
+  <text x="610" y="270" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#1e40af">3.58</text>
+  <text x="705" y="270" font-family="Arial, sans-serif" font-size="14" fill="#64748b">/ 4.00</text>
+  <rect x="815" y="185" width="250" height="120" rx="14" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="840" y="220" font-family="Arial, sans-serif" font-size="14" fill="#15803d">Completed Credits</text>
+  <text x="840" y="270" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#166534">84</text>
+  <text x="920" y="270" font-family="Arial, sans-serif" font-size="14" fill="#64748b">/ 120</text>
+  <rect x="355" y="345" width="450" height="275" rx="14" fill="#fff" stroke="#e2e8f0"/>
+  <text x="380" y="385" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Semester GPA Trend</text>
+  <line x1="400" y1="555" x2="765" y2="555" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="400" y1="425" x2="400" y2="555" stroke="#cbd5e1" stroke-width="2"/>
+  <polyline points="420,520 500,490 580,505 660,445 745,410" fill="none" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="420" cy="520" r="7" fill="#f59e0b"/><circle cx="500" cy="490" r="7" fill="#f59e0b"/><circle cx="580" cy="505" r="7" fill="#f59e0b"/><circle cx="660" cy="445" r="7" fill="#f59e0b"/><circle cx="745" cy="410" r="7" fill="#f59e0b"/>
+  <text x="410" y="585" font-family="Arial, sans-serif" font-size="13" fill="#64748b">S1</text><text x="490" y="585" font-family="Arial, sans-serif" font-size="13" fill="#64748b">S2</text><text x="570" y="585" font-family="Arial, sans-serif" font-size="13" fill="#64748b">S3</text><text x="650" y="585" font-family="Arial, sans-serif" font-size="13" fill="#64748b">S4</text><text x="735" y="585" font-family="Arial, sans-serif" font-size="13" fill="#64748b">S5</text>
+  <rect x="830" y="345" width="235" height="275" rx="14" fill="#fff" stroke="#e2e8f0"/>
+  <text x="855" y="385" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">Grade Mix</text>
+  <rect x="855" y="430" width="34" height="110" rx="6" fill="#f59e0b"/><rect x="905" y="460" width="34" height="80" rx="6" fill="#60a5fa"/><rect x="955" y="485" width="34" height="55" rx="6" fill="#34d399"/><rect x="1005" y="505" width="34" height="35" rx="6" fill="#cbd5e1"/>
+  <text x="860" y="565" font-family="Arial, sans-serif" font-size="13" fill="#64748b">A</text><text x="910" y="565" font-family="Arial, sans-serif" font-size="13" fill="#64748b">B</text><text x="960" y="565" font-family="Arial, sans-serif" font-size="13" fill="#64748b">C</text><text x="1010" y="565" font-family="Arial, sans-serif" font-size="13" fill="#64748b">D</text>
+  <text x="730" y="665" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#64748b">GRADEEVALUATOR AI • GPA &amp; TRANSCRIPT ANALYTICS</text>
+</svg>

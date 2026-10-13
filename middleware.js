@@ -83,7 +83,7 @@ export default async function middleware(request) {
         <meta name="twitter:url" content="${request.url}">
         <meta name="twitter:title" content="${post.title}">
         <meta name="twitter:description" content="${post.excerpt || 'Read this post on my portfolio.'}">
-        ${post.imageUrl ? `<meta name="twitter:image" content="${post.imageUrl}">` : '<meta name="twitter:image" content="https://gemachisdev.vercel.app/social-preview.jpg">'}
+        ${post.imageUrl ? `<meta name="twitter:image" content="${post.imageUrl}">` : '<meta name="twitter:image" content="https://gemachisdev.vercel.app/Profile.jpg">'}
       </head>
       <body>
         <h1>${post.title}</h1>

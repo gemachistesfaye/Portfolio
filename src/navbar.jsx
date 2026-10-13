@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, PenLine, Sun, Moon, Download } from "lucide-react";
+import { Menu, X, PenLine, Sun, Moon } from "lucide-react";
 import { scrollToSection } from "./utils/scrollTo";
 import { useTheme } from "./context/ThemeContext";
-import config from "./config";
 
 const links = ["About", "Skills", "Projects", "Experience", "Contact"];
 
@@ -74,7 +73,7 @@ const Navbar = () => {
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className="fixed w-full top-0 z-50 transition-colors duration-200"
+      className="fixed w-full top-0 z-[60] transition-colors duration-200"
     >
       {/* Background layer - isolated so backdrop-filter does NOT trap fixed children in CSS */}
       <div
@@ -169,7 +168,9 @@ const Navbar = () => {
         <div
           id="mobile-menu"
           ref={menuRef}
-          className="md:hidden fixed inset-x-0 top-16 h-[calc(100vh-4rem)] h-[calc(100dvh-4rem)] bg-white/98 dark:bg-[#09090b]/98 backdrop-blur-2xl z-50 px-6 py-6 flex flex-col justify-between border-t border-slate-200/80 dark:border-white/[0.08] animate-in fade-in duration-200 overflow-y-auto"
+          role="dialog"
+          aria-label="Mobile navigation"
+          className="md:hidden fixed inset-x-0 top-16 bottom-0 bg-white dark:bg-[#09090b] z-[70] px-6 py-6 flex flex-col justify-between border-t border-slate-200/80 dark:border-white/[0.08] animate-in fade-in duration-200 overflow-y-auto"
         >
           <div className="space-y-1.5">
             <p className="px-3 pb-1 text-[11px] font-mono uppercase tracking-wider text-slate-400 dark:text-zinc-500 font-semibold">
@@ -195,26 +196,16 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="pt-5 border-t border-slate-200/80 dark:border-zinc-800 space-y-2.5">
-            <div className="grid grid-cols-2 gap-2.5">
-              <a
-                href={config.cvView}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="w-full flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl text-xs font-semibold text-slate-800 dark:text-zinc-200 bg-slate-50 dark:bg-zinc-800/80 border border-slate-200/80 dark:border-zinc-700 hover:text-slate-900 dark:hover:text-white transition-colors shadow-sm"
-              >
-                <Download size={14} className="text-amber-500" /> Resume / CV
-              </a>
-              <a
-                href="/blog"
-                onClick={(e) => { e.preventDefault(); setOpen(false); window.open("/blog", "_blank", "noopener,noreferrer"); }}
-                className="w-full flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl text-xs font-semibold text-slate-800 dark:text-zinc-200 bg-slate-50 dark:bg-zinc-800/80 border border-slate-200/80 dark:border-zinc-700 hover:text-slate-900 dark:hover:text-white transition-colors shadow-sm"
-              >
-                <PenLine size={14} className="text-amber-500 dark:text-amber-400" /> Read Blog
-              </a>
-            </div>
-            <p className="text-center text-[11px] text-slate-400 dark:text-zinc-500 font-mono pt-1">
+          <div className="pt-5 border-t border-slate-200/80 dark:border-zinc-800 space-y-3">
+            <a
+              href="/blog"
+              onClick={(e) => { e.preventDefault(); setOpen(false); window.open("/blog", "_blank", "noopener,noreferrer"); }}
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-200 bg-slate-100 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-zinc-600 transition-all shadow-sm"
+            >
+              <PenLine size={15} className="text-amber-600 dark:text-amber-400" />
+              <span>Read Blog</span>
+            </a>
+            <p className="text-center text-[11px] text-slate-400 dark:text-zinc-500 font-mono">
               Harar, Ethiopia • Open to Opportunities
             </p>
           </div>

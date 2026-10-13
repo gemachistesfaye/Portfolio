@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Navbar from "../navbar";
 
 describe("Navbar", () => {
@@ -20,5 +20,12 @@ describe("Navbar", () => {
     render(<Navbar />);
     const button = screen.getByRole("button", { name: /open menu/i });
     expect(button).toHaveAttribute("aria-expanded", "false");
+  });
+
+  it("shows the desktop Blog link in the mobile menu", () => {
+    render(<Navbar />);
+    fireEvent.click(screen.getByRole("button", { name: /open menu/i }));
+    expect(screen.getByText("Read Blog")).toBeInTheDocument();
+    expect(screen.queryByText("Resume / CV")).not.toBeInTheDocument();
   });
 });

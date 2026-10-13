@@ -1,9 +1,9 @@
 
-# 💻 Professional Web Portfolio
+# 💻 Gemachis Tesfaye — Portfolio
 
-A personal portfolio website built with **React** and **Tailwind CSS**, showcasing projects, skills and contact information. Designed to be responsive, modern and easy to maintain.
+A responsive portfolio built with **React**, **Vite**, and **Tailwind CSS** to showcase full-stack applications, AI systems, case studies, engineering experience, and contact information.
 
-> Built during my **summer internship at Information System Hub**, with **two weeks of intense work** (including a couple of sleepless nights ) to create a polished, responsive portfolio highlighting projects, skills and contact info.
+The portfolio is designed around practical software engineering work: offline-first applications, backend systems, academic analytics, machine learning, and AI-integrated products.
 
 ---
 
@@ -14,47 +14,51 @@ A personal portfolio website built with **React** and **Tailwind CSS**, showcasi
 ## 📋 Features & What’s Included
 
 - 🏠 **Home Section:** Introduction with name, title and call-to-action buttons.  
-- 🗂 **Projects Showcase:** Cards for each project with images, descriptions, view  and GitHub links.  
-- 💻 **Skills Section:** Grid displaying programming languages, frameworks and tools.  
+- 🗂 **Projects Showcase:** Featured and extended project cards with public/private access labels, demos, GitHub links, and case studies.  
+- 📚 **Case Studies:** Detailed problem, solution, architecture, features, and implementation breakdowns with ordered Previous/Next navigation.  
+- 💻 **Skills Section:** Grouped technologies across full-stack development, backend systems, AI/data science, and DevOps.  
 - 🙋‍♂️ **About Section:** Personal bio and professional summary.  
-- 📬 **Contact Form:** Functional contact form styled with Tailwind CSS.  
+- 📬 **Contact Section:** Contact details and a Formblade-powered contact form.  
+- 🤖 **Ask Gemachis:** AI-assisted portfolio Q&A with contact-aware fallback responses.  
+- 📝 **Engineering Blog:** Sanity-backed blog listing and article pages with RSS support.  
 - 📱 **Responsive Design:** Works seamlessly on all screen sizes.  
 - 🌙 **Dark Mode Support:** Smooth toggle between light and dark themes.  
-- 🔗 **Navigation:** Smooth scroll navigation between sections.  
-- 🛠 **Deployment:** Successfully deployed on GitHub Pages after overcoming challenges.  
-- ⏱ **Performance:** Optimized for fast loading and smooth user experience.
+- 🔗 **Navigation:** Accessible responsive navigation with mobile menu scroll locking.  
+- 🛠 **Deployment:** Deployed on Vercel with Vite production builds.  
+- ⏱ **Performance:** Lazy-loaded routes, optimized assets, and lightweight client-side interactions.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Frontend:** ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)  
-- **Styling:** ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?logo=tailwind-css&logoColor=white)  
-- **Languages:**  ![JS](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)  
-- **Icons:** React Feather  
-- **Forms:** Formspree  
+- **Frontend:** React 18, React Router, React Helmet Async  
+- **Styling:** Tailwind CSS, PostCSS  
+- **Content:** Sanity CMS, React Markdown, Remark GFM  
+- **Icons:** Lucide React  
+- **Forms:** Formblade  
+- **Testing:** Vitest, Testing Library, JSDOM  
 - **Version Control:** Git, GitHub  
-- **Deployment:** GitHub Pages  
+- **Deployment:** Vercel  
 
 ---
 
 ## 📬 Contact & Connect
 
-- ✉️ Email: [gemachistesfaye36@gmail.com](mailto:gemachistesfaye36@gmail.com)  
+- ✉️ Email: [gemachis.tesfaye.dev@gmail.com](mailto:gemachis.tesfaye.dev@gmail.com)  
 - 📞 Phone: [+251976601074](tel:+251976601074)  
-- 📍 Location: Adaama, Ethiopia  
+- 📍 Location: Harar, Ethiopia  
 
 <p align="center">
-  <a href="https://x.com/GemachisTe79854">
+  <a href="https://x.com/GemachisTesfaye">
     <img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white&style=for-the-badge" alt="Twitter" />
   </a>
-  <a href="https://www.instagram.com/urjiiko1">
+  <a href="https://www.instagram.com/gemachistesfaye1">
     <img src="https://img.shields.io/badge/Instagram-E4405F?logo=instagram&logoColor=white&style=for-the-badge" alt="Instagram" />
   </a>
   <a href="https://www.linkedin.com/in/gemachis-tesfaye/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white&style=for-the-badge" alt="LinkedIn" />
   </a>
-  <a href="https://github.com/urjiiko1">
+  <a href="https://github.com/gemachistesfaye">
     <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white&style=for-the-badge" alt="GitHub" />
   </a>
   <a href="https://t.me/urjiiko1">
@@ -64,63 +68,11 @@ A personal portfolio website built with **React** and **Tailwind CSS**, showcasi
 
 ---
 
-## 🗂 Table of Contents
-- [Front View](#-front-view)
-- [My Skills Section](#-my-skills-section)
-- [My Projects Section](#-my-projects-section)
-- [About Me Section](#-about-me-section)
-- [Contact Section](#-contact-section)
-
----
-
-## 🖼 Screenshots
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FFrontView.png" alt="Landing page of the portfolio showcasing the introduction and navigation" width="300"/>
-      <br>🏠 Front View
-    </td>
-    <td align="center">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FMyskill.png" alt="Skills section displaying technical skills in frontend development, data analysis, and tools" width="300"/>
-      <br>💡 My Skills Section
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FMyproject.png" alt="Projects section with featured projects, descriptions, and links" width="300"/>
-      <br>📂 My Projects Section
-    </td>
-    <td align="center">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FAboutme.png" alt="About Me section with personal background, education, and career goals" width="300"/>
-      <br>👨‍💻 About Me Section
-    </td>
-  </tr>
-  <tr>
-    <td align="center" colspan="2">
-      <img src="https://github.com/urjiiko1/Portfolio/blob/main/public%2FScreenshoot%2FContact.png" alt="Contact section with form and links to email and social media" width="600"/>
-      <br>📩 Contact Section
-    </td>
-  </tr>
-</table>
-
----
-
-## 📚 Useful Resources
-
-- [Standard Tailwind by tw elements ](https://tw-elements.com/docs/standard/getting-started/quick-start/)  
-- [React Contact Components](https://reactcomponents.com/?tags=contact&type=components&id=78)
-
----
-
 ## 🚧 Future Improvements
 
-- 📄 Add downloadable CV / Resume  
-- 🗂 Add project filters and live demos  
-- 📊 Show interactive skill charts  
-- 📝 Add blog / insights section  
-- 💬 Include testimonials / references  
-- 🏆 Showcase certificates and achievements  
+- 🗂 Add category and technology filters to the Projects section
+- 📊 Add an optional interactive skills visualization if it improves usability
+- 💬 Include testimonials or professional references when verified references are available
 
 ---
 
